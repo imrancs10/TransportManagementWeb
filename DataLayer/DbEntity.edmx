@@ -1,0 +1,511 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TransportManagementWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DayMaster">
+          <Key>
+            <PropertyRef Name="DayId" />
+          </Key>
+          <Property Name="DayId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DayName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="DoctorID" />
+          </Key>
+          <Property Name="DoctorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DoctorName" Type="varchar" MaxLength="200" />
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DoctorSchedule">
+          <Key>
+            <PropertyRef Name="DoctorScheduleID" />
+          </Key>
+          <Property Name="DoctorScheduleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DoctorID" Type="int" />
+          <Property Name="DayID" Type="int" />
+          <Property Name="TimeFrom" Type="int" />
+          <Property Name="TimeFromMeridiemID" Type="int" />
+          <Property Name="TimeTo" Type="int" />
+          <Property Name="TimeToMeridiemID" Type="int" />
+        </EntityType>
+        <EntityType Name="Gbl_Master_Login">
+          <Key>
+            <PropertyRef Name="LoginId" />
+          </Key>
+          <Property Name="LoginId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="LastLogin" Type="datetime" />
+          <Property Name="IsBlocked" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsSync" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Gbl_Master_User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar" MaxLength="250" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Gender" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="DoB" Type="datetime" Nullable="false" />
+          <Property Name="EmailId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MobileNumber" Type="nvarchar" MaxLength="13" Nullable="false" />
+          <Property Name="IsdCode" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="IsSync" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MeridiemMaster">
+          <Key>
+            <PropertyRef Name="MeridiemID" />
+          </Key>
+          <Property Name="MeridiemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MeridiemValue" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Doctor_Doctor">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="Doctor">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorScheduleDay_DayMaster1">
+          <End Role="DayMaster" Type="Self.DayMaster" Multiplicity="0..1" />
+          <End Role="DoctorSchedule" Type="Self.DoctorSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DayMaster">
+              <PropertyRef Name="DayId" />
+            </Principal>
+            <Dependent Role="DoctorSchedule">
+              <PropertyRef Name="DayID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorScheduleDay_DoctorSchedule">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1" />
+          <End Role="DoctorSchedule" Type="Self.DoctorSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="DoctorID" />
+            </Principal>
+            <Dependent Role="DoctorSchedule">
+              <PropertyRef Name="DoctorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorScheduleDay_MeridiemMaster">
+          <End Role="MeridiemMaster" Type="Self.MeridiemMaster" Multiplicity="0..1" />
+          <End Role="DoctorSchedule" Type="Self.DoctorSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeridiemMaster">
+              <PropertyRef Name="MeridiemID" />
+            </Principal>
+            <Dependent Role="DoctorSchedule">
+              <PropertyRef Name="TimeFromMeridiemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorScheduleDay_MeridiemMaster1">
+          <End Role="MeridiemMaster" Type="Self.MeridiemMaster" Multiplicity="0..1" />
+          <End Role="DoctorSchedule" Type="Self.DoctorSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeridiemMaster">
+              <PropertyRef Name="MeridiemID" />
+            </Principal>
+            <Dependent Role="DoctorSchedule">
+              <PropertyRef Name="TimeToMeridiemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gbl_Master_Login_Gbl_Master_User">
+          <End Role="Gbl_Master_User" Type="Self.Gbl_Master_User" Multiplicity="1" />
+          <End Role="Gbl_Master_Login" Type="Self.Gbl_Master_Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gbl_Master_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Gbl_Master_Login">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TransportManagementWebModelStoreContainer">
+          <EntitySet Name="DayMaster" EntityType="Self.DayMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DoctorSchedule" EntityType="Self.DoctorSchedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gbl_Master_Login" EntityType="Self.Gbl_Master_Login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gbl_Master_User" EntityType="Self.Gbl_Master_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MeridiemMaster" EntityType="Self.MeridiemMaster" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Doctor_Doctor" Association="Self.FK_Doctor_Doctor">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Doctor" EntitySet="Doctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorScheduleDay_DayMaster1" Association="Self.FK_DoctorScheduleDay_DayMaster1">
+            <End Role="DayMaster" EntitySet="DayMaster" />
+            <End Role="DoctorSchedule" EntitySet="DoctorSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorScheduleDay_DoctorSchedule" Association="Self.FK_DoctorScheduleDay_DoctorSchedule">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="DoctorSchedule" EntitySet="DoctorSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorScheduleDay_MeridiemMaster" Association="Self.FK_DoctorScheduleDay_MeridiemMaster">
+            <End Role="MeridiemMaster" EntitySet="MeridiemMaster" />
+            <End Role="DoctorSchedule" EntitySet="DoctorSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorScheduleDay_MeridiemMaster1" Association="Self.FK_DoctorScheduleDay_MeridiemMaster1">
+            <End Role="MeridiemMaster" EntitySet="MeridiemMaster" />
+            <End Role="DoctorSchedule" EntitySet="DoctorSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gbl_Master_Login_Gbl_Master_User" Association="Self.FK_Gbl_Master_Login_Gbl_Master_User">
+            <End Role="Gbl_Master_User" EntitySet="Gbl_Master_User" />
+            <End Role="Gbl_Master_Login" EntitySet="Gbl_Master_Login" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TransportManagementWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TransportManagementWebEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DayMasters" EntityType="TransportManagementWebModel.DayMaster" />
+          <EntitySet Name="Departments" EntityType="TransportManagementWebModel.Department" />
+          <EntitySet Name="Doctors" EntityType="TransportManagementWebModel.Doctor" />
+          <EntitySet Name="DoctorSchedules" EntityType="TransportManagementWebModel.DoctorSchedule" />
+          <EntitySet Name="Gbl_Master_Login" EntityType="TransportManagementWebModel.Gbl_Master_Login" />
+          <EntitySet Name="Gbl_Master_User" EntityType="TransportManagementWebModel.Gbl_Master_User" />
+          <EntitySet Name="MeridiemMasters" EntityType="TransportManagementWebModel.MeridiemMaster" />
+          <AssociationSet Name="FK_DoctorScheduleDay_DayMaster1" Association="TransportManagementWebModel.FK_DoctorScheduleDay_DayMaster1">
+            <End Role="DayMaster" EntitySet="DayMasters" />
+            <End Role="DoctorSchedule" EntitySet="DoctorSchedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doctor_Doctor" Association="TransportManagementWebModel.FK_Doctor_Doctor">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Doctor" EntitySet="Doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorScheduleDay_DoctorSchedule" Association="TransportManagementWebModel.FK_DoctorScheduleDay_DoctorSchedule">
+            <End Role="Doctor" EntitySet="Doctors" />
+            <End Role="DoctorSchedule" EntitySet="DoctorSchedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorScheduleDay_MeridiemMaster" Association="TransportManagementWebModel.FK_DoctorScheduleDay_MeridiemMaster">
+            <End Role="MeridiemMaster" EntitySet="MeridiemMasters" />
+            <End Role="DoctorSchedule" EntitySet="DoctorSchedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorScheduleDay_MeridiemMaster1" Association="TransportManagementWebModel.FK_DoctorScheduleDay_MeridiemMaster1">
+            <End Role="MeridiemMaster" EntitySet="MeridiemMasters" />
+            <End Role="DoctorSchedule" EntitySet="DoctorSchedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gbl_Master_Login_Gbl_Master_User" Association="TransportManagementWebModel.FK_Gbl_Master_Login_Gbl_Master_User">
+            <End Role="Gbl_Master_User" EntitySet="Gbl_Master_User" />
+            <End Role="Gbl_Master_Login" EntitySet="Gbl_Master_Login" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DayMaster">
+          <Key>
+            <PropertyRef Name="DayId" />
+          </Key>
+          <Property Name="DayId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DayName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DoctorSchedules" Relationship="TransportManagementWebModel.FK_DoctorScheduleDay_DayMaster1" FromRole="DayMaster" ToRole="DoctorSchedule" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Doctors" Relationship="TransportManagementWebModel.FK_Doctor_Doctor" FromRole="Department" ToRole="Doctor" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="DoctorID" />
+          </Key>
+          <Property Name="DoctorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DoctorName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="TransportManagementWebModel.FK_Doctor_Doctor" FromRole="Doctor" ToRole="Department" />
+          <NavigationProperty Name="DoctorSchedules" Relationship="TransportManagementWebModel.FK_DoctorScheduleDay_DoctorSchedule" FromRole="Doctor" ToRole="DoctorSchedule" />
+        </EntityType>
+        <EntityType Name="DoctorSchedule">
+          <Key>
+            <PropertyRef Name="DoctorScheduleID" />
+          </Key>
+          <Property Name="DoctorScheduleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DoctorID" Type="Int32" />
+          <Property Name="DayID" Type="Int32" />
+          <Property Name="TimeFrom" Type="Int32" />
+          <Property Name="TimeFromMeridiemID" Type="Int32" />
+          <Property Name="TimeTo" Type="Int32" />
+          <Property Name="TimeToMeridiemID" Type="Int32" />
+          <NavigationProperty Name="DayMaster" Relationship="TransportManagementWebModel.FK_DoctorScheduleDay_DayMaster1" FromRole="DoctorSchedule" ToRole="DayMaster" />
+          <NavigationProperty Name="Doctor" Relationship="TransportManagementWebModel.FK_DoctorScheduleDay_DoctorSchedule" FromRole="DoctorSchedule" ToRole="Doctor" />
+          <NavigationProperty Name="MeridiemMaster" Relationship="TransportManagementWebModel.FK_DoctorScheduleDay_MeridiemMaster" FromRole="DoctorSchedule" ToRole="MeridiemMaster" />
+          <NavigationProperty Name="MeridiemMaster1" Relationship="TransportManagementWebModel.FK_DoctorScheduleDay_MeridiemMaster1" FromRole="DoctorSchedule" ToRole="MeridiemMaster" />
+        </EntityType>
+        <EntityType Name="Gbl_Master_Login">
+          <Key>
+            <PropertyRef Name="LoginId" />
+          </Key>
+          <Property Name="LoginId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="LastLogin" Type="DateTime" Precision="3" />
+          <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsSync" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Gbl_Master_User" Relationship="TransportManagementWebModel.FK_Gbl_Master_Login_Gbl_Master_User" FromRole="Gbl_Master_Login" ToRole="Gbl_Master_User" />
+        </EntityType>
+        <EntityType Name="Gbl_Master_User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="DoB" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EmailId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="IsdCode" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="IsSync" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Gbl_Master_Login" Relationship="TransportManagementWebModel.FK_Gbl_Master_Login_Gbl_Master_User" FromRole="Gbl_Master_User" ToRole="Gbl_Master_Login" />
+        </EntityType>
+        <EntityType Name="MeridiemMaster">
+          <Key>
+            <PropertyRef Name="MeridiemID" />
+          </Key>
+          <Property Name="MeridiemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MeridiemValue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DoctorSchedules" Relationship="TransportManagementWebModel.FK_DoctorScheduleDay_MeridiemMaster" FromRole="MeridiemMaster" ToRole="DoctorSchedule" />
+          <NavigationProperty Name="DoctorSchedules1" Relationship="TransportManagementWebModel.FK_DoctorScheduleDay_MeridiemMaster1" FromRole="MeridiemMaster" ToRole="DoctorSchedule" />
+        </EntityType>
+        <Association Name="FK_DoctorScheduleDay_DayMaster1">
+          <End Type="TransportManagementWebModel.DayMaster" Role="DayMaster" Multiplicity="0..1" />
+          <End Type="TransportManagementWebModel.DoctorSchedule" Role="DoctorSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DayMaster">
+              <PropertyRef Name="DayId" />
+            </Principal>
+            <Dependent Role="DoctorSchedule">
+              <PropertyRef Name="DayID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doctor_Doctor">
+          <End Type="TransportManagementWebModel.Department" Role="Department" Multiplicity="1" />
+          <End Type="TransportManagementWebModel.Doctor" Role="Doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="Doctor">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorScheduleDay_DoctorSchedule">
+          <End Type="TransportManagementWebModel.Doctor" Role="Doctor" Multiplicity="0..1" />
+          <End Type="TransportManagementWebModel.DoctorSchedule" Role="DoctorSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="DoctorID" />
+            </Principal>
+            <Dependent Role="DoctorSchedule">
+              <PropertyRef Name="DoctorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorScheduleDay_MeridiemMaster">
+          <End Type="TransportManagementWebModel.MeridiemMaster" Role="MeridiemMaster" Multiplicity="0..1" />
+          <End Type="TransportManagementWebModel.DoctorSchedule" Role="DoctorSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeridiemMaster">
+              <PropertyRef Name="MeridiemID" />
+            </Principal>
+            <Dependent Role="DoctorSchedule">
+              <PropertyRef Name="TimeFromMeridiemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorScheduleDay_MeridiemMaster1">
+          <End Type="TransportManagementWebModel.MeridiemMaster" Role="MeridiemMaster" Multiplicity="0..1" />
+          <End Type="TransportManagementWebModel.DoctorSchedule" Role="DoctorSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeridiemMaster">
+              <PropertyRef Name="MeridiemID" />
+            </Principal>
+            <Dependent Role="DoctorSchedule">
+              <PropertyRef Name="TimeToMeridiemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gbl_Master_Login_Gbl_Master_User">
+          <End Type="TransportManagementWebModel.Gbl_Master_User" Role="Gbl_Master_User" Multiplicity="1" />
+          <End Type="TransportManagementWebModel.Gbl_Master_Login" Role="Gbl_Master_Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gbl_Master_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Gbl_Master_Login">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TransportManagementWebModelStoreContainer" CdmEntityContainer="TransportManagementWebEntities">
+          <EntitySetMapping Name="DayMasters">
+            <EntityTypeMapping TypeName="TransportManagementWebModel.DayMaster">
+              <MappingFragment StoreEntitySet="DayMaster">
+                <ScalarProperty Name="DayName" ColumnName="DayName" />
+                <ScalarProperty Name="DayId" ColumnName="DayId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="TransportManagementWebModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="TransportManagementWebModel.Doctor">
+              <MappingFragment StoreEntitySet="Doctor">
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DoctorSchedules">
+            <EntityTypeMapping TypeName="TransportManagementWebModel.DoctorSchedule">
+              <MappingFragment StoreEntitySet="DoctorSchedule">
+                <ScalarProperty Name="TimeToMeridiemID" ColumnName="TimeToMeridiemID" />
+                <ScalarProperty Name="TimeTo" ColumnName="TimeTo" />
+                <ScalarProperty Name="TimeFromMeridiemID" ColumnName="TimeFromMeridiemID" />
+                <ScalarProperty Name="TimeFrom" ColumnName="TimeFrom" />
+                <ScalarProperty Name="DayID" ColumnName="DayID" />
+                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+                <ScalarProperty Name="DoctorScheduleID" ColumnName="DoctorScheduleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gbl_Master_Login">
+            <EntityTypeMapping TypeName="TransportManagementWebModel.Gbl_Master_Login">
+              <MappingFragment StoreEntitySet="Gbl_Master_Login">
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsSync" ColumnName="IsSync" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gbl_Master_User">
+            <EntityTypeMapping TypeName="TransportManagementWebModel.Gbl_Master_User">
+              <MappingFragment StoreEntitySet="Gbl_Master_User">
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsSync" ColumnName="IsSync" />
+                <ScalarProperty Name="IsdCode" ColumnName="IsdCode" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="DoB" ColumnName="DoB" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MeridiemMasters">
+            <EntityTypeMapping TypeName="TransportManagementWebModel.MeridiemMaster">
+              <MappingFragment StoreEntitySet="MeridiemMaster">
+                <ScalarProperty Name="MeridiemValue" ColumnName="MeridiemValue" />
+                <ScalarProperty Name="MeridiemID" ColumnName="MeridiemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram DiagramId="96d87482f862457a932ad65ffd2427a1" Name="Diagram1">
+        <EntityTypeShape EntityType="TransportManagementWebModel.DayMaster" Width="1.5" PointX="0.75" PointY="11" />
+        <EntityTypeShape EntityType="TransportManagementWebModel.Department" Width="1.5" PointX="1.5" PointY="8.5" />
+        <EntityTypeShape EntityType="TransportManagementWebModel.Doctor" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="TransportManagementWebModel.DoctorSchedule" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="TransportManagementWebModel.Gbl_Master_Login" Width="1.5" PointX="8" PointY="1.625" />
+        <EntityTypeShape EntityType="TransportManagementWebModel.Gbl_Master_User" Width="1.5" PointX="5.75" PointY="1" />
+        <EntityTypeShape EntityType="TransportManagementWebModel.MeridiemMaster" Width="1.5" PointX="0.75" PointY="1.625" />
+        <AssociationConnector Association="TransportManagementWebModel.FK_DoctorScheduleDay_DayMaster1" />
+        <AssociationConnector Association="TransportManagementWebModel.FK_Doctor_Doctor" />
+        <AssociationConnector Association="TransportManagementWebModel.FK_DoctorScheduleDay_DoctorSchedule" />
+        <AssociationConnector Association="TransportManagementWebModel.FK_DoctorScheduleDay_MeridiemMaster" />
+        <AssociationConnector Association="TransportManagementWebModel.FK_DoctorScheduleDay_MeridiemMaster1" />
+        <AssociationConnector Association="TransportManagementWebModel.FK_Gbl_Master_Login_Gbl_Master_User" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
