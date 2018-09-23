@@ -7,29 +7,70 @@
 
 <div id="loginContainer" class="dialog dialog-effect-in">
     <div class="dialog-front">
+        <div class="login100-form-title" style="background-image: url(/img/bg-01.jpg);">
+            <span class="login100-form-title-1">
+                Transport Management System
+            </span>
+        </div>
         <div class="dialog-content">
-            <form id="login_form" class="dialog-form" action="/login/getlogin" method="POST">
-                <fieldset>
-                    <legend>Log in</legend>
-                    <div class="form-group">
-                        <label for="user_username" class="control-label">Username:</label>
-                        <input type="text" id="user_username" class="form-control" name="username" autofocus />
+            <form id="login_form" class="login100-form validate-form" action="/login/getlogin" method="POST">
+                    <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                        <span for="user_username" class="label-input100">Username</span>
+                        <input class="input100" type="text" name="username" id="user_username" placeholder="Enter username" autofocus>
+                        <span class="focus-input100"></span>
                     </div>
-                    <div class="form-group">
-                        <label for="user_password" class="control-label">Password:</label>
-                        <input type="password" id="user_password" class="form-control" name="password" />
+
+                    <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                        <span for="user_password" class="label-input100">Password</span>
+                        <input class="input100" type="password" id="user_password" name="password" placeholder="Enter password">
+                        <span class="focus-input100"></span>
                     </div>
-                    @*<div class="text-center pad-top-20">
-                        <p>Have you forgotten your<br><a href="#" class="link"><strong>username</strong></a> or <a href="#" class="link"><strong>password</strong></a>?</p>
-                    </div>*@
-                    <div class="pad-top-20 pad-btm-20">
-                        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Continue">
+
+                    <div class="flex-sb-m w-full p-b-30">
+                        <div class="contact100-form-checkbox">
+                            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                            <label class="label-checkbox100" for="ckb1">Remember me</label>
+                        </div>
+                        <div>
+                            <a href="#" class="txt1">
+                                Forgot Password?
+                            </a>
+                        </div>
                     </div>
-                    @*<div class="text-center">
-                        <p>Do you wish to register<br> for <a href="#" class="link user-actions"><strong>a new account</strong></a>?</p>
-                    </div>*@
-                </fieldset>
-            </form>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn">
+                            Login
+                        </button>
+                    </div>
+                </form>
+            @*<form id="login_form" class="dialog-form" action="/login/getlogin" method="POST">
+                        <fieldset>
+                            <div class="login100-form-title" style="background-image: url(/img/bg-01.jpg);">
+                                <span class="login100-form-title-1">
+                                    Sign In
+                                </span>
+                            </div>
+                            <legend>Transport Management System</legend>
+                            <div class="form-group" data-validate="Username is required">
+                                <span for="user_username" class="control-label">Username:</span>
+                                <input type="text" id="user_username" class="form-control" name="username" autofocus />
+                            </div>
+                            <div class="form-group" data-validate = "Password is required">
+                                <span for="user_password" class="control-label">Password:</span>
+                                <input type="password" id="user_password" class="form-control" name="password" />
+                            </div>
+                            @*<div class="text-center pad-top-20">
+                <p>Have you forgotten your<br><a href="#" class="link"><strong>username</strong></a> or <a href="#" class="link"><strong>password</strong></a>?</p>
+            </div>
+                            <div class="pad-top-20 pad-btm-20">
+                                <input type="submit" class="btn btn-primary btn-block btn-lg" value="Continue">
+                            </div>
+                            @*<div class="text-center">
+                <p>Do you wish to register<br> for <a href="#" class="link user-actions"><strong>a new account</strong></a>?</p>
+            </div>
+                        </fieldset>
+                    </form>*@
         </div>
     </div>
 </div>
