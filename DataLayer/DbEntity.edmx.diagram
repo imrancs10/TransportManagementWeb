@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f9658f4393ec4caab56dbc5c83d4320b" Name="Diagram1">
+        <EntityTypeShape EntityType="TransportManagementModel.City" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TransportManagementModel.ClientConcernPerson" Width="1.5" PointX="9.75" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TransportManagementModel.ClientDetail" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TransportManagementModel.Country" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TransportManagementModel.State" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TransportManagementModel.VendorBankDetail" Width="1.5" PointX="12.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TransportManagementModel.VendorConcernPerson" Width="1.5" PointX="12.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TransportManagementModel.VendorDetail" Width="1.5" PointX="10.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TransportManagementModel.VendorLineHaulDetail" Width="1.5" PointX="15.75" PointY="10" IsExpanded="true" />
+        <AssociationConnector Association="TransportManagementModel.FK_City_State" ManuallyRouted="false" />
+        <AssociationConnector Association="TransportManagementModel.FK_ClientDetail_City" ManuallyRouted="false" />
+        <AssociationConnector Association="TransportManagementModel.FK_VendorDetail_City" ManuallyRouted="false" />
+        <AssociationConnector Association="TransportManagementModel.FK_ClientConcernPerson_ClientDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="TransportManagementModel.FK_ClientDetail_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="TransportManagementModel.FK_ClientDetail_State" ManuallyRouted="false" />
+        <AssociationConnector Association="TransportManagementModel.FK_State_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="TransportManagementModel.FK_VendorDetail_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="TransportManagementModel.FK_VendorDetail_State" ManuallyRouted="false" />
+        <AssociationConnector Association="TransportManagementModel.FK_VendorLineHaulDetail_State" ManuallyRouted="false" />
+        <AssociationConnector Association="TransportManagementModel.FK_VendorLineHaulDetail_State1" ManuallyRouted="false" />
+        <AssociationConnector Association="TransportManagementModel.FK_VendorBankDetail_VendorDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="TransportManagementModel.FK_VendorConcernPerson_VendorDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="TransportManagementModel.FK_VendorLineHaulDetail_VendorDetail" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TransportManagementModel.UserDetail" Width="1.5" PointX="0.75" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -11,65 +11,66 @@ namespace TransportManagementWeb.BAL.Masters
 {
     public class DepartmentDetails
     {
-        TransportManagementWebEntities _db = null;
+        TransportManagementEntities _db = null;
 
         public Enums.CrudStatus SaveDept(string deptName)
         {
-            _db = new TransportManagementWebEntities();
-            int _effectRow = 0;
-            var _deptRow = _db.Departments.Where(x => x.DepartmentName.Equals(deptName)).FirstOrDefault();
-            if (_deptRow == null)
-            {
-                Department _newDept = new Department();
-                _newDept.DepartmentName = deptName;
-                _db.Entry(_newDept).State = EntityState.Added;
-                _effectRow = _db.SaveChanges();
-                return _effectRow > 0 ? Enums.CrudStatus.Saved : Enums.CrudStatus.NotSaved;
-            }
-            else
-                return Enums.CrudStatus.DataAlreadyExist;
+            _db = new TransportManagementEntities();
+            //int _effectRow = 0;
+            //var _deptRow = _db.Departments.Where(x => x.DepartmentName.Equals(deptName)).FirstOrDefault();
+            //if (_deptRow == null)
+            //{
+            //    Department _newDept = new Department();
+            //    _newDept.DepartmentName = deptName;
+            //    _db.Entry(_newDept).State = EntityState.Added;
+            //    _effectRow = _db.SaveChanges();
+            //    return _effectRow > 0 ? Enums.CrudStatus.Saved : Enums.CrudStatus.NotSaved;
+            //}
+            //else
+            return Enums.CrudStatus.DataAlreadyExist;
         }
-        public Enums.CrudStatus EditDept(string deptName,int deptId)
+        public Enums.CrudStatus EditDept(string deptName, int deptId)
         {
-            _db = new TransportManagementWebEntities();
-            int _effectRow = 0;
-            var _deptRow = _db.Departments.Where(x => x.DepartmentID.Equals(deptId)).FirstOrDefault();
-            if (_deptRow != null)
-            {
-                _deptRow.DepartmentName = deptName;
-                _db.Entry(_deptRow).State = EntityState.Modified;
-                _effectRow = _db.SaveChanges();
-                return _effectRow > 0 ? Enums.CrudStatus.Updated : Enums.CrudStatus.NotUpdated;
-            }
-            else
-                return Enums.CrudStatus.DataNotFound;
+            _db = new TransportManagementEntities();
+            //int _effectRow = 0;
+            //var _deptRow = _db.Departments.Where(x => x.DepartmentID.Equals(deptId)).FirstOrDefault();
+            //if (_deptRow != null)
+            //{
+            //    _deptRow.DepartmentName = deptName;
+            //    _db.Entry(_deptRow).State = EntityState.Modified;
+            //    _effectRow = _db.SaveChanges();
+            //    return _effectRow > 0 ? Enums.CrudStatus.Updated : Enums.CrudStatus.NotUpdated;
+            //}
+            //else
+            return Enums.CrudStatus.DataNotFound;
         }
         public Enums.CrudStatus DeleteDept(int deptId)
         {
-            _db = new TransportManagementWebEntities();
-            int _effectRow = 0;
-            var _deptRow = _db.Departments.Where(x => x.DepartmentID.Equals(deptId)).FirstOrDefault();
-            if (_deptRow != null)
-            {
-                _db.Departments.Remove(_deptRow);
-                //_db.Entry(_deptRow).State = EntityState.Deleted;
-                _effectRow = _db.SaveChanges();
-                return _effectRow > 0 ? Enums.CrudStatus.Deleted : Enums.CrudStatus.NotDeleted;
-            }
-            else
-                return Enums.CrudStatus.DataNotFound;
+            _db = new TransportManagementEntities();
+            //int _effectRow = 0;
+            //var _deptRow = _db.Departments.Where(x => x.DepartmentID.Equals(deptId)).FirstOrDefault();
+            //if (_deptRow != null)
+            //{
+            //    _db.Departments.Remove(_deptRow);
+            //    //_db.Entry(_deptRow).State = EntityState.Deleted;
+            //    _effectRow = _db.SaveChanges();
+            //    return _effectRow > 0 ? Enums.CrudStatus.Deleted : Enums.CrudStatus.NotDeleted;
+            //}
+            //else
+            return Enums.CrudStatus.DataNotFound;
         }
 
         public List<DepartmentModel> DepartmentList()
         {
-            _db = new TransportManagementWebEntities();
-            var _list = (from dept in _db.Departments
-                         select new DepartmentModel
-                         {
-                             DeparmentName = dept.DepartmentName,
-                             DepartmentId = dept.DepartmentID
-                         }).ToList();
-            return _list != null ? _list : new List<DepartmentModel>();
+            _db = new TransportManagementEntities();
+            //var _list = (from dept in _db.Departments
+            //             select new DepartmentModel
+            //             {
+            //                 DeparmentName = dept.DepartmentName,
+            //                 DepartmentId = dept.DepartmentID
+            //             }).ToList();
+            //return _list != null ? _list : new List<DepartmentModel>();
+            return null;
         }
     }
 }

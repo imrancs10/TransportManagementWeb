@@ -10,7 +10,7 @@ namespace TransportManagementWeb.BAL.Login
 {
     public class LoginDetails
     {
-        TransportManagementWebEntities _db = null;
+        TransportManagementEntities _db = null;
 
         /// <summary>
         /// Get Authenticate User credentials
@@ -21,46 +21,12 @@ namespace TransportManagementWeb.BAL.Login
         public Enums.LoginMessage GetLogin(string UserName, string Password)
         {
             string _passwordHash = Utility.GetHashString(Password);
-            _db = new TransportManagementWebEntities();
+            _db = new TransportManagementEntities();
 
-            var _userRow = _db.Gbl_Master_User.Where(x => x.Username.Equals(UserName) && x.PasswordHash.Equals(_passwordHash) && x.IsDeleted == false).FirstOrDefault();
+            var _userRow = _db.UserDetails.Where(x => x.UserName.Equals(UserName) && x.Password.Equals(_passwordHash)).FirstOrDefault();
 
             if (_userRow != null)
             {
-                var _userLogin = _userRow.Gbl_Master_Login.FirstOrDefault(x => x.IsDeleted == false);
-
-                if (_userLogin != null)
-                {
-                    if (_userLogin.IsActive == false)
-                        return Enums.LoginMessage.UserBlocked;
-                    else if (_userLogin.IsBlocked)
-                        return Enums.LoginMessage.UserInactive;
-                    else
-                    {
-                        _userLogin.LastLogin = DateTime.Now;
-                        _db.Entry(_userLogin).State = EntityState.Modified;
-                        _db.SaveChanges();
-                    }
-                }
-                else
-                {
-                    Gbl_Master_Login _newLogin = new Gbl_Master_Login();
-                    _newLogin.CreatedAt = DateTime.Now;
-                    _newLogin.IsActive = true;
-                    _newLogin.IsBlocked = false;
-                    _newLogin.IsDeleted = false;
-                    _newLogin.IsSync = false;
-                    _newLogin.LastLogin = DateTime.Now;
-                    _newLogin.UserId = _userRow.UserId;
-                    _db.Entry(_newLogin).State = EntityState.Added;
-                    _db.SaveChanges();
-                }
-                UserData.UserId = _userRow.UserId;
-                UserData.Username = _userRow.Username;
-                UserData.FirstName = _userRow.FirstName;
-                UserData.MiddleName = _userRow.MiddleName;
-                UserData.LastName = _userRow.LastName;
-                UserData.Email = _userRow.EmailId;
                 return Enums.LoginMessage.Authenticated;
             }
             else

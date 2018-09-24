@@ -12,20 +12,24 @@ namespace DataLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class Doctor
+    public partial class Country
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Doctor()
+        public Country()
         {
-            this.DoctorSchedules = new HashSet<DoctorSchedule>();
+            this.ClientDetails = new HashSet<ClientDetail>();
+            this.States = new HashSet<State>();
+            this.VendorDetails = new HashSet<VendorDetail>();
         }
     
-        public int DoctorID { get; set; }
-        public string DoctorName { get; set; }
-        public int DepartmentID { get; set; }
+        public int CountryId { get; set; }
+        public string CountryName { get; set; }
     
-        public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DoctorSchedule> DoctorSchedules { get; set; }
+        public virtual ICollection<ClientDetail> ClientDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<State> States { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VendorDetail> VendorDetails { get; set; }
     }
 }

@@ -13,10 +13,10 @@ namespace DataLayer
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TransportManagementWebEntities : DbContext
+    public partial class TransportManagementEntities : DbContext
     {
-        public TransportManagementWebEntities()
-            : base("name=TransportManagementWebEntities")
+        public TransportManagementEntities()
+            : base("name=TransportManagementEntities")
         {
         }
     
@@ -25,12 +25,15 @@ namespace DataLayer
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<DayMaster> DayMasters { get; set; }
-        public virtual DbSet<Department> Departments { get; set; }
-        public virtual DbSet<Doctor> Doctors { get; set; }
-        public virtual DbSet<DoctorSchedule> DoctorSchedules { get; set; }
-        public virtual DbSet<Gbl_Master_Login> Gbl_Master_Login { get; set; }
-        public virtual DbSet<Gbl_Master_User> Gbl_Master_User { get; set; }
-        public virtual DbSet<MeridiemMaster> MeridiemMasters { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<ClientConcernPerson> ClientConcernPersons { get; set; }
+        public virtual DbSet<ClientDetail> ClientDetails { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<State> States { get; set; }
+        public virtual DbSet<VendorBankDetail> VendorBankDetails { get; set; }
+        public virtual DbSet<VendorConcernPerson> VendorConcernPersons { get; set; }
+        public virtual DbSet<VendorDetail> VendorDetails { get; set; }
+        public virtual DbSet<VendorLineHaulDetail> VendorLineHaulDetails { get; set; }
+        public virtual DbSet<UserDetail> UserDetails { get; set; }
     }
 }
