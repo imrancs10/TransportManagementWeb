@@ -30,10 +30,10 @@ namespace DataLayer
         public virtual DbSet<ClientDetail> ClientDetails { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<State> States { get; set; }
+        public virtual DbSet<UserDetail> UserDetails { get; set; }
         public virtual DbSet<VendorBankDetail> VendorBankDetails { get; set; }
         public virtual DbSet<VendorConcernPerson> VendorConcernPersons { get; set; }
         public virtual DbSet<VendorDetail> VendorDetails { get; set; }
         public virtual DbSet<VendorLineHaulDetail> VendorLineHaulDetails { get; set; }
-        public virtual DbSet<UserDetail> UserDetails { get; set; }
     }
 }

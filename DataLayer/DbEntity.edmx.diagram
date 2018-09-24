@@ -4,12 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f9658f4393ec4caab56dbc5c83d4320b" Name="Diagram1">
+      <Diagram DiagramId="a2b8892f236f440eaeb4dfcf36a494ea" Name="Diagram1">
         <EntityTypeShape EntityType="TransportManagementModel.City" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
         <EntityTypeShape EntityType="TransportManagementModel.ClientConcernPerson" Width="1.5" PointX="9.75" PointY="14.5" IsExpanded="true" />
         <EntityTypeShape EntityType="TransportManagementModel.ClientDetail" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="TransportManagementModel.Country" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TransportManagementModel.State" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TransportManagementModel.UserDetail" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TransportManagementModel.VendorBankDetail" Width="1.5" PointX="12.75" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TransportManagementModel.VendorConcernPerson" Width="1.5" PointX="12.75" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TransportManagementModel.VendorDetail" Width="1.5" PointX="10.5" PointY="8.25" IsExpanded="true" />
@@ -28,7 +29,6 @@
         <AssociationConnector Association="TransportManagementModel.FK_VendorBankDetail_VendorDetail" ManuallyRouted="false" />
         <AssociationConnector Association="TransportManagementModel.FK_VendorConcernPerson_VendorDetail" ManuallyRouted="false" />
         <AssociationConnector Association="TransportManagementModel.FK_VendorLineHaulDetail_VendorDetail" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="TransportManagementModel.UserDetail" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
