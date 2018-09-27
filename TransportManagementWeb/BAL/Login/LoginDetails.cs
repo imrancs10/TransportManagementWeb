@@ -27,6 +27,10 @@ namespace TransportManagementWeb.BAL.Login
 
             if (_userRow != null)
             {
+                UserData.UserId = _userRow.UserId;
+                UserData.Username = _userRow.UserName;
+                UserData.FirstName = _userRow.Name;
+                UserData.MiddleName = _userRow.EmailId;
                 return Enums.LoginMessage.Authenticated;
             }
             else

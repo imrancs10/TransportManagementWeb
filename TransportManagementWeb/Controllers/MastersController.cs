@@ -47,7 +47,7 @@ namespace TransportManagementWeb.Controllers
         {
             Session.Abandon();
             Session.Clear();
-            return RedirectToAction("Dashboard", "Home");
+            return RedirectToAction("Home", "Login");
         }
     }
 }
