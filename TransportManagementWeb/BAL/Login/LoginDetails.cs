@@ -20,10 +20,10 @@ namespace TransportManagementWeb.BAL.Login
         /// <returns>Enums</returns>
         public Enums.LoginMessage GetLogin(string UserName, string Password)
         {
-            string _passwordHash = Utility.GetHashString(Password);
+            //string _passwordHash = Utility.GetHashString(Password);
             _db = new TransportManagementEntities();
 
-            var _userRow = _db.UserDetails.Where(x => x.UserName.Equals(UserName) && x.Password.Equals(_passwordHash)).FirstOrDefault();
+            var _userRow = _db.UserDetails.Where(x => x.UserName.Equals(UserName) && x.Password.Equals(Password)).FirstOrDefault();
 
             if (_userRow != null)
             {

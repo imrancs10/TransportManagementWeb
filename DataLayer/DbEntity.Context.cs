@@ -35,5 +35,10 @@ namespace DataLayer
         public virtual DbSet<VendorConcernPerson> VendorConcernPersons { get; set; }
         public virtual DbSet<VendorDetail> VendorDetails { get; set; }
         public virtual DbSet<VendorLineHaulDetail> VendorLineHaulDetails { get; set; }
+        public virtual DbSet<ServiceOrderDetail> ServiceOrderDetails { get; set; }
+        public virtual DbSet<TranshipmentDetail> TranshipmentDetails { get; set; }
+        public virtual DbSet<UnitDetail> UnitDetails { get; set; }
+        public virtual DbSet<VehicleDetail> VehicleDetails { get; set; }
+        public virtual DbSet<VehicleType> VehicleTypes { get; set; }
     }
 }

@@ -25,7 +25,7 @@ namespace TransportManagementWeb.Controllers
             _response = LoginResponse(message);
             if (message == Enums.LoginMessage.Authenticated)
             {
-                return RedirectToAction("AddDepartments", "Masters");
+                return RedirectToAction("Dashboard", "Masters");
             }
             else
             {

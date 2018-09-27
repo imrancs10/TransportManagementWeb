@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TransportManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TransportManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="CityId" />
@@ -46,6 +46,19 @@
           <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CountryName" Type="varchar" MaxLength="500" />
         </EntityType>
+        <EntityType Name="ServiceOrderDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientId" Type="int" />
+          <Property Name="VehicleRequirementDate" Type="datetime" />
+          <Property Name="VehicleDetailId" Type="int" />
+          <Property Name="GrossWeight" Type="varchar" MaxLength="500" />
+          <Property Name="NatureOfGoods" Type="varchar" MaxLength="500" />
+          <Property Name="Freight" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="State">
           <Key>
             <PropertyRef Name="StateId" />
@@ -53,6 +66,23 @@
           <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StateName" Type="nvarchar" MaxLength="500" />
           <Property Name="CountryId" Type="int" />
+        </EntityType>
+        <EntityType Name="TranshipmentDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FromCityId" Type="int" />
+          <Property Name="ToCityId" Type="int" />
+          <Property Name="Weight" Type="varchar" MaxLength="50" />
+          <Property Name="UnitId" Type="int" />
+        </EntityType>
+        <EntityType Name="UnitDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="UserDetail">
           <Key>
@@ -63,6 +93,21 @@
           <Property Name="Name" Type="varchar" MaxLength="100" />
           <Property Name="EmailId" Type="varchar" MaxLength="50" />
           <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="VehicleDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleName" Type="varchar" MaxLength="100" />
+          <Property Name="VehicleTypeId" Type="int" />
+        </EntityType>
+        <EntityType Name="VehicleType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleTypeName" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="VendorBankDetail">
           <Key>
@@ -173,6 +218,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ServiceOrderDetail_ClientDetail">
+          <End Role="ClientDetail" Type="Self.ClientDetail" Multiplicity="0..1" />
+          <End Role="ServiceOrderDetail" Type="Self.ServiceOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientDetail">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="ServiceOrderDetail">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceOrderDetail_VehicleDetail">
+          <End Role="VehicleDetail" Type="Self.VehicleDetail" Multiplicity="0..1" />
+          <End Role="ServiceOrderDetail" Type="Self.ServiceOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceOrderDetail">
+              <PropertyRef Name="VehicleDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_State_Country">
           <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
           <End Role="State" Type="Self.State" Multiplicity="*" />
@@ -182,6 +251,30 @@
             </Principal>
             <Dependent Role="State">
               <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TranshipmentDetail_UnitDetail">
+          <End Role="UnitDetail" Type="Self.UnitDetail" Multiplicity="0..1" />
+          <End Role="TranshipmentDetail" Type="Self.TranshipmentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TranshipmentDetail">
+              <PropertyRef Name="UnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleDetail_VehicleType">
+          <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="0..1" />
+          <End Role="VehicleDetail" Type="Self.VehicleDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VehicleDetail">
+              <PropertyRef Name="VehicleTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -286,8 +379,13 @@
           <EntitySet Name="ClientConcernPerson" EntityType="Self.ClientConcernPerson" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientDetail" EntityType="Self.ClientDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceOrderDetail" EntityType="Self.ServiceOrderDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TranshipmentDetail" EntityType="Self.TranshipmentDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnitDetail" EntityType="Self.UnitDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDetail" EntityType="Self.UserDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleDetail" EntityType="Self.VehicleDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleType" EntityType="Self.VehicleType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorBankDetail" EntityType="Self.VendorBankDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorConcernPerson" EntityType="Self.VendorConcernPerson" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorDetail" EntityType="Self.VendorDetail" Schema="dbo" store:Type="Tables" />
@@ -312,9 +410,25 @@
             <End Role="State" EntitySet="State" />
             <End Role="ClientDetail" EntitySet="ClientDetail" />
           </AssociationSet>
+          <AssociationSet Name="FK_ServiceOrderDetail_ClientDetail" Association="Self.FK_ServiceOrderDetail_ClientDetail">
+            <End Role="ClientDetail" EntitySet="ClientDetail" />
+            <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceOrderDetail_VehicleDetail" Association="Self.FK_ServiceOrderDetail_VehicleDetail">
+            <End Role="VehicleDetail" EntitySet="VehicleDetail" />
+            <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetail" />
+          </AssociationSet>
           <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
             <End Role="Country" EntitySet="Country" />
             <End Role="State" EntitySet="State" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranshipmentDetail_UnitDetail" Association="Self.FK_TranshipmentDetail_UnitDetail">
+            <End Role="UnitDetail" EntitySet="UnitDetail" />
+            <End Role="TranshipmentDetail" EntitySet="TranshipmentDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleDetail_VehicleType" Association="Self.FK_VehicleDetail_VehicleType">
+            <End Role="VehicleType" EntitySet="VehicleType" />
+            <End Role="VehicleDetail" EntitySet="VehicleDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_VendorBankDetail_VendorDetail" Association="Self.FK_VendorBankDetail_VendorDetail">
             <End Role="VendorDetail" EntitySet="VendorDetail" />
@@ -349,8 +463,7 @@
             <End Role="VendorLineHaulDetail" EntitySet="VendorLineHaulDetail" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TransportManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -395,6 +508,7 @@
           <NavigationProperty Name="ClientConcernPersons" Relationship="Self.FK_ClientConcernPerson_ClientDetail" FromRole="ClientDetail" ToRole="ClientConcernPerson" />
           <NavigationProperty Name="Country" Relationship="Self.FK_ClientDetail_Country" FromRole="ClientDetail" ToRole="Country" />
           <NavigationProperty Name="State" Relationship="Self.FK_ClientDetail_State" FromRole="ClientDetail" ToRole="State" />
+          <NavigationProperty Name="ServiceOrderDetails" Relationship="TransportManagementModel.FK_ServiceOrderDetail_ClientDetail" FromRole="ClientDetail" ToRole="ServiceOrderDetail" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
@@ -725,7 +839,128 @@
             <End Role="VendorDetail" EntitySet="VendorDetails" />
             <End Role="VendorLineHaulDetail" EntitySet="VendorLineHaulDetails" />
           </AssociationSet>
+          <EntitySet Name="ServiceOrderDetails" EntityType="TransportManagementModel.ServiceOrderDetail" />
+          <EntitySet Name="TranshipmentDetails" EntityType="TransportManagementModel.TranshipmentDetail" />
+          <EntitySet Name="UnitDetails" EntityType="TransportManagementModel.UnitDetail" />
+          <EntitySet Name="VehicleDetails" EntityType="TransportManagementModel.VehicleDetail" />
+          <EntitySet Name="VehicleTypes" EntityType="TransportManagementModel.VehicleType" />
+          <AssociationSet Name="FK_ServiceOrderDetail_ClientDetail" Association="TransportManagementModel.FK_ServiceOrderDetail_ClientDetail">
+            <End Role="ClientDetail" EntitySet="ClientDetails" />
+            <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceOrderDetail_VehicleDetail" Association="TransportManagementModel.FK_ServiceOrderDetail_VehicleDetail">
+            <End Role="VehicleDetail" EntitySet="VehicleDetails" />
+            <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranshipmentDetail_UnitDetail" Association="TransportManagementModel.FK_TranshipmentDetail_UnitDetail">
+            <End Role="UnitDetail" EntitySet="UnitDetails" />
+            <End Role="TranshipmentDetail" EntitySet="TranshipmentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleDetail_VehicleType" Association="TransportManagementModel.FK_VehicleDetail_VehicleType">
+            <End Role="VehicleType" EntitySet="VehicleTypes" />
+            <End Role="VehicleDetail" EntitySet="VehicleDetails" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ServiceOrderDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int32" />
+          <Property Name="VehicleRequirementDate" Type="DateTime" Precision="3" />
+          <Property Name="VehicleDetailId" Type="Int32" />
+          <Property Name="GrossWeight" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="NatureOfGoods" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Freight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ClientDetail" Relationship="TransportManagementModel.FK_ServiceOrderDetail_ClientDetail" FromRole="ServiceOrderDetail" ToRole="ClientDetail" />
+          <NavigationProperty Name="VehicleDetail" Relationship="TransportManagementModel.FK_ServiceOrderDetail_VehicleDetail" FromRole="ServiceOrderDetail" ToRole="VehicleDetail" />
+        </EntityType>
+        <EntityType Name="TranshipmentDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FromCityId" Type="Int32" />
+          <Property Name="ToCityId" Type="Int32" />
+          <Property Name="Weight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UnitId" Type="Int32" />
+          <NavigationProperty Name="UnitDetail" Relationship="TransportManagementModel.FK_TranshipmentDetail_UnitDetail" FromRole="TranshipmentDetail" ToRole="UnitDetail" />
+        </EntityType>
+        <EntityType Name="UnitDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TranshipmentDetails" Relationship="TransportManagementModel.FK_TranshipmentDetail_UnitDetail" FromRole="UnitDetail" ToRole="TranshipmentDetail" />
+        </EntityType>
+        <EntityType Name="VehicleDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleTypeId" Type="Int32" />
+          <NavigationProperty Name="ServiceOrderDetails" Relationship="TransportManagementModel.FK_ServiceOrderDetail_VehicleDetail" FromRole="VehicleDetail" ToRole="ServiceOrderDetail" />
+          <NavigationProperty Name="VehicleType" Relationship="TransportManagementModel.FK_VehicleDetail_VehicleType" FromRole="VehicleDetail" ToRole="VehicleType" />
+        </EntityType>
+        <EntityType Name="VehicleType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="VehicleDetails" Relationship="TransportManagementModel.FK_VehicleDetail_VehicleType" FromRole="VehicleType" ToRole="VehicleDetail" />
+        </EntityType>
+        <Association Name="FK_ServiceOrderDetail_ClientDetail">
+          <End Type="TransportManagementModel.ClientDetail" Role="ClientDetail" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.ServiceOrderDetail" Role="ServiceOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientDetail">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="ServiceOrderDetail">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceOrderDetail_VehicleDetail">
+          <End Type="TransportManagementModel.VehicleDetail" Role="VehicleDetail" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.ServiceOrderDetail" Role="ServiceOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceOrderDetail">
+              <PropertyRef Name="VehicleDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TranshipmentDetail_UnitDetail">
+          <End Type="TransportManagementModel.UnitDetail" Role="UnitDetail" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.TranshipmentDetail" Role="TranshipmentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TranshipmentDetail">
+              <PropertyRef Name="UnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleDetail_VehicleType">
+          <End Type="TransportManagementModel.VehicleType" Role="VehicleType" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.VehicleDetail" Role="VehicleDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VehicleDetail">
+              <PropertyRef Name="VehicleTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -847,6 +1082,56 @@
                 <ScalarProperty Name="FromStateId" ColumnName="FromStateId" />
                 <ScalarProperty Name="ToStateId" ColumnName="ToStateId" />
                 <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceOrderDetails">
+            <EntityTypeMapping TypeName="TransportManagementModel.ServiceOrderDetail">
+              <MappingFragment StoreEntitySet="ServiceOrderDetail">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Freight" ColumnName="Freight" />
+                <ScalarProperty Name="NatureOfGoods" ColumnName="NatureOfGoods" />
+                <ScalarProperty Name="GrossWeight" ColumnName="GrossWeight" />
+                <ScalarProperty Name="VehicleDetailId" ColumnName="VehicleDetailId" />
+                <ScalarProperty Name="VehicleRequirementDate" ColumnName="VehicleRequirementDate" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TranshipmentDetails">
+            <EntityTypeMapping TypeName="TransportManagementModel.TranshipmentDetail">
+              <MappingFragment StoreEntitySet="TranshipmentDetail">
+                <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="ToCityId" ColumnName="ToCityId" />
+                <ScalarProperty Name="FromCityId" ColumnName="FromCityId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnitDetails">
+            <EntityTypeMapping TypeName="TransportManagementModel.UnitDetail">
+              <MappingFragment StoreEntitySet="UnitDetail">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleDetails">
+            <EntityTypeMapping TypeName="TransportManagementModel.VehicleDetail">
+              <MappingFragment StoreEntitySet="VehicleDetail">
+                <ScalarProperty Name="VehicleTypeId" ColumnName="VehicleTypeId" />
+                <ScalarProperty Name="VehicleName" ColumnName="VehicleName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleTypes">
+            <EntityTypeMapping TypeName="TransportManagementModel.VehicleType">
+              <MappingFragment StoreEntitySet="VehicleType">
+                <ScalarProperty Name="VehicleTypeName" ColumnName="VehicleTypeName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

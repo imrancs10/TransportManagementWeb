@@ -172,7 +172,6 @@
     <Compile Include="BAL\Masters\DepartmentDetails.cs" />
     <Compile Include="BAL\Masters\DoctorDetails.cs" />
     <Compile Include="BAL\Masters\ScheduleDetails.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -246,10 +245,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Home\Appointment.cshtml" />
-    <Content Include="Views\Masters\AddDepartments.cshtml" />
-    <Content Include="Views\Masters\AddDepartment.cshtml" />
-    <Content Include="Views\Masters\AddDoctors.cshtml" />
-    <Content Include="Views\Masters\AddSchedule.cshtml" />
+    <Content Include="Views\Masters\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

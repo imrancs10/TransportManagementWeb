@@ -18,6 +18,7 @@ namespace DataLayer
         public ClientDetail()
         {
             this.ClientConcernPersons = new HashSet<ClientConcernPerson>();
+            this.ServiceOrderDetails = new HashSet<ServiceOrderDetail>();
         }
     
         public int ClientId { get; set; }
@@ -37,5 +38,7 @@ namespace DataLayer
         public virtual ICollection<ClientConcernPerson> ClientConcernPersons { get; set; }
         public virtual Country Country { get; set; }
         public virtual State State { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ServiceOrderDetail> ServiceOrderDetails { get; set; }
     }
 }

@@ -11,17 +11,7 @@ namespace TransportManagementWeb.Controllers
     public class MastersController : CommonController
     {
         DepartmentDetails _details = null;
-        public ActionResult AddSchedule()
-        {
-            return View();
-        }
-
-        public ActionResult AddDepartments()
-        {
-            return View();
-        }
-
-        public ActionResult AddDoctors()
+        public ActionResult Dashboard()
         {
             return View();
         }
@@ -51,61 +41,6 @@ namespace TransportManagementWeb.Controllers
         {
             _details = new DepartmentDetails();
             return Json(_details.DepartmentList(), JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public JsonResult SaveDoctor(string doctorName, int deptId)
-        {
-            DoctorDetails _details = new DoctorDetails();
-
-            return Json(CrudResponse(_details.SaveDoctor(doctorName, deptId)), JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public JsonResult EditDoctor(string deptName, int deptId, int docId)
-        {
-            DoctorDetails _details = new DoctorDetails();
-            return Json(CrudResponse(_details.EditDoctor(deptName, deptId, docId)), JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public JsonResult DeleteDoctor(int docId)
-        {
-            DoctorDetails _details = new DoctorDetails();
-            return Json(CrudResponse(_details.DeleteDoctor(docId)), JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult GetDoctors()
-        {
-            DoctorDetails _details = new DoctorDetails();
-            return Json(_details.DoctorList(), JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public JsonResult SaveSchedule(ScheduleModel model)
-        {
-            ScheduleDetails _details = new ScheduleDetails();
-            return Json(CrudResponse(_details.SaveSchedule(model)), JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public JsonResult EditSchedule(ScheduleModel model)
-        {
-            ScheduleDetails _details = new ScheduleDetails();
-            return Json(CrudResponse(_details.EditSchedule(model)), JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public JsonResult DeleteSchedule(ScheduleModel model)
-        {
-            ScheduleDetails _details = new ScheduleDetails();
-
-            return Json(CrudResponse(_details.DeleteSchedule(model.ScheduleId)), JsonRequestBehavior.AllowGet);
-        }
-        public JsonResult GetSchedule()
-        {
-            ScheduleDetails _details = new ScheduleDetails();
-            return Json(_details.ScheduleList(), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Logout()
