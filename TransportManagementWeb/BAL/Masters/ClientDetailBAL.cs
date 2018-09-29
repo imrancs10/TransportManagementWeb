@@ -70,11 +70,5 @@ namespace TransportManagementWeb.BAL.Masters
             return Enums.CrudStatus.DataNotFound;
         }
 
-        public List<Country> CountryList()
-        {
-            _db = new TransportManagementEntities();
-            var _list = _db.Countries.ToList();
-            return _list != null ? _list : new List<Country>();
-        }
     }
 }

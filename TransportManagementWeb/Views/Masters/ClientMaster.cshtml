@@ -105,9 +105,6 @@ MAIN CONTENT SECTION
                                             <label class="col-sm-4 control-label">Country <span style="color:red;">*</span></label>
                                             <div class="col-sm-8">
                                                 <select name="country" id="CountryDropdown" class="form-control required">
-                                                    @*<option value="0">Select Country</option>
-                                                    <option value="INDIA" selected="selected">India</option>
-                                                    <option value="USA">United States of America</option>*@
                                                 </select>
                                             </div>
                                         </div>
@@ -117,9 +114,6 @@ MAIN CONTENT SECTION
                                             <label class="col-sm-4 control-label">State <span style="color:red;">*</span></label>
                                             <div class="col-sm-8">
                                                 <select name="state" id="StateDropdown" class="form-control required">
-                                                    @*<option value="0">Select State</option>
-                                                    <option value="Andaman and Nicobar">Andaman and Nicobar</option>
-                                                    <option value="Andhra Pradesh">Andhra Pradesh</option>*@
                                                 </select>
                                             </div>
                                         </div>
@@ -129,9 +123,6 @@ MAIN CONTENT SECTION
                                             <label class="col-sm-4 control-label">City Name</label>
                                             <div class="col-sm-8">
                                                 <select name="city" id="CityDropdown" class="form-control required">
-                                                    @*<option value="0">Select City</option>
-                                                    <option>Ahmedabad</option>
-                                                    <option>Bengaluru/Bangalore</option>*@
                                                 </select>
                                             </div>
                                         </div>
@@ -265,7 +256,7 @@ MAIN CONTENT SECTION
                                 <input id="btnSave" type="submit" value="Submit" name="submit" class="btn btn-primary">
                                 <span class="label-divider" id="Span1"  >or</span>
                                 <!--<input id="btncancel" type="submit" name="reset" value="Cancel" class="btn btn-default"   onclick="btnreset_Click"/>-->
-                                <input id="btncancel" type="submit" value="Reset" name="reset" class="btn btn-default">
+                                <a id="btncancel" href="~/Masters/ClientMaster" name="reset" class="btn btn-default">Reset</a>
                             </div>
                             <asp:hiddenfield id="HiddenField1"  >
                             </asp:hiddenfield>
@@ -291,4 +282,4 @@ MAIN CONTENT SECTION
         })
     });
 </script>
-<script src="~/Scripts/App/Masters/ClientMaster.js"></script>
+<script src="~/Scripts/App/Masters/MasterDetail.js"></script>
