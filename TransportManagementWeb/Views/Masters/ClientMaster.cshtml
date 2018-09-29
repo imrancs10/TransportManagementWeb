@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Client Master";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -7,203 +6,247 @@
 <!-- ============================================
 MAIN CONTENT SECTION
 =============================================== -->
-<section class="content-wrapper" role="main">
-    <div class="content">
+<form action="SaveClientDetail" method="post">
+    <section class="content-wrapper" role="main">
+        <div class="content">
 
-        <div class="content-bar">
-            <ul class="breadcrumb breadcrumb-angle">
-                <li><a href="~/Masters/Dashboard" aria-label="home"><i class="fa fa-home"></i></a></li>
-                <li class="active">Client Master</li>
-            </ul>
-        </div><!-- /.content-bar -->
-        <hr />
+            <div class="content-bar">
+                <ul class="breadcrumb breadcrumb-angle">
+                    <li><a href="~/Masters/Dashboard" aria-label="home"><i class="fa fa-home"></i></a></li>
+                    <li class="active">Client Master</li>
+                </ul>
+            </div><!-- /.content-bar -->
+            <hr />
 
-        <div class="content-body">
+            <div class="content-body">
 
-            <div class="col-lg-12">
-                <div class="featured-box featured-box-primary align-left mt-xlg">
-                    <div class="box-content">
-                        <div class="row">
-                            <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Client Detail </h4></div>
-                        </div>
-                        <hr class="tall">
-                        <div class="form-group mt-lg">
-                            <label class="col-sm-3 control-label">Client Name <span style="color:red;">*</span></label>
-                            <div class="col-sm-9">
-                                <div class="input-group input-group-icon">
-                                    <input type="text" id="txtName" class="form-control" placeholder="Client Name" runat="server">
-                                    <span class="input-group-addon">
-                                        <span class="icon"><i class="fa fa-user"></i></span>
-                                    </span>
-                                </div>
+                <div class="col-lg-12">
+                    <div class="featured-box featured-box-primary align-left mt-xlg">
+                        <div class="box-content">
+                            <div class="row">
+                                <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Client Detail </h4></div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <div class="form-group mt-lg">
-                                        <label class="col-sm-4 control-label">Address 1 <span style="color:red;">*</span></label>
-                                        <div class="col-sm-8">
-                                            <div class="input-group input-group-icon">
-                                                <textarea id="Textarea1" class="form-control" rows="3" placeholder="Enter Your Address 1"></textarea>
-                                                <span class="input-group-addon">
-                                                    <span class="icon"><i class="fa fa-map"></i></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mt-lg">
-                                        <label class="col-sm-4 control-label">Address 2 <span style="color:red;">*</span></label>
-                                        <div class="col-sm-8">
-                                            <div class="input-group input-group-icon">
-                                                <textarea id="txtAddress" class="form-control" rows="3" placeholder="Enter Your Address 2"></textarea>
-                                                <span class="input-group-addon">
-                                                    <span class="icon"><i class="fa fa-location-arrow"></i></span>
-                                                </span>
-                                            </div>
-                                        </div>
+                            <hr class="tall">
+                            <div class="form-group mt-lg">
+                                <label class="col-sm-3 control-label">Client Name <span style="color:red;">*</span></label>
+                                <div class="col-sm-9">
+                                    <div class="input-group input-group-icon">
+                                        <input type="text" id="txtName" class="form-control" placeholder="Client Name" name="clientName">
+                                        <span class="input-group-addon">
+                                            <span class="icon"><i class="fa fa-user"></i></span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <div class="form-group mt-lg">
-                                        <label class="col-sm-4 control-label">Area<span style="color:red;">*</span></label>
-                                        <div class="col-sm-8">
-                                            <div class="input-group input-group-icon">
-                                                <input type="text" id="Text3" runat="server" class="form-control" placeholder="Area">
-                                                <span class="input-group-addon">
-                                                    <span class="icon"><i class="fa fa-area-chart"></i></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mt-lg">
-                                        <label class="col-sm-4 control-label">Pin Code <span style="color:red;">*</span></label>
-                                        <div class="col-sm-8">
-                                            <div class="input-group input-group-icon">
-                                                <input type="text" id="Text4" runat="server" class="form-control" placeholder="Pin Code">
-                                                <span class="input-group-addon">
-                                                    <span class="icon"><i class="fa fa-edit"></i></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-4">
-                                    <div class="form-group mt-lg">
-                                        <label class="col-sm-4 control-label">City Name</label>
-                                        <div class="col-sm-8">
-                                            <select name="filledby" id="Select4" runat="server" class="form-control required">
-                                                <option value="0">Select City</option>
-                                                <option>Ahmedabad</option>
-                                                <option>Bengaluru/Bangalore</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group mt-lg">
-                                        <label class="col-sm-4 control-label">State <span style="color:red;">*</span></label>
-                                        <div class="col-sm-8">
-                                            <select name="filledby" id="Select5" runat="server" class="form-control required">
-                                                <option value="0">Select State</option>
-                                                <option value="Andaman and Nicobar">Andaman and Nicobar</option>
-                                                <option value="Andhra Pradesh">Andhra Pradesh</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group mt-lg">
-                                        <label class="col-sm-4 control-label">Country <span style="color:red;">*</span></label>
-                                        <div class="col-sm-8">
-                                            <select name="filledby" id="SelectCountry" runat="server" class="form-control required">
-                                                <option value="0">Select Country</option>
-                                                <option value="INDIA" selected="selected">India</option>
-                                                <option value="USA">United States of America</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <div class="form-group mt-lg">
-                                        <label class="col-sm-4 control-label">GST No <span style="color:red;">*</span></label>
-                                        <div class="col-sm-8">
-                                            <div class="input-group input-group-icon">
-                                                <input type="text" id="Text1" runat="server" class="form-control" placeholder="GST No">
-                                                <span class="input-group-addon">
-                                                    <span class="icon"><i class="fa fa-edit"></i></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mt-lg">
-                                        <label class="col-sm-4 control-label">Pan no <span style="color:red;">*</span></label>
-                                        <div class="col-sm-8">
-                                            <div class="input-group input-group-icon">
-                                                <input type="text" id="Text2" runat="server" class="form-control" placeholder="Pan no">
-                                                <span class="input-group-addon">
-                                                    <span class="icon"><i class="fa fa-edit"></i></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <br>
-                        <div class="row">
-                            <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Concern Person 1 Detail </h4></div>
-                        </div>
-                        <hr class="tall">
-
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <div class="form-group mt-lg">
-                                        <label class="col-sm-6 control-label">Email Id </label>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Address 1 <span style="color:red;">*</span></label>
+                                            <div class="col-sm-8">
                                                 <div class="input-group input-group-icon">
-                                                    <input type="text" id="Text11" runat="server" class="form-control" placeholder="Email Id">
+                                                    <textarea id="Textarea1" class="form-control" rows="3" placeholder="Enter Your Address 1" name="address1"></textarea>
                                                     <span class="input-group-addon">
-                                                        <span class="icon"><i class="fa fa-envelope"></i></span>
+                                                        <span class="icon"><i class="fa fa-map"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Address 2 <span style="color:red;">*</span></label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <textarea id="txtAddress" class="form-control" rows="3" placeholder="Enter Your Address 2" name="address2"></textarea>
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-location-arrow"></i></span>
                                                     </span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mt-lg">
-                                        <label class="col-sm-6 control-label">Contact No </label>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Area<span style="color:red;">*</span></label>
+                                            <div class="col-sm-8">
                                                 <div class="input-group input-group-icon">
-                                                    <input type="text" id="Text5" runat="server" class="form-control" placeholder="Contact No">
+                                                    <input type="text" id="Text3"   class="form-control" placeholder="Area" name="area">
                                                     <span class="input-group-addon">
-                                                        <span class="icon"><i class="fa fa-phone"></i></span>
+                                                        <span class="icon"><i class="fa fa-area-chart"></i></span>
                                                     </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Pin Code <span style="color:red;">*</span></label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="Text4"   class="form-control" placeholder="Pin Code" name="pincode">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-edit"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Country <span style="color:red;">*</span></label>
+                                            <div class="col-sm-8">
+                                                <select name="country" id="CountryDropdown" class="form-control required">
+                                                    <option value="0">Select Country</option>
+                                                    <option value="INDIA" selected="selected">India</option>
+                                                    <option value="USA">United States of America</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">State <span style="color:red;">*</span></label>
+                                            <div class="col-sm-8">
+                                                <select name="state" id="StateDropdown" class="form-control required">
+                                                    <option value="0">Select State</option>
+                                                    <option value="Andaman and Nicobar">Andaman and Nicobar</option>
+                                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">City Name</label>
+                                            <div class="col-sm-8">
+                                                <select name="city" id="CityDropdown" class="form-control required">
+                                                    <option value="0">Select City</option>
+                                                    <option>Ahmedabad</option>
+                                                    <option>Bengaluru/Bangalore</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">GST No <span style="color:red;">*</span></label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="Text1" name="gstNo"  class="form-control" placeholder="GST No">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-edit"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Pan no <span style="color:red;">*</span></label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="Text2" name="panNumber"  class="form-control" placeholder="Pan no">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-edit"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Concern Person 1 Detail </h4></div>
+                            </div>
+                            <hr class="tall">
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-6 control-label">Email Id </label>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text11" name="CP1EMail"  class="form-control" placeholder="Email Id">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-envelope"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-6 control-label">Contact No </label>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text5" name="CP1ContactNo"  class="form-control" placeholder="Contact No">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-phone"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Concern Person 2 Detail </h4></div>
+                            </div>
+                            <hr class="tall">
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-6 control-label">Email Id </label>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text6" name="CP2Email"  class="form-control" placeholder="Email Id">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-envelope"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-6 control-label">Contact No </label>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text7" name="CP2ContactNo"  class="form-control" placeholder="Contact No">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-phone"></i></span>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -212,72 +255,39 @@ MAIN CONTENT SECTION
                             </div>
                         </div>
 
-                        <br>
-                        <div class="row">
-                            <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Concern Person 2 Detail </h4></div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-5">
                         </div>
-                        <hr class="tall">
-
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <div class="form-group mt-lg">
-                                        <label class="col-sm-6 control-label">Email Id </label>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <div class="input-group input-group-icon">
-                                                    <input type="text" id="Text6" runat="server" class="form-control" placeholder="Email Id">
-                                                    <span class="input-group-addon">
-                                                        <span class="icon"><i class="fa fa-envelope"></i></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mt-lg">
-                                        <label class="col-sm-6 control-label">Contact No </label>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <div class="input-group input-group-icon">
-                                                    <input type="text" id="Text7" runat="server" class="form-control" placeholder="Contact No">
-                                                    <span class="input-group-addon">
-                                                        <span class="icon"><i class="fa fa-phone"></i></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="col-md-4">
+                            <div class="btn-divider mr-2x mb-1x" role="divider">
+                                <input id="btnSave" type="submit" value="Submit" name="submit" class="btn btn-primary">
+                                <span class="label-divider" id="Span1"  >or</span>
+                                <!--<input id="btncancel" type="submit" name="reset" value="Cancel" class="btn btn-default"   onclick="btnreset_Click"/>-->
+                                <input id="btncancel" type="submit" value="Reset" name="reset" class="btn btn-default">
                             </div>
+                            <asp:hiddenfield id="HiddenField1"  >
+                            </asp:hiddenfield>
                         </div>
                     </div>
-
                 </div>
-                <br />
-                <div class="row">
-                    <div class="col-md-5">
-                    </div>
-                    <div class="col-md-4">
-                        <div class="btn-divider mr-2x mb-1x" role="divider">
-                            <input id="btnSave" type="submit" value="Submit" name="submit" class="btn btn-primary">
-                            <span class="label-divider" id="Span1" runat="server">or</span>
-                            <!--<input id="btncancel" type="submit" name="reset" value="Cancel" class="btn btn-default" runat="server" onclick="btnreset_Click"/>-->
-                            <input id="btncancel" type="submit" value="Reset" name="reset" class="btn btn-default">
-                        </div>
-                        <asp:hiddenfield id="HiddenField1" runat="server">
-                        </asp:hiddenfield>
-                    </div>
-                </div>
+
+
             </div>
 
 
-        </div>
+            <div class="clearfix"></div>
 
+        </div><!-- /.content -->
 
-        <div class="clearfix"></div>
-
-    </div><!-- /.content -->
-
-</section><!-- /MAIN --> 
+    </section>
+</form>
+<!-- /MAIN -->
+<script>
+    $(function () {
+        $(document).ready(function () {
+            $('.clientPageActive').addClass('active');
+        })
+    });
+</script>

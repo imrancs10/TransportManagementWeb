@@ -26,11 +26,11 @@ namespace TransportManagementWeb.Controllers
         }
 
         [HttpPost]
-        public JsonResult SaveDepartment(string deptName)
+        public ActionResult SaveClientDetail(string clientName,string address1,string address2,string area,string pincode,string city,string state,string country,string gstNo,string panNumber,string CP1EMail,string CP1ContactNo,string CP2Email,string CP2ContactNo)
         {
             _details = new DepartmentDetails();
 
-            return Json(CrudResponse(_details.SaveDept(deptName)), JsonRequestBehavior.AllowGet);
+            return Json(CrudResponse(_details.SaveDept(clientName)), JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public JsonResult EditDepartment(string deptName, int deptId)
