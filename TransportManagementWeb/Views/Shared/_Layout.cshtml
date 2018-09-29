@@ -8,22 +8,6 @@
     <meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=yes">
 
     <title>Demon International</title>
-
-    <!-- favicon.ico and apple-touch-icon.png -->
-    <link rel="apple-touch-icon" sizes="57x57" href="~/images/favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="~/images/favicons/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="~/images/favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="~/images/favicons/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="~/images/favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="~/images/favicons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="~/images/favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="~/images/favicons/apple-touch-icon-152x152.png">
-    <link rel="icon" type="image/png" href="~/images/favicons/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="~/images/favicons/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="~/images/favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="~/images/favicons/manifest.json">
-    <meta name="msapplication-TileColor" content="#2d89ef">
-    <meta name="msapplication-TileImage" content="~/images/favicons/mstile-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,700,600,300" rel="stylesheet" type="text/css">
@@ -37,6 +21,10 @@
     <link rel="stylesheet" href="~/styles/wrapkit.css">
 
     <link rel="stylesheet" href="~/styles/demo.css">
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <link href="~/styles/jquery-ui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui.js"></script>
+    
 </head>
 <body>
     <main class="wrapkit-wrapper" id="wrapper">
@@ -49,8 +37,8 @@
             <div class="container-fluid">
                 <!-- use .pull-*, couse we need this float on any screen size -->
                 <div class="pull-left">
-                    <a class="navbar-brand" href="Dashboard.aspx" role="logo" aria-label="Logo">
-                        <img class="logo" src="~/images/logo/login-logo.png" alt="Brand" style="height:42px; width:178px;">
+                    <a class="navbar-brand" href="~/Masters/Dashboard" role="logo" aria-label="Logo">
+                        <img class="logo" src="~/images/logo/logo.png" alt="Brand" style="height:42px; width:178px;">
                     </a>
                     <button data-sidebar="toggleVisible" class="btn btn-icon navbar-btn">
                         <i class="fa fa-bars"></i>
@@ -90,7 +78,7 @@
             <div class="sidebar-block">
                 <div class="media">
                     <div class="media-left">
-                        <a href="Dashboard.aspx">
+                        <a href="~/Masters/Dashboard">
                             <span class="status dotted dotted-primary" data-toggle="tooltip" data-container="body" title="available"></span>
                             <img class="media-object img-circle" src="~/images/dummy/unknown-profile.jpg" alt="photo profile">
                         </a>
@@ -106,12 +94,12 @@
             <div class="nav-wrapper">
                 <ul class="nav nav-stacked" role="navigation">
                     <li class="nav-item open active" role="presentation">
-                        <a href="index.html" class="active">
+                        <a href="~/Masters/Dashboard" class="active">
                             <span class="nav-icon"><i class="fa fa-dashcube"></i></span>
                             <span class="nav-text">Dashboard</span>
                         </a>
                         <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Masters/ClientMaster"><span class="nav-text">Client Master</span></a></li>
+                            <li role="presentation" class="active"><a role="menuitem" tabindex="-1" href="~/Masters/ClientMaster"><span class="nav-text">Client Master</span></a></li>
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Masters/VendorMaster"><span class="nav-text">Vendor Master</span></a></li>
                         </ul>
                     </li>

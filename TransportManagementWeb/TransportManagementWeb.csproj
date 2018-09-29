@@ -279,7 +279,9 @@
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\imagesloaded.pkgd.js" />
     <Content Include="Scripts\Jcrop.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-minicolors.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.bootstrap.wizard.js" />
     <Content Include="Scripts\jquery.color.js" />
     <Content Include="Scripts\jquery.easypiechart.js" />
@@ -307,8 +309,11 @@
     <Content Include="styles\components.css" />
     <Content Include="styles\demo.css" />
     <Content Include="styles\dependencies.css" />
+    <Content Include="styles\jquery-ui.css" />
     <Content Include="styles\pages.css" />
     <Content Include="styles\wrapkit.css" />
+    <Content Include="Views\Masters\images\logo\brand-text-dark.png" />
+    <Content Include="Views\Masters\images\logo\logo.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
