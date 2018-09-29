@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TransportManagementWeb.BAL.Commom;
 using TransportManagementWeb.BAL.Masters;
-using TransportManagementWeb.Models.Masters;
 
 namespace TransportManagementWeb.Controllers
 {
     public class MastersController : CommonController
     {
-        DepartmentDetails _details = null;
+        ClientDetailBAL _details = null;
         public ActionResult Dashboard()
         {
             return View();
@@ -26,32 +26,32 @@ namespace TransportManagementWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveClientDetail(string clientName,string address1,string address2,string area,string pincode,string city,string state,string country,string gstNo,string panNumber,string CP1EMail,string CP1ContactNo,string CP2Email,string CP2ContactNo)
+        public ActionResult SaveClientDetail(string clientName, string address1, string address2, string area, string pincode, string city, string state, string country, string gstNo, string panNumber, string CP1EMail, string CP1ContactNo, string CP2Email, string CP2ContactNo)
         {
-            _details = new DepartmentDetails();
+            _details = new ClientDetailBAL();
+            _details.SaveClientDetail(clientName, address1, address2, area, pincode, city, state, country, gstNo, panNumber, CP1EMail, CP1ContactNo, CP2Email, CP2ContactNo);
+            SetAlertMessage("Client detail added succesfully.", "Client Master");
+            return RedirectToAction("ClientMaster");
+        }
 
-            return Json(CrudResponse(_details.SaveDept(clientName)), JsonRequestBehavior.AllowGet);
+        [HttpPost]
+        public JsonResult GetCountry()
+        {
+            CommonDetails _details = new CommonDetails();
+            return Json(_details.CountryList());
         }
         [HttpPost]
-        public JsonResult EditDepartment(string deptName, int deptId)
+        public JsonResult GetStateByCountryId(int countryId)
         {
-            _details = new DepartmentDetails();
-
-            return Json(CrudResponse(_details.EditDept(deptName, deptId)), JsonRequestBehavior.AllowGet);
+            CommonDetails _details = new CommonDetails();
+            return Json(_details.GetStateByCountryId(countryId));
         }
         [HttpPost]
-        public JsonResult DeleteDepartment(int deptId)
+        public JsonResult GetCityByStateId(int stateId)
         {
-            _details = new DepartmentDetails();
-
-            return Json(CrudResponse(_details.DeleteDept(deptId)), JsonRequestBehavior.AllowGet);
+            CommonDetails _details = new CommonDetails();
+            return Json(_details.GetCityByStateId(stateId));
         }
-        public override JsonResult GetDepartments()
-        {
-            _details = new DepartmentDetails();
-            return Json(_details.DepartmentList(), JsonRequestBehavior.AllowGet);
-        }
-
         public ActionResult Logout()
         {
             Session.Abandon();

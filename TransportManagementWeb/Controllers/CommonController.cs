@@ -48,17 +48,5 @@ namespace TransportManagementWeb.Controllers
             TempData["Alert_Message"] = message;
             TempData["Alert_Title"] = title;
         }
-
-        public virtual JsonResult GetDepartments()
-        {
-            DepartmentDetails _details = new DepartmentDetails();
-            return Json(_details.DepartmentList(), JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult GetDaysList()
-        {
-            _details = new CommonDetails();
-            return Json(_details.DaysList(), JsonRequestBehavior.AllowGet);
-        }
     }
 }

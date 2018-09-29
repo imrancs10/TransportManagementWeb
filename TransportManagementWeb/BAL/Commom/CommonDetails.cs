@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using DataLayer;
-using TransportManagementWeb.Models.Common;
 
 namespace TransportManagementWeb.BAL.Commom
 {
@@ -11,17 +10,25 @@ namespace TransportManagementWeb.BAL.Commom
     {
         TransportManagementEntities _db = null;
 
-        public List<DayModel> DaysList()
+        public List<Country> CountryList()
         {
             _db = new TransportManagementEntities();
-            //var _list = (from day in _db.DayMasters
-            //             select new DayModel
-            //             {
-            //                 DayId = day.DayId,
-            //                 DayName = day.DayName
-            //             }).ToList();
-            //return _list != null ? _list : new List<DayModel>();
-            return null;
+            _db.Configuration.LazyLoadingEnabled = false;
+            var _list = _db.Countries.ToList();
+            return _list != null ? _list : new List<Country>();
+        }
+
+        public List<State> GetStateByCountryId(int countryId)
+        {
+            _db = new TransportManagementEntities();
+            _db.Configuration.LazyLoadingEnabled = false;
+            return _db.States.Where(x => x.CountryId == countryId).ToList();
+        }
+        public List<City> GetCityByStateId(int stateId)
+        {
+            _db = new TransportManagementEntities();
+            _db.Configuration.LazyLoadingEnabled = false;
+            return _db.Cities.Where(x => x.StateId == stateId).ToList();
         }
     }
 }

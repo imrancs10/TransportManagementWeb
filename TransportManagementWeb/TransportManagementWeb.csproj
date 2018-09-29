@@ -169,9 +169,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BAL\Commom\CommonDetails.cs" />
     <Compile Include="BAL\Login\LoginDetails.cs" />
-    <Compile Include="BAL\Masters\DepartmentDetails.cs" />
-    <Compile Include="BAL\Masters\DoctorDetails.cs" />
-    <Compile Include="BAL\Masters\ScheduleDetails.cs" />
+    <Compile Include="BAL\Masters\ClientDetailBAL.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\CustomPrincipalSerializeModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -188,9 +186,6 @@
     </Compile>
     <Compile Include="Global\UserData.cs" />
     <Compile Include="Global\Utility.cs" />
-    <Compile Include="Models\Common\CommonModel.cs" />
-    <Compile Include="Models\Masters\DepartmentModel.cs" />
-    <Compile Include="Models\Masters\ScheduleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -224,7 +219,7 @@
     <Content Include="Scripts\App\Global\App.js" />
     <Content Include="Scripts\App\Global\Utility.js" />
     <Content Include="Scripts\App\Login\Login.js" />
-    <Content Include="Scripts\App\Masters\Department.js" />
+    <Content Include="Scripts\App\Masters\ClientMaster.js" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootstrap-editable.js" />
     <Content Include="Scripts\bootstrap-session-timeout.js" />
@@ -336,6 +331,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
+    <Folder Include="Models\Common\" />
+    <Folder Include="Models\Masters\" />
     <Folder Include="Views\Common\" />
   </ItemGroup>
   <ItemGroup>
