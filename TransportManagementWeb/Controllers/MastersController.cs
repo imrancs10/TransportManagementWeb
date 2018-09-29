@@ -16,6 +16,15 @@ namespace TransportManagementWeb.Controllers
             return View();
         }
 
+        public ActionResult ClientMaster()
+        {
+            return View();
+        }
+        public ActionResult VendorMaster()
+        {
+            return View();
+        }
+
         [HttpPost]
         public JsonResult SaveDepartment(string deptName)
         {

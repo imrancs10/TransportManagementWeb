@@ -1,78 +1,196 @@
-﻿
+﻿<!DOCTYPE html>
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Login";
+    Layout = null;
 }
-<link href="~/Content/App/Login/Login.css" rel="stylesheet" />
+<html class="no-js">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=yes">
 
-<div id="loginContainer" class="dialog dialog-effect-in">
-    <div class="dialog-front">
-        <div class="login100-form-title" style="background-image: url(/img/bg-01.jpg);">
-            <span class="login100-form-title-1">
-                Transport Management System
-            </span>
-        </div>
-        <div class="dialog-content">
-            <form id="login_form" class="login100-form validate-form" action="/login/getlogin" method="POST">
-                    <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                        <span for="user_username" class="label-input100">Username</span>
-                        <input class="input100" type="text" name="username" id="user_username" placeholder="Enter username" autofocus>
-                        <span class="focus-input100"></span>
-                    </div>
+    <title>Admin Login </title>
 
-                    <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
-                        <span for="user_password" class="label-input100">Password</span>
-                        <input class="input100" type="password" id="user_password" name="password" placeholder="Enter password">
-                        <span class="focus-input100"></span>
-                    </div>
+    <!-- favicon.ico and apple-touch-icon.png -->
+    <link rel="apple-touch-icon" sizes="57x57" href="~/images/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/images/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/images/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/images/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/images/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/images/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/images/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/images/favicons/apple-touch-icon-152x152.png">
+    <link rel="icon" type="image/png" href="~/images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="~/images/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="~/images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="~/images/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="msapplication-TileImage" content="~/images/favicons/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
 
-                    <div class="flex-sb-m w-full p-b-30">
-                        <div class="contact100-form-checkbox">
-                            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                            <label class="label-checkbox100" for="ckb1">Remember me</label>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,700,600,300" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="~/styles/bootstrap.css">
+
+    <link rel="stylesheet" href="~/styles/dependencies.css">
+
+    <link rel="stylesheet" href="~/styles/wrapkit.css">
+
+    <link rel="stylesheet" href="~/styles/pages.css">
+</head>
+<body style="background-image:url(../images/bg.jpg);">
+    <h1 style="text-align:center;color:#ffd800;margin-top:25px;">TRANSPORT MANAGEMENT SYSTEM</h1>
+    <main class="signin-wrapper">
+        <div class="tab-content">
+            <p class="text-center p-4x">
+                <img src="~/images/logo/brand-text-dark.png" alt="Demon International">
+            </p>
+            <div class="tab-pane fade in active" id="signin">
+                <form id="signinForm" role="form" action="/login/getlogin" method="POST">
+                    <p class="lead">Login to Admin account</p>
+                    <div class="form-group">
+                        <div class="input-group input-group-in">
+                            <span class="input-group-addon"><i class="icon-user"></i></span>
+                            <input id="txtusername" class="form-control" placeholder="Username" name="username" type="text" />
                         </div>
-                        <div>
-                            <a href="#" class="txt1">
-                                Forgot Password?
-                            </a>
+                    </div><!-- /.form-group -->
+                    <div class="form-group">
+                        <div class="input-group input-group-in">
+                            <span class="input-group-addon"><i class="icon-lock"></i></span>
+                            <input id="txtpassword" class="form-control" placeholder="Password" name="password" type="password" />
+
                         </div>
-                    </div>
+                    </div><!-- /.form-group -->
+                    <div class="form-group clearfix">
+                        <div class="animated-hue pull-right">
+                            <input id="btnlogin" type="submit" name="submit" value="SignIn" class="btn btn-primary" />
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="nice-checkbox nice-checkbox-inline">
+                                <input name="keepSignin" id="Checkbox1" checked="checked" type="checkbox" />
+                                <label for="keepSignin">Keep me sign in</label>
+                            </div>
+                        </div>
 
-                    <div class="container-login100-form-btn">
-                        <button class="login100-form-btn">
-                            Login
-                        </button>
-                    </div>
-                </form>
-            @*<form id="login_form" class="dialog-form" action="/login/getlogin" method="POST">
-                        <fieldset>
-                            <div class="login100-form-title" style="background-image: url(/img/bg-01.jpg);">
-                                <span class="login100-form-title-1">
-                                    Sign In
-                                </span>
-                            </div>
-                            <legend>Transport Management System</legend>
-                            <div class="form-group" data-validate="Username is required">
-                                <span for="user_username" class="control-label">Username:</span>
-                                <input type="text" id="user_username" class="form-control" name="username" autofocus />
-                            </div>
-                            <div class="form-group" data-validate = "Password is required">
-                                <span for="user_password" class="control-label">Password:</span>
-                                <input type="password" id="user_password" class="form-control" name="password" />
-                            </div>
-                            @*<div class="text-center pad-top-20">
-                <p>Have you forgotten your<br><a href="#" class="link"><strong>username</strong></a> or <a href="#" class="link"><strong>password</strong></a>?</p>
-            </div>
-                            <div class="pad-top-20 pad-btm-20">
-                                <input type="submit" class="btn btn-primary btn-block btn-lg" value="Continue">
-                            </div>
-                            @*<div class="text-center">
-                <p>Do you wish to register<br> for <a href="#" class="link user-actions"><strong>a new account</strong></a>?</p>
-            </div>
-                        </fieldset>
-                    </form>*@
-        </div>
-    </div>
-</div>
+                    </div><!-- /.form-group -->
 
-<script src="~/Scripts/App/Login/Login.js"></script>
+                </form><!-- /#signinForm -->
+            </div><!-- /.tab-pane -->
+
+            <div class="tab-pane fade" id="signup">
+                <form id="signupForm" action="http://bentkwek.com/items/preview/wrapkit/1.2/index.html" role="form">
+                    <p class="lead">Create a new account</p>
+                    <p class="text-muted"><strong>Enter your personal data</strong></p>
+                    <div class="form-group has-feedback">
+                        <div class="input-group input-group-in">
+                            <span class="input-group-addon"><i class="icon-tag"></i></span>
+                            <input name="fullName" id="fullName" class="form-control" placeholder="Full Name">
+                            <span class="form-control-feedback"></span>
+                        </div>
+                    </div><!-- /.form-group -->
+                    <div class="form-group has-feedback">
+                        <div class="input-group input-group-in">
+                            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                            <span class="form-control-feedback"></span>
+                        </div>
+                    </div><!-- /.form-group -->
+                    <div class="form-group has-feedback">
+                        <div class="input-group input-group-in">
+                            <span class="input-group-addon"><i class="icon-direction"></i></span>
+                            <input name="address" id="address" class="form-control" placeholder="Address">
+                            <span class="form-control-feedback"></span>
+                        </div>
+                    </div><!-- /.form-group -->
+                    <div class="form-group has-feedback">
+                        <div class="input-group input-group-in">
+                            <span class="input-group-addon"><i class="icon-location-pin"></i></span>
+                            <input name="city" id="city" class="form-control" placeholder="City">
+                            <span class="form-control-feedback"></span>
+                        </div>
+                    </div><!-- /.form-group -->
+                    <div class="form-group has-feedback">
+                        <div class="input-group input-group-in">
+                            <span class="input-group-addon" title="unable to find any Country that match the current query!"><i class="icon-map"></i></span>
+                            <input name="country" id="country" class="form-control" placeholder="Countries">
+                            <span class="form-control-feedback"></span>
+                        </div><!-- /input-group-in -->
+                    </div><!-- /.form-group -->
+                    <div class="form-group">
+                        <label class="control-label" style="margin-right:15px">Gender</label>
+                        <div class="nice-radio nice-radio-inline">
+                            <input type="radio" name="gender" id="genderMale" value="male" checked="checked">
+                            <label for="genderMale">Male</label>
+                        </div><!-- /.radio -->
+                        <div class="nice-radio nice-radio-inline">
+                            <input type="radio" name="gender" id="genderFemale" value="female">
+                            <label for="genderFemale">Female</label>
+                        </div><!-- /.radio -->
+                    </div><!-- /.form-group -->
+
+                    <hr>
+
+                    <p class="text-muted"><strong>Enter your account data</strong></p>
+                    <div class="form-group has-feedback">
+                        <div class="input-group input-group-in">
+                            <span class="input-group-addon"><i class="icon-user"></i></span>
+                            <input name="usrName" id="usrName" class="form-control" placeholder="Username">
+                            <span class="form-control-feedback"></span>
+                        </div>
+                    </div><!-- /.form-group -->
+                    <div class="form-group has-feedback">
+                        <div class="input-group input-group-in">
+                            <span class="input-group-addon"><i class="icon-key"></i></span>
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                            <span class="form-control-feedback"></span>
+                        </div>
+                    </div><!-- /.form-group -->
+                    <div class="form-group has-feedback">
+                        <div class="input-group input-group-in">
+                            <span class="input-group-addon"><i class="icon-check"></i></span>
+                            <input type="password" name="cpassword" id="cpassword" class="form-control" placeholder="Enter Password Again">
+                            <span class="form-control-feedback"></span>
+                        </div>
+                    </div><!-- /.form-group -->
+                    <div class="form-group animated-hue clearfix">
+                        <div class="pull-right">
+                            <button type="submit" class="btn btn-primary">Create account</button>
+                        </div>
+                        <div class="pull-left">
+                            <a href="#signin" class="btn btn-default" data-toggle="tab">Signin</a>
+                        </div>
+                    </div><!-- /.form-group -->
+                </form><!-- /#signupForm -->
+
+                <hr>
+
+                <p>By creating an account you agree to the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a></p>
+            </div><!-- /.tab-pane -->
+        </div><!-- /.tab-content -->
+    </main><!--/#wrapper-->
+    <p class="signin-cr text-light">Copyright &copy; 2018 Demon International</p>
+
+
+    <!-- VENDORS : jQuery & Bootstrap -->
+    <script src="~/scripts/vendor.js"></script>
+    <!-- END VENDORS -->
+    <!-- DEPENDENCIES : Required plugins -->
+    <script src="~/scripts/dependencies.js"></script>
+    <!-- END DEPENDENCIES -->
+    <!-- PLUGIN SETUPS: vendors & dependencies setups -->
+    <script src="~/scripts/plugin-setups.js"></script>
+    <!-- END PLUGIN SETUPS -->
+    <!-- Google Analytics: change UA-71722129-1 to be your site's ID. -->
+    <script>
+        (function (b, o, i, l, e, r) {
+            b.GoogleAnalyticsObject = l; b[l] || (b[l] =
+                function () { (b[l].q = b[l].q || []).push(arguments) }); b[l].l = +new Date;
+            e = o.createElement(i); r = o.getElementsByTagName(i)[0];
+            e.src = '../../../../../www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e, r)
+        }(window, document, 'script', 'ga'));
+        ga('create', 'UA-71722129-1'); ga('send', 'pageview');
+    </script>
+</body>
+
+</html>

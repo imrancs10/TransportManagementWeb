@@ -1,101 +1,177 @@
 ﻿@using TransportManagementWeb.Global
 <!DOCTYPE html>
-<html>
+<html class="no-js">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Transport Management System</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-    <script src="~/Scripts/jquery-ui.js"></script>
-    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
-    <script src="~/Scripts/App/Global/App.js"></script>
-    <script src="~/Scripts/App/Global/Utility.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=yes">
+
+    <title>Demon International</title>
+
+    <!-- favicon.ico and apple-touch-icon.png -->
+    <link rel="apple-touch-icon" sizes="57x57" href="~/images/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/images/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/images/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/images/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/images/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/images/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/images/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/images/favicons/apple-touch-icon-152x152.png">
+    <link rel="icon" type="image/png" href="~/images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="~/images/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="~/images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="~/images/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="msapplication-TileImage" content="~/images/favicons/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,700,600,300" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="~/styles/bootstrap.css">
+
+    <link rel="stylesheet" href="~/styles/dependencies.css">
+
+    <link rel="stylesheet" href="~/styles/components.css">
+
+    <link rel="stylesheet" href="~/styles/wrapkit.css">
+
+    <link rel="stylesheet" href="~/styles/demo.css">
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            @if (string.IsNullOrWhiteSpace(UserData.FirstName) && Convert.ToBoolean(ViewData["LoginPage"]) != true)
-            {
-                <div class="navbar-header" style="width:100%">
-                    @Html.ActionLink("Patient Portal", "Dashboard", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <main class="wrapkit-wrapper" id="wrapper">
 
-                    <div style="float:right">
-                        @Html.ActionLink("Login", "Index", "Login", new { area = "" }, new { @class = "navbar-brand" })
+        <!-- ============================================
+        HEADER SECTION
+        =============================================== -->
+        <!-- navigation -->
+        <nav class="header navbar">
+            <div class="container-fluid">
+                <!-- use .pull-*, couse we need this float on any screen size -->
+                <div class="pull-left">
+                    <a class="navbar-brand" href="Dashboard.aspx" role="logo" aria-label="Logo">
+                        <img class="logo" src="~/images/logo/login-logo.png" alt="Brand" style="height:42px; width:178px;">
+                    </a>
+                    <button data-sidebar="toggleVisible" class="btn btn-icon navbar-btn">
+                        <i class="fa fa-bars"></i>
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                </div>
+
+                <!-- use .pull-*, couse we need this float on any screen size -->
+                <div class="pull-right" role="navigation">
+
+                    <div class="dropdown">
+
+                        <br />
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <label id="lblUserName1" runat="server"></label>
+                            <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="page-profile.html"><span class="pull-right"><i class="fa fa-user text-muted"></i></span>Profile</a></li>
+                            <li class="divider"></li>
+                            <li role="presentation"><a data-toggle="modal" data-target="#customModal2" role="menuitem" tabindex="-1"><span class="pull-right"><i class="fa fa-key text-muted"></i></span>Change Password</a></li>
+                            <li class="divider"></li>
+                            <li role="presentation"><a id="A1" role="menuitem" tabindex="-1"><span class="pull-right"><i class="fa fa-sign-out text-muted"></i></span> Sign out</a></li>
+                            <li class="divider"></li>
+                        </ul>
+                    </div><!-- /.dropdown -->
+                </div><!-- /navigation -->
+
+            </div><!-- /.container-fluid -->
+        </nav><!-- /navigation -->
+        <!-- ============================================
+        SIDEBAR SECTION
+        =============================================== -->
+        <aside class="sidebar" role="complementary">
+
+            <!-- profile -->
+            <div class="sidebar-block">
+                <div class="media">
+                    <div class="media-left">
+                        <a href="Dashboard.aspx">
+                            <span class="status dotted dotted-primary" data-toggle="tooltip" data-container="body" title="available"></span>
+                            <img class="media-object img-circle" src="~/images/dummy/unknown-profile.jpg" alt="photo profile">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading" id="lblUserName" runat="server">  </h4>
+
                     </div>
                 </div>
-            }
-            else
-            {
-                <div class="navbar-header">
-                    @Html.ActionLink("Patient Portal", "Dashboard", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-            }
-            <div class="navbar-collapse collapse">
-                @if (!string.IsNullOrWhiteSpace(UserData.FirstName))
-                {
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Department", "AddDepartments", "Masters")</li>
-                        <li>@Html.ActionLink("Doctor", "AddDoctors", "Masters")</li>
-                        <li>@Html.ActionLink("Doctor Schedule", "AddSchedule", "Masters")</li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-user"></span>
-                                <strong>@UserData.FirstName</strong>
-                                <span class="glyphicon glyphicon-chevron-down"></span>
-                            </a>
-                            <ul class="dropdown-menu" style="width:300px">
-                                <li>
-                                    <div class="navbar-login">
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                                <p class="text-center">
-                                                    <span class="glyphicon glyphicon-user icon-size"></span>
-                                                </p>
-                                            </div>
-                                            <div class="col-lg-8">
-                                                <p class="text-left"><strong>@UserData.FirstName @UserData.MiddleName @UserData.LastName</strong></p>
-                                                <p class="text-left small">@UserData.Email</p>
-                                                <p class="text-left">
-                                                    <a href="#" class="btn btn-primary btn-block btn-sm" style="width:90%">View Profile</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <div class="navbar-login navbar-login-session">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <p>
-                                                    <a href="Logout" class="btn btn-danger btn-block" style="width:40%;float:right;margin-right:10px;">Logout</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                }
+            </div><!-- /.sidebar-block -->
+            <!-- /profile -->
+            <!-- /navigation -->
+            <div class="nav-wrapper">
+                <ul class="nav nav-stacked" role="navigation">
+                    <li class="nav-item open active" role="presentation">
+                        <a href="index.html" class="active">
+                            <span class="nav-icon"><i class="fa fa-dashcube"></i></span>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                        <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Masters/ClientMaster"><span class="nav-text">Client Master</span></a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="~/Masters/VendorMaster"><span class="nav-text">Vendor Master</span></a></li>
+                        </ul>
+                    </li>
 
+                    <li class="divider"></li>
+                </ul>
             </div>
-        </div>
-    </div>
-    <div class="container body-content">
+        </aside><!-- /.SIDEBAR -->
+        <!-- ============================================
+        MAIN CONTENT SECTION
+        =============================================== -->
         @RenderBody()
+        <!-- ============================================
+        FOOTER SECTION
+        =============================================== -->
+        <footer class="footer-wrapper" role="contentinfo">
+            <div class="footer">
+                <div class="pull-right text-muted"><small>Currently v1.2</small></div>
+                <div>Wrapkit Template  &copy; 2015</div>
+            </div>
+        </footer><!-- /.FOOTER -->
 
-    </div>
-    <hr class="text-center navbar-fixed-bottom" />
-    <footer class="text-center navbar-fixed-bottom">
-        <p>&copy; @DateTime.Now.Year - Patient Portal</p>
-    </footer>
+    </main><!-- /#MAIN -->
+    <!-- VENDORS : jQuery & Bootstrap -->
+    <script src="~/scripts/vendor.js"></script>
+    <!-- END VENDORS -->
+    <!-- DEPENDENCIES : Required plugins -->
+    <script src="~/scripts/dependencies.js"></script>
+    <!-- END DEPENDENCIES -->
+    <!-- WRAPKIT -->
+    <script src="~/scripts/wrapkit.js"></script>
+    <!-- END WRAPKIT -->
+    <!-- WRAPKIT SETUPS -->
+    <script src="~/scripts/wrapkit-setup.js"></script>
+    <!-- end WRAPKIT SETUPS -->
+    <!-- PLUGIN SETUPS: vendors & dependencies setups -->
+    <script src="~/scripts/plugin-setups.js"></script>
+    <!-- END PLUGIN SETUPS -->
+    <!-- COMPONENTS -->
+    <!-- Morris.js + Raphael -->
+    <script src="~/scripts/morris.bundle.js"></script>
+    <script src="~/scripts/jquery.sparkline.js"></script>
+    <script src="~/scripts/jquery.easypiechart.js"></script>
+    <!-- END COMPONENTS -->
+    <!-- DUMMY: Use for demo -->
+    <script src="~/scripts/demo/dashboard1-demo.js"></script>
+
+
+    <!-- Google Analytics: change UA-71722129-1 to be your site's ID. -->
+    <script>
+        (function (b, o, i, l, e, r) {
+            b.GoogleAnalyticsObject = l; b[l] || (b[l] =
+                function () { (b[l].q = b[l].q || []).push(arguments) }); b[l].l = +new Date;
+            e = o.createElement(i); r = o.getElementsByTagName(i)[0];
+            e.src = '../../../../../www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e, r)
+        }(window, document, 'script', 'ga'));
+        ga('create', 'UA-71722129-1'); ga('send', 'pageview');
+    </script>
+
     @if (TempData["Alert_Title"] != null)
     {
         <div id="dialog" title="@TempData["Alert_Title"].ToString()">

@@ -1,0 +1,885 @@
+﻿@{
+    ViewBag.Title = "Vendor Master";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- ============================================
+MAIN CONTENT SECTION
+=============================================== -->
+<section class="content-wrapper" role="main" >
+    <div class="content">
+
+        <div class="content-bar">
+            <ul class="breadcrumb breadcrumb-angle">
+                <li><a href="~/Masters/Dashboard" aria-label="home"><i class="fa fa-home"></i></a></li>
+                <li class="active">Vendor Master</li>
+            </ul>
+        </div><!-- /.content-bar -->
+        <hr />
+
+        <div class="content-body">
+
+            <div class="col-lg-12">
+                <div class="featured-box featured-box-primary align-left mt-xlg">
+                    <div class="box-content">
+                        <div class="row">
+                            <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Vender ID </h4></div>
+                        </div>
+                        <hr class="tall">
+                        <div class="form-group mt-lg">
+                            <label class="col-sm-3 control-label">Vender Name <span style="color:red;">*</span></label>
+                            <div class="col-sm-9">
+                                <div class="input-group input-group-icon">
+                                    <input type="text" id="txtName" class="form-control" placeholder="Vender Name" runat="server">
+                                    <span class="input-group-addon">
+                                        <span class="icon"><i class="fa fa-user"></i></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <div class="form-group mt-lg">
+                                        <label class="col-sm-4 control-label">Address 1 <span style="color:red;">*</span></label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group input-group-icon">
+                                                <textarea id="Textarea1" class="form-control" rows="3" placeholder="Enter Your Address 1"></textarea>
+                                                <span class="input-group-addon">
+                                                    <span class="icon"><i class="fa fa-map"></i></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mt-lg">
+                                        <label class="col-sm-4 control-label">Address 2 <span style="color:red;">*</span></label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group input-group-icon">
+                                                <textarea id="txtAddress" class="form-control" rows="3" placeholder="Enter Your Address 2"></textarea>
+                                                <span class="input-group-addon">
+                                                    <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <div class="form-group mt-lg">
+                                        <label class="col-sm-4 control-label">Area<span style="color:red;">*</span></label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" id="Text3" runat="server" class="form-control" placeholder="Area">
+                                                <span class="input-group-addon">
+                                                    <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mt-lg">
+                                        <label class="col-sm-4 control-label">Pin Code <span style="color:red;">*</span></label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" id="Text4" runat="server" class="form-control" placeholder="Pin Code">
+                                                <span class="input-group-addon">
+                                                    <span class="icon"><i class="fa fa-edit"></i></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <div class="form-group mt-lg">
+                                        <label class="col-sm-4 control-label">City Name</label>
+                                        <div class="col-sm-8">
+                                            <select name="filledby" id="Select4" runat="server" class="form-control required">
+                                                <option value="0">Select City</option>
+                                                <option>Ahmedabad</option>
+                                                <option>Bengaluru/Bangalore</option>
+                                                <option>Chandigarh</option>
+                                                <option>Chennai</option>
+                                                <option>Delhi</option>
+                                                <option>Gurgaon</option>
+                                                <option>Hyderabad/Secunderabad</option>
+                                                <option>Kolkatta</option>
+                                                <option>Mumbai</option>
+                                                <option>Noida</option>
+                                                <option>Pune</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Andhra Pradesh-</option>
+                                                <option>Anantapur</option>
+                                                <option>Guntakal</option>
+                                                <option>Guntur</option>
+                                                <option>Hyderabad/Secunderabad</option>
+                                                <option>kakinada</option>
+                                                <option>kurnool</option>
+                                                <option>Nellore</option>
+                                                <option>Nizamabad</option>
+                                                <option>Rajahmundry</option>
+                                                <option>Tirupati</option>
+                                                <option>Vijayawada</option>
+                                                <option>Visakhapatnam</option>
+                                                <option>Warangal</option>
+                                                <option>Andra Pradesh-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Arunachal Pradesh-</option>
+                                                <option>Itanagar</option>
+                                                <option>Arunachal Pradesh-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Assam-</option>
+                                                <option>Guwahati</option>
+                                                <option>Silchar</option>
+                                                <option>Assam-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Bihar-</option>
+                                                <option>Bhagalpur</option>
+                                                <option>Patna</option>
+                                                <option>Bihar-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Chhattisgarh-</option>
+                                                <option>Bhillai</option>
+                                                <option>Bilaspur</option>
+                                                <option>Raipur</option>
+                                                <option>Chhattisgarh-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Goa-</option>
+                                                <option>Panjim/Panaji</option>
+                                                <option>Vasco Da Gama</option>
+                                                <option>Goa-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Gujarat-</option>
+                                                <option>Ahmedabad</option>
+                                                <option>Anand</option>
+                                                <option>Ankleshwar</option>
+                                                <option>Bharuch</option>
+                                                <option>Bhavnagar</option>
+                                                <option>Bhuj</option>
+                                                <option>Gandhinagar</option>
+                                                <option>Gir</option>
+                                                <option>Jamnagar</option>
+                                                <option>Kandla</option>
+                                                <option>Porbandar</option>
+                                                <option>Rajkot</option>
+                                                <option>Surat</option>
+                                                <option>Vadodara/Baroda</option>
+                                                <option>Valsad</option>
+                                                <option>Vapi</option>
+                                                <option>Gujarat-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Haryana-</option>
+                                                <option>Ambala</option>
+                                                <option>Chandigarh</option>
+                                                <option>Faridabad</option>
+                                                <option>Gurgaon</option>
+                                                <option>Hisar</option>
+                                                <option>Karnal</option>
+                                                <option>Kurukshetra</option>
+                                                <option>Panipat</option>
+                                                <option>Rohtak</option>
+                                                <option>Haryana-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Himachal Pradesh-</option>
+                                                <option>Dalhousie</option>
+                                                <option>Dharmasala</option>
+                                                <option>Kulu/Manali</option>
+                                                <option>Shimla</option>
+                                                <option>Himachal Pradesh-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Jammu and Kashmir-</option>
+                                                <option>Jammu</option>
+                                                <option>Srinagar</option>
+                                                <option>Jammu and Kashmir-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Jharkhand-</option>
+                                                <option>Bokaro</option>
+                                                <option>Dhanbad</option>
+                                                <option>Jamshedpur</option>
+                                                <option>Ranchi</option>
+                                                <option>Jharkhand-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Karnataka-</option>
+                                                <option>Bengaluru/Bangalore</option>
+                                                <option>Belgaum</option>
+                                                <option>Bellary</option>
+                                                <option>Bidar</option>
+                                                <option>Dharwad</option>
+                                                <option>Gulbarga</option>
+                                                <option>Hubli</option>
+                                                <option>Kolar</option>
+                                                <option>Mangalore</option>
+                                                <option>Mysoru/Mysore</option>
+                                                <option>Karnataka-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Kerala-</option>
+                                                <option>Calicut</option>
+                                                <option>Cochin</option>
+                                                <option>Ernakulam</option>
+                                                <option>Kannur</option>
+                                                <option>Kochi</option>
+                                                <option>Kollam</option>
+                                                <option>Kottayam</option>
+                                                <option>Kozhikode</option>
+                                                <option>Palakkad</option>
+                                                <option>Palghat</option>
+                                                <option>Thrissur</option>
+                                                <option>Trivandrum</option>
+                                                <option>Kerela-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Madhya Pradesh-</option>
+                                                <option>Bhopal</option>
+                                                <option>Gwalior</option>
+                                                <option>Indore</option>
+                                                <option>Jabalpur</option>
+                                                <option>Ujjain</option>
+                                                <option>Madhya Pradesh-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Maharashtra-</option>
+                                                <option>Ahmednagar</option>
+                                                <option>Aurangabad</option>
+                                                <option>Jalgaon</option>
+                                                <option>Kolhapur</option>
+                                                <option>Mumbai</option>
+                                                <option>Mumbai Suburbs</option>
+                                                <option>Nagpur</option>
+                                                <option>Nasik</option>
+                                                <option>Navi Mumbai</option>
+                                                <option>Pune</option>
+                                                <option>Solapur</option>
+                                                <option>Maharashtra-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Manipur-</option>
+                                                <option>Imphal</option>
+                                                <option>Manipur-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Meghalaya-</option>
+                                                <option>Shillong</option>
+                                                <option>Meghalaya-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Mizoram-</option>
+                                                <option>Aizawal</option>
+                                                <option>Mizoram-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Nagaland-</option>
+                                                <option>Dimapur</option>
+                                                <option>Nagaland-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Orissa-</option>
+                                                <option>Bhubaneshwar</option>
+                                                <option>Cuttak</option>
+                                                <option>Paradeep</option>
+                                                <option>Puri</option>
+                                                <option>Rourkela</option>
+                                                <option>Orissa-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Punjab-</option>
+                                                <option>Amritsar</option>
+                                                <option>Bathinda</option>
+                                                <option>Chandigarh</option>
+                                                <option>Jalandhar</option>
+                                                <option>Ludhiana</option>
+                                                <option>Mohali</option>
+                                                <option>Pathankot</option>
+                                                <option>Patiala</option>
+                                                <option>Punjab-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Rajasthan-</option>
+                                                <option>Ajmer</option>
+                                                <option>Jaipur</option>
+                                                <option>Jaisalmer</option>
+                                                <option>Jodhpur</option>
+                                                <option>Kota</option>
+                                                <option>Udaipur</option>
+                                                <option>Rajasthan-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Sikkim-</option>
+                                                <option>Gangtok</option>
+                                                <option>Sikkim-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Tamil Nadu-</option>
+                                                <option>Chennai</option>
+                                                <option>Coimbatore</option>
+                                                <option>Cuddalore</option>
+                                                <option>Erode</option>
+                                                <option>Hosur</option>
+                                                <option>Madurai</option>
+                                                <option>Nagerkoil</option>
+                                                <option>Ooty</option>
+                                                <option>Salem</option>
+                                                <option>Thanjavur</option>
+                                                <option>Tirunalveli</option>
+                                                <option>Trichy</option>
+                                                <option>Tuticorin</option>
+                                                <option>Vellore</option>
+                                                <option>Tamil Nadu-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Tripura-</option>
+                                                <option>Agartala</option>
+                                                <option>Tripura-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Union Territories-</option>
+                                                <option>Chandigarh</option>
+                                                <option>Dadra &amp; Nagar Haveli-Silvassa</option>
+                                                <option>Daman &amp; Diu</option>
+                                                <option>Delhi</option>
+                                                <option>Pondichery</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Uttar Pradesh-</option>
+                                                <option>Agra</option>
+                                                <option>Aligarh</option>
+                                                <option>Allahabad</option>
+                                                <option>Bareilly</option>
+                                                <option>Faizabad</option>
+                                                <option>Ghaziabad</option>
+                                                <option>Gorakhpur</option>
+                                                <option>Kanpur</option>
+                                                <option>Lucknow</option>
+                                                <option>Mathura</option>
+                                                <option>Meerut</option>
+                                                <option>Moradabad</option>
+                                                <option>Noida</option>
+                                                <option>Varanasi/Banaras</option>
+                                                <option>Uttar Pradesh-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Uttaranchal-</option>
+                                                <option>Dehradun</option>
+                                                <option>Roorkee</option>
+                                                <option>Uttaranchal-Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-West Bengal-</option>
+                                                <option>Asansol</option>
+                                                <option>Durgapur</option>
+                                                <option>Haldia</option>
+                                                <option>Kharagpur</option>
+                                                <option>Kolkatta</option>
+                                                <option>Siliguri</option>
+                                                <option>West Bengal - Other</option>
+                                                <option disabled="disabled" style="background-color:#3E3E3E">-Other-</option>
+                                                <option>Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group mt-lg">
+                                        <label class="col-sm-4 control-label">State <span style="color:red;">*</span></label>
+                                        <div class="col-sm-8">
+                                            <select name="filledby" id="Select5" runat="server" class="form-control required">
+                                                <option value="0">Select State</option>
+                                                <option value="Andaman and Nicobar">Andaman and Nicobar</option>
+                                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                <option value="Assam">Assam</option>
+                                                <option value="Bihar">Bihar</option>
+                                                <option value="Chandigarh">Chandigarh</option>
+                                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                                <option value="Dadra Nagar Haveli">Dadra &amp; Nagar Haveli</option>
+                                                <option value="Daman and Diu">Daman and Diu</option>
+                                                <option value="Delhi">Delhi</option>
+                                                <option value="Goa">Goa</option>
+                                                <option value="Gujarat">Gujarat</option>
+                                                <option value="Haryana">Haryana</option>
+                                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                                <option value="Jharkhand">Jharkhand</option>
+                                                <option value="Karnataka">Karnataka</option>
+                                                <option value="Kerala">Kerala</option>
+                                                <option value="Lakshadweep">Lakshadweep</option>
+                                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                <option value="Maharashtra">Maharashtra</option>
+                                                <option value="Manipur">Manipur</option>
+                                                <option value="Meghalaya">Meghalaya</option>
+                                                <option value="Mizoram">Mizoram</option>
+                                                <option value="Nagaland">Nagaland</option>
+                                                <option value="Orissa">Orissa</option>
+                                                <option value="Pondicherry">Pondicherry</option>
+                                                <option value="Punjab">Punjab</option>
+                                                <option value="Rajasthan">Rajasthan</option>
+                                                <option value="Sikkim">Sikkim</option>
+                                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                                <option value="Telangana">Telangana</option>
+                                                <option value="Tripura">Tripura</option>
+                                                <option value="UP">Uttar Pradesh</option>
+                                                <option value="Uttaranchal">Uttaranchal</option>
+                                                <option value="West Bengal">West Bengal</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group mt-lg">
+                                        <label class="col-sm-4 control-label">Country <span style="color:red;">*</span></label>
+                                        <div class="col-sm-8">
+                                            <select name="filledby" id="SelectCountry" runat="server" class="form-control required">
+                                                <option value="0">Select Country</option>
+                                                <option value="INDIA" selected="selected">India</option>
+                                                <option value="USA">United States of America</option>
+                                                <option value="PAKISTAN">Pakistan</option>
+                                                <option value="UAE">United Arab Emirates</option>
+                                                <option value="UK">United Kingdom</option>
+                                                <option value="AUSTRALIS">Australia</option>
+                                                <option value="SAUDI ARABIA">Saudi Arabia</option>
+                                                <option value="BANGLADESH">Bangladesh</option>
+                                                <option value="CANADA">Canada</option>
+                                                <option value="AFGHANISTAN">Afghanistan</option>
+                                                <option value="ALBANIA">Albania</option>
+                                                <option value="ALGERIA">Algeria</option>
+                                                <option value="AMERICAN SAMOA">American Samoa</option>
+                                                <option value="ANDO">Andorra</option>
+                                                <option value="ANGO">Angola</option>
+                                                <option value="ANGU">Anguilla</option>
+                                                <option value="ANTA">Antarctica</option>
+                                                <option value="ANTI">Antigua and Barbuda</option>
+                                                <option value="ARGE">Argentina</option>
+                                                <option value="ARME">Armenia</option>
+                                                <option value="ARUB">Aruba</option>
+                                                <option value="AUSR">Austria</option>
+                                                <option value="AZER">Azerbaijan</option>
+                                                <option value="BAHA">Bahamas</option>
+                                                <option value="BAHR">Bahrain</option>
+                                                <option value="BARB">Barbados</option>
+                                                <option value="BELA">Belarus</option>
+                                                <option value="BELG">Belgium</option>
+                                                <option value="BELI">Belize</option>
+                                                <option value="BENI">Benin</option>
+                                                <option value="BERM">Bermuda</option>
+                                                <option value="BHUT">Bhutan</option>
+                                                <option value="BOLI">Bolivia</option>
+                                                <option value="BOSN">Bosnia and Herzegovina</option>
+                                                <option value="BOTS">Botswana</option>
+                                                <option value="BOUV">Bouvet Island</option>
+                                                <option value="BRAZ">Brazil</option>
+                                                <option value="BRIT">British Indian Ocean Territory</option>
+                                                <option value="BRUN">Brunei</option>
+                                                <option value="BULG">Bulgaria</option>
+                                                <option value="BURK">Burkina Faso</option>
+                                                <option value="BURU">Burundi</option>
+                                                <option value="CAMB">Cambodia</option>
+                                                <option value="CAME">Cameroon</option>
+                                                <option value="CAPE">Cape Verde</option>
+                                                <option value="CAYM">Cayman Islands</option>
+                                                <option value="CENT">Central African Republic</option>
+                                                <option value="CHAD">Chad</option>
+                                                <option value="CHIL">Chile</option>
+                                                <option value="CHIN">China</option>
+                                                <option value="CHRI">Christmas Island</option>
+                                                <option value="COCO">Cocos Islands</option>
+                                                <option value="COLO">Colombia</option>
+                                                <option value="COMO">Comoros</option>
+                                                <option value="CONG">Congo</option>
+                                                <option value="COOK">Cook Islands</option>
+                                                <option value="COST">Costa Rica</option>
+                                                <option value="CODI">Cote D Ivoire</option>
+                                                <option value="CROA">Croatia</option>
+                                                <option value="CUBA">Cuba</option>
+                                                <option value="CYPR">Cyprus</option>
+                                                <option value="CZEC">Czech Republic</option>
+                                                <option value="DENM">Denmark</option>
+                                                <option value="DJIB">Djibouti</option>
+                                                <option value="DOMI">Dominica</option>
+                                                <option value="DORE">Dominican Republic</option>
+                                                <option value="EAST">East Timor</option>
+                                                <option value="ECUA">Ecuador</option>
+                                                <option value="EGYP">Egypt</option>
+                                                <option value="EL S">El Salvador</option>
+                                                <option value="EQUA">Equatorial Guinea</option>
+                                                <option value="ERIT">Eritrea</option>
+                                                <option value="ESTO">Estonia</option>
+                                                <option value="ETHI">Ethiopia</option>
+                                                <option value="FALK">Falkland Islands</option>
+                                                <option value="FARO">Faroe Islands</option>
+                                                <option value="FIJI">Fiji</option>
+                                                <option value="FINL">Finland</option>
+                                                <option value="FRAN">France</option>
+                                                <option value="FRME">France Metropolitan</option>
+                                                <option value="FREN">French Guiana</option>
+                                                <option value="FRPO">French Polynesia</option>
+                                                <option value="FRST">French Southern Territories</option>
+                                                <option value="GABO">Gabon</option>
+                                                <option value="GAMB">Gambia</option>
+                                                <option value="GEOR">Georgia</option>
+                                                <option value="GERM">Germany</option>
+                                                <option value="GHAN">Ghana</option>
+                                                <option value="GIBR">Gibraltar</option>
+                                                <option value="GREE">Greece</option>
+                                                <option value="GRND">Greenland</option>
+                                                <option value="GREN">Grenada</option>
+                                                <option value="GUAD">Guadeloupe</option>
+                                                <option value="GUAM">Guam</option>
+                                                <option value="GUAT">Guatemala</option>
+                                                <option value="GUIN">Guinea</option>
+                                                <option value="GUBI">Guinea Bissau</option>
+                                                <option value="GUYA">Guyana</option>
+                                                <option value="HAIT">Haiti</option>
+                                                <option value="HEAR">Heard and McDonald Islands</option>
+                                                <option value="HOND">Honduras</option>
+                                                <option value="HONG">Hong Kong</option>
+                                                <option value="HUNG">Hungary</option>
+                                                <option value="ICEL">Iceland</option>
+                                                <option value="INDO">Indonesia</option>
+                                                <option value="IRAN">Iran</option>
+                                                <option value="IRAQ">Iraq</option>
+                                                <option value="IREL">Ireland</option>
+                                                <option value="ISRA">Israel</option>
+                                                <option value="ITAL">Italy</option>
+                                                <option value="IVOR">Ivory Coast</option>
+                                                <option value="JAMA">Jamaica</option>
+                                                <option value="JAPA">Japan</option>
+                                                <option value="JORD">Jordan</option>
+                                                <option value="KAZA">Kazakhstan</option>
+                                                <option value="KENY">Kenya</option>
+                                                <option value="KIRI">Kiribati</option>
+                                                <option value="KORN">Korea North</option>
+                                                <option value="KORS">Korea South</option>
+                                                <option value="KUWA">Kuwait</option>
+                                                <option value="KYRG">Kyrgyzstan</option>
+                                                <option value="LAOS">Laos</option>
+                                                <option value="LATV">Latvia</option>
+                                                <option value="LEBA">Lebanon</option>
+                                                <option value="LESO">Lesotho</option>
+                                                <option value="LIBE">Liberia</option>
+                                                <option value="LIBY">Libya</option>
+                                                <option value="LIEC">Liechtenstein</option>
+                                                <option value="LITH">Lithuania</option>
+                                                <option value="LUXE">Luxembourg</option>
+                                                <option value="MACA">Macau</option>
+                                                <option value="MACE">Macedonia Former Yugoslav</option>
+                                                <option value="MADA">Madagascar</option>
+                                                <option value="MALA">Malaysia</option>
+                                                <option value="MALD">Maldives</option>
+                                                <option value="MALI">Mali</option>
+                                                <option value="MALT">Malta</option>
+                                                <option value="MARS">Marshall Islands</option>
+                                                <option value="MART">Martinique</option>
+                                                <option value="MAUR">Mauritania</option>
+                                                <option value="MAUS">Mauritius</option>
+                                                <option value="MAYO">Mayotte</option>
+                                                <option value="MEXI">Mexico</option>
+                                                <option value="MICR">Micronesia Federated States of</option>
+                                                <option value="MOLD">Moldova</option>
+                                                <option value="MONA">Monaco</option>
+                                                <option value="MONG">Mongolia</option>
+                                                <option value="MONT">Montserrat</option>
+                                                <option value="MORO">Morocco</option>
+                                                <option value="MOZA">Mozambique</option>
+                                                <option value="MYAN">Myanmar</option>
+                                                <option value="NAMI">Namibia</option>
+                                                <option value="NAUR">Nauru</option>
+                                                <option value="NEPA">Nepal</option>
+                                                <option value="NETH">Netherlands</option>
+                                                <option value="NEAN">Netherlands Antilles</option>
+                                                <option value="NEWA">New Caledonia</option>
+                                                <option value="NEZD">New Zealand</option>
+                                                <option value="NICA">Nicaragua</option>
+                                                <option value="NIGE">Niger</option>
+                                                <option value="NIGA">Nigeria</option>
+                                                <option value="NIUE">Niue</option>
+                                                <option value="NORF">Norfolk Island</option>
+                                                <option value="DPRK">North Korea</option>
+                                                <option value="NORT">Northern Mariana Islands</option>
+                                                <option value="NORW">Norway</option>
+                                                <option value="OMAN">Oman</option>
+                                                <option value="OAFC">Other African Countries</option>
+                                                <option value="OAMC">Other American countries</option>
+                                                <option value="OASC">Other Asian Countries</option>
+                                                <option value="OEUC">Other European Countries</option>
+                                                <option value="OGUC">Other Gulf Countries</option>
+                                                <option value="OTHE">Others</option>
+                                                <option value="PALA">Palau</option>
+                                                <option value="PANA">Panama</option>
+                                                <option value="PAPU">Papua New Guinea</option>
+                                                <option value="PARA">Paraguay</option>
+                                                <option value="PERU">Peru</option>
+                                                <option value="PHIL">Philippines</option>
+                                                <option value="PITC">Pitcairn Island</option>
+                                                <option value="POLA">Poland</option>
+                                                <option value="PORT">Portugal</option>
+                                                <option value="PUER">Puerto Rico</option>
+                                                <option value="QATA">Qatar</option>
+                                                <option value="REUN">Reunion</option>
+                                                <option value="ROMA">Romania</option>
+                                                <option value="RUSS">Russia</option>
+                                                <option value="RWAN">Rwanda</option>
+                                                <option value="SGSS">S. Georgia and S. Sandwich Isls.</option>
+                                                <option value="SKNE">Saint Kitts &amp; Nevis</option>
+                                                <option value="SALU">Saint Lucia</option>
+                                                <option value="SAIN">Saint Vincent and The Grenadines</option>
+                                                <option value="SAMO">Samoa</option>
+                                                <option value="SAN">San Marino</option>
+                                                <option value="SAO">Sao Tome and Principe</option>
+                                                <option value="SENE">Senegal</option>
+                                                <option value="SEYC">Seychelles</option>
+                                                <option value="SIER">Sierra Leone</option>
+                                                <option value="SING">Singapore</option>
+                                                <option value="SLOV">Slovakia</option>
+                                                <option value="SLOA">Slovenia</option>
+                                                <option value="SOLO">Solomon Islands</option>
+                                                <option value="SOMA">Somalia</option>
+                                                <option value="SOUT">South Africa</option>
+                                                <option value="SOGS">South Georgia and S S Islands</option>
+                                                <option value="KORE">South Korea</option>
+                                                <option value="SPAI">Spain</option>
+                                                <option value="SRI">Sri Lanka</option>
+                                                <option value="STHE">St. Helena</option>
+                                                <option value="STPM">St. Pierre and Miquelon</option>
+                                                <option value="SUDA">Sudan</option>
+                                                <option value="SURI">Suriname</option>
+                                                <option value="SVAL">Svalbard and Jan Mayen Islands</option>
+                                                <option value="SWAZ">Swaziland</option>
+                                                <option value="SWED">Sweden</option>
+                                                <option value="SWIT">Switzerland</option>
+                                                <option value="SYRI">Syria</option>
+                                                <option value="TAIW">Taiwan</option>
+                                                <option value="TAJI">Tajikistan</option>
+                                                <option value="TANZ">Tanzania</option>
+                                                <option value="THAI">Thailand</option>
+                                                <option value="TOGO">Togo</option>
+                                                <option value="TOKE">Tokelau</option>
+                                                <option value="TONG">Tonga</option>
+                                                <option value="TRIN">Trinidad and Tobago</option>
+                                                <option value="TUNI">Tunisia</option>
+                                                <option value="TURK">Turkey</option>
+                                                <option value="TUAN">Turkmenistan</option>
+                                                <option value="TUCL">Turks and Caicos Islands</option>
+                                                <option value="TUVA">Tuvalu</option>
+                                                <option value="UGAN">Uganda</option>
+                                                <option value="UKRA">Ukraine</option>
+                                                <option value="UNMO">United States Minor Outlying Islands</option>
+                                                <option value="URUG">Uruguay</option>
+                                                <option value="UZBE">Uzbekistan</option>
+                                                <option value="VANU">Vanuatu</option>
+                                                <option value="VATI">Vatican City</option>
+                                                <option value="VENE">Venezuela</option>
+                                                <option value="VIET">Vietnam</option>
+                                                <option value="VIRG">Virgin Islands</option>
+                                                <option value="VIIS">Virgin Islands  British</option>
+                                                <option value="VIUS">Virgin Islands  US</option>
+                                                <option value="WALL">Wallis and Futuna Islands</option>
+                                                <option value="WEST">Western Sahara</option>
+                                                <option value="YEME">Yemen</option>
+                                                <option value="YUGO">Yugoslavia  Former</option>
+                                                <option value="ZAIR">Zaire</option>
+                                                <option value="ZAMB">Zambia</option>
+                                                <option value="ZIMB">Zimbabwe</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <div class="form-group mt-lg">
+                                        <label class="col-sm-4 control-label">GST No <span style="color:red;">*</span></label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" id="Text1" runat="server" class="form-control" placeholder="GST No">
+                                                <span class="input-group-addon">
+                                                    <span class="icon"><i class="fa fa-edit"></i></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mt-lg">
+                                        <label class="col-sm-4 control-label">Pan no <span style="color:red;">*</span></label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" id="Text2" runat="server" class="form-control" placeholder="Pan no">
+                                                <span class="input-group-addon">
+                                                    <span class="icon"><i class="fa fa-edit"></i></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Concern Person 1 Detail </h4></div>
+                        </div>
+                        <hr class="tall">
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <div class="form-group mt-lg">
+                                        <label class="col-sm-6 control-label">Email Id </label>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="Text11" runat="server" class="form-control" placeholder="Email Id">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-envelope"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mt-lg">
+                                        <label class="col-sm-6 control-label">Contact No </label>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="Text5" runat="server" class="form-control" placeholder="Contact No">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-phone"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Concern Person 2 Detail </h4></div>
+                        </div>
+                        <hr class="tall">
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <div class="form-group mt-lg">
+                                        <label class="col-sm-6 control-label">Email Id </label>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="Text6" runat="server" class="form-control" placeholder="Email Id">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-envelope"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mt-lg">
+                                        <label class="col-sm-6 control-label">Contact No </label>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="Text7" runat="server" class="form-control" placeholder="Contact No">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-phone"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Bank Detail </h4></div>
+                        </div>
+                        <hr class="tall">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <div class="form-group mt-lg">
+                                        <label class="col-sm-6 control-label">Bank Name </label>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="Text8" runat="server" class="form-control" placeholder="Bank Name">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-bank"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mt-lg">
+                                        <label class="col-sm-6 control-label">Account No </label>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="Text9" runat="server" class="form-control" placeholder="Account No">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-edit"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <div class="form-group mt-lg">
+                                        <label class="col-sm-6 control-label">Account Holder Name </label>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="Text10" runat="server" class="form-control" placeholder="Account Holder Name">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-bank"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mt-lg">
+                                        <label class="col-sm-6 control-label">IFSC Code </label>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="Text12" runat="server" class="form-control" placeholder="IFSC Code">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-edit"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="form-group mt-lg">
+                                        <label class="col-sm-3 control-label">Address </label>
+                                        <div class="col-sm-9">
+                                            <div class="form-group">
+                                                <div class="input-group input-group-icon">
+                                                    <textarea id="Textarea2" class="form-control" rows="3" placeholder="Enter Your Address 1"></textarea>
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-map"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-5">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="btn-divider mr-2x mb-1x" role="divider">
+                            <input id="btnSave" type="submit" value="Submit" name="submit" class="btn btn-primary">
+                            <span class="label-divider" id="Span1" runat="server">or</span>
+                            <!--<input id="btncancel" type="submit" name="reset" value="Cancel" class="btn btn-default" runat="server" onclick="btnreset_Click"/>-->
+                            <input id="btncancel" type="submit" value="Reset" name="reset" class="btn btn-default">
+                        </div>
+                        <asp:hiddenfield id="HiddenField1" runat="server">
+                        </asp:hiddenfield>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="clearfix"></div>
+
+    </div><!-- /.content -->
+
+</section><!-- /MAIN -->
+<!-- ============================================

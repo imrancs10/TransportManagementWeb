@@ -3,39 +3,90 @@
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script src="~/Scripts/App/Masters/Department.js"></script>
-<div class="row" style="margin-top:50px;">   
-    <div class="col-sm-12 col-lg-12">
-        <div class="panel panel-primary">
-            <div class="panel-heading">Department List</div>
-            <div class="panel-body">
-                <table class="table table-bordered table-hover table-responsive text-center" id="deptTable">
-                    <thead>
-                        <tr>
-                            <th style="width:10%">Sr. No.</th>
-                            <th name="DeparmentName">Departments</th>
-                            <th style="width:20%">
-                                <input type="button" class="btn btn-primary" onclick="department.addNew()" name="btnAdd" value="Add New Department" />
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-secondary">Left</button>
-                                    <button type="button" class="btn btn-secondary">Middle</button>
-                                    <button type="button" class="btn btn-secondary">Right</button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-   
-</div>
 
+@*MAIN CONTENT SECTION*@
+    @*=============================================== -->*@
+<section class="content-wrapper" role="main">
+    <div class="content">
+
+        <div class="content-bar">
+            <ul class="breadcrumb breadcrumb-angle">
+                <li><a href="#" aria-label="home"><i class="fa fa-home"></i></a></li>
+                <li class="active">Dashboard</li>
+            </ul>
+        </div><!-- /.content-bar -->
+        <hr />
+
+        <div class="content-body">
+            <img src="~/images/welcome.jpg" class="img-responsive" />
+        </div>
+
+
+        <div class="clearfix"></div>
+
+        <!-- customModal2 -->
+        <div class="modal" id="customModal2" data-transition="flipXIn" tabindex="-1" role="dialog" aria-labelledby="modalBasicLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body" style="padding: 0 12px">
+                        <div class="row">
+                            <div class="clearfix">
+                                <button type="button" class="btn btn-xs btn-icon pull-right" data-dismiss="modal" aria-hidden="true"><i class="icon_close fa-2x"></i></button>
+
+                                <div class="modal-header" style="background-color:#fff;">
+                                    <h4 class="modal-title" id="modalBasicLabel">Reset Password</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group has-feedback">
+                                        <div class="input-group input-group-in">
+                                            <span class="input-group-addon"><i class="icon-user"></i></span>
+                                            <input type="text" id="txtusername" class="form-control" placeholder="Username" runat="server" />
+                                            <span class="form-control-feedback"></span>
+                                        </div>
+                                    </div><!-- /.form-group -->
+                                    <div class="form-group has-feedback">
+                                        <div class="input-group input-group-in">
+                                            <span class="input-group-addon"><i class="icon-key"></i></span>
+                                            <input type="password" id="txtoldpassowrd" class="form-control" placeholder="Old Password" runat="server" />
+                                            <span class="form-control-feedback"></span>
+                                        </div>
+                                    </div><!-- /.form-group -->
+                                    <div class="form-group has-feedback">
+                                        <div class="input-group input-group-in">
+                                            <span class="input-group-addon"><i class="icon-key"></i></span>
+                                            <input type="password" id="txtnewpassword" class="form-control" placeholder="New Password" runat="server" />
+                                            <span class="form-control-feedback"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <div class="input-group input-group-in">
+                                            <span class="input-group-addon"><i class="icon-check"></i></span>
+                                            <input type="password" id="txtconfirmpassword" class="form-control" placeholder="Confirm Password" runat="server" />
+                                            <span class="form-control-feedback"></span>
+                                        </div>
+                                    </div><!-- /.form-group -->
+                                </div>
+
+                                <div class="modal-footer">
+                                    <input id="btnCancel" type="button" name="cancel" value="Cancel" class="btn btn-default" data-dismiss="modal" runat="server" />
+                                    <input id="btnlogin" type="submit" name="submit" value="Save Changes" class="btn btn-primary" runat="server" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!-- Template Setups -->
+        <div class="modal fade" id="templateSetup">
+            <div class="modal-dialog">
+                <!-- modal-content -->
+                <div class="modal-content"></div>
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.templateSetup -->
+
+
+    </div><!-- /.content -->
+
+</section><!-- /MAIN -->
