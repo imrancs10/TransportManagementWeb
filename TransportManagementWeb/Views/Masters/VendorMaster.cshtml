@@ -6,7 +6,8 @@
 <!-- ============================================
 MAIN CONTENT SECTION
 =============================================== -->
-<form action="SaveVendorDetail" method="post">
+@using (Html.BeginForm("SaveVendorDetail", "Masters", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
     <section class="content-wrapper" role="main">
         <div class="content">
 
@@ -160,7 +161,37 @@ MAIN CONTENT SECTION
                                 </div>
 
                             </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">GST No Scan Copy<span style="color:red;">*</span></label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="file" name="gstNoScanImage" id="gstNoScanImage" class="form-control"  placeholder="GST No" accept="image/x-png,image/gif,image/jpeg" />
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-edit"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Pan no Scan Copy<span style="color:red;">*</span></label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="file" name="panNumberScanImage" id="panNumberScanImage" class="form-control" placeholder="Pan No" accept="image/x-png,image/gif,image/jpeg" />
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-edit"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
+                            </div>
                             <br>
                             <div class="row">
                                 <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Concern Person 1 Detail </h4></div>
@@ -357,9 +388,8 @@ MAIN CONTENT SECTION
             <div class="clearfix"></div>
 
         </div><!-- /.content -->
-
     </section>
-</form>
+}
 <!-- /MAIN -->
 <script>
     $(function () {

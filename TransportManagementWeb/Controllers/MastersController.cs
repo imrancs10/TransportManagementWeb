@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using TransportManagementWeb.BAL.Commom;
 using TransportManagementWeb.BAL.Masters;
@@ -34,12 +35,42 @@ namespace TransportManagementWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveVendorDetail(string vendorName, string address1, string address2, string area, string pincode, string city, string state, string country, string gstNo, string panNumber, string CP1EMail, string CP1ContactNo, string CP2Email, string CP2ContactNo, string BankName, string AccountNo, string AccountHolderName, string IFSCCode, string BankAddress)
+        public ActionResult SaveVendorDetail(string vendorName, string address1, string address2, string area, string pincode, string city, string state, string country, string gstNo, string panNumber, string CP1EMail, string CP1ContactNo, string CP2Email, string CP2ContactNo, string BankName, string AccountNo, string AccountHolderName, string IFSCCode, string BankAddress, HttpPostedFileBase gstNoScanImage, HttpPostedFileBase panNumberScanImage)
         {
             VendorDetailBAL _details = new VendorDetailBAL();
-            _details.SaveVendorDetail(vendorName, address1, address2, area, pincode, city, state, country, gstNo, panNumber, CP1EMail, CP1ContactNo, CP2Email, CP2ContactNo, BankName, AccountNo, AccountHolderName, IFSCCode, BankAddress);
+            byte[] gstImage = null;
+            byte[] panImage = null;
+            if (gstNoScanImage != null && gstNoScanImage.ContentLength > 0)
+            {
+                gstImage = new byte[gstNoScanImage.ContentLength];
+                gstNoScanImage.InputStream.Read(gstImage, 0, gstNoScanImage.ContentLength);
+                var img = new WebImage(gstImage).Resize(2000, 2000, true, true);
+                gstImage = img.GetBytes();
+            }
+            if (panNumberScanImage != null && panNumberScanImage.ContentLength > 0)
+            {
+                panImage = new byte[panNumberScanImage.ContentLength];
+                panNumberScanImage.InputStream.Read(panImage, 0, panNumberScanImage.ContentLength);
+                var img = new WebImage(panImage).Resize(2000, 2000, true, true);
+                panImage = img.GetBytes();
+            }
+            _details.SaveVendorDetail(vendorName, address1, address2, area, pincode, city, state, country, gstNo, panNumber, CP1EMail, CP1ContactNo, CP2Email, CP2ContactNo, BankName, AccountNo, AccountHolderName, IFSCCode, BankAddress, gstImage, panImage);
             SetAlertMessage("Vendor detail added succesfully.", "Vendor Master");
             return RedirectToAction("VendorMaster");
+        }
+
+        public ActionResult ServiceOrder()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SaveServiceOrder(string clientName, string address1, string address2, string area, string pincode, string city, string state, string country, string gstNo, string panNumber, string CP1EMail, string CP1ContactNo, string CP2Email, string CP2ContactNo)
+        {
+            ClientDetailBAL _details = new ClientDetailBAL();
+            _details.SaveClientDetail(clientName, address1, address2, area, pincode, city, state, country, gstNo, panNumber, CP1EMail, CP1ContactNo, CP2Email, CP2ContactNo);
+            SetAlertMessage("Client detail added succesfully.", "Client Master");
+            return RedirectToAction("ClientMaster");
         }
 
         [HttpPost]
@@ -59,6 +90,42 @@ namespace TransportManagementWeb.Controllers
         {
             CommonDetails _details = new CommonDetails();
             return Json(_details.GetCityByStateId(stateId));
+        }
+        [HttpPost]
+        public JsonResult GetAllCities()
+        {
+            CommonDetails _details = new CommonDetails();
+            return Json(_details.GetAllCities());
+        }
+        [HttpPost]
+        public JsonResult GetAllClientDetail()
+        {
+            CommonDetails _details = new CommonDetails();
+            return Json(_details.GetAllClientDetail());
+        }
+        [HttpPost]
+        public JsonResult GetAllWeightDetail()
+        {
+            CommonDetails _details = new CommonDetails();
+            return Json(_details.GetAllWeightDetail());
+        }
+        [HttpPost]
+        public JsonResult GetAllUnitDetail()
+        {
+            CommonDetails _details = new CommonDetails();
+            return Json(_details.GetAllUnitDetail());
+        }
+        [HttpPost]
+        public JsonResult GetAllVehicleType()
+        {
+            CommonDetails _details = new CommonDetails();
+            return Json(_details.GetAllVehicleType());
+        }
+        [HttpPost]
+        public JsonResult GetAllVehicleDetail(int typeId)
+        {
+            CommonDetails _details = new CommonDetails();
+            return Json(_details.GetAllVehicleDetail(typeId));
         }
         public ActionResult Logout()
         {

@@ -112,6 +112,9 @@
     <Compile Include="VendorLineHaulDetail.cs">
       <DependentUpon>DbEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="WeightLookup.cs">
+      <DependentUpon>DbEntity.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

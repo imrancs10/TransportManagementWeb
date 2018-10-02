@@ -74,8 +74,9 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FromCityId" Type="int" />
           <Property Name="ToCityId" Type="int" />
-          <Property Name="Weight" Type="varchar" MaxLength="50" />
+          <Property Name="WeightId" Type="int" />
           <Property Name="UnitId" Type="int" />
+          <Property Name="ServiceOrderId" Type="int" />
         </EntityType>
         <EntityType Name="UnitDetail">
           <Key>
@@ -157,6 +158,13 @@
           <Property Name="FromStateId" Type="int" />
           <Property Name="ToStateId" Type="int" />
           <Property Name="VendorId" Type="int" />
+        </EntityType>
+        <EntityType Name="WeightLookup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Weight" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_City_State">
           <End Role="State" Type="Self.State" Multiplicity="0..1" />
@@ -254,6 +262,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TranshipmentDetail_ServiceOrderDetail">
+          <End Role="ServiceOrderDetail" Type="Self.ServiceOrderDetail" Multiplicity="0..1" />
+          <End Role="TranshipmentDetail" Type="Self.TranshipmentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceOrderDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TranshipmentDetail">
+              <PropertyRef Name="ServiceOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TranshipmentDetail_UnitDetail">
           <End Role="UnitDetail" Type="Self.UnitDetail" Multiplicity="0..1" />
           <End Role="TranshipmentDetail" Type="Self.TranshipmentDetail" Multiplicity="*" />
@@ -263,6 +283,18 @@
             </Principal>
             <Dependent Role="TranshipmentDetail">
               <PropertyRef Name="UnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TranshipmentDetail_WeightLookup">
+          <End Role="WeightLookup" Type="Self.WeightLookup" Multiplicity="0..1" />
+          <End Role="TranshipmentDetail" Type="Self.TranshipmentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WeightLookup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TranshipmentDetail">
+              <PropertyRef Name="WeightId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -390,6 +422,7 @@
           <EntitySet Name="VendorConcernPerson" EntityType="Self.VendorConcernPerson" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorDetail" EntityType="Self.VendorDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorLineHaulDetail" EntityType="Self.VendorLineHaulDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WeightLookup" EntityType="Self.WeightLookup" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_City_State" Association="Self.FK_City_State">
             <End Role="State" EntitySet="State" />
             <End Role="City" EntitySet="City" />
@@ -422,8 +455,16 @@
             <End Role="Country" EntitySet="Country" />
             <End Role="State" EntitySet="State" />
           </AssociationSet>
+          <AssociationSet Name="FK_TranshipmentDetail_ServiceOrderDetail" Association="Self.FK_TranshipmentDetail_ServiceOrderDetail">
+            <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetail" />
+            <End Role="TranshipmentDetail" EntitySet="TranshipmentDetail" />
+          </AssociationSet>
           <AssociationSet Name="FK_TranshipmentDetail_UnitDetail" Association="Self.FK_TranshipmentDetail_UnitDetail">
             <End Role="UnitDetail" EntitySet="UnitDetail" />
+            <End Role="TranshipmentDetail" EntitySet="TranshipmentDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranshipmentDetail_WeightLookup" Association="Self.FK_TranshipmentDetail_WeightLookup">
+            <End Role="WeightLookup" EntitySet="WeightLookup" />
             <End Role="TranshipmentDetail" EntitySet="TranshipmentDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_VehicleDetail_VehicleType" Association="Self.FK_VehicleDetail_VehicleType">
@@ -467,6 +508,104 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TransportManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TransportManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="TransportManagementModel.City" />
+          <EntitySet Name="ClientConcernPersons" EntityType="TransportManagementModel.ClientConcernPerson" />
+          <EntitySet Name="ClientDetails" EntityType="TransportManagementModel.ClientDetail" />
+          <EntitySet Name="Countries" EntityType="TransportManagementModel.Country" />
+          <EntitySet Name="ServiceOrderDetails" EntityType="TransportManagementModel.ServiceOrderDetail" />
+          <EntitySet Name="States" EntityType="TransportManagementModel.State" />
+          <EntitySet Name="TranshipmentDetails" EntityType="TransportManagementModel.TranshipmentDetail" />
+          <EntitySet Name="UnitDetails" EntityType="TransportManagementModel.UnitDetail" />
+          <EntitySet Name="UserDetails" EntityType="TransportManagementModel.UserDetail" />
+          <EntitySet Name="VehicleDetails" EntityType="TransportManagementModel.VehicleDetail" />
+          <EntitySet Name="VehicleTypes" EntityType="TransportManagementModel.VehicleType" />
+          <EntitySet Name="VendorBankDetails" EntityType="TransportManagementModel.VendorBankDetail" />
+          <EntitySet Name="VendorConcernPersons" EntityType="TransportManagementModel.VendorConcernPerson" />
+          <EntitySet Name="VendorDetails" EntityType="TransportManagementModel.VendorDetail" />
+          <EntitySet Name="VendorLineHaulDetails" EntityType="TransportManagementModel.VendorLineHaulDetail" />
+          <EntitySet Name="WeightLookups" EntityType="TransportManagementModel.WeightLookup" />
+          <AssociationSet Name="FK_City_State" Association="TransportManagementModel.FK_City_State">
+            <End Role="State" EntitySet="States" />
+            <End Role="City" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientDetail_City" Association="TransportManagementModel.FK_ClientDetail_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="ClientDetail" EntitySet="ClientDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VendorDetail_City" Association="TransportManagementModel.FK_VendorDetail_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="VendorDetail" EntitySet="VendorDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientConcernPerson_ClientDetail" Association="TransportManagementModel.FK_ClientConcernPerson_ClientDetail">
+            <End Role="ClientDetail" EntitySet="ClientDetails" />
+            <End Role="ClientConcernPerson" EntitySet="ClientConcernPersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientDetail_Country" Association="TransportManagementModel.FK_ClientDetail_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="ClientDetail" EntitySet="ClientDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientDetail_State" Association="TransportManagementModel.FK_ClientDetail_State">
+            <End Role="State" EntitySet="States" />
+            <End Role="ClientDetail" EntitySet="ClientDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceOrderDetail_ClientDetail" Association="TransportManagementModel.FK_ServiceOrderDetail_ClientDetail">
+            <End Role="ClientDetail" EntitySet="ClientDetails" />
+            <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_Country" Association="TransportManagementModel.FK_State_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="State" EntitySet="States" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VendorDetail_Country" Association="TransportManagementModel.FK_VendorDetail_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="VendorDetail" EntitySet="VendorDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceOrderDetail_VehicleDetail" Association="TransportManagementModel.FK_ServiceOrderDetail_VehicleDetail">
+            <End Role="VehicleDetail" EntitySet="VehicleDetails" />
+            <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranshipmentDetail_ServiceOrderDetail" Association="TransportManagementModel.FK_TranshipmentDetail_ServiceOrderDetail">
+            <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetails" />
+            <End Role="TranshipmentDetail" EntitySet="TranshipmentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VendorDetail_State" Association="TransportManagementModel.FK_VendorDetail_State">
+            <End Role="State" EntitySet="States" />
+            <End Role="VendorDetail" EntitySet="VendorDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VendorLineHaulDetail_State" Association="TransportManagementModel.FK_VendorLineHaulDetail_State">
+            <End Role="State" EntitySet="States" />
+            <End Role="VendorLineHaulDetail" EntitySet="VendorLineHaulDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VendorLineHaulDetail_State1" Association="TransportManagementModel.FK_VendorLineHaulDetail_State1">
+            <End Role="State" EntitySet="States" />
+            <End Role="VendorLineHaulDetail" EntitySet="VendorLineHaulDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranshipmentDetail_UnitDetail" Association="TransportManagementModel.FK_TranshipmentDetail_UnitDetail">
+            <End Role="UnitDetail" EntitySet="UnitDetails" />
+            <End Role="TranshipmentDetail" EntitySet="TranshipmentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranshipmentDetail_WeightLookup" Association="TransportManagementModel.FK_TranshipmentDetail_WeightLookup">
+            <End Role="WeightLookup" EntitySet="WeightLookups" />
+            <End Role="TranshipmentDetail" EntitySet="TranshipmentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleDetail_VehicleType" Association="TransportManagementModel.FK_VehicleDetail_VehicleType">
+            <End Role="VehicleType" EntitySet="VehicleTypes" />
+            <End Role="VehicleDetail" EntitySet="VehicleDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VendorBankDetail_VendorDetail" Association="TransportManagementModel.FK_VendorBankDetail_VendorDetail">
+            <End Role="VendorDetail" EntitySet="VendorDetails" />
+            <End Role="VendorBankDetail" EntitySet="VendorBankDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VendorConcernPerson_VendorDetail" Association="TransportManagementModel.FK_VendorConcernPerson_VendorDetail">
+            <End Role="VendorDetail" EntitySet="VendorDetails" />
+            <End Role="VendorConcernPerson" EntitySet="VendorConcernPersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VendorLineHaulDetail_VendorDetail" Association="TransportManagementModel.FK_VendorLineHaulDetail_VendorDetail">
+            <End Role="VendorDetail" EntitySet="VendorDetails" />
+            <End Role="VendorLineHaulDetail" EntitySet="VendorLineHaulDetails" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="CityId" />
@@ -474,9 +613,9 @@
           <Property Name="CityId" Type="Int32" Nullable="false" />
           <Property Name="CityName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="StateId" Type="Int32" />
-          <NavigationProperty Name="State" Relationship="Self.FK_City_State" FromRole="City" ToRole="State" />
-          <NavigationProperty Name="ClientDetails" Relationship="Self.FK_ClientDetail_City" FromRole="City" ToRole="ClientDetail" />
-          <NavigationProperty Name="VendorDetails" Relationship="Self.FK_VendorDetail_City" FromRole="City" ToRole="VendorDetail" />
+          <NavigationProperty Name="State" Relationship="TransportManagementModel.FK_City_State" FromRole="City" ToRole="State" />
+          <NavigationProperty Name="ClientDetails" Relationship="TransportManagementModel.FK_ClientDetail_City" FromRole="City" ToRole="ClientDetail" />
+          <NavigationProperty Name="VendorDetails" Relationship="TransportManagementModel.FK_VendorDetail_City" FromRole="City" ToRole="VendorDetail" />
         </EntityType>
         <EntityType Name="ClientConcernPerson">
           <Key>
@@ -487,7 +626,7 @@
           <Property Name="ContactNumber" Type="Int64" />
           <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ClientId" Type="Int32" />
-          <NavigationProperty Name="ClientDetail" Relationship="Self.FK_ClientConcernPerson_ClientDetail" FromRole="ClientConcernPerson" ToRole="ClientDetail" />
+          <NavigationProperty Name="ClientDetail" Relationship="TransportManagementModel.FK_ClientConcernPerson_ClientDetail" FromRole="ClientConcernPerson" ToRole="ClientDetail" />
         </EntityType>
         <EntityType Name="ClientDetail">
           <Key>
@@ -504,10 +643,10 @@
           <Property Name="CountryId" Type="Int32" />
           <Property Name="GSTNNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PanNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="City" Relationship="Self.FK_ClientDetail_City" FromRole="ClientDetail" ToRole="City" />
-          <NavigationProperty Name="ClientConcernPersons" Relationship="Self.FK_ClientConcernPerson_ClientDetail" FromRole="ClientDetail" ToRole="ClientConcernPerson" />
-          <NavigationProperty Name="Country" Relationship="Self.FK_ClientDetail_Country" FromRole="ClientDetail" ToRole="Country" />
-          <NavigationProperty Name="State" Relationship="Self.FK_ClientDetail_State" FromRole="ClientDetail" ToRole="State" />
+          <NavigationProperty Name="City" Relationship="TransportManagementModel.FK_ClientDetail_City" FromRole="ClientDetail" ToRole="City" />
+          <NavigationProperty Name="ClientConcernPersons" Relationship="TransportManagementModel.FK_ClientConcernPerson_ClientDetail" FromRole="ClientDetail" ToRole="ClientConcernPerson" />
+          <NavigationProperty Name="Country" Relationship="TransportManagementModel.FK_ClientDetail_Country" FromRole="ClientDetail" ToRole="Country" />
+          <NavigationProperty Name="State" Relationship="TransportManagementModel.FK_ClientDetail_State" FromRole="ClientDetail" ToRole="State" />
           <NavigationProperty Name="ServiceOrderDetails" Relationship="TransportManagementModel.FK_ServiceOrderDetail_ClientDetail" FromRole="ClientDetail" ToRole="ServiceOrderDetail" />
         </EntityType>
         <EntityType Name="Country">
@@ -516,351 +655,10 @@
           </Key>
           <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CountryName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ClientDetails" Relationship="Self.FK_ClientDetail_Country" FromRole="Country" ToRole="ClientDetail" />
-          <NavigationProperty Name="States" Relationship="Self.FK_State_Country" FromRole="Country" ToRole="State" />
-          <NavigationProperty Name="VendorDetails" Relationship="Self.FK_VendorDetail_Country" FromRole="Country" ToRole="VendorDetail" />
+          <NavigationProperty Name="ClientDetails" Relationship="TransportManagementModel.FK_ClientDetail_Country" FromRole="Country" ToRole="ClientDetail" />
+          <NavigationProperty Name="States" Relationship="TransportManagementModel.FK_State_Country" FromRole="Country" ToRole="State" />
+          <NavigationProperty Name="VendorDetails" Relationship="TransportManagementModel.FK_VendorDetail_Country" FromRole="Country" ToRole="VendorDetail" />
         </EntityType>
-        <EntityType Name="State">
-          <Key>
-            <PropertyRef Name="StateId" />
-          </Key>
-          <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StateName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="CountryId" Type="Int32" />
-          <NavigationProperty Name="Cities" Relationship="Self.FK_City_State" FromRole="State" ToRole="City" />
-          <NavigationProperty Name="ClientDetails" Relationship="Self.FK_ClientDetail_State" FromRole="State" ToRole="ClientDetail" />
-          <NavigationProperty Name="Country" Relationship="Self.FK_State_Country" FromRole="State" ToRole="Country" />
-          <NavigationProperty Name="VendorDetails" Relationship="Self.FK_VendorDetail_State" FromRole="State" ToRole="VendorDetail" />
-          <NavigationProperty Name="VendorLineHaulDetails" Relationship="Self.FK_VendorLineHaulDetail_State" FromRole="State" ToRole="VendorLineHaulDetail" />
-          <NavigationProperty Name="VendorLineHaulDetails1" Relationship="Self.FK_VendorLineHaulDetail_State1" FromRole="State" ToRole="VendorLineHaulDetail" />
-        </EntityType>
-        <EntityType Name="UserDetail">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="VendorBankDetail">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VendorId" Type="Int32" />
-          <Property Name="BankName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="AccountNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="AccountHolderName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="IFSCCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BranchAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="VendorDetail" Relationship="Self.FK_VendorBankDetail_VendorDetail" FromRole="VendorBankDetail" ToRole="VendorDetail" />
-        </EntityType>
-        <EntityType Name="VendorConcernPerson">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ContactNumber" Type="Int64" />
-          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="VendorId" Type="Int32" />
-          <NavigationProperty Name="VendorDetail" Relationship="Self.FK_VendorConcernPerson_VendorDetail" FromRole="VendorConcernPerson" ToRole="VendorDetail" />
-        </EntityType>
-        <EntityType Name="VendorDetail">
-          <Key>
-            <PropertyRef Name="VendorId" />
-          </Key>
-          <Property Name="VendorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VendorName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Address1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Address2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Area" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="CityId" Type="Int32" />
-          <Property Name="PinCode" Type="Int32" />
-          <Property Name="StateId" Type="Int32" />
-          <Property Name="CountryId" Type="Int32" />
-          <Property Name="GSTNNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PanNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="GSTNNumberScanCopy" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="PanNumberScanCopy" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="City" Relationship="Self.FK_VendorDetail_City" FromRole="VendorDetail" ToRole="City" />
-          <NavigationProperty Name="Country" Relationship="Self.FK_VendorDetail_Country" FromRole="VendorDetail" ToRole="Country" />
-          <NavigationProperty Name="State" Relationship="Self.FK_VendorDetail_State" FromRole="VendorDetail" ToRole="State" />
-          <NavigationProperty Name="VendorBankDetails" Relationship="Self.FK_VendorBankDetail_VendorDetail" FromRole="VendorDetail" ToRole="VendorBankDetail" />
-          <NavigationProperty Name="VendorConcernPersons" Relationship="Self.FK_VendorConcernPerson_VendorDetail" FromRole="VendorDetail" ToRole="VendorConcernPerson" />
-          <NavigationProperty Name="VendorLineHaulDetails" Relationship="Self.FK_VendorLineHaulDetail_VendorDetail" FromRole="VendorDetail" ToRole="VendorLineHaulDetail" />
-        </EntityType>
-        <EntityType Name="VendorLineHaulDetail">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FromStateId" Type="Int32" />
-          <Property Name="ToStateId" Type="Int32" />
-          <Property Name="VendorId" Type="Int32" />
-          <NavigationProperty Name="State" Relationship="Self.FK_VendorLineHaulDetail_State" FromRole="VendorLineHaulDetail" ToRole="State" />
-          <NavigationProperty Name="State1" Relationship="Self.FK_VendorLineHaulDetail_State1" FromRole="VendorLineHaulDetail" ToRole="State" />
-          <NavigationProperty Name="VendorDetail" Relationship="Self.FK_VendorLineHaulDetail_VendorDetail" FromRole="VendorLineHaulDetail" ToRole="VendorDetail" />
-        </EntityType>
-        <Association Name="FK_City_State">
-          <End Role="State" Type="Self.State" Multiplicity="0..1" />
-          <End Role="City" Type="Self.City" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="State">
-              <PropertyRef Name="StateId" />
-            </Principal>
-            <Dependent Role="City">
-              <PropertyRef Name="StateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ClientDetail_City">
-          <End Role="City" Type="Self.City" Multiplicity="0..1" />
-          <End Role="ClientDetail" Type="Self.ClientDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="City">
-              <PropertyRef Name="CityId" />
-            </Principal>
-            <Dependent Role="ClientDetail">
-              <PropertyRef Name="CityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VendorDetail_City">
-          <End Role="City" Type="Self.City" Multiplicity="0..1" />
-          <End Role="VendorDetail" Type="Self.VendorDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="City">
-              <PropertyRef Name="CityId" />
-            </Principal>
-            <Dependent Role="VendorDetail">
-              <PropertyRef Name="CityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ClientConcernPerson_ClientDetail">
-          <End Role="ClientDetail" Type="Self.ClientDetail" Multiplicity="0..1" />
-          <End Role="ClientConcernPerson" Type="Self.ClientConcernPerson" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ClientDetail">
-              <PropertyRef Name="ClientId" />
-            </Principal>
-            <Dependent Role="ClientConcernPerson">
-              <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ClientDetail_Country">
-          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
-          <End Role="ClientDetail" Type="Self.ClientDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Country">
-              <PropertyRef Name="CountryId" />
-            </Principal>
-            <Dependent Role="ClientDetail">
-              <PropertyRef Name="CountryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ClientDetail_State">
-          <End Role="State" Type="Self.State" Multiplicity="0..1" />
-          <End Role="ClientDetail" Type="Self.ClientDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="State">
-              <PropertyRef Name="StateId" />
-            </Principal>
-            <Dependent Role="ClientDetail">
-              <PropertyRef Name="StateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_State_Country">
-          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
-          <End Role="State" Type="Self.State" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Country">
-              <PropertyRef Name="CountryId" />
-            </Principal>
-            <Dependent Role="State">
-              <PropertyRef Name="CountryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VendorDetail_Country">
-          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
-          <End Role="VendorDetail" Type="Self.VendorDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Country">
-              <PropertyRef Name="CountryId" />
-            </Principal>
-            <Dependent Role="VendorDetail">
-              <PropertyRef Name="CountryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VendorDetail_State">
-          <End Role="State" Type="Self.State" Multiplicity="0..1" />
-          <End Role="VendorDetail" Type="Self.VendorDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="State">
-              <PropertyRef Name="StateId" />
-            </Principal>
-            <Dependent Role="VendorDetail">
-              <PropertyRef Name="StateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VendorLineHaulDetail_State">
-          <End Role="State" Type="Self.State" Multiplicity="0..1" />
-          <End Role="VendorLineHaulDetail" Type="Self.VendorLineHaulDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="State">
-              <PropertyRef Name="StateId" />
-            </Principal>
-            <Dependent Role="VendorLineHaulDetail">
-              <PropertyRef Name="FromStateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VendorLineHaulDetail_State1">
-          <End Role="State" Type="Self.State" Multiplicity="0..1" />
-          <End Role="VendorLineHaulDetail" Type="Self.VendorLineHaulDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="State">
-              <PropertyRef Name="StateId" />
-            </Principal>
-            <Dependent Role="VendorLineHaulDetail">
-              <PropertyRef Name="ToStateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VendorBankDetail_VendorDetail">
-          <End Role="VendorDetail" Type="Self.VendorDetail" Multiplicity="0..1" />
-          <End Role="VendorBankDetail" Type="Self.VendorBankDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="VendorDetail">
-              <PropertyRef Name="VendorId" />
-            </Principal>
-            <Dependent Role="VendorBankDetail">
-              <PropertyRef Name="VendorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VendorConcernPerson_VendorDetail">
-          <End Role="VendorDetail" Type="Self.VendorDetail" Multiplicity="0..1" />
-          <End Role="VendorConcernPerson" Type="Self.VendorConcernPerson" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="VendorDetail">
-              <PropertyRef Name="VendorId" />
-            </Principal>
-            <Dependent Role="VendorConcernPerson">
-              <PropertyRef Name="VendorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VendorLineHaulDetail_VendorDetail">
-          <End Role="VendorDetail" Type="Self.VendorDetail" Multiplicity="0..1" />
-          <End Role="VendorLineHaulDetail" Type="Self.VendorLineHaulDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="VendorDetail">
-              <PropertyRef Name="VendorId" />
-            </Principal>
-            <Dependent Role="VendorLineHaulDetail">
-              <PropertyRef Name="VendorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="TransportManagementEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Cities" EntityType="Self.City" />
-          <EntitySet Name="ClientConcernPersons" EntityType="Self.ClientConcernPerson" />
-          <EntitySet Name="ClientDetails" EntityType="Self.ClientDetail" />
-          <EntitySet Name="Countries" EntityType="Self.Country" />
-          <EntitySet Name="States" EntityType="Self.State" />
-          <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
-          <EntitySet Name="VendorBankDetails" EntityType="Self.VendorBankDetail" />
-          <EntitySet Name="VendorConcernPersons" EntityType="Self.VendorConcernPerson" />
-          <EntitySet Name="VendorDetails" EntityType="Self.VendorDetail" />
-          <EntitySet Name="VendorLineHaulDetails" EntityType="Self.VendorLineHaulDetail" />
-          <AssociationSet Name="FK_City_State" Association="Self.FK_City_State">
-            <End Role="State" EntitySet="States" />
-            <End Role="City" EntitySet="Cities" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ClientDetail_City" Association="Self.FK_ClientDetail_City">
-            <End Role="City" EntitySet="Cities" />
-            <End Role="ClientDetail" EntitySet="ClientDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VendorDetail_City" Association="Self.FK_VendorDetail_City">
-            <End Role="City" EntitySet="Cities" />
-            <End Role="VendorDetail" EntitySet="VendorDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ClientConcernPerson_ClientDetail" Association="Self.FK_ClientConcernPerson_ClientDetail">
-            <End Role="ClientDetail" EntitySet="ClientDetails" />
-            <End Role="ClientConcernPerson" EntitySet="ClientConcernPersons" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ClientDetail_Country" Association="Self.FK_ClientDetail_Country">
-            <End Role="Country" EntitySet="Countries" />
-            <End Role="ClientDetail" EntitySet="ClientDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ClientDetail_State" Association="Self.FK_ClientDetail_State">
-            <End Role="State" EntitySet="States" />
-            <End Role="ClientDetail" EntitySet="ClientDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
-            <End Role="Country" EntitySet="Countries" />
-            <End Role="State" EntitySet="States" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VendorDetail_Country" Association="Self.FK_VendorDetail_Country">
-            <End Role="Country" EntitySet="Countries" />
-            <End Role="VendorDetail" EntitySet="VendorDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VendorDetail_State" Association="Self.FK_VendorDetail_State">
-            <End Role="State" EntitySet="States" />
-            <End Role="VendorDetail" EntitySet="VendorDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VendorLineHaulDetail_State" Association="Self.FK_VendorLineHaulDetail_State">
-            <End Role="State" EntitySet="States" />
-            <End Role="VendorLineHaulDetail" EntitySet="VendorLineHaulDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VendorLineHaulDetail_State1" Association="Self.FK_VendorLineHaulDetail_State1">
-            <End Role="State" EntitySet="States" />
-            <End Role="VendorLineHaulDetail" EntitySet="VendorLineHaulDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VendorBankDetail_VendorDetail" Association="Self.FK_VendorBankDetail_VendorDetail">
-            <End Role="VendorDetail" EntitySet="VendorDetails" />
-            <End Role="VendorBankDetail" EntitySet="VendorBankDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VendorConcernPerson_VendorDetail" Association="Self.FK_VendorConcernPerson_VendorDetail">
-            <End Role="VendorDetail" EntitySet="VendorDetails" />
-            <End Role="VendorConcernPerson" EntitySet="VendorConcernPersons" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VendorLineHaulDetail_VendorDetail" Association="Self.FK_VendorLineHaulDetail_VendorDetail">
-            <End Role="VendorDetail" EntitySet="VendorDetails" />
-            <End Role="VendorLineHaulDetail" EntitySet="VendorLineHaulDetails" />
-          </AssociationSet>
-          <EntitySet Name="ServiceOrderDetails" EntityType="TransportManagementModel.ServiceOrderDetail" />
-          <EntitySet Name="TranshipmentDetails" EntityType="TransportManagementModel.TranshipmentDetail" />
-          <EntitySet Name="UnitDetails" EntityType="TransportManagementModel.UnitDetail" />
-          <EntitySet Name="VehicleDetails" EntityType="TransportManagementModel.VehicleDetail" />
-          <EntitySet Name="VehicleTypes" EntityType="TransportManagementModel.VehicleType" />
-          <AssociationSet Name="FK_ServiceOrderDetail_ClientDetail" Association="TransportManagementModel.FK_ServiceOrderDetail_ClientDetail">
-            <End Role="ClientDetail" EntitySet="ClientDetails" />
-            <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ServiceOrderDetail_VehicleDetail" Association="TransportManagementModel.FK_ServiceOrderDetail_VehicleDetail">
-            <End Role="VehicleDetail" EntitySet="VehicleDetails" />
-            <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TranshipmentDetail_UnitDetail" Association="TransportManagementModel.FK_TranshipmentDetail_UnitDetail">
-            <End Role="UnitDetail" EntitySet="UnitDetails" />
-            <End Role="TranshipmentDetail" EntitySet="TranshipmentDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VehicleDetail_VehicleType" Association="TransportManagementModel.FK_VehicleDetail_VehicleType">
-            <End Role="VehicleType" EntitySet="VehicleTypes" />
-            <End Role="VehicleDetail" EntitySet="VehicleDetails" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="ServiceOrderDetail">
           <Key>
             <PropertyRef Name="Id" />
@@ -875,6 +673,21 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ClientDetail" Relationship="TransportManagementModel.FK_ServiceOrderDetail_ClientDetail" FromRole="ServiceOrderDetail" ToRole="ClientDetail" />
           <NavigationProperty Name="VehicleDetail" Relationship="TransportManagementModel.FK_ServiceOrderDetail_VehicleDetail" FromRole="ServiceOrderDetail" ToRole="VehicleDetail" />
+          <NavigationProperty Name="TranshipmentDetails" Relationship="TransportManagementModel.FK_TranshipmentDetail_ServiceOrderDetail" FromRole="ServiceOrderDetail" ToRole="TranshipmentDetail" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="Int32" />
+          <NavigationProperty Name="Cities" Relationship="TransportManagementModel.FK_City_State" FromRole="State" ToRole="City" />
+          <NavigationProperty Name="ClientDetails" Relationship="TransportManagementModel.FK_ClientDetail_State" FromRole="State" ToRole="ClientDetail" />
+          <NavigationProperty Name="Country" Relationship="TransportManagementModel.FK_State_Country" FromRole="State" ToRole="Country" />
+          <NavigationProperty Name="VendorDetails" Relationship="TransportManagementModel.FK_VendorDetail_State" FromRole="State" ToRole="VendorDetail" />
+          <NavigationProperty Name="VendorLineHaulDetails" Relationship="TransportManagementModel.FK_VendorLineHaulDetail_State" FromRole="State" ToRole="VendorLineHaulDetail" />
+          <NavigationProperty Name="VendorLineHaulDetails1" Relationship="TransportManagementModel.FK_VendorLineHaulDetail_State1" FromRole="State" ToRole="VendorLineHaulDetail" />
         </EntityType>
         <EntityType Name="TranshipmentDetail">
           <Key>
@@ -883,9 +696,12 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FromCityId" Type="Int32" />
           <Property Name="ToCityId" Type="Int32" />
-          <Property Name="Weight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WeightId" Type="Int32" />
           <Property Name="UnitId" Type="Int32" />
+          <Property Name="ServiceOrderId" Type="Int32" />
+          <NavigationProperty Name="ServiceOrderDetail" Relationship="TransportManagementModel.FK_TranshipmentDetail_ServiceOrderDetail" FromRole="TranshipmentDetail" ToRole="ServiceOrderDetail" />
           <NavigationProperty Name="UnitDetail" Relationship="TransportManagementModel.FK_TranshipmentDetail_UnitDetail" FromRole="TranshipmentDetail" ToRole="UnitDetail" />
+          <NavigationProperty Name="WeightLookup" Relationship="TransportManagementModel.FK_TranshipmentDetail_WeightLookup" FromRole="TranshipmentDetail" ToRole="WeightLookup" />
         </EntityType>
         <EntityType Name="UnitDetail">
           <Key>
@@ -894,6 +710,16 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TranshipmentDetails" Relationship="TransportManagementModel.FK_TranshipmentDetail_UnitDetail" FromRole="UnitDetail" ToRole="TranshipmentDetail" />
+        </EntityType>
+        <EntityType Name="UserDetail">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VehicleDetail">
           <Key>
@@ -913,6 +739,146 @@
           <Property Name="VehicleTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="VehicleDetails" Relationship="TransportManagementModel.FK_VehicleDetail_VehicleType" FromRole="VehicleType" ToRole="VehicleDetail" />
         </EntityType>
+        <EntityType Name="VendorBankDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorId" Type="Int32" />
+          <Property Name="BankName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="AccountNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AccountHolderName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IFSCCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BranchAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="VendorDetail" Relationship="TransportManagementModel.FK_VendorBankDetail_VendorDetail" FromRole="VendorBankDetail" ToRole="VendorDetail" />
+        </EntityType>
+        <EntityType Name="VendorConcernPerson">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="Int64" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VendorId" Type="Int32" />
+          <NavigationProperty Name="VendorDetail" Relationship="TransportManagementModel.FK_VendorConcernPerson_VendorDetail" FromRole="VendorConcernPerson" ToRole="VendorDetail" />
+        </EntityType>
+        <EntityType Name="VendorDetail">
+          <Key>
+            <PropertyRef Name="VendorId" />
+          </Key>
+          <Property Name="VendorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Area" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="PinCode" Type="Int32" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="GSTNNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PanNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GSTNNumberScanCopy" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PanNumberScanCopy" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="City" Relationship="TransportManagementModel.FK_VendorDetail_City" FromRole="VendorDetail" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="TransportManagementModel.FK_VendorDetail_Country" FromRole="VendorDetail" ToRole="Country" />
+          <NavigationProperty Name="State" Relationship="TransportManagementModel.FK_VendorDetail_State" FromRole="VendorDetail" ToRole="State" />
+          <NavigationProperty Name="VendorBankDetails" Relationship="TransportManagementModel.FK_VendorBankDetail_VendorDetail" FromRole="VendorDetail" ToRole="VendorBankDetail" />
+          <NavigationProperty Name="VendorConcernPersons" Relationship="TransportManagementModel.FK_VendorConcernPerson_VendorDetail" FromRole="VendorDetail" ToRole="VendorConcernPerson" />
+          <NavigationProperty Name="VendorLineHaulDetails" Relationship="TransportManagementModel.FK_VendorLineHaulDetail_VendorDetail" FromRole="VendorDetail" ToRole="VendorLineHaulDetail" />
+        </EntityType>
+        <EntityType Name="VendorLineHaulDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FromStateId" Type="Int32" />
+          <Property Name="ToStateId" Type="Int32" />
+          <Property Name="VendorId" Type="Int32" />
+          <NavigationProperty Name="State" Relationship="TransportManagementModel.FK_VendorLineHaulDetail_State" FromRole="VendorLineHaulDetail" ToRole="State" />
+          <NavigationProperty Name="State1" Relationship="TransportManagementModel.FK_VendorLineHaulDetail_State1" FromRole="VendorLineHaulDetail" ToRole="State" />
+          <NavigationProperty Name="VendorDetail" Relationship="TransportManagementModel.FK_VendorLineHaulDetail_VendorDetail" FromRole="VendorLineHaulDetail" ToRole="VendorDetail" />
+        </EntityType>
+        <EntityType Name="WeightLookup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Weight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TranshipmentDetails" Relationship="TransportManagementModel.FK_TranshipmentDetail_WeightLookup" FromRole="WeightLookup" ToRole="TranshipmentDetail" />
+        </EntityType>
+        <Association Name="FK_City_State">
+          <End Type="TransportManagementModel.State" Role="State" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.City" Role="City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientDetail_City">
+          <End Type="TransportManagementModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.ClientDetail" Role="ClientDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="ClientDetail">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VendorDetail_City">
+          <End Type="TransportManagementModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.VendorDetail" Role="VendorDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="VendorDetail">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientConcernPerson_ClientDetail">
+          <End Type="TransportManagementModel.ClientDetail" Role="ClientDetail" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.ClientConcernPerson" Role="ClientConcernPerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientDetail">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="ClientConcernPerson">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientDetail_Country">
+          <End Type="TransportManagementModel.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.ClientDetail" Role="ClientDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="ClientDetail">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientDetail_State">
+          <End Type="TransportManagementModel.State" Role="State" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.ClientDetail" Role="ClientDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="ClientDetail">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ServiceOrderDetail_ClientDetail">
           <End Type="TransportManagementModel.ClientDetail" Role="ClientDetail" Multiplicity="0..1" />
           <End Type="TransportManagementModel.ServiceOrderDetail" Role="ServiceOrderDetail" Multiplicity="*" />
@@ -922,6 +888,30 @@
             </Principal>
             <Dependent Role="ServiceOrderDetail">
               <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_Country">
+          <End Type="TransportManagementModel.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.State" Role="State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VendorDetail_Country">
+          <End Type="TransportManagementModel.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.VendorDetail" Role="VendorDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="VendorDetail">
+              <PropertyRef Name="CountryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -937,6 +927,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TranshipmentDetail_ServiceOrderDetail">
+          <End Type="TransportManagementModel.ServiceOrderDetail" Role="ServiceOrderDetail" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.TranshipmentDetail" Role="TranshipmentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceOrderDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TranshipmentDetail">
+              <PropertyRef Name="ServiceOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VendorDetail_State">
+          <End Type="TransportManagementModel.State" Role="State" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.VendorDetail" Role="VendorDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="VendorDetail">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VendorLineHaulDetail_State">
+          <End Type="TransportManagementModel.State" Role="State" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.VendorLineHaulDetail" Role="VendorLineHaulDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="VendorLineHaulDetail">
+              <PropertyRef Name="FromStateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VendorLineHaulDetail_State1">
+          <End Type="TransportManagementModel.State" Role="State" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.VendorLineHaulDetail" Role="VendorLineHaulDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="VendorLineHaulDetail">
+              <PropertyRef Name="ToStateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TranshipmentDetail_UnitDetail">
           <End Type="TransportManagementModel.UnitDetail" Role="UnitDetail" Multiplicity="0..1" />
           <End Type="TransportManagementModel.TranshipmentDetail" Role="TranshipmentDetail" Multiplicity="*" />
@@ -946,6 +984,18 @@
             </Principal>
             <Dependent Role="TranshipmentDetail">
               <PropertyRef Name="UnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TranshipmentDetail_WeightLookup">
+          <End Type="TransportManagementModel.WeightLookup" Role="WeightLookup" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.TranshipmentDetail" Role="TranshipmentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WeightLookup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TranshipmentDetail">
+              <PropertyRef Name="WeightId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -961,7 +1011,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_VendorBankDetail_VendorDetail">
+          <End Type="TransportManagementModel.VendorDetail" Role="VendorDetail" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.VendorBankDetail" Role="VendorBankDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VendorDetail">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="VendorBankDetail">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VendorConcernPerson_VendorDetail">
+          <End Type="TransportManagementModel.VendorDetail" Role="VendorDetail" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.VendorConcernPerson" Role="VendorConcernPerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VendorDetail">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="VendorConcernPerson">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VendorLineHaulDetail_VendorDetail">
+          <End Type="TransportManagementModel.VendorDetail" Role="VendorDetail" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.VendorLineHaulDetail" Role="VendorLineHaulDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VendorDetail">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="VendorLineHaulDetail">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -970,118 +1056,45 @@
           <EntitySetMapping Name="Cities">
             <EntityTypeMapping TypeName="TransportManagementModel.City">
               <MappingFragment StoreEntitySet="City">
-                <ScalarProperty Name="CityId" ColumnName="CityId" />
-                <ScalarProperty Name="CityName" ColumnName="CityName" />
                 <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ClientConcernPersons">
             <EntityTypeMapping TypeName="TransportManagementModel.ClientConcernPerson">
               <MappingFragment StoreEntitySet="ClientConcernPerson">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ClientDetails">
             <EntityTypeMapping TypeName="TransportManagementModel.ClientDetail">
               <MappingFragment StoreEntitySet="ClientDetail">
-                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
-                <ScalarProperty Name="Address1" ColumnName="Address1" />
-                <ScalarProperty Name="Address2" ColumnName="Address2" />
-                <ScalarProperty Name="Area" ColumnName="Area" />
-                <ScalarProperty Name="CityId" ColumnName="CityId" />
-                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
-                <ScalarProperty Name="StateId" ColumnName="StateId" />
-                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-                <ScalarProperty Name="GSTNNumber" ColumnName="GSTNNumber" />
                 <ScalarProperty Name="PanNumber" ColumnName="PanNumber" />
+                <ScalarProperty Name="GSTNNumber" ColumnName="GSTNNumber" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Countries">
             <EntityTypeMapping TypeName="TransportManagementModel.Country">
               <MappingFragment StoreEntitySet="Country">
-                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
                 <ScalarProperty Name="CountryName" ColumnName="CountryName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="States">
-            <EntityTypeMapping TypeName="TransportManagementModel.State">
-              <MappingFragment StoreEntitySet="State">
-                <ScalarProperty Name="StateId" ColumnName="StateId" />
-                <ScalarProperty Name="StateName" ColumnName="StateName" />
                 <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserDetails">
-            <EntityTypeMapping TypeName="TransportManagementModel.UserDetail">
-              <MappingFragment StoreEntitySet="UserDetail">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VendorBankDetails">
-            <EntityTypeMapping TypeName="TransportManagementModel.VendorBankDetail">
-              <MappingFragment StoreEntitySet="VendorBankDetail">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
-                <ScalarProperty Name="BankName" ColumnName="BankName" />
-                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
-                <ScalarProperty Name="AccountHolderName" ColumnName="AccountHolderName" />
-                <ScalarProperty Name="IFSCCode" ColumnName="IFSCCode" />
-                <ScalarProperty Name="BranchAddress" ColumnName="BranchAddress" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VendorConcernPersons">
-            <EntityTypeMapping TypeName="TransportManagementModel.VendorConcernPerson">
-              <MappingFragment StoreEntitySet="VendorConcernPerson">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VendorDetails">
-            <EntityTypeMapping TypeName="TransportManagementModel.VendorDetail">
-              <MappingFragment StoreEntitySet="VendorDetail">
-                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
-                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
-                <ScalarProperty Name="Address1" ColumnName="Address1" />
-                <ScalarProperty Name="Address2" ColumnName="Address2" />
-                <ScalarProperty Name="Area" ColumnName="Area" />
-                <ScalarProperty Name="CityId" ColumnName="CityId" />
-                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
-                <ScalarProperty Name="StateId" ColumnName="StateId" />
-                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-                <ScalarProperty Name="GSTNNumber" ColumnName="GSTNNumber" />
-                <ScalarProperty Name="PanNumber" ColumnName="PanNumber" />
-                <ScalarProperty Name="GSTNNumberScanCopy" ColumnName="GSTNNumberScanCopy" />
-                <ScalarProperty Name="PanNumberScanCopy" ColumnName="PanNumberScanCopy" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VendorLineHaulDetails">
-            <EntityTypeMapping TypeName="TransportManagementModel.VendorLineHaulDetail">
-              <MappingFragment StoreEntitySet="VendorLineHaulDetail">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FromStateId" ColumnName="FromStateId" />
-                <ScalarProperty Name="ToStateId" ColumnName="ToStateId" />
-                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1099,11 +1112,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="TransportManagementModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TranshipmentDetails">
             <EntityTypeMapping TypeName="TransportManagementModel.TranshipmentDetail">
               <MappingFragment StoreEntitySet="TranshipmentDetail">
+                <ScalarProperty Name="ServiceOrderId" ColumnName="ServiceOrderId" />
                 <ScalarProperty Name="UnitId" ColumnName="UnitId" />
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="WeightId" ColumnName="WeightId" />
                 <ScalarProperty Name="ToCityId" ColumnName="ToCityId" />
                 <ScalarProperty Name="FromCityId" ColumnName="FromCityId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -1115,6 +1138,17 @@
               <MappingFragment StoreEntitySet="UnitDetail">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDetails">
+            <EntityTypeMapping TypeName="TransportManagementModel.UserDetail">
+              <MappingFragment StoreEntitySet="UserDetail">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1131,6 +1165,67 @@
             <EntityTypeMapping TypeName="TransportManagementModel.VehicleType">
               <MappingFragment StoreEntitySet="VehicleType">
                 <ScalarProperty Name="VehicleTypeName" ColumnName="VehicleTypeName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VendorBankDetails">
+            <EntityTypeMapping TypeName="TransportManagementModel.VendorBankDetail">
+              <MappingFragment StoreEntitySet="VendorBankDetail">
+                <ScalarProperty Name="BranchAddress" ColumnName="BranchAddress" />
+                <ScalarProperty Name="IFSCCode" ColumnName="IFSCCode" />
+                <ScalarProperty Name="AccountHolderName" ColumnName="AccountHolderName" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VendorConcernPersons">
+            <EntityTypeMapping TypeName="TransportManagementModel.VendorConcernPerson">
+              <MappingFragment StoreEntitySet="VendorConcernPerson">
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VendorDetails">
+            <EntityTypeMapping TypeName="TransportManagementModel.VendorDetail">
+              <MappingFragment StoreEntitySet="VendorDetail">
+                <ScalarProperty Name="PanNumberScanCopy" ColumnName="PanNumberScanCopy" />
+                <ScalarProperty Name="GSTNNumberScanCopy" ColumnName="GSTNNumberScanCopy" />
+                <ScalarProperty Name="PanNumber" ColumnName="PanNumber" />
+                <ScalarProperty Name="GSTNNumber" ColumnName="GSTNNumber" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VendorLineHaulDetails">
+            <EntityTypeMapping TypeName="TransportManagementModel.VendorLineHaulDetail">
+              <MappingFragment StoreEntitySet="VendorLineHaulDetail">
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="ToStateId" ColumnName="ToStateId" />
+                <ScalarProperty Name="FromStateId" ColumnName="FromStateId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeightLookups">
+            <EntityTypeMapping TypeName="TransportManagementModel.WeightLookup">
+              <MappingFragment StoreEntitySet="WeightLookup">
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

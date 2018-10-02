@@ -17,9 +17,12 @@ namespace DataLayer
         public int Id { get; set; }
         public Nullable<int> FromCityId { get; set; }
         public Nullable<int> ToCityId { get; set; }
-        public string Weight { get; set; }
+        public Nullable<int> WeightId { get; set; }
         public Nullable<int> UnitId { get; set; }
+        public Nullable<int> ServiceOrderId { get; set; }
     
+        public virtual ServiceOrderDetail ServiceOrderDetail { get; set; }
         public virtual UnitDetail UnitDetail { get; set; }
+        public virtual WeightLookup WeightLookup { get; set; }
     }
 }

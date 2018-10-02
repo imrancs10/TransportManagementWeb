@@ -29,16 +29,17 @@ namespace DataLayer
         public virtual DbSet<ClientConcernPerson> ClientConcernPersons { get; set; }
         public virtual DbSet<ClientDetail> ClientDetails { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<ServiceOrderDetail> ServiceOrderDetails { get; set; }
         public virtual DbSet<State> States { get; set; }
+        public virtual DbSet<TranshipmentDetail> TranshipmentDetails { get; set; }
+        public virtual DbSet<UnitDetail> UnitDetails { get; set; }
         public virtual DbSet<UserDetail> UserDetails { get; set; }
+        public virtual DbSet<VehicleDetail> VehicleDetails { get; set; }
+        public virtual DbSet<VehicleType> VehicleTypes { get; set; }
         public virtual DbSet<VendorBankDetail> VendorBankDetails { get; set; }
         public virtual DbSet<VendorConcernPerson> VendorConcernPersons { get; set; }
         public virtual DbSet<VendorDetail> VendorDetails { get; set; }
         public virtual DbSet<VendorLineHaulDetail> VendorLineHaulDetails { get; set; }
-        public virtual DbSet<ServiceOrderDetail> ServiceOrderDetails { get; set; }
-        public virtual DbSet<TranshipmentDetail> TranshipmentDetails { get; set; }
-        public virtual DbSet<UnitDetail> UnitDetails { get; set; }
-        public virtual DbSet<VehicleDetail> VehicleDetails { get; set; }
-        public virtual DbSet<VehicleType> VehicleTypes { get; set; }
+        public virtual DbSet<WeightLookup> WeightLookups { get; set; }
     }
 }

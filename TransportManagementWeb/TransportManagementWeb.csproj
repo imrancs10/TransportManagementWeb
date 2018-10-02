@@ -220,6 +220,7 @@
     <Content Include="Scripts\App\Global\App.js" />
     <Content Include="Scripts\App\Global\Utility.js" />
     <Content Include="Scripts\App\Login\Login.js" />
+    <Content Include="Scripts\App\Masters\ServiceOrder.js" />
     <Content Include="Scripts\App\Masters\MasterDetail.js" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootstrap-editable.js" />
@@ -369,6 +370,7 @@
     <None Include="Project_Readme.html" />
     <Content Include="Views\Masters\ClientMaster.cshtml" />
     <Content Include="Views\Masters\VendorMaster.cshtml" />
+    <Content Include="Views\Masters\ServiceOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj">

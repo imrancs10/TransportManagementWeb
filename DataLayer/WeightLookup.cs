@@ -12,25 +12,17 @@ namespace DataLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class ServiceOrderDetail
+    public partial class WeightLookup
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ServiceOrderDetail()
+        public WeightLookup()
         {
             this.TranshipmentDetails = new HashSet<TranshipmentDetail>();
         }
     
         public int Id { get; set; }
-        public Nullable<int> ClientId { get; set; }
-        public Nullable<System.DateTime> VehicleRequirementDate { get; set; }
-        public Nullable<int> VehicleDetailId { get; set; }
-        public string GrossWeight { get; set; }
-        public string NatureOfGoods { get; set; }
-        public string Freight { get; set; }
-        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public string Weight { get; set; }
     
-        public virtual ClientDetail ClientDetail { get; set; }
-        public virtual VehicleDetail VehicleDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TranshipmentDetail> TranshipmentDetails { get; set; }
     }

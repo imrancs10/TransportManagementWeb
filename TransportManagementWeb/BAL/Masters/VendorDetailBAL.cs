@@ -12,7 +12,7 @@ namespace TransportManagementWeb.BAL.Masters
     {
         TransportManagementEntities _db = null;
 
-        public Enums.CrudStatus SaveVendorDetail(string vendorName, string address1, string address2, string area, string pincode, string city, string state, string country, string gstNo, string panNumber, string CP1EMail, string CP1ContactNo, string CP2Email, string CP2ContactNo, string BankName, string AccountNo, string AccountHolderName, string IFSCCode, string BankAddress)
+        public Enums.CrudStatus SaveVendorDetail(string vendorName, string address1, string address2, string area, string pincode, string city, string state, string country, string gstNo, string panNumber, string CP1EMail, string CP1ContactNo, string CP2Email, string CP2ContactNo, string BankName, string AccountNo, string AccountHolderName, string IFSCCode, string BankAddress, byte[] gstImage, byte[] panImage)
         {
             _db = new TransportManagementEntities();
             int _effectRow = 0;
@@ -30,6 +30,8 @@ namespace TransportManagementWeb.BAL.Masters
                 _newclient.PanNumber = panNumber;
                 _newclient.PinCode = int.Parse(pincode);
                 _newclient.StateId = int.Parse(state);
+                _newclient.PanNumberScanCopy = panImage;
+                _newclient.GSTNNumberScanCopy = gstImage;
                 _newclient.VendorConcernPersons.Add(new VendorConcernPerson() { ContactNumber = int.Parse(CP1ContactNo), EmailId = CP1EMail });
                 _newclient.VendorConcernPersons.Add(new VendorConcernPerson() { ContactNumber = int.Parse(CP2ContactNo), EmailId = CP2Email });
                 _newclient.VendorBankDetails.Add(new VendorBankDetail()

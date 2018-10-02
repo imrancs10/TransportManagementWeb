@@ -30,5 +30,42 @@ namespace TransportManagementWeb.BAL.Commom
             _db.Configuration.LazyLoadingEnabled = false;
             return _db.Cities.Where(x => x.StateId == stateId).ToList();
         }
+        public List<City> GetAllCities()
+        {
+            _db = new TransportManagementEntities();
+            _db.Configuration.LazyLoadingEnabled = false;
+            return _db.Cities.ToList();
+        }
+        public List<ClientDetail> GetAllClientDetail()
+        {
+            _db = new TransportManagementEntities();
+            _db.Configuration.LazyLoadingEnabled = false;
+            return _db.ClientDetails.ToList();
+        }
+        public List<WeightLookup> GetAllWeightDetail()
+        {
+            _db = new TransportManagementEntities();
+            _db.Configuration.LazyLoadingEnabled = false;
+            return _db.WeightLookups.ToList();
+        }
+        public List<UnitDetail> GetAllUnitDetail()
+        {
+            _db = new TransportManagementEntities();
+            _db.Configuration.LazyLoadingEnabled = false;
+            return _db.UnitDetails.ToList();
+        }
+
+        public List<VehicleType> GetAllVehicleType()
+        {
+            _db = new TransportManagementEntities();
+            _db.Configuration.LazyLoadingEnabled = false;
+            return _db.VehicleTypes.ToList();
+        }
+        public List<VehicleDetail> GetAllVehicleDetail(int typeId)
+        {
+            _db = new TransportManagementEntities();
+            _db.Configuration.LazyLoadingEnabled = false;
+            return _db.VehicleDetails.Where(x => x.VehicleTypeId == typeId).ToList();
+        }
     }
 }
