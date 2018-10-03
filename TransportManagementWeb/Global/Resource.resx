@@ -121,7 +121,7 @@
     <value>No response from server</value>
   </data>
   <data name="Crud_DataAlreadyExist" xml:space="preserve">
-    <value>Data  already exists</value>
+    <value>Data already exists</value>
   </data>
   <data name="Crud_DataDelete" xml:space="preserve">
     <value>Data delete from database</value>
@@ -141,7 +141,16 @@
   <data name="Crud_NotDelete" xml:space="preserve">
     <value>Data has not been deleted</value>
   </data>
+  <data name="Invalid_Past_Date" xml:space="preserve">
+    <value>Date should not be in past</value>
+  </data>
+  <data name="Invalid_Posted_Data" xml:space="preserve">
+    <value>Posted Data is invalid</value>
+  </data>
   <data name="Login_InvalidCredential" xml:space="preserve">
     <value>Provided Credentials are invalid</value>
+  </data>
+  <data name="Session_Expired" xml:space="preserve">
+    <value>Your Session has been expired</value>
   </data>
 </root>

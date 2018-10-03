@@ -28,6 +28,7 @@ namespace DataLayer
         public string NatureOfGoods { get; set; }
         public string Freight { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
+        public string ReferenceNumber { get; set; }
     
         public virtual ClientDetail ClientDetail { get; set; }
         public virtual VehicleDetail VehicleDetail { get; set; }

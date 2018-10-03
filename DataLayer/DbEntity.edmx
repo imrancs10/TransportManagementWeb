@@ -51,6 +51,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReferenceNumber" Type="varchar" MaxLength="50" />
           <Property Name="ClientId" Type="int" />
           <Property Name="VehicleRequirementDate" Type="datetime" />
           <Property Name="VehicleDetailId" Type="int" />
@@ -674,6 +675,7 @@
           <NavigationProperty Name="ClientDetail" Relationship="TransportManagementModel.FK_ServiceOrderDetail_ClientDetail" FromRole="ServiceOrderDetail" ToRole="ClientDetail" />
           <NavigationProperty Name="VehicleDetail" Relationship="TransportManagementModel.FK_ServiceOrderDetail_VehicleDetail" FromRole="ServiceOrderDetail" ToRole="VehicleDetail" />
           <NavigationProperty Name="TranshipmentDetails" Relationship="TransportManagementModel.FK_TranshipmentDetail_ServiceOrderDetail" FromRole="ServiceOrderDetail" ToRole="TranshipmentDetail" />
+          <Property Name="ReferenceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -1101,6 +1103,7 @@
           <EntitySetMapping Name="ServiceOrderDetails">
             <EntityTypeMapping TypeName="TransportManagementModel.ServiceOrderDetail">
               <MappingFragment StoreEntitySet="ServiceOrderDetail">
+                <ScalarProperty Name="ReferenceNumber" ColumnName="ReferenceNumber" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="Freight" ColumnName="Freight" />
                 <ScalarProperty Name="NatureOfGoods" ColumnName="NatureOfGoods" />

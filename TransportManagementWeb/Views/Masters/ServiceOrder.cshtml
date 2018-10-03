@@ -6,7 +6,7 @@
 <!-- ============================================
 MAIN CONTENT SECTION
 =============================================== -->
-@using (Html.BeginForm("SaveVendorDetail", "Masters", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("SaveServiceOrder", "Masters", FormMethod.Post))
 {
     <section class="content-wrapper" role="main">
         <div class="content">
@@ -30,7 +30,7 @@ MAIN CONTENT SECTION
                                         <div class="form-group mt-lg">
                                             <label class="col-sm-4 control-label">Client Name</label>
                                             <div class="col-sm-8">
-                                                <select name="filledby" id="ClientDropdown" class="form-control required"></select>
+                                                <select name="ClientId" id="ClientDropdown" class="form-control required"></select>
                                             </div>
                                         </div>
                                     </div>
@@ -40,7 +40,7 @@ MAIN CONTENT SECTION
                                             <div class="col-sm-8">
                                                 <div class="input-group input-group-in">
                                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                    <input type="date" data-input="daterangepicker" data-single-date-picker="true" data-show-dropdowns="true" class="form-control">
+                                                    <input type="date" name="vehicleReqDate" data-input="daterangepicker" data-single-date-picker="true" data-show-dropdowns="true" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -79,7 +79,7 @@ MAIN CONTENT SECTION
                                             <div class="form-group mt-lg">
                                                 <label class="col-sm-4 control-label">From</label>
                                                 <div class="col-sm-8">
-                                                    <select name="filledby" id="CityTransshipmentFrom" class="form-control required"></select>
+                                                    <select name="CityTransshipmentFrom" id="CityTransshipmentFrom" class="form-control required"></select>
                                                 </div>
                                             </div>
                                         </div>
@@ -87,7 +87,7 @@ MAIN CONTENT SECTION
                                             <div class="form-group mt-lg">
                                                 <label class="col-sm-4 control-label">To <span style="color:red;">*</span></label>
                                                 <div class="col-sm-8">
-                                                    <select name="filledby" id="CityTransshipmentTo" class="form-control required"></select>
+                                                    <select name="CityTransshipmentTo" id="CityTransshipmentTo" class="form-control required"></select>
                                                 </div>
                                             </div>
                                         </div>
@@ -106,7 +106,7 @@ MAIN CONTENT SECTION
                                             <div class="form-group mt-lg">
                                                 <label class="col-sm-2 control-label">From City</label>
                                                 <div class="col-sm-10">
-                                                    <select name="filledby" id="CityMultiTransshipmentFrom" class="form-control required"></select>
+                                                    <select name="CityMultiTransshipmentFrom" id="CityMultiTransshipmentFrom" class="form-control required"></select>
                                                 </div>
                                             </div>
                                         </div>
@@ -129,34 +129,34 @@ MAIN CONTENT SECTION
                                                     <tr>
                                                         <td>
                                                             <div class="form-group mt-lg">
-                                                                <select name="filledby" id="CityMultiTransshipmentTo1" class="form-control required"></select>
+                                                                <select name="CityMultiTransshipmentTo1" id="CityMultiTransshipmentTo1" class="form-control required"></select>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="form-group mt-lg">
-                                                                <select name="filledby" id="WeightDropdown1" class="form-control required"></select>
+                                                                <select name="WeightDropdown1" id="WeightDropdown1" class="form-control required"></select>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="form-group mt-lg">
-                                                                <select name="filledby" id="UnitDropdown1" class="form-control required"></select>
+                                                                <select name="UnitDropdown1" id="UnitDropdown1" class="form-control required"></select>
                                                             </div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
                                                             <div class="form-group">
-                                                                <select name="filledby" id="CityMultiTransshipmentTo2" class="form-control required"></select>
+                                                                <select name="CityMultiTransshipmentTo2" id="CityMultiTransshipmentTo2" class="form-control required"></select>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="form-group">
-                                                                <select name="filledby" id="WeightDropdown2" class="form-control required"></select>
+                                                                <select name="WeightDropdown2" id="WeightDropdown2" class="form-control required"></select>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="form-group">
-                                                                <select name="filledby" id="UnitDropdown2" class="form-control required"></select>
+                                                                <select name="UnitDropdown2" id="UnitDropdown2" class="form-control required"></select>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -177,7 +177,7 @@ MAIN CONTENT SECTION
                                         <div class="form-group mt-lg">
                                             <label class="col-sm-4 control-label">Vehicle Type</label>
                                             <div class="col-sm-8">
-                                                <select name="filledby" id="VehicleTypeDropdown" class="form-control required"></select>
+                                                <select name="VehicleTypeId" id="VehicleTypeDropdown" class="form-control required"></select>
                                             </div>
                                         </div>
                                     </div>
@@ -185,7 +185,7 @@ MAIN CONTENT SECTION
                                         <div class="form-group mt-lg">
                                             <label class="col-sm-4 control-label">Vehicle Detail</label>
                                             <div class="col-sm-8">
-                                                <select name="filledby" id="VehicleDetailDropdown" class="form-control required"></select>
+                                                <select name="VehicleDetailId" id="VehicleDetailDropdown" class="form-control required"></select>
                                             </div>
                                         </div>
                                     </div>
@@ -197,7 +197,7 @@ MAIN CONTENT SECTION
                                             <label class="col-sm-4 control-label">Gross Weight <span style="color:red;">*</span></label>
                                             <div class="col-sm-8">
                                                 <div class="input-group input-group-icon">
-                                                    <textarea id="Textarea1" class="form-control" rows="3" placeholder="Enter Gross Weight"></textarea>
+                                                    <textarea id="GrossWeight" name="GrossWeight" class="form-control" rows="3" placeholder="Enter Gross Weight"></textarea>
                                                     <span class="input-group-addon">
                                                         <span class="icon"><i class="fa fa-map"></i></span>
                                                     </span>
@@ -207,10 +207,10 @@ MAIN CONTENT SECTION
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Nature Of Goods <span style="color:red;">*</span></label>
+                                            <label class="col-sm-4 control-label">Nature Of Goods<span style="color:red;">*</span></label>
                                             <div class="col-sm-8">
                                                 <div class="input-group input-group-icon">
-                                                    <textarea id="txtAddress" class="form-control" rows="3" placeholder="Enter Nature Of Goods"></textarea>
+                                                    <textarea id="NatureOfGoods" name="NatureOfGoods" class="form-control" rows="3" placeholder="Enter Nature Of Goods"></textarea>
                                                     <span class="input-group-addon">
                                                         <span class="icon"><i class="fa fa-location-arrow"></i></span>
                                                     </span>
@@ -227,10 +227,10 @@ MAIN CONTENT SECTION
                                         <div class="form-group mt-lg">
                                             <label class="col-sm-2 control-label">Freight</label>
                                             <div class="col-sm-10">
-                                                <select name="filledby" id="Select13" class="form-control required">
-                                                    <option value="0">Select Freight</option>
-                                                    <option>To Pay</option>
-                                                    <option>Billed</option>
+                                                <select name="Freight" id="FreightDropdown" class="form-control required">
+                                                    <option value="">Select Freight</option>
+                                                    <option value="To Pay">To Pay</option>
+                                                    <option value="Billed">Billed</option>
                                                 </select>
                                             </div>
                                         </div>

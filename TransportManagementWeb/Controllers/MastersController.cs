@@ -65,12 +65,12 @@ namespace TransportManagementWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveServiceOrder(string clientName, string address1, string address2, string area, string pincode, string city, string state, string country, string gstNo, string panNumber, string CP1EMail, string CP1ContactNo, string CP2Email, string CP2ContactNo)
+        public ActionResult SaveServiceOrder(int ClientId, string vehicleReqDate, int? CityTransshipmentFrom, int? CityTransshipmentTo, int? CityMultiTransshipmentFrom, int? CityMultiTransshipmentTo1, int? WeightDropdown1, int? UnitDropdown1, int? CityMultiTransshipmentTo2, int? WeightDropdown2, int? UnitDropdown2, int? VehicleTypeId, int? VehicleDetailId, string GrossWeight, string NatureOfGoods, string Freight)
         {
-            ClientDetailBAL _details = new ClientDetailBAL();
-            _details.SaveClientDetail(clientName, address1, address2, area, pincode, city, state, country, gstNo, panNumber, CP1EMail, CP1ContactNo, CP2Email, CP2ContactNo);
-            SetAlertMessage("Client detail added succesfully.", "Client Master");
-            return RedirectToAction("ClientMaster");
+            ServiceOrderBAL _details = new ServiceOrderBAL();
+            _details.SaveServiceOrderDetail(ClientId, vehicleReqDate, CityTransshipmentFrom, CityTransshipmentTo, CityMultiTransshipmentFrom, CityMultiTransshipmentTo1, WeightDropdown1, UnitDropdown1, CityMultiTransshipmentTo2,  WeightDropdown2, UnitDropdown2, VehicleTypeId, VehicleDetailId, GrossWeight, NatureOfGoods, Freight);
+            SetAlertMessage("Service order detail added succesfully.", "Service Order");
+            return RedirectToAction("ServiceOrder");
         }
 
         [HttpPost]

@@ -169,6 +169,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BAL\Commom\CommonDetails.cs" />
     <Compile Include="BAL\Login\LoginDetails.cs" />
+    <Compile Include="BAL\Masters\ServiceOrderBAL.cs" />
     <Compile Include="BAL\Masters\VendorDetailBAL.cs" />
     <Compile Include="BAL\Masters\ClientDetailBAL.cs" />
     <Compile Include="Controllers\CommonController.cs" />
@@ -187,6 +188,20 @@
     </Compile>
     <Compile Include="Global\UserData.cs" />
     <Compile Include="Global\Utility.cs" />
+    <Compile Include="Infrastructure\Adapter\Notification\EmailService.cs" />
+    <Compile Include="Infrastructure\Adapter\Notification\IMessageSystem.cs" />
+    <Compile Include="Infrastructure\Adapter\Notification\ISendMessageStrategy.cs" />
+    <Compile Include="Infrastructure\Adapter\Notification\Message.cs" />
+    <Compile Include="Infrastructure\Adapter\Notification\SendMessageStrategyForEmail.cs" />
+    <Compile Include="Infrastructure\Adapter\Notification\SendMessageStrategyForSMS.cs" />
+    <Compile Include="Infrastructure\Adapter\Notification\SMSService.cs" />
+    <Compile Include="Infrastructure\Authentication\CustomAuthorize.cs" />
+    <Compile Include="Infrastructure\Authentication\CustomPrincipal.cs" />
+    <Compile Include="Infrastructure\Authentication\CustomPrincipalSerializeModel.cs" />
+    <Compile Include="Infrastructure\Authentication\ICustomPrincipal.cs" />
+    <Compile Include="Infrastructure\Utility\EmailHelper.cs" />
+    <Compile Include="Infrastructure\Utility\Serializer.cs" />
+    <Compile Include="Infrastructure\Utility\VerificationCodeGeneration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

@@ -19,7 +19,7 @@ namespace TransportManagementWeb.Global {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resource {
@@ -70,7 +70,7 @@ namespace TransportManagementWeb.Global {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data  already exists.
+        ///   Looks up a localized string similar to Data already exists.
         /// </summary>
         internal static string Crud_DataAlreadyExist {
             get {
@@ -133,11 +133,38 @@ namespace TransportManagementWeb.Global {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date should not be in past.
+        /// </summary>
+        internal static string Invalid_Past_Date {
+            get {
+                return ResourceManager.GetString("Invalid_Past_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Posted Data is invalid.
+        /// </summary>
+        internal static string Invalid_Posted_Data {
+            get {
+                return ResourceManager.GetString("Invalid_Posted_Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Provided Credentials are invalid.
         /// </summary>
         internal static string Login_InvalidCredential {
             get {
                 return ResourceManager.GetString("Login_InvalidCredential", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Session has been expired.
+        /// </summary>
+        internal static string Session_Expired {
+            get {
+                return ResourceManager.GetString("Session_Expired", resourceCulture);
             }
         }
     }
