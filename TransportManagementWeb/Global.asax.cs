@@ -17,5 +17,13 @@ namespace TransportManagementWeb
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception ex = Server.GetLastError();
+            var currContext = HttpContext.Current;
+            if (currContext != null && currContext.Handler != null)
+                Elmah.ErrorLog.GetDefault(HttpContext.Current).Log(new Elmah.Error(ex));
+        }
     }
 }
