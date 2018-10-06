@@ -14,7 +14,7 @@ MAIN CONTENT SECTION
             <div class="content-bar">
                 <ul class="breadcrumb breadcrumb-angle">
                     <li><a href="#" aria-label="home"><i class="fa fa-home"></i></a></li>
-                    <li class="active">Service Order</li>
+                    <li class="active">LR Generation</li>
                 </ul>
             </div><!-- /.content-bar -->
             <hr />
@@ -28,7 +28,7 @@ MAIN CONTENT SECTION
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Client Name</label>
+                                            <label class="col-sm-4 control-label">Refrence No.</label>
                                             <div class="col-sm-8">
                                                 <select name="ClientId" id="ClientDropdown" class="form-control required"></select>
                                             </div>
@@ -36,7 +36,7 @@ MAIN CONTENT SECTION
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Vehicle Req. Date</label>
+                                            <label class="col-sm-4 control-label">LR Date</label>
                                             <div class="col-sm-8">
                                                 <div class="input-group input-group-in">
                                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -49,143 +49,213 @@ MAIN CONTENT SECTION
                                 </div>
                             </div>
                             <br>
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-md-6">
-                                        <div class="col-sm-6">
-                                            <div class="form-group mt-lg">
-                                                <input type="radio" value="Single Transhipment" name="optradio" id="radioTranshipmentSingle" /> &nbsp;Single Transhipment
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group mt-lg">
-                                                <input type="radio" value="Multiple Transhipment" name="optradio" id="radioTranshipmentMulti" />&nbsp;Multiple Transhipment
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <div id="singleTranshipment" class="hidden">
-                                <div class="row">
-                                    <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Transhipment Detail </h4></div>
-                                </div>
-                                <hr class="tall">
-                                <div class="row">
-                                    <div class="form-group">
-                                        <div class="col-md-6">
-                                            <div class="form-group mt-lg">
-                                                <label class="col-sm-4 control-label">From</label>
-                                                <div class="col-sm-8">
-                                                    <select name="CityTransshipmentFrom" id="CityTransshipmentFrom" class="form-control required"></select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group mt-lg">
-                                                <label class="col-sm-4 control-label">To <span style="color:red;">*</span></label>
-                                                <div class="col-sm-8">
-                                                    <select name="CityTransshipmentTo" id="CityTransshipmentTo" class="form-control required"></select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <div id="multipleTranshipment" class="hidden">
-                                <div class="row">
-                                    <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Multi Transhipment Detail </h4></div>
-                                </div>
-                                <hr class="tall">
-                                <div class="row">
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <div class="form-group mt-lg">
-                                                <label class="col-sm-2 control-label">From City</label>
-                                                <div class="col-sm-10">
-                                                    <select name="CityMultiTransshipmentFrom" id="CityMultiTransshipmentFrom" class="form-control required"></select>
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                    </div>
+                            <br>
+                            <div id="singleTranshipment" class="">
+                                <div class="row">
+                                    <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Consignor Details </h4></div>
                                 </div>
-                                <br />
+                                <hr class="tall">
                                 <div class="row">
                                     <div class="form-group">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr class="table-hover bg-primary">
-                                                        <th>To City</th>
-                                                        <th>Weight(KG/Mt)</th>
-                                                        <th>Unit</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="form-group mt-lg">
-                                                                <select name="CityMultiTransshipmentTo1" id="CityMultiTransshipmentTo1" class="form-control required"></select>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-group mt-lg">
-                                                                <select name="WeightDropdown1" id="WeightDropdown1" class="form-control required"></select>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-group mt-lg">
-                                                                <select name="UnitDropdown1" id="UnitDropdown1" class="form-control required"></select>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="form-group">
-                                                                <select name="CityMultiTransshipmentTo2" id="CityMultiTransshipmentTo2" class="form-control required"></select>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-group">
-                                                                <select name="WeightDropdown2" id="WeightDropdown2" class="form-control required"></select>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-group">
-                                                                <select name="UnitDropdown2" id="UnitDropdown2" class="form-control required"></select>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">Consignor Name</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text3" class="form-control" placeholder="Consignor" name="Consignor">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">Consignor Address </label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text4" class="form-control" placeholder="Address" name="Address">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-edit"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">Consignor City</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text3" class="form-control" placeholder="city" name="city">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">Consignor Pincode</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text3" class="form-control" placeholder="Pincode" name="Pincode">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">Consignor Contact No</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text3" class="form-control" placeholder="Contact" name="Contact">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">Consignor GST No</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text3" class="form-control" placeholder="GST" name="GST">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Consignee Details </h4></div>
+                                    </div>
+                                    <hr class="tall">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-md-6">
+                                                <div class="form-group mt-lg">
+                                                    <label class="col-sm-4 control-label">Consignee Name</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group input-group-icon">
+                                                            <input type="text" id="Text3" class="form-control" placeholder="Consignee" name="Consignee">
+                                                            <span class="input-group-addon">
+                                                                <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group mt-lg">
+                                                    <label class="col-sm-4 control-label">Consignee Address </label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group input-group-icon">
+                                                            <input type="text" id="Text4" class="form-control" placeholder="Address" name="Address">
+                                                            <span class="input-group-addon">
+                                                                <span class="icon"><i class="fa fa-edit"></i></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group mt-lg">
+                                                    <label class="col-sm-4 control-label">Consignee City</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group input-group-icon">
+                                                            <input type="text" id="Text3" class="form-control" placeholder="city" name="city">
+                                                            <span class="input-group-addon">
+                                                                <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group mt-lg">
+                                                    <label class="col-sm-4 control-label">Consignee Pincode</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group input-group-icon">
+                                                            <input type="text" id="Text3" class="form-control" placeholder="Pincode" name="Pincode">
+                                                            <span class="input-group-addon">
+                                                                <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group mt-lg">
+                                                    <label class="col-sm-4 control-label">Consignee Contact No</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group input-group-icon">
+                                                            <input type="text" id="Text3" class="form-control" placeholder="Contact" name="Contact">
+                                                            <span class="input-group-addon">
+                                                                <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group mt-lg">
+                                                    <label class="col-sm-4 control-label">Consignee GST No</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group input-group-icon">
+                                                            <input type="text" id="Text3" class="form-control" placeholder="GST" name="GST">
+                                                            <span class="input-group-addon">
+                                                                <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             <br>
+
                             <div class="row">
-                                <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Vehicle Specification </h4></div>
+                                <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Product Details </h4></div>
                             </div>
                             <hr class="tall">
                             <div class="row">
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Vehicle Type</label>
+                                            <label class="col-sm-4 control-label">Product Details</label>
                                             <div class="col-sm-8">
-                                                <select name="VehicleTypeId" id="VehicleTypeDropdown" class="form-control required"></select>
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="Text3" class="form-control" placeholder="Nature of Products" name="Nature of Products">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Vehicle Detail</label>
+                                            <label class="col-sm-4 control-label">Goods Detail</label>
                                             <div class="col-sm-8">
-                                                <select name="VehicleDetailId" id="VehicleDetailDropdown" class="form-control required"></select>
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="Text3" class="form-control" placeholder="Goods Detail" name="Goods Detail">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -194,10 +264,10 @@ MAIN CONTENT SECTION
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Gross Weight <span style="color:red;">*</span></label>
+                                            <label class="col-sm-4 control-label">Gross Weight </label>
                                             <div class="col-sm-8">
                                                 <div class="input-group input-group-icon">
-                                                    <textarea id="GrossWeight" name="GrossWeight" class="form-control" rows="3" placeholder="Enter Gross Weight"></textarea>
+                                                    <input type="text" id="Text3" class="form-control" placeholder="Gross Weight" name="Gross Weight">
                                                     <span class="input-group-addon">
                                                         <span class="icon"><i class="fa fa-map"></i></span>
                                                     </span>
@@ -207,10 +277,66 @@ MAIN CONTENT SECTION
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Nature Of Goods<span style="color:red;">*</span></label>
+                                            <label class="col-sm-4 control-label">Charge Weight</label>
                                             <div class="col-sm-8">
                                                 <div class="input-group input-group-icon">
-                                                    <textarea id="NatureOfGoods" name="NatureOfGoods" class="form-control" rows="3" placeholder="Enter Nature Of Goods"></textarea>
+                                                    <input type="text" id="Text3" class="form-control" placeholder="Charge Weight" name="Charge Weight">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Invoice No. </label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="Text3" class="form-control" placeholder="Invoice No." name="Invoice No.">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-map"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Invoice Value </label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="Text3" class="form-control" placeholder="Invoice Value" name="Invoice Value">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">E-Way Bill No. </label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="Text3" class="form-control" placeholder="E-Way Bill No." name="E-Way Bill No.">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-map"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Remarks </label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="Text3" class="form-control" placeholder="Remarks" name="Remarks">
                                                     <span class="input-group-addon">
                                                         <span class="icon"><i class="fa fa-location-arrow"></i></span>
                                                     </span>
@@ -220,25 +346,181 @@ MAIN CONTENT SECTION
                                     </div>
                                 </div>
                             </div>
-
+                            <br />
+                            <div class="row">
+                                <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Vehicle Related Details </h4></div>
+                            </div>
+                            <hr class="tall">
                             <div class="row">
                                 <div class="form-group">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-2 control-label">Freight</label>
-                                            <div class="col-sm-10">
-                                                <select name="Freight" id="FreightDropdown" class="form-control required">
-                                                    <option value="">Select Freight</option>
-                                                    <option value="To Pay">To Pay</option>
-                                                    <option value="Billed">Billed</option>
-                                                </select>
+                                            <label class="col-sm-4 control-label">Vehicle Owner Name</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="Text3" class="form-control" placeholder="Owner Name" name="Owner Name">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Vehicle Owner Contact No.</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="Text3" class="form-control" placeholder="Contact No" name="Contact No">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">DL Scan Copy<span style="color:red;">*</span></label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="file" name="gstNoScanImage" id="gstNoScanImage" class="form-control" placeholder="GST No" accept="image/x-png,image/gif,image/jpeg" />
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-edit"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">PAN Scan Copy<span style="color:red;">*</span></label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="file" name="panNumberScanImage" id="panNumberScanImage" class="form-control" placeholder="Pan No" accept="image/x-png,image/gif,image/jpeg" />
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-edit"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">RC Scan Copy<span style="color:red;">*</span></label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="file" name="gstNoScanImage" id="gstNoScanImage" class="form-control" placeholder="GST No" accept="image/x-png,image/gif,image/jpeg" />
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-edit"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">Insurance Scan Copy<span style="color:red;">*</span></label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="file" name="panNumberScanImage" id="panNumberScanImage" class="form-control" placeholder="Pan No" accept="image/x-png,image/gif,image/jpeg" />
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-edit"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-md-6">
+                                                <div class="form-group mt-lg">
+                                                    <label class="col-sm-4 control-label">Vehicle Driver Name</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group input-group-icon">
+                                                            <input type="text" id="Text3" class="form-control" placeholder="Driver Name" name="Driver Name">
+                                                            <span class="input-group-addon">
+                                                                <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group mt-lg">
+                                                    <label class="col-sm-4 control-label">Vehicle Driver Contact No.</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group input-group-icon">
+                                                            <input type="text" id="Text3" class="form-control" placeholder="Contact No." name="Contact No.">
+                                                            <span class="input-group-addon">
+                                                                <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-6">
+                                                    <div class="form-group mt-lg">
+                                                        <label class="col-sm-4 control-label">DL Scan Copy<span style="color:red;">*</span></label>
+                                                        <div class="col-sm-8">
+                                                            <div class="input-group input-group-icon">
+                                                                <input type="file" name="gstNoScanImage" id="gstNoScanImage" class="form-control" placeholder="DL" accept="image/x-png,image/gif,image/jpeg" />
+                                                                <span class="input-group-addon">
+                                                                    <span class="icon"><i class="fa fa-edit"></i></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group mt-lg">
+                                                        <label class="col-sm-4 control-label">PAN Scan Copy<span style="color:red;">*</span></label>
+                                                        <div class="col-sm-8">
+                                                            <div class="input-group input-group-icon">
+                                                                <input type="file" name="panNumberScanImage" id="panNumberScanImage" class="form-control" placeholder="Pan No" accept="image/x-png,image/gif,image/jpeg" />
+                                                                <span class="input-group-addon">
+                                                                    <span class="icon"><i class="fa fa-edit"></i></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <div class="form-group mt-lg">
+                                                    <label class="col-sm-2 control-label">Others Attachment</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group input-group-icon">
+                                                            <input type="file" name="panNumberScanImage" id="panNumberScanImage" class="form-control" placeholder="Others Attachment" accept="image/x-png,image/gif,image/jpeg" />
+                                                            <span class="input-group-addon">
+                                                                <span class="icon"><i class="fa fa-edit"></i></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                     </div>
                     <br />
                     <div class="row">
@@ -257,6 +539,7 @@ MAIN CONTENT SECTION
                     </div>
                 </div>
             </div>
+                </div></div>
             <div class="clearfix"></div>
         </div><!-- /.content -->
     </section>
