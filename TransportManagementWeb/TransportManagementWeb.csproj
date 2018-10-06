@@ -330,8 +330,6 @@
     <Content Include="styles\jquery-ui.css" />
     <Content Include="styles\pages.css" />
     <Content Include="styles\wrapkit.css" />
-    <Content Include="Views\Masters\images\logo\brand-text-dark.png" />
-    <Content Include="Views\Masters\images\logo\logo.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -392,6 +390,10 @@
     <Content Include="Views\Masters\ClientMaster.cshtml" />
     <Content Include="Views\Masters\VendorMaster.cshtml" />
     <Content Include="Views\Masters\ServiceOrder.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\Masters\TranshipmentAllotment.cshtml" />
+    <Content Include="Views\Masters\VehicleFreightDetail.cshtml" />
+    <Content Include="Views\Masters\LRGeneration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj">

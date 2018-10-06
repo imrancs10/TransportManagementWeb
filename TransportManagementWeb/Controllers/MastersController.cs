@@ -73,6 +73,19 @@ namespace TransportManagementWeb.Controllers
             return RedirectToAction("ServiceOrder");
         }
 
+        public ActionResult TranshipmentAllotment()
+        {
+            return View();
+        }
+        public ActionResult VehicleFreightDetail()
+        {
+            return View();
+        }
+        public ActionResult LRGeneration()
+        {
+            return View();
+        }
+
         [HttpPost]
         public JsonResult GetCountry()
         {

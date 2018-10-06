@@ -1,0 +1,273 @@
+﻿@{
+    ViewBag.Title = "Vendor Master";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- ============================================
+MAIN CONTENT SECTION
+=============================================== -->
+@using (Html.BeginForm("SaveServiceOrder", "Masters", FormMethod.Post))
+{
+    <section class="content-wrapper" role="main">
+        <div class="content">
+
+            <div class="content-bar">
+                <ul class="breadcrumb breadcrumb-angle">
+                    <li><a href="#" aria-label="home"><i class="fa fa-home"></i></a></li>
+                    <li class="active">Service Order</li>
+                </ul>
+            </div><!-- /.content-bar -->
+            <hr />
+
+            <div class="content-body">
+
+                <div class="col-lg-12">
+                    <div class="featured-box featured-box-primary align-left mt-xlg">
+                        <div class="box-content">
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Client Name</label>
+                                            <div class="col-sm-8">
+                                                <select name="ClientId" id="ClientDropdown" class="form-control required"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Vehicle Req. Date</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-in">
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                    <input type="date" name="vehicleReqDate" data-input="daterangepicker" data-single-date-picker="true" data-show-dropdowns="true" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="col-sm-6">
+                                            <div class="form-group mt-lg">
+                                                <input type="radio" value="Single Transhipment" name="optradio" id="radioTranshipmentSingle" /> &nbsp;Single Transhipment
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group mt-lg">
+                                                <input type="radio" value="Multiple Transhipment" name="optradio" id="radioTranshipmentMulti" />&nbsp;Multiple Transhipment
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div id="singleTranshipment" class="hidden">
+                                <div class="row">
+                                    <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Transhipment Detail </h4></div>
+                                </div>
+                                <hr class="tall">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">From</label>
+                                                <div class="col-sm-8">
+                                                    <select name="CityTransshipmentFrom" id="CityTransshipmentFrom" class="form-control required"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">To <span style="color:red;">*</span></label>
+                                                <div class="col-sm-8">
+                                                    <select name="CityTransshipmentTo" id="CityTransshipmentTo" class="form-control required"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div id="multipleTranshipment" class="hidden">
+                                <div class="row">
+                                    <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Multi Transhipment Detail </h4></div>
+                                </div>
+                                <hr class="tall">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-2 control-label">From City</label>
+                                                <div class="col-sm-10">
+                                                    <select name="CityMultiTransshipmentFrom" id="CityMultiTransshipmentFrom" class="form-control required"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr class="table-hover bg-primary">
+                                                        <th>To City</th>
+                                                        <th>Weight(KG/Mt)</th>
+                                                        <th>Unit</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="form-group mt-lg">
+                                                                <select name="CityMultiTransshipmentTo1" id="CityMultiTransshipmentTo1" class="form-control required"></select>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-group mt-lg">
+                                                                <select name="WeightDropdown1" id="WeightDropdown1" class="form-control required"></select>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-group mt-lg">
+                                                                <select name="UnitDropdown1" id="UnitDropdown1" class="form-control required"></select>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <select name="CityMultiTransshipmentTo2" id="CityMultiTransshipmentTo2" class="form-control required"></select>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <select name="WeightDropdown2" id="WeightDropdown2" class="form-control required"></select>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <select name="UnitDropdown2" id="UnitDropdown2" class="form-control required"></select>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Vehicle Specification </h4></div>
+                            </div>
+                            <hr class="tall">
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Vehicle Type</label>
+                                            <div class="col-sm-8">
+                                                <select name="VehicleTypeId" id="VehicleTypeDropdown" class="form-control required"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Vehicle Detail</label>
+                                            <div class="col-sm-8">
+                                                <select name="VehicleDetailId" id="VehicleDetailDropdown" class="form-control required"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Gross Weight <span style="color:red;">*</span></label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <textarea id="GrossWeight" name="GrossWeight" class="form-control" rows="3" placeholder="Enter Gross Weight"></textarea>
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-map"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Nature Of Goods<span style="color:red;">*</span></label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <textarea id="NatureOfGoods" name="NatureOfGoods" class="form-control" rows="3" placeholder="Enter Nature Of Goods"></textarea>
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-2 control-label">Freight</label>
+                                            <div class="col-sm-10">
+                                                <select name="Freight" id="FreightDropdown" class="form-control required">
+                                                    <option value="">Select Freight</option>
+                                                    <option value="To Pay">To Pay</option>
+                                                    <option value="Billed">Billed</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-5">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="btn-divider mr-2x mb-1x" role="divider">
+                                <input id="btnSave" type="submit" value="Submit" name="submit" class="btn btn-primary">
+                                <span class="label-divider" id="Span1">or</span>
+                                <!--<input id="btncancel" type="submit" name="reset" value="Cancel" class="btn btn-default"   onclick="btnreset_Click"/>-->
+                                <input id="btncancel" type="submit" value="Reset" name="reset" class="btn btn-default">
+                            </div>
+                            <asp:hiddenfield id="HiddenField1">
+                            </asp:hiddenfield>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div><!-- /.content -->
+    </section>
+}
+<!-- /MAIN -->
+<script>
+    $(function () {
+        $(document).ready(function () {
+            $('.TranshipmentAllotmentPageActive').addClass('active');
+        })
+    });
+</script>
+<script src="~/Scripts/App/Masters/MasterDetail.js"></script>
+<script src="~/Scripts/App/Masters/ServiceOrder.js"></script>
