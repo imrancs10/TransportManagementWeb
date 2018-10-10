@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using DataLayer;
+using Microsoft.EntityFrameworkCore;
 
 namespace TransportManagementWeb.BAL.Commom
 {
@@ -77,7 +78,16 @@ namespace TransportManagementWeb.BAL.Commom
         public ServiceOrderDetail GetServiceOrderDetail(int Id)
         {
             _db = new TransportManagementEntities();
-            return _db.ServiceOrderDetails.Where(x => x.Id == Id).FirstOrDefault();
+            //_db.Configuration.ProxyCreationEnabled = false;
+            return _db.ServiceOrderDetails
+                .Where(x => x.Id == Id)
+                .FirstOrDefault();
+        }
+        public List<VendorDetail> GetAllVendorDetail()
+        {
+            _db = new TransportManagementEntities();
+            _db.Configuration.LazyLoadingEnabled = false;
+            return _db.VendorDetails.ToList();
         }
     }
 }

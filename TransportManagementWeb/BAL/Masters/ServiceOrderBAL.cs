@@ -45,6 +45,20 @@ namespace TransportManagementWeb.BAL.Masters
             else
                 return Enums.CrudStatus.DataAlreadyExist;
         }
-
+        public Enums.CrudStatus AllotVendor(int vendorId, int referenceId)
+        {
+            _db = new TransportManagementEntities();
+            int _effectRow = 0;
+            string referenceNo = VerificationCodeGeneration.GetSerialNumber();
+            var _deptRow = _db.ServiceOrderDetails.Where(x => x.Id.Equals(referenceId)).FirstOrDefault();
+            if (_deptRow != null)
+            {
+                _deptRow.VendorId = vendorId;
+                _effectRow = _db.SaveChanges();
+                return _effectRow > 0 ? Enums.CrudStatus.Saved : Enums.CrudStatus.NotSaved;
+            }
+            else
+                return Enums.CrudStatus.DataNotFound;
+        }
     }
 }

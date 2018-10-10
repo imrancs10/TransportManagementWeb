@@ -24,5 +24,7 @@ namespace DataLayer
         public virtual ServiceOrderDetail ServiceOrderDetail { get; set; }
         public virtual UnitDetail UnitDetail { get; set; }
         public virtual WeightLookup WeightLookup { get; set; }
+        public virtual City City { get; set; }
+        public virtual City City1 { get; set; }
     }
 }

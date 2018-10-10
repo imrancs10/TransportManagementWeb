@@ -29,10 +29,12 @@ namespace DataLayer
         public string Freight { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string ReferenceNumber { get; set; }
+        public Nullable<int> VendorId { get; set; }
     
         public virtual ClientDetail ClientDetail { get; set; }
         public virtual VehicleDetail VehicleDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TranshipmentDetail> TranshipmentDetails { get; set; }
+        public virtual VendorDetail VendorDetail { get; set; }
     }
 }

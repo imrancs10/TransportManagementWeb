@@ -59,6 +59,7 @@
           <Property Name="NatureOfGoods" Type="varchar" MaxLength="500" />
           <Property Name="Freight" Type="varchar" MaxLength="50" />
           <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="VendorId" Type="int" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -251,6 +252,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ServiceOrderDetail_VendorDetail">
+          <End Role="VendorDetail" Type="Self.VendorDetail" Multiplicity="0..1" />
+          <End Role="ServiceOrderDetail" Type="Self.ServiceOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VendorDetail">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="ServiceOrderDetail">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_State_Country">
           <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
           <End Role="State" Type="Self.State" Multiplicity="*" />
@@ -260,6 +273,30 @@
             </Principal>
             <Dependent Role="State">
               <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TranshipmentDetail_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="TranshipmentDetail" Type="Self.TranshipmentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="TranshipmentDetail">
+              <PropertyRef Name="FromCityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TranshipmentDetail_City1">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="TranshipmentDetail" Type="Self.TranshipmentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="TranshipmentDetail">
+              <PropertyRef Name="ToCityId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -452,9 +489,21 @@
             <End Role="VehicleDetail" EntitySet="VehicleDetail" />
             <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetail" />
           </AssociationSet>
+          <AssociationSet Name="FK_ServiceOrderDetail_VendorDetail" Association="Self.FK_ServiceOrderDetail_VendorDetail">
+            <End Role="VendorDetail" EntitySet="VendorDetail" />
+            <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetail" />
+          </AssociationSet>
           <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
             <End Role="Country" EntitySet="Country" />
             <End Role="State" EntitySet="State" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranshipmentDetail_City" Association="Self.FK_TranshipmentDetail_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="TranshipmentDetail" EntitySet="TranshipmentDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranshipmentDetail_City1" Association="Self.FK_TranshipmentDetail_City1">
+            <End Role="City" EntitySet="City" />
+            <End Role="TranshipmentDetail" EntitySet="TranshipmentDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_TranshipmentDetail_ServiceOrderDetail" Association="Self.FK_TranshipmentDetail_ServiceOrderDetail">
             <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetail" />
@@ -606,6 +655,18 @@
             <End Role="VendorDetail" EntitySet="VendorDetails" />
             <End Role="VendorLineHaulDetail" EntitySet="VendorLineHaulDetails" />
           </AssociationSet>
+          <AssociationSet Name="FK_TranshipmentDetail_City" Association="TransportManagementModel.FK_TranshipmentDetail_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="TranshipmentDetail" EntitySet="TranshipmentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TranshipmentDetail_City1" Association="TransportManagementModel.FK_TranshipmentDetail_City1">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="TranshipmentDetail" EntitySet="TranshipmentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceOrderDetail_VendorDetail" Association="TransportManagementModel.FK_ServiceOrderDetail_VendorDetail">
+            <End Role="VendorDetail" EntitySet="VendorDetails" />
+            <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetails" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="City">
           <Key>
@@ -617,6 +678,8 @@
           <NavigationProperty Name="State" Relationship="TransportManagementModel.FK_City_State" FromRole="City" ToRole="State" />
           <NavigationProperty Name="ClientDetails" Relationship="TransportManagementModel.FK_ClientDetail_City" FromRole="City" ToRole="ClientDetail" />
           <NavigationProperty Name="VendorDetails" Relationship="TransportManagementModel.FK_VendorDetail_City" FromRole="City" ToRole="VendorDetail" />
+          <NavigationProperty Name="TranshipmentDetails" Relationship="TransportManagementModel.FK_TranshipmentDetail_City" FromRole="City" ToRole="TranshipmentDetail" />
+          <NavigationProperty Name="TranshipmentDetails1" Relationship="TransportManagementModel.FK_TranshipmentDetail_City1" FromRole="City" ToRole="TranshipmentDetail" />
         </EntityType>
         <EntityType Name="ClientConcernPerson">
           <Key>
@@ -676,6 +739,8 @@
           <NavigationProperty Name="VehicleDetail" Relationship="TransportManagementModel.FK_ServiceOrderDetail_VehicleDetail" FromRole="ServiceOrderDetail" ToRole="VehicleDetail" />
           <NavigationProperty Name="TranshipmentDetails" Relationship="TransportManagementModel.FK_TranshipmentDetail_ServiceOrderDetail" FromRole="ServiceOrderDetail" ToRole="TranshipmentDetail" />
           <Property Name="ReferenceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VendorId" Type="Int32" />
+          <NavigationProperty Name="VendorDetail" Relationship="TransportManagementModel.FK_ServiceOrderDetail_VendorDetail" FromRole="ServiceOrderDetail" ToRole="VendorDetail" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -704,6 +769,8 @@
           <NavigationProperty Name="ServiceOrderDetail" Relationship="TransportManagementModel.FK_TranshipmentDetail_ServiceOrderDetail" FromRole="TranshipmentDetail" ToRole="ServiceOrderDetail" />
           <NavigationProperty Name="UnitDetail" Relationship="TransportManagementModel.FK_TranshipmentDetail_UnitDetail" FromRole="TranshipmentDetail" ToRole="UnitDetail" />
           <NavigationProperty Name="WeightLookup" Relationship="TransportManagementModel.FK_TranshipmentDetail_WeightLookup" FromRole="TranshipmentDetail" ToRole="WeightLookup" />
+          <NavigationProperty Name="City" Relationship="TransportManagementModel.FK_TranshipmentDetail_City" FromRole="TranshipmentDetail" ToRole="City" />
+          <NavigationProperty Name="City1" Relationship="TransportManagementModel.FK_TranshipmentDetail_City1" FromRole="TranshipmentDetail" ToRole="City" />
         </EntityType>
         <EntityType Name="UnitDetail">
           <Key>
@@ -788,6 +855,7 @@
           <NavigationProperty Name="VendorBankDetails" Relationship="TransportManagementModel.FK_VendorBankDetail_VendorDetail" FromRole="VendorDetail" ToRole="VendorBankDetail" />
           <NavigationProperty Name="VendorConcernPersons" Relationship="TransportManagementModel.FK_VendorConcernPerson_VendorDetail" FromRole="VendorDetail" ToRole="VendorConcernPerson" />
           <NavigationProperty Name="VendorLineHaulDetails" Relationship="TransportManagementModel.FK_VendorLineHaulDetail_VendorDetail" FromRole="VendorDetail" ToRole="VendorLineHaulDetail" />
+          <NavigationProperty Name="ServiceOrderDetails" Relationship="TransportManagementModel.FK_ServiceOrderDetail_VendorDetail" FromRole="VendorDetail" ToRole="ServiceOrderDetail" />
         </EntityType>
         <EntityType Name="VendorLineHaulDetail">
           <Key>
@@ -1049,6 +1117,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TranshipmentDetail_City">
+          <End Type="TransportManagementModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.TranshipmentDetail" Role="TranshipmentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="TranshipmentDetail">
+              <PropertyRef Name="FromCityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TranshipmentDetail_City1">
+          <End Type="TransportManagementModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.TranshipmentDetail" Role="TranshipmentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="TranshipmentDetail">
+              <PropertyRef Name="ToCityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceOrderDetail_VendorDetail">
+          <End Type="TransportManagementModel.VendorDetail" Role="VendorDetail" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.ServiceOrderDetail" Role="ServiceOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VendorDetail">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="ServiceOrderDetail">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1103,6 +1207,7 @@
           <EntitySetMapping Name="ServiceOrderDetails">
             <EntityTypeMapping TypeName="TransportManagementModel.ServiceOrderDetail">
               <MappingFragment StoreEntitySet="ServiceOrderDetail">
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
                 <ScalarProperty Name="ReferenceNumber" ColumnName="ReferenceNumber" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="Freight" ColumnName="Freight" />

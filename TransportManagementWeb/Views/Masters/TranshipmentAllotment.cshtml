@@ -42,7 +42,7 @@ MAIN CONTENT SECTION
                                 <div class="col-sm-8">
                                     <div class="input-group input-group-in">
                                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                        <label class="form-control">1/1/2018</label>
+                                        <label class="form-control" id="deadlineDate"></label>
                                     </div>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@ MAIN CONTENT SECTION
                                 <label class="col-sm-3 control-label">Client Name:</label>
                                 <div class="col-sm-9">
                                     <div class="input-group input-group-icon">
-                                        <label class="col-sm-12 control-label" placeholder="Client Name" name="clientName">CLient Name</label>
+                                        <label class="col-sm-12 control-label" placeholder="Client Name" id="clientName">CLient Name</label>
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@ MAIN CONTENT SECTION
                                             <div class="form-group mt-lg">
                                                 <label class="col-sm-4 control-label">From</label>
                                                 <div class="col-sm-8">
-                                                    <label>Allahabad</label>
+                                                    <label id="singleFromCityLabel"></label>
                                                 </div>
                                             </div>
                                         </div>
@@ -93,7 +93,7 @@ MAIN CONTENT SECTION
                                             <div class="form-group mt-lg">
                                                 <label class="col-sm-4 control-label">To <span style="color:red;">*</span></label>
                                                 <div class="col-sm-8">
-                                                    <label>Lucknow</label>
+                                                    <label id="singleToCityLabel"></label>
                                                 </div>
                                             </div>
                                         </div>
@@ -112,7 +112,7 @@ MAIN CONTENT SECTION
                                             <div class="form-group mt-lg">
                                                 <label class="col-sm-2 control-label">From City</label>
                                                 <div class="col-sm-10">
-                                                    <label>Allahabad</label>
+                                                    <label id="multiFromCityLabel"></label>
                                                 </div>
                                             </div>
                                         </div>
@@ -135,34 +135,34 @@ MAIN CONTENT SECTION
                                                     <tr>
                                                         <td>
                                                             <div class="form-group mt-lg">
-                                                                <label>Lucknow</label>
+                                                                <label id="multiToCityLabel1"></label>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="form-group mt-lg">
-                                                                <label>80KG</label>
+                                                                <label id="multiWeightLabel1"></label>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="form-group mt-lg">
-                                                                <label>Drum</label>
+                                                                <label id="multiUnitLabel1"></label>
                                                             </div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
                                                             <div class="form-group">
-                                                                <label>Varanasi</label>
+                                                                <label id="multiToCityLabel2"></label>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="form-group">
-                                                                <label>100KG</label>
+                                                                <label id="multiWeightLabel2"></label>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="form-group">
-                                                                <label>DRUM</label>
+                                                                <label id="multiUnitLabel2"></label>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -183,7 +183,7 @@ MAIN CONTENT SECTION
                                         <div class="form-group mt-lg">
                                             <label class="col-sm-4 control-label">Vehicle Type</label>
                                             <div class="col-sm-8">
-                                                <label>Open</label>
+                                                <label id="VehicleTypeLabel"></label>
                                             </div>
                                         </div>
                                     </div>
@@ -191,7 +191,7 @@ MAIN CONTENT SECTION
                                         <div class="form-group mt-lg">
                                             <label class="col-sm-4 control-label">Vehicle Detail</label>
                                             <div class="col-sm-8">
-                                                <label>Pick up</label>
+                                                <label id="VehicleDetailLabel"></label>
                                             </div>
                                         </div>
                                     </div>
@@ -232,7 +232,7 @@ MAIN CONTENT SECTION
                                         <div class="form-group mt-lg">
                                             <label class="col-sm-2 control-label">Vendor Name</label>
                                             <div class="col-sm-10">
-                                                <select name="Freight" id="FreightDropdown" class="form-control required">
+                                                <select name="VendorId" id="VendorDropdown" class="form-control required">
                                                     <option value="">Select Vendor</option>
                                                     <option value="To Pay">xyz</option>
                                                     <option value="Billed">abc</option>

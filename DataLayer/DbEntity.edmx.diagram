@@ -41,6 +41,9 @@
         <AssociationConnector Association="TransportManagementModel.FK_VendorBankDetail_VendorDetail" />
         <AssociationConnector Association="TransportManagementModel.FK_VendorConcernPerson_VendorDetail" />
         <AssociationConnector Association="TransportManagementModel.FK_VendorLineHaulDetail_VendorDetail" />
+        <AssociationConnector Association="TransportManagementModel.FK_TranshipmentDetail_City" />
+        <AssociationConnector Association="TransportManagementModel.FK_TranshipmentDetail_City1" />
+        <AssociationConnector Association="TransportManagementModel.FK_ServiceOrderDetail_VendorDetail" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

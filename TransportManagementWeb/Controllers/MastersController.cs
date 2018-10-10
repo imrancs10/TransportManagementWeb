@@ -80,9 +80,12 @@ namespace TransportManagementWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveTranshipmentAllotment()
+        public ActionResult SaveTranshipmentAllotment(int VendorId,int ReferenceId)
         {
-            return View();
+            ServiceOrderBAL detail = new ServiceOrderBAL();
+            detail.AllotVendor(VendorId, ReferenceId);
+            SetAlertMessage("Vendor allotment added succesfully.", "Service Order");
+            return RedirectToAction("TranshipmentAllotment");
         }
         public ActionResult VehicleFreightDetail()
         {
@@ -157,8 +160,22 @@ namespace TransportManagementWeb.Controllers
         public JsonResult GetServiceOrderDetail(int Id)
         {
             CommonDetails _details = new CommonDetails();
-            var result = _details.GetServiceOrderDetail(Id);
-            return Json(result);
+            var data = _details.GetServiceOrderDetail(Id);
+            var result = JsonConvert.SerializeObject(data, Formatting.Indented,
+                         new JsonSerializerSettings
+                         {
+                             ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                         });
+
+            var jsonResult = Json(result, JsonRequestBehavior.AllowGet);
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
+        }
+        [HttpPost]
+        public JsonResult GetAllVendorDetail()
+        {
+            CommonDetails _details = new CommonDetails();
+            return Json(_details.GetAllVendorDetail());
         }
         public ActionResult Logout()
         {
