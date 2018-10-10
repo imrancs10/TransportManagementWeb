@@ -20,10 +20,6 @@
 
     <link rel="stylesheet" href="~/styles/demo.css">
     <script src="~/Scripts/jquery-1.10.2.js"></script>
-    <script src="~/Scripts/jquery-ui.js"></script>
-    <link href="~/styles/jquery-ui.css" rel="stylesheet" />
-    
-    
     @RenderSection("scripts", required: false)
 </head>
 <body>
@@ -38,7 +34,7 @@
                 <!-- use .pull-*, couse we need this float on any screen size -->
                 <div class="pull-left">
                     <a class="navbar-brand" href="~/Masters/Dashboard" role="logo" aria-label="Logo">
-                        <img src="~/images/logo/logo.png" style="height:40px; width:178px;"/>
+                        <img src="~/images/logo/logo.png" style="height:40px; width:178px;" />
                         <img class="logo hidden" src="~/images/logo/logo.png" alt="Brand" style="height:42px; width:178px;">
                     </a>
                     <button data-sidebar="toggleVisible" class="btn btn-icon navbar-btn">
@@ -128,7 +124,7 @@
         </footer><!-- /.FOOTER -->
 
     </main><!-- /#MAIN -->
-    
+
     <script src="~/scripts/vendor.js"></script>
     <script src="~/scripts/dependencies.js"></script>
     <script src="~/scripts/wrapkit.js"></script>
@@ -156,22 +152,22 @@
         <p></p>
     </div>
 
-    <script>
-        $(function () {
-            $(document).ready(function () {
-                $("#dialog").dialog({
-                    resizable: false,
-                    height: "auto",
-                    width: 400,
-                    modal: true,
-                    buttons: {
-                        "OK": function () {
-                            $(this).dialog("close");
-                        }
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#dialog").dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "OK": function () {
+                        $(this).dialog("close");
                     }
-                });
-            })
+                }
+            });
         });
     </script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <link href="~/styles/jquery-ui.css" rel="stylesheet" />
 </body>
 </html>
