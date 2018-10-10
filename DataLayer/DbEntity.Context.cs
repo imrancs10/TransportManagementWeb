@@ -18,6 +18,7 @@ namespace DataLayer
         public TransportManagementEntities()
             : base("name=TransportManagementEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

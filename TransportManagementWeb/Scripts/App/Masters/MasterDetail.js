@@ -11,7 +11,6 @@ $(document).ready(function () {
         dropdown.append('<option value="">Select</option>');
         dropdown.prop('selectedIndex', 0);
         $.ajax({
-            contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             type: 'POST',
             url: '/Masters/GetCountry',
@@ -42,7 +41,6 @@ $(document).ready(function () {
         dropdown.append('<option value="">Select</option>');
         dropdown.prop('selectedIndex', 0);
         $.ajax({
-            contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             type: 'POST',
             url: '/Masters/GetStateByCountryId',
@@ -73,7 +71,6 @@ $(document).ready(function () {
         dropdown.append('<option value="">Select</option>');
         dropdown.prop('selectedIndex', 0);
         $.ajax({
-            contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             type: 'POST',
             url: '/Masters/GetCityByStateId',

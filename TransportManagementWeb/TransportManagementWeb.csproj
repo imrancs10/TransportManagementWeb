@@ -241,6 +241,7 @@
     <Content Include="Scripts\App\Global\App.js" />
     <Content Include="Scripts\App\Global\Utility.js" />
     <Content Include="Scripts\App\Login\Login.js" />
+    <Content Include="Scripts\App\Masters\TranshipmentAllotment.js" />
     <Content Include="Scripts\App\Masters\ServiceOrder.js" />
     <Content Include="Scripts\App\Masters\MasterDetail.js" />
     <Content Include="Scripts\bootbox.js" />

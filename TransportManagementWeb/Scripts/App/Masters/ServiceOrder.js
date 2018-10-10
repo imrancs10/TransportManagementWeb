@@ -40,7 +40,6 @@ $(document).ready(function () {
         dropdown.append('<option value="">Select</option>');
         dropdown.prop('selectedIndex', 0);
         $.ajax({
-            contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             type: 'POST',
             url: '/Masters/GetAllClientDetail',
@@ -66,7 +65,6 @@ $(document).ready(function () {
         dropdown.append('<option value="">Select</option>');
         dropdown.prop('selectedIndex', 0);
         $.ajax({
-            contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             type: 'POST',
             url: '/Masters/GetAllWeightDetail',
@@ -92,7 +90,6 @@ $(document).ready(function () {
         dropdown.append('<option value="">Select</option>');
         dropdown.prop('selectedIndex', 0);
         $.ajax({
-            contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             type: 'POST',
             url: '/Masters/GetAllUnitDetail',
@@ -117,7 +114,6 @@ $(document).ready(function () {
         dropdown.append('<option value="">Select</option>');
         dropdown.prop('selectedIndex', 0);
         $.ajax({
-            contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             type: 'POST',
             url: '/Masters/GetAllVehicleType',
@@ -146,7 +142,6 @@ $(document).ready(function () {
         dropdown.append('<option value="">Select</option>');
         dropdown.prop('selectedIndex', 0);
         $.ajax({
-            contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             type: 'POST',
             url: '/Masters/GetAllVehicleDetail',

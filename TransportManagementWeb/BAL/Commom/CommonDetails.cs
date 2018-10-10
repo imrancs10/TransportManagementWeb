@@ -67,5 +67,17 @@ namespace TransportManagementWeb.BAL.Commom
             _db.Configuration.LazyLoadingEnabled = false;
             return _db.VehicleDetails.Where(x => x.VehicleTypeId == typeId).ToList();
         }
+
+        public List<ServiceOrderDetail> GetAllReferenceIds()
+        {
+            _db = new TransportManagementEntities();
+            _db.Configuration.LazyLoadingEnabled = false;
+            return _db.ServiceOrderDetails.ToList();
+        }
+        public ServiceOrderDetail GetServiceOrderDetail(int Id)
+        {
+            _db = new TransportManagementEntities();
+            return _db.ServiceOrderDetails.Where(x => x.Id == Id).FirstOrDefault();
+        }
     }
 }

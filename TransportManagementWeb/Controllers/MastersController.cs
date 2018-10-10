@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -68,12 +69,18 @@ namespace TransportManagementWeb.Controllers
         public ActionResult SaveServiceOrder(int ClientId, string vehicleReqDate, int? CityTransshipmentFrom, int? CityTransshipmentTo, int? CityMultiTransshipmentFrom, int? CityMultiTransshipmentTo1, int? WeightDropdown1, int? UnitDropdown1, int? CityMultiTransshipmentTo2, int? WeightDropdown2, int? UnitDropdown2, int? VehicleTypeId, int? VehicleDetailId, string GrossWeight, string NatureOfGoods, string Freight)
         {
             ServiceOrderBAL _details = new ServiceOrderBAL();
-            _details.SaveServiceOrderDetail(ClientId, vehicleReqDate, CityTransshipmentFrom, CityTransshipmentTo, CityMultiTransshipmentFrom, CityMultiTransshipmentTo1, WeightDropdown1, UnitDropdown1, CityMultiTransshipmentTo2,  WeightDropdown2, UnitDropdown2, VehicleTypeId, VehicleDetailId, GrossWeight, NatureOfGoods, Freight);
+            _details.SaveServiceOrderDetail(ClientId, vehicleReqDate, CityTransshipmentFrom, CityTransshipmentTo, CityMultiTransshipmentFrom, CityMultiTransshipmentTo1, WeightDropdown1, UnitDropdown1, CityMultiTransshipmentTo2, WeightDropdown2, UnitDropdown2, VehicleTypeId, VehicleDetailId, GrossWeight, NatureOfGoods, Freight);
             SetAlertMessage("Service order detail added succesfully.", "Service Order");
             return RedirectToAction("ServiceOrder");
         }
 
         public ActionResult TranshipmentAllotment()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SaveTranshipmentAllotment()
         {
             return View();
         }
@@ -139,6 +146,19 @@ namespace TransportManagementWeb.Controllers
         {
             CommonDetails _details = new CommonDetails();
             return Json(_details.GetAllVehicleDetail(typeId));
+        }
+        [HttpPost]
+        public JsonResult GetAllReferenceIds()
+        {
+            CommonDetails _details = new CommonDetails();
+            return Json(_details.GetAllReferenceIds());
+        }
+        [HttpPost]
+        public JsonResult GetServiceOrderDetail(int Id)
+        {
+            CommonDetails _details = new CommonDetails();
+            var result = _details.GetServiceOrderDetail(Id);
+            return Json(result);
         }
         public ActionResult Logout()
         {
