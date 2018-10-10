@@ -39,12 +39,79 @@
           <Property Name="GSTNNumber" Type="varchar" MaxLength="50" />
           <Property Name="PanNumber" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="CompanyDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="100" />
+          <Property Name="BranchName" Type="varchar" MaxLength="500" />
+          <Property Name="Address" Type="varchar" MaxLength="500" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="PinCode" Type="int" />
+          <Property Name="MobileNumber" Type="int" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="EmailId" Type="varchar" MaxLength="50" />
+          <Property Name="Website" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ConsigneeDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConsigneeName" Type="varchar" MaxLength="500" />
+          <Property Name="ConsigneeAddress" Type="varchar" MaxLength="500" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="Pincode" Type="int" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="50" />
+          <Property Name="GSTNo" Type="varchar" MaxLength="50" />
+          <Property Name="LRId" Type="int" />
+        </EntityType>
+        <EntityType Name="ConsignorDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConsignorName" Type="varchar" MaxLength="500" />
+          <Property Name="ConsignorAddress" Type="varchar" MaxLength="500" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="Pincode" Type="int" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="50" />
+          <Property Name="GSTNo" Type="varchar" MaxLength="50" />
+          <Property Name="LRId" Type="int" />
+        </EntityType>
         <EntityType Name="Country">
           <Key>
             <PropertyRef Name="CountryId" />
           </Key>
           <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CountryName" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="LRDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LRNumber" Type="varchar" MaxLength="50" />
+          <Property Name="LRDate" Type="datetime" />
+          <Property Name="OthersAttachment" Type="varbinary(max)" />
+          <Property Name="ServiceOrderId" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductDetails" Type="varchar" MaxLength="500" />
+          <Property Name="GoodsDetail" Type="varchar" MaxLength="500" />
+          <Property Name="NoofUnit" Type="int" />
+          <Property Name="ChargeWeight" Type="varchar" MaxLength="50" />
+          <Property Name="InvoiceNo" Type="varchar" MaxLength="50" />
+          <Property Name="InvoiceValue" Type="varchar" MaxLength="50" />
+          <Property Name="EWayBillNo" Type="varchar" MaxLength="50" />
+          <Property Name="Remarks" Type="varchar" MaxLength="500" />
+          <Property Name="LRId" Type="int" />
         </EntityType>
         <EntityType Name="ServiceOrderDetail">
           <Key>
@@ -117,6 +184,30 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VehicleName" Type="varchar" MaxLength="100" />
           <Property Name="VehicleTypeId" Type="int" />
+        </EntityType>
+        <EntityType Name="VehicleDriverDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DriverName" Type="varchar" MaxLength="50" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="50" />
+          <Property Name="DLScanCopy" Type="varbinary(max)" />
+          <Property Name="PANScanCopy" Type="varbinary(max)" />
+          <Property Name="LRId" Type="int" />
+        </EntityType>
+        <EntityType Name="VehicleOwnerDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OwnerName" Type="varchar" MaxLength="50" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="50" />
+          <Property Name="DLScanCopy" Type="varbinary(max)" />
+          <Property Name="PANScanCopy" Type="varbinary(max)" />
+          <Property Name="RCScanCopy" Type="varbinary(max)" />
+          <Property Name="InsuranceScanCopy" Type="varbinary(max)" />
+          <Property Name="LRId" Type="int" />
         </EntityType>
         <EntityType Name="VehicleType">
           <Key>
@@ -238,6 +329,102 @@
             </Principal>
             <Dependent Role="ClientDetail">
               <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyDetail_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="CompanyDetail" Type="Self.CompanyDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="CompanyDetail">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyDetail_State">
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="CompanyDetail" Type="Self.CompanyDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="CompanyDetail">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsigneeDetail_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="ConsigneeDetail" Type="Self.ConsigneeDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="ConsigneeDetail">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsigneeDetail_LRDetail">
+          <End Role="LRDetail" Type="Self.LRDetail" Multiplicity="0..1" />
+          <End Role="ConsigneeDetail" Type="Self.ConsigneeDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LRDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConsigneeDetail">
+              <PropertyRef Name="LRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsignorDetail_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="ConsignorDetail" Type="Self.ConsignorDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="ConsignorDetail">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsignorDetail_LRDetail">
+          <End Role="LRDetail" Type="Self.LRDetail" Multiplicity="0..1" />
+          <End Role="ConsignorDetail" Type="Self.ConsignorDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LRDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConsignorDetail">
+              <PropertyRef Name="LRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LRDetail_ServiceOrderDetail">
+          <End Role="ServiceOrderDetail" Type="Self.ServiceOrderDetail" Multiplicity="0..1" />
+          <End Role="LRDetail" Type="Self.LRDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceOrderDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LRDetail">
+              <PropertyRef Name="ServiceOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductDetail_LRDetail">
+          <End Role="LRDetail" Type="Self.LRDetail" Multiplicity="0..1" />
+          <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LRDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductDetail">
+              <PropertyRef Name="LRId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -373,6 +560,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_VehicleDriverDetail_LRDetail">
+          <End Role="LRDetail" Type="Self.LRDetail" Multiplicity="0..1" />
+          <End Role="VehicleDriverDetail" Type="Self.VehicleDriverDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LRDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VehicleDriverDetail">
+              <PropertyRef Name="LRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleOwnerDetail_LRDetail">
+          <End Role="LRDetail" Type="Self.LRDetail" Multiplicity="0..1" />
+          <End Role="VehicleOwnerDetail" Type="Self.VehicleOwnerDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LRDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VehicleOwnerDetail">
+              <PropertyRef Name="LRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_VendorBankDetail_VendorDetail">
           <End Role="VendorDetail" Type="Self.VendorDetail" Multiplicity="0..1" />
           <End Role="VendorBankDetail" Type="Self.VendorBankDetail" Multiplicity="*" />
@@ -473,7 +684,12 @@
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientConcernPerson" EntityType="Self.ClientConcernPerson" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientDetail" EntityType="Self.ClientDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyDetail" EntityType="Self.CompanyDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConsigneeDetail" EntityType="Self.ConsigneeDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConsignorDetail" EntityType="Self.ConsignorDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LRDetail" EntityType="Self.LRDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductDetail" EntityType="Self.ProductDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServiceOrderDetail" EntityType="Self.ServiceOrderDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServiceOrderPaymentDetail" EntityType="Self.ServiceOrderPaymentDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
@@ -481,6 +697,8 @@
           <EntitySet Name="UnitDetail" EntityType="Self.UnitDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDetail" EntityType="Self.UserDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehicleDetail" EntityType="Self.VehicleDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleDriverDetail" EntityType="Self.VehicleDriverDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleOwnerDetail" EntityType="Self.VehicleOwnerDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehicleType" EntityType="Self.VehicleType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorBankDetail" EntityType="Self.VendorBankDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorConcernPerson" EntityType="Self.VendorConcernPerson" Schema="dbo" store:Type="Tables" />
@@ -506,6 +724,38 @@
           <AssociationSet Name="FK_ClientDetail_State" Association="Self.FK_ClientDetail_State">
             <End Role="State" EntitySet="State" />
             <End Role="ClientDetail" EntitySet="ClientDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyDetail_City" Association="Self.FK_CompanyDetail_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="CompanyDetail" EntitySet="CompanyDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyDetail_State" Association="Self.FK_CompanyDetail_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="CompanyDetail" EntitySet="CompanyDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsigneeDetail_City" Association="Self.FK_ConsigneeDetail_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="ConsigneeDetail" EntitySet="ConsigneeDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsigneeDetail_LRDetail" Association="Self.FK_ConsigneeDetail_LRDetail">
+            <End Role="LRDetail" EntitySet="LRDetail" />
+            <End Role="ConsigneeDetail" EntitySet="ConsigneeDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsignorDetail_City" Association="Self.FK_ConsignorDetail_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="ConsignorDetail" EntitySet="ConsignorDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsignorDetail_LRDetail" Association="Self.FK_ConsignorDetail_LRDetail">
+            <End Role="LRDetail" EntitySet="LRDetail" />
+            <End Role="ConsignorDetail" EntitySet="ConsignorDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LRDetail_ServiceOrderDetail" Association="Self.FK_LRDetail_ServiceOrderDetail">
+            <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetail" />
+            <End Role="LRDetail" EntitySet="LRDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductDetail_LRDetail" Association="Self.FK_ProductDetail_LRDetail">
+            <End Role="LRDetail" EntitySet="LRDetail" />
+            <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_ServiceOrderDetail_ClientDetail" Association="Self.FK_ServiceOrderDetail_ClientDetail">
             <End Role="ClientDetail" EntitySet="ClientDetail" />
@@ -550,6 +800,14 @@
           <AssociationSet Name="FK_VehicleDetail_VehicleType" Association="Self.FK_VehicleDetail_VehicleType">
             <End Role="VehicleType" EntitySet="VehicleType" />
             <End Role="VehicleDetail" EntitySet="VehicleDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleDriverDetail_LRDetail" Association="Self.FK_VehicleDriverDetail_LRDetail">
+            <End Role="LRDetail" EntitySet="LRDetail" />
+            <End Role="VehicleDriverDetail" EntitySet="VehicleDriverDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleOwnerDetail_LRDetail" Association="Self.FK_VehicleOwnerDetail_LRDetail">
+            <End Role="LRDetail" EntitySet="LRDetail" />
+            <End Role="VehicleOwnerDetail" EntitySet="VehicleOwnerDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_VendorBankDetail_VendorDetail" Association="Self.FK_VendorBankDetail_VendorDetail">
             <End Role="VendorDetail" EntitySet="VendorDetail" />
@@ -702,6 +960,53 @@
             <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetails" />
             <End Role="ServiceOrderPaymentDetail" EntitySet="ServiceOrderPaymentDetails" />
           </AssociationSet>
+          <EntitySet Name="CompanyDetails" EntityType="TransportManagementModel.CompanyDetail" />
+          <EntitySet Name="ConsigneeDetails" EntityType="TransportManagementModel.ConsigneeDetail" />
+          <EntitySet Name="ConsignorDetails" EntityType="TransportManagementModel.ConsignorDetail" />
+          <EntitySet Name="LRDetails" EntityType="TransportManagementModel.LRDetail" />
+          <EntitySet Name="ProductDetails" EntityType="TransportManagementModel.ProductDetail" />
+          <EntitySet Name="VehicleDriverDetails" EntityType="TransportManagementModel.VehicleDriverDetail" />
+          <EntitySet Name="VehicleOwnerDetails" EntityType="TransportManagementModel.VehicleOwnerDetail" />
+          <AssociationSet Name="FK_CompanyDetail_City" Association="TransportManagementModel.FK_CompanyDetail_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="CompanyDetail" EntitySet="CompanyDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsigneeDetail_City" Association="TransportManagementModel.FK_ConsigneeDetail_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="ConsigneeDetail" EntitySet="ConsigneeDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsignorDetail_City" Association="TransportManagementModel.FK_ConsignorDetail_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="ConsignorDetail" EntitySet="ConsignorDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyDetail_State" Association="TransportManagementModel.FK_CompanyDetail_State">
+            <End Role="State" EntitySet="States" />
+            <End Role="CompanyDetail" EntitySet="CompanyDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsigneeDetail_LRDetail" Association="TransportManagementModel.FK_ConsigneeDetail_LRDetail">
+            <End Role="LRDetail" EntitySet="LRDetails" />
+            <End Role="ConsigneeDetail" EntitySet="ConsigneeDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsignorDetail_LRDetail" Association="TransportManagementModel.FK_ConsignorDetail_LRDetail">
+            <End Role="LRDetail" EntitySet="LRDetails" />
+            <End Role="ConsignorDetail" EntitySet="ConsignorDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductDetail_LRDetail" Association="TransportManagementModel.FK_ProductDetail_LRDetail">
+            <End Role="LRDetail" EntitySet="LRDetails" />
+            <End Role="ProductDetail" EntitySet="ProductDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleDriverDetail_LRDetail" Association="TransportManagementModel.FK_VehicleDriverDetail_LRDetail">
+            <End Role="LRDetail" EntitySet="LRDetails" />
+            <End Role="VehicleDriverDetail" EntitySet="VehicleDriverDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleOwnerDetail_LRDetail" Association="TransportManagementModel.FK_VehicleOwnerDetail_LRDetail">
+            <End Role="LRDetail" EntitySet="LRDetails" />
+            <End Role="VehicleOwnerDetail" EntitySet="VehicleOwnerDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LRDetail_ServiceOrderDetail" Association="TransportManagementModel.FK_LRDetail_ServiceOrderDetail">
+            <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetails" />
+            <End Role="LRDetail" EntitySet="LRDetails" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="City">
           <Key>
@@ -715,6 +1020,9 @@
           <NavigationProperty Name="VendorDetails" Relationship="TransportManagementModel.FK_VendorDetail_City" FromRole="City" ToRole="VendorDetail" />
           <NavigationProperty Name="TranshipmentDetails" Relationship="TransportManagementModel.FK_TranshipmentDetail_City" FromRole="City" ToRole="TranshipmentDetail" />
           <NavigationProperty Name="TranshipmentDetails1" Relationship="TransportManagementModel.FK_TranshipmentDetail_City1" FromRole="City" ToRole="TranshipmentDetail" />
+          <NavigationProperty Name="CompanyDetails" Relationship="TransportManagementModel.FK_CompanyDetail_City" FromRole="City" ToRole="CompanyDetail" />
+          <NavigationProperty Name="ConsigneeDetails" Relationship="TransportManagementModel.FK_ConsigneeDetail_City" FromRole="City" ToRole="ConsigneeDetail" />
+          <NavigationProperty Name="ConsignorDetails" Relationship="TransportManagementModel.FK_ConsignorDetail_City" FromRole="City" ToRole="ConsignorDetail" />
         </EntityType>
         <EntityType Name="ClientConcernPerson">
           <Key>
@@ -777,6 +1085,7 @@
           <Property Name="VendorId" Type="Int32" />
           <NavigationProperty Name="VendorDetail" Relationship="TransportManagementModel.FK_ServiceOrderDetail_VendorDetail" FromRole="ServiceOrderDetail" ToRole="VendorDetail" />
           <NavigationProperty Name="ServiceOrderPaymentDetails" Relationship="TransportManagementModel.FK_ServiceOrderPaymentDetail_ServiceOrderDetail" FromRole="ServiceOrderDetail" ToRole="ServiceOrderPaymentDetail" />
+          <NavigationProperty Name="LRDetails" Relationship="TransportManagementModel.FK_LRDetail_ServiceOrderDetail" FromRole="ServiceOrderDetail" ToRole="LRDetail" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -791,6 +1100,7 @@
           <NavigationProperty Name="VendorDetails" Relationship="TransportManagementModel.FK_VendorDetail_State" FromRole="State" ToRole="VendorDetail" />
           <NavigationProperty Name="VendorLineHaulDetails" Relationship="TransportManagementModel.FK_VendorLineHaulDetail_State" FromRole="State" ToRole="VendorLineHaulDetail" />
           <NavigationProperty Name="VendorLineHaulDetails1" Relationship="TransportManagementModel.FK_VendorLineHaulDetail_State1" FromRole="State" ToRole="VendorLineHaulDetail" />
+          <NavigationProperty Name="CompanyDetails" Relationship="TransportManagementModel.FK_CompanyDetail_State" FromRole="State" ToRole="CompanyDetail" />
         </EntityType>
         <EntityType Name="TranshipmentDetail">
           <Key>
@@ -1215,6 +1525,232 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CompanyDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BranchName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="PinCode" Type="Int32" />
+          <Property Name="MobileNumber" Type="Int32" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Website" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="City" Relationship="TransportManagementModel.FK_CompanyDetail_City" FromRole="CompanyDetail" ToRole="City" />
+          <NavigationProperty Name="State" Relationship="TransportManagementModel.FK_CompanyDetail_State" FromRole="CompanyDetail" ToRole="State" />
+        </EntityType>
+        <EntityType Name="ConsigneeDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConsigneeName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ConsigneeAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="Pincode" Type="Int32" />
+          <Property Name="ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GSTNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LRId" Type="Int32" />
+          <NavigationProperty Name="City" Relationship="TransportManagementModel.FK_ConsigneeDetail_City" FromRole="ConsigneeDetail" ToRole="City" />
+          <NavigationProperty Name="LRDetail" Relationship="TransportManagementModel.FK_ConsigneeDetail_LRDetail" FromRole="ConsigneeDetail" ToRole="LRDetail" />
+        </EntityType>
+        <EntityType Name="ConsignorDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConsignorName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ConsignorAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="Pincode" Type="Int32" />
+          <Property Name="ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GSTNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LRId" Type="Int32" />
+          <NavigationProperty Name="City" Relationship="TransportManagementModel.FK_ConsignorDetail_City" FromRole="ConsignorDetail" ToRole="City" />
+          <NavigationProperty Name="LRDetail" Relationship="TransportManagementModel.FK_ConsignorDetail_LRDetail" FromRole="ConsignorDetail" ToRole="LRDetail" />
+        </EntityType>
+        <EntityType Name="LRDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LRNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LRDate" Type="DateTime" Precision="3" />
+          <Property Name="OthersAttachment" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="ConsigneeDetails" Relationship="TransportManagementModel.FK_ConsigneeDetail_LRDetail" FromRole="LRDetail" ToRole="ConsigneeDetail" />
+          <NavigationProperty Name="ConsignorDetails" Relationship="TransportManagementModel.FK_ConsignorDetail_LRDetail" FromRole="LRDetail" ToRole="ConsignorDetail" />
+          <NavigationProperty Name="ProductDetails" Relationship="TransportManagementModel.FK_ProductDetail_LRDetail" FromRole="LRDetail" ToRole="ProductDetail" />
+          <NavigationProperty Name="VehicleDriverDetails" Relationship="TransportManagementModel.FK_VehicleDriverDetail_LRDetail" FromRole="LRDetail" ToRole="VehicleDriverDetail" />
+          <NavigationProperty Name="VehicleOwnerDetails" Relationship="TransportManagementModel.FK_VehicleOwnerDetail_LRDetail" FromRole="LRDetail" ToRole="VehicleOwnerDetail" />
+          <Property Name="ServiceOrderId" Type="Int32" />
+          <NavigationProperty Name="ServiceOrderDetail" Relationship="TransportManagementModel.FK_LRDetail_ServiceOrderDetail" FromRole="LRDetail" ToRole="ServiceOrderDetail" />
+        </EntityType>
+        <EntityType Name="ProductDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductDetails" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="GoodsDetail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="NoofUnit" Type="Int32" />
+          <Property Name="ChargeWeight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceValue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EWayBillNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LRId" Type="Int32" />
+          <NavigationProperty Name="LRDetail" Relationship="TransportManagementModel.FK_ProductDetail_LRDetail" FromRole="ProductDetail" ToRole="LRDetail" />
+        </EntityType>
+        <EntityType Name="VehicleDriverDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DriverName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DLScanCopy" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PANScanCopy" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LRId" Type="Int32" />
+          <NavigationProperty Name="LRDetail" Relationship="TransportManagementModel.FK_VehicleDriverDetail_LRDetail" FromRole="VehicleDriverDetail" ToRole="LRDetail" />
+        </EntityType>
+        <EntityType Name="VehicleOwnerDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DLScanCopy" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PANScanCopy" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="RCScanCopy" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="InsuranceScanCopy" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LRId" Type="Int32" />
+          <NavigationProperty Name="LRDetail" Relationship="TransportManagementModel.FK_VehicleOwnerDetail_LRDetail" FromRole="VehicleOwnerDetail" ToRole="LRDetail" />
+        </EntityType>
+        <Association Name="FK_CompanyDetail_City">
+          <End Type="TransportManagementModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.CompanyDetail" Role="CompanyDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="CompanyDetail">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsigneeDetail_City">
+          <End Type="TransportManagementModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.ConsigneeDetail" Role="ConsigneeDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="ConsigneeDetail">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsignorDetail_City">
+          <End Type="TransportManagementModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.ConsignorDetail" Role="ConsignorDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="ConsignorDetail">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyDetail_State">
+          <End Type="TransportManagementModel.State" Role="State" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.CompanyDetail" Role="CompanyDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="CompanyDetail">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsigneeDetail_LRDetail">
+          <End Type="TransportManagementModel.LRDetail" Role="LRDetail" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.ConsigneeDetail" Role="ConsigneeDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LRDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConsigneeDetail">
+              <PropertyRef Name="LRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsignorDetail_LRDetail">
+          <End Type="TransportManagementModel.LRDetail" Role="LRDetail" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.ConsignorDetail" Role="ConsignorDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LRDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConsignorDetail">
+              <PropertyRef Name="LRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductDetail_LRDetail">
+          <End Type="TransportManagementModel.LRDetail" Role="LRDetail" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.ProductDetail" Role="ProductDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LRDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductDetail">
+              <PropertyRef Name="LRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleDriverDetail_LRDetail">
+          <End Type="TransportManagementModel.LRDetail" Role="LRDetail" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.VehicleDriverDetail" Role="VehicleDriverDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LRDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VehicleDriverDetail">
+              <PropertyRef Name="LRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleOwnerDetail_LRDetail">
+          <End Type="TransportManagementModel.LRDetail" Role="LRDetail" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.VehicleOwnerDetail" Role="VehicleOwnerDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LRDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VehicleOwnerDetail">
+              <PropertyRef Name="LRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LRDetail_ServiceOrderDetail">
+          <End Type="TransportManagementModel.ServiceOrderDetail" Role="ServiceOrderDetail" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.LRDetail" Role="LRDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceOrderDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LRDetail">
+              <PropertyRef Name="ServiceOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1410,6 +1946,104 @@
                 <ScalarProperty Name="AdvanceFreight" ColumnName="AdvanceFreight" />
                 <ScalarProperty Name="TotalFreight" ColumnName="TotalFreight" />
                 <ScalarProperty Name="ServiceOrderId" ColumnName="ServiceOrderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyDetails">
+            <EntityTypeMapping TypeName="TransportManagementModel.CompanyDetail">
+              <MappingFragment StoreEntitySet="CompanyDetail">
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConsigneeDetails">
+            <EntityTypeMapping TypeName="TransportManagementModel.ConsigneeDetail">
+              <MappingFragment StoreEntitySet="ConsigneeDetail">
+                <ScalarProperty Name="LRId" ColumnName="LRId" />
+                <ScalarProperty Name="GSTNo" ColumnName="GSTNo" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="ConsigneeAddress" ColumnName="ConsigneeAddress" />
+                <ScalarProperty Name="ConsigneeName" ColumnName="ConsigneeName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConsignorDetails">
+            <EntityTypeMapping TypeName="TransportManagementModel.ConsignorDetail">
+              <MappingFragment StoreEntitySet="ConsignorDetail">
+                <ScalarProperty Name="LRId" ColumnName="LRId" />
+                <ScalarProperty Name="GSTNo" ColumnName="GSTNo" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="ConsignorAddress" ColumnName="ConsignorAddress" />
+                <ScalarProperty Name="ConsignorName" ColumnName="ConsignorName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LRDetails">
+            <EntityTypeMapping TypeName="TransportManagementModel.LRDetail">
+              <MappingFragment StoreEntitySet="LRDetail">
+                <ScalarProperty Name="ServiceOrderId" ColumnName="ServiceOrderId" />
+                <ScalarProperty Name="OthersAttachment" ColumnName="OthersAttachment" />
+                <ScalarProperty Name="LRDate" ColumnName="LRDate" />
+                <ScalarProperty Name="LRNumber" ColumnName="LRNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductDetails">
+            <EntityTypeMapping TypeName="TransportManagementModel.ProductDetail">
+              <MappingFragment StoreEntitySet="ProductDetail">
+                <ScalarProperty Name="LRId" ColumnName="LRId" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="EWayBillNo" ColumnName="EWayBillNo" />
+                <ScalarProperty Name="InvoiceValue" ColumnName="InvoiceValue" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="ChargeWeight" ColumnName="ChargeWeight" />
+                <ScalarProperty Name="NoofUnit" ColumnName="NoofUnit" />
+                <ScalarProperty Name="GoodsDetail" ColumnName="GoodsDetail" />
+                <ScalarProperty Name="ProductDetails" ColumnName="ProductDetails" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleDriverDetails">
+            <EntityTypeMapping TypeName="TransportManagementModel.VehicleDriverDetail">
+              <MappingFragment StoreEntitySet="VehicleDriverDetail">
+                <ScalarProperty Name="LRId" ColumnName="LRId" />
+                <ScalarProperty Name="PANScanCopy" ColumnName="PANScanCopy" />
+                <ScalarProperty Name="DLScanCopy" ColumnName="DLScanCopy" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleOwnerDetails">
+            <EntityTypeMapping TypeName="TransportManagementModel.VehicleOwnerDetail">
+              <MappingFragment StoreEntitySet="VehicleOwnerDetail">
+                <ScalarProperty Name="LRId" ColumnName="LRId" />
+                <ScalarProperty Name="InsuranceScanCopy" ColumnName="InsuranceScanCopy" />
+                <ScalarProperty Name="RCScanCopy" ColumnName="RCScanCopy" />
+                <ScalarProperty Name="PANScanCopy" ColumnName="PANScanCopy" />
+                <ScalarProperty Name="DLScanCopy" ColumnName="DLScanCopy" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

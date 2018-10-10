@@ -12,35 +12,34 @@ namespace DataLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class State
+    public partial class LRDetail
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public State()
+        public LRDetail()
         {
-            this.Cities = new HashSet<City>();
-            this.ClientDetails = new HashSet<ClientDetail>();
-            this.VendorDetails = new HashSet<VendorDetail>();
-            this.VendorLineHaulDetails = new HashSet<VendorLineHaulDetail>();
-            this.VendorLineHaulDetails1 = new HashSet<VendorLineHaulDetail>();
-            this.CompanyDetails = new HashSet<CompanyDetail>();
+            this.ConsigneeDetails = new HashSet<ConsigneeDetail>();
+            this.ConsignorDetails = new HashSet<ConsignorDetail>();
+            this.ProductDetails = new HashSet<ProductDetail>();
+            this.VehicleDriverDetails = new HashSet<VehicleDriverDetail>();
+            this.VehicleOwnerDetails = new HashSet<VehicleOwnerDetail>();
         }
     
-        public int StateId { get; set; }
-        public string StateName { get; set; }
-        public Nullable<int> CountryId { get; set; }
+        public int Id { get; set; }
+        public string LRNumber { get; set; }
+        public Nullable<System.DateTime> LRDate { get; set; }
+        public byte[] OthersAttachment { get; set; }
+        public Nullable<int> ServiceOrderId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<City> Cities { get; set; }
+        public virtual ICollection<ConsigneeDetail> ConsigneeDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClientDetail> ClientDetails { get; set; }
-        public virtual Country Country { get; set; }
+        public virtual ICollection<ConsignorDetail> ConsignorDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VendorDetail> VendorDetails { get; set; }
+        public virtual ICollection<ProductDetail> ProductDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VendorLineHaulDetail> VendorLineHaulDetails { get; set; }
+        public virtual ICollection<VehicleDriverDetail> VehicleDriverDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VendorLineHaulDetail> VendorLineHaulDetails1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CompanyDetail> CompanyDetails { get; set; }
+        public virtual ICollection<VehicleOwnerDetail> VehicleOwnerDetails { get; set; }
+        public virtual ServiceOrderDetail ServiceOrderDetail { get; set; }
     }
 }

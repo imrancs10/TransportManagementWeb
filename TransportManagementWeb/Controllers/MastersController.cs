@@ -87,7 +87,7 @@ namespace TransportManagementWeb.Controllers
             SetAlertMessage("Vendor allotment added succesfully.", "Service Order");
             return RedirectToAction("TranshipmentAllotment");
         }
-        
+
         public ActionResult VehicleFreightDetail()
         {
             return View();
@@ -103,6 +103,45 @@ namespace TransportManagementWeb.Controllers
         public ActionResult LRGeneration()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult SaveLRDetail(int ReferenceId, string LRDate, string ConsignorName, string ConsignorAddress, string ConsignorCity, string ConsignorPincode, string ConsignorContact, string ConsignorGST, string ConsigneeName, string ConsigneeAddress, string ConsigneeCity, string ConsigneePincode, string ConsigneeContact, string ConsigneeGST, string ProductDetails, string GoodsDetail, string NoofUnit, string ChargeWeight, string InvoiceNo, string InvoiceValue, string EWayBillNo, string Remarks, string OwnerName, string OwnerContactNo, HttpPostedFileBase OwnerDLScanImage, HttpPostedFileBase OwnerpanNumberScanImage, HttpPostedFileBase OwnerRCScanImage, HttpPostedFileBase OwnerInsuranceScanImage, string DriverName, string DriverContactNo, HttpPostedFileBase DriverDLScanImage, HttpPostedFileBase DriverpanNumberScanImage, HttpPostedFileBase OtherScanAttachment)
+        {
+            byte[] ownerDLImage = null;
+            byte[] ownerpanImage = null;
+            byte[] ownerRCImage = null;
+            byte[] ownerInsuranceImage = null;
+
+            byte[] driverDLImage = null;
+            byte[] driverpanImage = null;
+
+            byte[] otherScanAttachment = null;
+            otherScanAttachment = serilizeImagetoByte(OtherScanAttachment, otherScanAttachment);
+            driverpanImage = serilizeImagetoByte(DriverpanNumberScanImage, driverpanImage);
+            driverDLImage = serilizeImagetoByte(DriverDLScanImage, driverDLImage);
+            ownerInsuranceImage = serilizeImagetoByte(OwnerInsuranceScanImage, ownerInsuranceImage);
+            ownerRCImage = serilizeImagetoByte(OwnerRCScanImage, ownerRCImage);
+            ownerpanImage = serilizeImagetoByte(OwnerpanNumberScanImage, ownerpanImage);
+            ownerDLImage = serilizeImagetoByte(OwnerDLScanImage, ownerDLImage);
+          
+            ServiceOrderBAL detail = new ServiceOrderBAL();
+            detail.SaveLRDetail(ReferenceId, LRDate, ConsignorName, ConsignorAddress, ConsignorCity, ConsignorPincode, ConsignorContact, ConsignorGST, ConsigneeName, ConsigneeAddress, ConsigneeCity, ConsigneePincode, ConsigneeContact, ConsigneeGST, ProductDetails, GoodsDetail, NoofUnit, ChargeWeight, InvoiceNo, InvoiceValue, EWayBillNo, Remarks, OwnerName, OwnerContactNo, ownerDLImage, ownerpanImage, ownerRCImage, ownerInsuranceImage, DriverName, DriverContactNo, driverDLImage, driverpanImage, otherScanAttachment);
+            SetAlertMessage("LR Generated succesfully.", "Service Order");
+            return RedirectToAction("LRGeneration");
+        }
+
+        private static byte[] serilizeImagetoByte(HttpPostedFileBase image, byte[] imageByte)
+        {
+            if (image != null && image.ContentLength > 0)
+            {
+                imageByte = new byte[image.ContentLength];
+                image.InputStream.Read(imageByte, 0, image.ContentLength);
+                var img = new WebImage(imageByte).Resize(2000, 2000, true, true);
+                imageByte = img.GetBytes();
+            }
+
+            return imageByte;
         }
 
         [HttpPost]

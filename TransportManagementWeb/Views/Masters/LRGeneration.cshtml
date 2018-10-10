@@ -6,21 +6,18 @@
 <!-- ============================================
 MAIN CONTENT SECTION
 =============================================== -->
-@using (Html.BeginForm("SaveServiceOrder", "Masters", FormMethod.Post))
+@using (Html.BeginForm("SaveLRDetail", "Masters", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <section class="content-wrapper" role="main">
         <div class="content">
-
             <div class="content-bar">
                 <ul class="breadcrumb breadcrumb-angle">
                     <li><a href="#" aria-label="home"><i class="fa fa-home"></i></a></li>
                     <li class="active">LR Generation</li>
                 </ul>
-            </div><!-- /.content-bar -->
+            </div>
             <hr />
-
             <div class="content-body">
-
                 <div class="col-lg-12">
                     <div class="featured-box featured-box-primary align-left mt-xlg">
                         <div class="box-content">
@@ -30,7 +27,7 @@ MAIN CONTENT SECTION
                                         <div class="form-group mt-lg">
                                             <label class="col-sm-4 control-label">Refrence No.</label>
                                             <div class="col-sm-8">
-                                                <select name="ClientId" id="ClientDropdown" class="form-control required"></select>
+                                                <select name="ReferenceId" id="ReferenceDropdown" class="form-control required"></select>
                                             </div>
                                         </div>
                                     </div>
@@ -40,16 +37,15 @@ MAIN CONTENT SECTION
                                             <div class="col-sm-8">
                                                 <div class="input-group input-group-in">
                                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                    <input type="date" name="vehicleReqDate" data-input="daterangepicker" data-single-date-picker="true" data-show-dropdowns="true" class="form-control">
+                                                    <input type="date" name="LRDate" data-input="daterangepicker" id="LRDate"
+                                                           min="@DateTime.Now.ToString("yyyy-MM-dd")" data-single-date-picker="true" data-show-dropdowns="true" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             <br>
-
                             <br>
                             <div id="singleTranshipment" class="">
                                 <div class="row">
@@ -63,7 +59,7 @@ MAIN CONTENT SECTION
                                                 <label class="col-sm-4 control-label">Consignor Name</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group input-group-icon">
-                                                        <input type="text" id="Text3" class="form-control" placeholder="Consignor" name="Consignor">
+                                                        <input type="text" id="Text3" class="form-control" placeholder="Consignor" name="ConsignorName">
                                                         <span class="input-group-addon">
                                                             <span class="icon"><i class="fa fa-area-chart"></i></span>
                                                         </span>
@@ -76,7 +72,7 @@ MAIN CONTENT SECTION
                                                 <label class="col-sm-4 control-label">Consignor Address </label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group input-group-icon">
-                                                        <input type="text" id="Text4" class="form-control" placeholder="Address" name="Address">
+                                                        <input type="text" id="Text4" class="form-control" placeholder="Address" name="ConsignorAddress">
                                                         <span class="input-group-addon">
                                                             <span class="icon"><i class="fa fa-edit"></i></span>
                                                         </span>
@@ -89,7 +85,7 @@ MAIN CONTENT SECTION
                                                 <label class="col-sm-4 control-label">Consignor City</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group input-group-icon">
-                                                        <input type="text" id="Text3" class="form-control" placeholder="city" name="city">
+                                                        <select name="ConsignorCity" id="ConsignorCity" class="form-control required"></select>
                                                         <span class="input-group-addon">
                                                             <span class="icon"><i class="fa fa-area-chart"></i></span>
                                                         </span>
@@ -102,7 +98,7 @@ MAIN CONTENT SECTION
                                                 <label class="col-sm-4 control-label">Consignor Pincode</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group input-group-icon">
-                                                        <input type="text" id="Text3" class="form-control" placeholder="Pincode" name="Pincode">
+                                                        <input type="text" id="Text3" class="form-control" placeholder="Pincode" name="ConsignorPincode">
                                                         <span class="input-group-addon">
                                                             <span class="icon"><i class="fa fa-area-chart"></i></span>
                                                         </span>
@@ -115,7 +111,7 @@ MAIN CONTENT SECTION
                                                 <label class="col-sm-4 control-label">Consignor Contact No</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group input-group-icon">
-                                                        <input type="text" id="Text3" class="form-control" placeholder="Contact" name="Contact">
+                                                        <input type="text" id="Text3" class="form-control" placeholder="Contact" name="ConsignorContact">
                                                         <span class="input-group-addon">
                                                             <span class="icon"><i class="fa fa-area-chart"></i></span>
                                                         </span>
@@ -128,7 +124,7 @@ MAIN CONTENT SECTION
                                                 <label class="col-sm-4 control-label">Consignor GST No</label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group input-group-icon">
-                                                        <input type="text" id="Text3" class="form-control" placeholder="GST" name="GST">
+                                                        <input type="text" id="Text3" class="form-control" placeholder="GST" name="ConsignorGST">
                                                         <span class="input-group-addon">
                                                             <span class="icon"><i class="fa fa-area-chart"></i></span>
                                                         </span>
@@ -137,6 +133,7 @@ MAIN CONTENT SECTION
                                             </div>
                                         </div>
                                     </div>
+                                    <br />
                                     <br />
                                     <div class="row">
                                         <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Consignee Details </h4></div>
@@ -149,7 +146,7 @@ MAIN CONTENT SECTION
                                                     <label class="col-sm-4 control-label">Consignee Name</label>
                                                     <div class="col-sm-8">
                                                         <div class="input-group input-group-icon">
-                                                            <input type="text" id="Text3" class="form-control" placeholder="Consignee" name="Consignee">
+                                                            <input type="text" id="Text3" class="form-control" placeholder="Consignee" name="ConsigneeName">
                                                             <span class="input-group-addon">
                                                                 <span class="icon"><i class="fa fa-area-chart"></i></span>
                                                             </span>
@@ -162,7 +159,7 @@ MAIN CONTENT SECTION
                                                     <label class="col-sm-4 control-label">Consignee Address </label>
                                                     <div class="col-sm-8">
                                                         <div class="input-group input-group-icon">
-                                                            <input type="text" id="Text4" class="form-control" placeholder="Address" name="Address">
+                                                            <input type="text" id="Text4" class="form-control" placeholder="Address" name="ConsigneeAddress">
                                                             <span class="input-group-addon">
                                                                 <span class="icon"><i class="fa fa-edit"></i></span>
                                                             </span>
@@ -175,7 +172,7 @@ MAIN CONTENT SECTION
                                                     <label class="col-sm-4 control-label">Consignee City</label>
                                                     <div class="col-sm-8">
                                                         <div class="input-group input-group-icon">
-                                                            <input type="text" id="Text3" class="form-control" placeholder="city" name="city">
+                                                            <select name="ConsigneeCity" id="ConsigneeCity" class="form-control required"></select>
                                                             <span class="input-group-addon">
                                                                 <span class="icon"><i class="fa fa-area-chart"></i></span>
                                                             </span>
@@ -188,7 +185,7 @@ MAIN CONTENT SECTION
                                                     <label class="col-sm-4 control-label">Consignee Pincode</label>
                                                     <div class="col-sm-8">
                                                         <div class="input-group input-group-icon">
-                                                            <input type="text" id="Text3" class="form-control" placeholder="Pincode" name="Pincode">
+                                                            <input type="text" id="Text3" class="form-control" placeholder="Pincode" name="ConsigneePincode">
                                                             <span class="input-group-addon">
                                                                 <span class="icon"><i class="fa fa-area-chart"></i></span>
                                                             </span>
@@ -201,7 +198,7 @@ MAIN CONTENT SECTION
                                                     <label class="col-sm-4 control-label">Consignee Contact No</label>
                                                     <div class="col-sm-8">
                                                         <div class="input-group input-group-icon">
-                                                            <input type="text" id="Text3" class="form-control" placeholder="Contact" name="Contact">
+                                                            <input type="text" id="Text3" class="form-control" placeholder="Contact" name="ConsigneeContact">
                                                             <span class="input-group-addon">
                                                                 <span class="icon"><i class="fa fa-area-chart"></i></span>
                                                             </span>
@@ -214,7 +211,7 @@ MAIN CONTENT SECTION
                                                     <label class="col-sm-4 control-label">Consignee GST No</label>
                                                     <div class="col-sm-8">
                                                         <div class="input-group input-group-icon">
-                                                            <input type="text" id="Text3" class="form-control" placeholder="GST" name="GST">
+                                                            <input type="text" id="Text3" class="form-control" placeholder="GST" name="ConsigneeGST">
                                                             <span class="input-group-addon">
                                                                 <span class="icon"><i class="fa fa-area-chart"></i></span>
                                                             </span>
@@ -225,160 +222,188 @@ MAIN CONTENT SECTION
                                         </div>
                                     </div>
                                 </div>
-                            <br>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Product Details </h4></div>
+                                </div>
+                                <hr class="tall">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">Nature of Goods</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <textarea id="NatureOfGoods" name="NatureOfGoods" readonly class="form-control" rows="3" placeholder="Enter Nature Of Goods"></textarea>
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">Gross Weight </label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <textarea id="GrossWeight" name="GrossWeight" readonly class="form-control" rows="3" placeholder="Gross Weight"></textarea>
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                            <div class="row">
-                                <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Product Details </h4></div>
-                            </div>
-                            <hr class="tall">
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-md-6">
-                                        <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Product Details</label>
-                                            <div class="col-sm-8">
-                                                <div class="input-group input-group-icon">
-                                                    <input type="text" id="Text3" class="form-control" placeholder="Nature of Products" name="Nature of Products">
-                                                    <span class="input-group-addon">
-                                                        <span class="icon"><i class="fa fa-location-arrow"></i></span>
-                                                    </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">Product Details</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text3" class="form-control" placeholder="Product Details" name="ProductDetails">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">Goods Detail</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text3" class="form-control" placeholder="Goods Detail" name="GoodsDetail">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Goods Detail</label>
-                                            <div class="col-sm-8">
-                                                <div class="input-group input-group-icon">
-                                                    <input type="text" id="Text3" class="form-control" placeholder="Goods Detail" name="Goods Detail">
-                                                    <span class="input-group-addon">
-                                                        <span class="icon"><i class="fa fa-location-arrow"></i></span>
-                                                    </span>
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">No of Unit</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="number" id="Text3" class="form-control" placeholder="No of Unit" name="NoofUnit">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-6">
-                                        <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Gross Weight </label>
-                                            <div class="col-sm-8">
-                                                <div class="input-group input-group-icon">
-                                                    <input type="text" id="Text3" class="form-control" placeholder="Gross Weight" name="Gross Weight">
-                                                    <span class="input-group-addon">
-                                                        <span class="icon"><i class="fa fa-map"></i></span>
-                                                    </span>
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">Charge Weight</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text3" class="form-control" placeholder="Charge Weight" name="ChargeWeight">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Charge Weight</label>
-                                            <div class="col-sm-8">
-                                                <div class="input-group input-group-icon">
-                                                    <input type="text" id="Text3" class="form-control" placeholder="Charge Weight" name="Charge Weight">
-                                                    <span class="input-group-addon">
-                                                        <span class="icon"><i class="fa fa-location-arrow"></i></span>
-                                                    </span>
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">Invoice No. </label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text3" class="form-control" placeholder="Invoice No." name="InvoiceNo">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-map"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">Invoice Value </label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text3" class="form-control" placeholder="Invoice Value" name="InvoiceValue">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-6">
-                                        <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Invoice No. </label>
-                                            <div class="col-sm-8">
-                                                <div class="input-group input-group-icon">
-                                                    <input type="text" id="Text3" class="form-control" placeholder="Invoice No." name="Invoice No.">
-                                                    <span class="input-group-addon">
-                                                        <span class="icon"><i class="fa fa-map"></i></span>
-                                                    </span>
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">E-Way Bill No. </label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text3" class="form-control" placeholder="E-Way Bill No." name="EWayBillNo">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-map"></i></span>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Invoice Value </label>
-                                            <div class="col-sm-8">
-                                                <div class="input-group input-group-icon">
-                                                    <input type="text" id="Text3" class="form-control" placeholder="Invoice Value" name="Invoice Value">
-                                                    <span class="input-group-addon">
-                                                        <span class="icon"><i class="fa fa-location-arrow"></i></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-6">
-                                        <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">E-Way Bill No. </label>
-                                            <div class="col-sm-8">
-                                                <div class="input-group input-group-icon">
-                                                    <input type="text" id="Text3" class="form-control" placeholder="E-Way Bill No." name="E-Way Bill No.">
-                                                    <span class="input-group-addon">
-                                                        <span class="icon"><i class="fa fa-map"></i></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Remarks </label>
-                                            <div class="col-sm-8">
-                                                <div class="input-group input-group-icon">
-                                                    <input type="text" id="Text3" class="form-control" placeholder="Remarks" name="Remarks">
-                                                    <span class="input-group-addon">
-                                                        <span class="icon"><i class="fa fa-location-arrow"></i></span>
-                                                    </span>
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">Remarks </label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text3" class="form-control" placeholder="Remarks" name="Remarks">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <br />
-                            <div class="row">
-                                <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Vehicle Related Details </h4></div>
-                            </div>
-                            <hr class="tall">
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-md-6">
-                                        <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Vehicle Owner Name</label>
-                                            <div class="col-sm-8">
-                                                <div class="input-group input-group-icon">
-                                                    <input type="text" id="Text3" class="form-control" placeholder="Owner Name" name="Owner Name">
-                                                    <span class="input-group-addon">
-                                                        <span class="icon"><i class="fa fa-location-arrow"></i></span>
-                                                    </span>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Vehicle Owner Details </h4></div>
+                                </div>
+                                <hr class="tall">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">Vehicle Owner Name</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text3" class="form-control" placeholder="Owner Name" name="OwnerName">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Vehicle Owner Contact No.</label>
-                                            <div class="col-sm-8">
-                                                <div class="input-group input-group-icon">
-                                                    <input type="text" id="Text3" class="form-control" placeholder="Contact No" name="Contact No">
-                                                    <span class="input-group-addon">
-                                                        <span class="icon"><i class="fa fa-location-arrow"></i></span>
-                                                    </span>
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">Vehicle Owner Contact No.</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text3" class="form-control" placeholder="Contact No" name="OwnerContactNo">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -388,7 +413,7 @@ MAIN CONTENT SECTION
                                                 <label class="col-sm-4 control-label">DL Scan Copy<span style="color:red;">*</span></label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group input-group-icon">
-                                                        <input type="file" name="gstNoScanImage" id="gstNoScanImage" class="form-control" placeholder="GST No" accept="image/x-png,image/gif,image/jpeg" />
+                                                        <input type="file" name="OwnerDLScanImage" id="gstNoScanImage" class="form-control" placeholder="GST No" accept="image/x-png,image/gif,image/jpeg" />
                                                         <span class="input-group-addon">
                                                             <span class="icon"><i class="fa fa-edit"></i></span>
                                                         </span>
@@ -401,7 +426,7 @@ MAIN CONTENT SECTION
                                                 <label class="col-sm-4 control-label">PAN Scan Copy<span style="color:red;">*</span></label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group input-group-icon">
-                                                        <input type="file" name="panNumberScanImage" id="panNumberScanImage" class="form-control" placeholder="Pan No" accept="image/x-png,image/gif,image/jpeg" />
+                                                        <input type="file" name="OwnerpanNumberScanImage" id="panNumberScanImage" class="form-control" placeholder="Pan No" accept="image/x-png,image/gif,image/jpeg" />
                                                         <span class="input-group-addon">
                                                             <span class="icon"><i class="fa fa-edit"></i></span>
                                                         </span>
@@ -419,7 +444,7 @@ MAIN CONTENT SECTION
                                                 <label class="col-sm-4 control-label">RC Scan Copy<span style="color:red;">*</span></label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group input-group-icon">
-                                                        <input type="file" name="gstNoScanImage" id="gstNoScanImage" class="form-control" placeholder="GST No" accept="image/x-png,image/gif,image/jpeg" />
+                                                        <input type="file" name="OwnerRCScanImage" id="gstNoScanImage" class="form-control" placeholder="GST No" accept="image/x-png,image/gif,image/jpeg" />
                                                         <span class="input-group-addon">
                                                             <span class="icon"><i class="fa fa-edit"></i></span>
                                                         </span>
@@ -432,7 +457,7 @@ MAIN CONTENT SECTION
                                                 <label class="col-sm-4 control-label">Insurance Scan Copy<span style="color:red;">*</span></label>
                                                 <div class="col-sm-8">
                                                     <div class="input-group input-group-icon">
-                                                        <input type="file" name="panNumberScanImage" id="panNumberScanImage" class="form-control" placeholder="Pan No" accept="image/x-png,image/gif,image/jpeg" />
+                                                        <input type="file" name="OwnerInsuranceScanImage" id="OwnerInsuranceScanImage" class="form-control" placeholder="Pan No" accept="image/x-png,image/gif,image/jpeg" />
                                                         <span class="input-group-addon">
                                                             <span class="icon"><i class="fa fa-edit"></i></span>
                                                         </span>
@@ -441,38 +466,41 @@ MAIN CONTENT SECTION
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <div class="col-md-6">
-                                                <div class="form-group mt-lg">
-                                                    <label class="col-sm-4 control-label">Vehicle Driver Name</label>
-                                                    <div class="col-sm-8">
-                                                        <div class="input-group input-group-icon">
-                                                            <input type="text" id="Text3" class="form-control" placeholder="Driver Name" name="Driver Name">
-                                                            <span class="input-group-addon">
-                                                                <span class="icon"><i class="fa fa-location-arrow"></i></span>
-                                                            </span>
-                                                        </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Vehicle Driver Details </h4></div>
+                                </div>
+                                <hr class="tall">
+                                @*driver*@
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">Vehicle Driver Name</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text3" class="form-control" placeholder="Driver Name" name="DriverName">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group mt-lg">
-                                                    <label class="col-sm-4 control-label">Vehicle Driver Contact No.</label>
-                                                    <div class="col-sm-8">
-                                                        <div class="input-group input-group-icon">
-                                                            <input type="text" id="Text3" class="form-control" placeholder="Contact No." name="Contact No.">
-                                                            <span class="input-group-addon">
-                                                                <span class="icon"><i class="fa fa-location-arrow"></i></span>
-                                                            </span>
-                                                        </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mt-lg">
+                                                <label class="col-sm-4 control-label">Vehicle Driver Contact No.</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group input-group-icon">
+                                                        <input type="text" id="Text3" class="form-control" placeholder="Contact No." name="DriverContactNo">
+                                                        <span class="input-group-addon">
+                                                            <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
-
-                                        
-                                        
+                                        </div>
                                         <div class="row">
                                             <div class="form-group">
                                                 <div class="col-md-6">
@@ -480,7 +508,7 @@ MAIN CONTENT SECTION
                                                         <label class="col-sm-4 control-label">DL Scan Copy<span style="color:red;">*</span></label>
                                                         <div class="col-sm-8">
                                                             <div class="input-group input-group-icon">
-                                                                <input type="file" name="gstNoScanImage" id="gstNoScanImage" class="form-control" placeholder="DL" accept="image/x-png,image/gif,image/jpeg" />
+                                                                <input type="file" name="DriverDLScanImage" id="gstNoScanImage" class="form-control" placeholder="DL" accept="image/x-png,image/gif,image/jpeg" />
                                                                 <span class="input-group-addon">
                                                                     <span class="icon"><i class="fa fa-edit"></i></span>
                                                                 </span>
@@ -493,7 +521,7 @@ MAIN CONTENT SECTION
                                                         <label class="col-sm-4 control-label">PAN Scan Copy<span style="color:red;">*</span></label>
                                                         <div class="col-sm-8">
                                                             <div class="input-group input-group-icon">
-                                                                <input type="file" name="panNumberScanImage" id="panNumberScanImage" class="form-control" placeholder="Pan No" accept="image/x-png,image/gif,image/jpeg" />
+                                                                <input type="file" name="DriverpanNumberScanImage" id="panNumberScanImage" class="form-control" placeholder="Pan No" accept="image/x-png,image/gif,image/jpeg" />
                                                                 <span class="input-group-addon">
                                                                     <span class="icon"><i class="fa fa-edit"></i></span>
                                                                 </span>
@@ -504,6 +532,7 @@ MAIN CONTENT SECTION
                                             </div>
                                         </div>
                                     </div>
+                                    <hr class="tall">
                                     <div class="row">
                                         <div class="form-group">
                                             <div class="col-md-12">
@@ -511,7 +540,7 @@ MAIN CONTENT SECTION
                                                     <label class="col-sm-2 control-label">Others Attachment</label>
                                                     <div class="col-sm-8">
                                                         <div class="input-group input-group-icon">
-                                                            <input type="file" name="panNumberScanImage" id="panNumberScanImage" class="form-control" placeholder="Others Attachment" accept="image/x-png,image/gif,image/jpeg" />
+                                                            <input type="file" name="OtherScanAttachment" id="OtherScanAttachment" class="form-control" placeholder="Others Attachment" accept="image/x-png,image/gif,image/jpeg" />
                                                             <span class="input-group-addon">
                                                                 <span class="icon"><i class="fa fa-edit"></i></span>
                                                             </span>
@@ -521,27 +550,28 @@ MAIN CONTENT SECTION
                                             </div>
                                         </div>
                                     </div>
-                    </div>
-                    <br />
-                    <div class="row">
-                        <div class="col-md-5">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="btn-divider mr-2x mb-1x" role="divider">
-                                <input id="btnSave" type="submit" value="Submit" name="submit" class="btn btn-primary">
-                                <span class="label-divider" id="Span1">or</span>
-                                <!--<input id="btncancel" type="submit" name="reset" value="Cancel" class="btn btn-default"   onclick="btnreset_Click"/>-->
-                                <input id="btncancel" type="submit" value="Reset" name="reset" class="btn btn-default">
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-5">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="btn-divider mr-2x mb-1x" role="divider">
+                                            <input id="btnSave" type="submit" value="Submit" name="submit" class="btn btn-primary">
+                                            <span class="label-divider" id="Span1">or</span>
+                                            <a id="btncancel" href="~/Masters/LRGeneration" name="reset" class="btn btn-default">Reset</a>
+                                        </div>
+                                        <asp:hiddenfield id="HiddenField1">
+                                        </asp:hiddenfield>
+                                    </div>
+                                </div>
                             </div>
-                            <asp:hiddenfield id="HiddenField1">
-                            </asp:hiddenfield>
                         </div>
                     </div>
                 </div>
+                <div class="clearfix"></div>
             </div>
-                </div></div>
-            <div class="clearfix"></div>
-        </div><!-- /.content -->
+        </div>
     </section>
 }
 <!-- /MAIN -->
@@ -552,5 +582,4 @@ MAIN CONTENT SECTION
         })
     });
 </script>
-<script src="~/Scripts/App/Masters/MasterDetail.js"></script>
-<script src="~/Scripts/App/Masters/ServiceOrder.js"></script>
+<script src="~/Scripts/App/Masters/LRGenerate.js"></script>

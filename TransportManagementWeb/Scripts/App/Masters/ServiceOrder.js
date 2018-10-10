@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../jquery-1.10.2.js" />
 /// <reference path="../Global/App.js" />
 /// <reference path="../Global/Utility.js" />
-'use strict'
+'use strict';
 var department = {};
 $(document).ready(function () {
     fillAllCity('#CityTransshipmentFrom');
@@ -15,7 +15,6 @@ $(document).ready(function () {
         dropdown.append('<option value="">Select</option>');
         dropdown.prop('selectedIndex', 0);
         $.ajax({
-            contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             type: 'POST',
             url: '/Masters/GetAllCities',

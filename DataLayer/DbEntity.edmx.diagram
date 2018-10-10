@@ -46,6 +46,23 @@
         <AssociationConnector Association="TransportManagementModel.FK_ServiceOrderDetail_VendorDetail" />
         <EntityTypeShape EntityType="TransportManagementModel.ServiceOrderPaymentDetail" Width="1.5" PointX="12" PointY="2.375" />
         <AssociationConnector Association="TransportManagementModel.FK_ServiceOrderPaymentDetail_ServiceOrderDetail" />
+        <EntityTypeShape EntityType="TransportManagementModel.CompanyDetail" Width="1.5" PointX="7.5" PointY="16.125" />
+        <EntityTypeShape EntityType="TransportManagementModel.ConsigneeDetail" Width="1.5" PointX="20.625" PointY="18.625" />
+        <EntityTypeShape EntityType="TransportManagementModel.ConsignorDetail" Width="1.5" PointX="17.625" PointY="18.625" />
+        <EntityTypeShape EntityType="TransportManagementModel.LRDetail" Width="1.5" PointX="15.375" PointY="23.875" />
+        <EntityTypeShape EntityType="TransportManagementModel.ProductDetail" Width="1.5" PointX="17.625" PointY="34.375" />
+        <EntityTypeShape EntityType="TransportManagementModel.VehicleDriverDetail" Width="1.5" PointX="17.625" PointY="27.75" />
+        <EntityTypeShape EntityType="TransportManagementModel.VehicleOwnerDetail" Width="1.5" PointX="17.625" PointY="30.875" />
+        <AssociationConnector Association="TransportManagementModel.FK_CompanyDetail_City" />
+        <AssociationConnector Association="TransportManagementModel.FK_ConsigneeDetail_City" />
+        <AssociationConnector Association="TransportManagementModel.FK_ConsignorDetail_City" />
+        <AssociationConnector Association="TransportManagementModel.FK_CompanyDetail_State" />
+        <AssociationConnector Association="TransportManagementModel.FK_ConsigneeDetail_LRDetail" />
+        <AssociationConnector Association="TransportManagementModel.FK_ConsignorDetail_LRDetail" />
+        <AssociationConnector Association="TransportManagementModel.FK_ProductDetail_LRDetail" />
+        <AssociationConnector Association="TransportManagementModel.FK_VehicleDriverDetail_LRDetail" />
+        <AssociationConnector Association="TransportManagementModel.FK_VehicleOwnerDetail_LRDetail" />
+        <AssociationConnector Association="TransportManagementModel.FK_LRDetail_ServiceOrderDetail" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

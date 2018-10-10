@@ -21,6 +21,9 @@ namespace DataLayer
             this.VendorDetails = new HashSet<VendorDetail>();
             this.TranshipmentDetails = new HashSet<TranshipmentDetail>();
             this.TranshipmentDetails1 = new HashSet<TranshipmentDetail>();
+            this.CompanyDetails = new HashSet<CompanyDetail>();
+            this.ConsigneeDetails = new HashSet<ConsigneeDetail>();
+            this.ConsignorDetails = new HashSet<ConsignorDetail>();
         }
     
         public int CityId { get; set; }
@@ -36,5 +39,11 @@ namespace DataLayer
         public virtual ICollection<TranshipmentDetail> TranshipmentDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TranshipmentDetail> TranshipmentDetails1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CompanyDetail> CompanyDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ConsigneeDetail> ConsigneeDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ConsignorDetail> ConsignorDetails { get; set; }
     }
 }
