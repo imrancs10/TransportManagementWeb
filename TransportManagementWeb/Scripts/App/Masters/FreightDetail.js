@@ -3,30 +3,6 @@
 /// <reference path="../Global/Utility.js" />
 'use strict';
 $(document).ready(function () {
-    FillVendorDetail();
-    function FillVendorDetail() {
-        let dropdown = $('#VendorDropdown');
-        dropdown.empty();
-        dropdown.append('<option value="">Select</option>');
-        dropdown.prop('selectedIndex', 0);
-        $.ajax({
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            type: 'POST',
-            url: '/Masters/GetAllVendorDetail',
-            success: function (data) {
-                $.each(data, function (key, entry) {
-                    dropdown.append($('<option></option>').attr('value', entry.VendorId).text(entry.VendorName));
-                });
-            },
-            failure: function (response) {
-                alert(response);
-            },
-            error: function (response) {
-                alert(response.responseText);
-            }
-        });
-    }
     FillReferenceIds();
     function FillReferenceIds() {
         let dropdown = $('#ReferenceDropdown');
@@ -103,5 +79,15 @@ $(document).ready(function () {
             }
         });
     }
+    $("#AdvanceFreight").blur(function () {
+        var totalFreight = parseFloat($("#TotalFreight").val());
+        var advanceFreight = parseFloat($(this).val());
+        if (advanceFreight > totalFreight) {
+            alert('Adance Freight can not greater than Total Freight');
+            $(this).val('');
+            return false;
+        }
+        $('#BalanceFreight').val(totalFreight - advanceFreight);
+    });
 });
 

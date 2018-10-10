@@ -18,6 +18,7 @@ namespace DataLayer
         public ServiceOrderDetail()
         {
             this.TranshipmentDetails = new HashSet<TranshipmentDetail>();
+            this.ServiceOrderPaymentDetails = new HashSet<ServiceOrderPaymentDetail>();
         }
     
         public int Id { get; set; }
@@ -36,5 +37,7 @@ namespace DataLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TranshipmentDetail> TranshipmentDetails { get; set; }
         public virtual VendorDetail VendorDetail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ServiceOrderPaymentDetail> ServiceOrderPaymentDetails { get; set; }
     }
 }

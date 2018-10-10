@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Vendor Master";
+    ViewBag.Title = "Transhipment Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -51,28 +51,10 @@ MAIN CONTENT SECTION
                                 <label class="col-sm-3 control-label">Client Name:</label>
                                 <div class="col-sm-9">
                                     <div class="input-group input-group-icon">
-                                        <label class="col-sm-12 control-label" placeholder="Client Name" id="clientName">CLient Name</label>
+                                        <label class="col-sm-12 control-label" placeholder="Client Name" id="clientName"></label>
                                     </div>
                                 </div>
                             </div>
-                            <!--<div class="row">
-                                <div class="form-group">
-                                    <div class="col-md-6">
-                                        <div class="col-sm-6">
-                                            <div class="form-group mt-lg">
-                                                <input type="radio" value="Single Transhipment" name="optradio" id="radioTranshipmentSingle" /> &nbsp;Single Transhipment
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group mt-lg">
-                                                <input type="radio" value="Multiple Transhipment" name="optradio" id="radioTranshipmentMulti" />&nbsp;Multiple Transhipment
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                    </div>
-                                </div>
-                            </div>-->
                             <br>
                             <div id="singleTranshipment" class="hidden">
                                 <div class="row">
@@ -233,9 +215,6 @@ MAIN CONTENT SECTION
                                             <label class="col-sm-2 control-label">Vendor Name</label>
                                             <div class="col-sm-10">
                                                 <select name="VendorId" id="VendorDropdown" class="form-control required">
-                                                    <option value="">Select Vendor</option>
-                                                    <option value="To Pay">xyz</option>
-                                                    <option value="Billed">abc</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -243,7 +222,6 @@ MAIN CONTENT SECTION
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <br />
                     <div class="row">

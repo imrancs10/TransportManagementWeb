@@ -150,6 +150,9 @@
     <Compile Include="ServiceOrderDetail.cs">
       <DependentUpon>DbEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="ServiceOrderPaymentDetail.cs">
+      <DependentUpon>DbEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="State.cs">
       <DependentUpon>DbEntity.tt</DependentUpon>
     </Compile>

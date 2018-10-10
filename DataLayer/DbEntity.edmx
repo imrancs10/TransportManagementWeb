@@ -61,6 +61,19 @@
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="VendorId" Type="int" />
         </EntityType>
+        <EntityType Name="ServiceOrderPaymentDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceOrderId" Type="int" />
+          <Property Name="TotalFreight" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="AdvanceFreight" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="BalanceFreight" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="LoadingCharge" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="UnloadingCharge" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="OthersCharge" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
         <EntityType Name="State">
           <Key>
             <PropertyRef Name="StateId" />
@@ -264,6 +277,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ServiceOrderPaymentDetail_ServiceOrderDetail">
+          <End Role="ServiceOrderDetail" Type="Self.ServiceOrderDetail" Multiplicity="0..1" />
+          <End Role="ServiceOrderPaymentDetail" Type="Self.ServiceOrderPaymentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceOrderDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceOrderPaymentDetail">
+              <PropertyRef Name="ServiceOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_State_Country">
           <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
           <End Role="State" Type="Self.State" Multiplicity="*" />
@@ -450,6 +475,7 @@
           <EntitySet Name="ClientDetail" EntityType="Self.ClientDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServiceOrderDetail" EntityType="Self.ServiceOrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceOrderPaymentDetail" EntityType="Self.ServiceOrderPaymentDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TranshipmentDetail" EntityType="Self.TranshipmentDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnitDetail" EntityType="Self.UnitDetail" Schema="dbo" store:Type="Tables" />
@@ -492,6 +518,10 @@
           <AssociationSet Name="FK_ServiceOrderDetail_VendorDetail" Association="Self.FK_ServiceOrderDetail_VendorDetail">
             <End Role="VendorDetail" EntitySet="VendorDetail" />
             <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceOrderPaymentDetail_ServiceOrderDetail" Association="Self.FK_ServiceOrderPaymentDetail_ServiceOrderDetail">
+            <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetail" />
+            <End Role="ServiceOrderPaymentDetail" EntitySet="ServiceOrderPaymentDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
             <End Role="Country" EntitySet="Country" />
@@ -667,6 +697,11 @@
             <End Role="VendorDetail" EntitySet="VendorDetails" />
             <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetails" />
           </AssociationSet>
+          <EntitySet Name="ServiceOrderPaymentDetails" EntityType="TransportManagementModel.ServiceOrderPaymentDetail" />
+          <AssociationSet Name="FK_ServiceOrderPaymentDetail_ServiceOrderDetail" Association="TransportManagementModel.FK_ServiceOrderPaymentDetail_ServiceOrderDetail">
+            <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetails" />
+            <End Role="ServiceOrderPaymentDetail" EntitySet="ServiceOrderPaymentDetails" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="City">
           <Key>
@@ -741,6 +776,7 @@
           <Property Name="ReferenceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="VendorId" Type="Int32" />
           <NavigationProperty Name="VendorDetail" Relationship="TransportManagementModel.FK_ServiceOrderDetail_VendorDetail" FromRole="ServiceOrderDetail" ToRole="VendorDetail" />
+          <NavigationProperty Name="ServiceOrderPaymentDetails" Relationship="TransportManagementModel.FK_ServiceOrderPaymentDetail_ServiceOrderDetail" FromRole="ServiceOrderDetail" ToRole="ServiceOrderPaymentDetail" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -1153,6 +1189,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ServiceOrderPaymentDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceOrderId" Type="Int32" />
+          <Property Name="TotalFreight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="AdvanceFreight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BalanceFreight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="LoadingCharge" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="UnloadingCharge" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OthersCharge" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="ServiceOrderDetail" Relationship="TransportManagementModel.FK_ServiceOrderPaymentDetail_ServiceOrderDetail" FromRole="ServiceOrderPaymentDetail" ToRole="ServiceOrderDetail" />
+        </EntityType>
+        <Association Name="FK_ServiceOrderPaymentDetail_ServiceOrderDetail">
+          <End Type="TransportManagementModel.ServiceOrderDetail" Role="ServiceOrderDetail" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.ServiceOrderPaymentDetail" Role="ServiceOrderPaymentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceOrderDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceOrderPaymentDetail">
+              <PropertyRef Name="ServiceOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1334,6 +1396,20 @@
             <EntityTypeMapping TypeName="TransportManagementModel.WeightLookup">
               <MappingFragment StoreEntitySet="WeightLookup">
                 <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceOrderPaymentDetails">
+            <EntityTypeMapping TypeName="TransportManagementModel.ServiceOrderPaymentDetail">
+              <MappingFragment StoreEntitySet="ServiceOrderPaymentDetail">
+                <ScalarProperty Name="OthersCharge" ColumnName="OthersCharge" />
+                <ScalarProperty Name="UnloadingCharge" ColumnName="UnloadingCharge" />
+                <ScalarProperty Name="LoadingCharge" ColumnName="LoadingCharge" />
+                <ScalarProperty Name="BalanceFreight" ColumnName="BalanceFreight" />
+                <ScalarProperty Name="AdvanceFreight" ColumnName="AdvanceFreight" />
+                <ScalarProperty Name="TotalFreight" ColumnName="TotalFreight" />
+                <ScalarProperty Name="ServiceOrderId" ColumnName="ServiceOrderId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

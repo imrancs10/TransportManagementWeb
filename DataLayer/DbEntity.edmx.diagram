@@ -44,6 +44,8 @@
         <AssociationConnector Association="TransportManagementModel.FK_TranshipmentDetail_City" />
         <AssociationConnector Association="TransportManagementModel.FK_TranshipmentDetail_City1" />
         <AssociationConnector Association="TransportManagementModel.FK_ServiceOrderDetail_VendorDetail" />
+        <EntityTypeShape EntityType="TransportManagementModel.ServiceOrderPaymentDetail" Width="1.5" PointX="12" PointY="2.375" />
+        <AssociationConnector Association="TransportManagementModel.FK_ServiceOrderPaymentDetail_ServiceOrderDetail" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

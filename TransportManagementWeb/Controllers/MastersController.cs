@@ -80,16 +80,25 @@ namespace TransportManagementWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveTranshipmentAllotment(int VendorId,int ReferenceId)
+        public ActionResult SaveTranshipmentAllotment(int VendorId, int ReferenceId)
         {
             ServiceOrderBAL detail = new ServiceOrderBAL();
             detail.AllotVendor(VendorId, ReferenceId);
             SetAlertMessage("Vendor allotment added succesfully.", "Service Order");
             return RedirectToAction("TranshipmentAllotment");
         }
+        
         public ActionResult VehicleFreightDetail()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult SaveFreightDetail(int ReferenceId, string TotalFreight, string AdvanceFreight, string BalanceFreight, string LoadingCharge, string UnloadingCharge, string OthersCharge)
+        {
+            ServiceOrderBAL detail = new ServiceOrderBAL();
+            detail.SaveServiceOrderPaymentDetail(ReferenceId, TotalFreight, AdvanceFreight, BalanceFreight, LoadingCharge, UnloadingCharge, OthersCharge);
+            SetAlertMessage("Freight detail added succesfully.", "Service Order");
+            return RedirectToAction("TranshipmentAllotment");
         }
         public ActionResult LRGeneration()
         {

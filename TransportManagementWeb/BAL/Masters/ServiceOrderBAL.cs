@@ -60,5 +60,27 @@ namespace TransportManagementWeb.BAL.Masters
             else
                 return Enums.CrudStatus.DataNotFound;
         }
+        public Enums.CrudStatus SaveServiceOrderPaymentDetail(int ReferenceId, string TotalFreight, string AdvanceFreight, string BalanceFreight, string LoadingCharge, string UnloadingCharge, string OthersCharge)
+        {
+            _db = new TransportManagementEntities();
+            int _effectRow = 0;
+            var _deptRow = _db.ServiceOrderPaymentDetails.Where(x => x.ServiceOrderId == ReferenceId).FirstOrDefault();
+            if (_deptRow == null)
+            {
+                ServiceOrderPaymentDetail _neworder = new ServiceOrderPaymentDetail();
+                _neworder.AdvanceFreight = Convert.ToDecimal(AdvanceFreight);
+                _neworder.BalanceFreight = Convert.ToDecimal(BalanceFreight);
+                _neworder.LoadingCharge = Convert.ToDecimal(LoadingCharge);
+                _neworder.OthersCharge = Convert.ToDecimal(OthersCharge);
+                _neworder.TotalFreight = Convert.ToDecimal(TotalFreight);
+                _neworder.UnloadingCharge = Convert.ToDecimal(UnloadingCharge);
+                _neworder.ServiceOrderId = ReferenceId;
+                _db.Entry(_neworder).State = EntityState.Added;
+                _effectRow = _db.SaveChanges();
+                return _effectRow > 0 ? Enums.CrudStatus.Saved : Enums.CrudStatus.NotSaved;
+            }
+            else
+                return Enums.CrudStatus.DataAlreadyExist;
+        }
     }
 }
