@@ -30,8 +30,8 @@ namespace TransportManagementWeb.BAL.Masters
                 _newclient.PanNumber = panNumber;
                 _newclient.PinCode = int.Parse(pincode);
                 _newclient.StateId = int.Parse(state);
-                _newclient.ClientConcernPersons.Add(new ClientConcernPerson() { ContactNumber = int.Parse(CP1ContactNo), EmailId = CP1EMail });
-                _newclient.ClientConcernPersons.Add(new ClientConcernPerson() { ContactNumber = int.Parse(CP2ContactNo), EmailId = CP2Email });
+                _newclient.ClientConcernPersons.Add(new ClientConcernPerson() { ContactNumber = CP1ContactNo, EmailId = CP1EMail });
+                _newclient.ClientConcernPersons.Add(new ClientConcernPerson() { ContactNumber = CP2ContactNo, EmailId = CP2Email });
                 _db.Entry(_newclient).State = EntityState.Added;
                 _effectRow = _db.SaveChanges();
                 return _effectRow > 0 ? Enums.CrudStatus.Saved : Enums.CrudStatus.NotSaved;

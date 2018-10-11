@@ -17,12 +17,13 @@ namespace DataLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ServiceOrderDetail()
         {
-            this.TranshipmentDetails = new HashSet<TranshipmentDetail>();
-            this.ServiceOrderPaymentDetails = new HashSet<ServiceOrderPaymentDetail>();
             this.LRDetails = new HashSet<LRDetail>();
+            this.ServiceOrderPaymentDetails = new HashSet<ServiceOrderPaymentDetail>();
+            this.TranshipmentDetails = new HashSet<TranshipmentDetail>();
         }
     
         public int Id { get; set; }
+        public string ReferenceNumber { get; set; }
         public Nullable<int> ClientId { get; set; }
         public Nullable<System.DateTime> VehicleRequirementDate { get; set; }
         public Nullable<int> VehicleDetailId { get; set; }
@@ -30,17 +31,16 @@ namespace DataLayer
         public string NatureOfGoods { get; set; }
         public string Freight { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
-        public string ReferenceNumber { get; set; }
         public Nullable<int> VendorId { get; set; }
     
         public virtual ClientDetail ClientDetail { get; set; }
-        public virtual VehicleDetail VehicleDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TranshipmentDetail> TranshipmentDetails { get; set; }
+        public virtual ICollection<LRDetail> LRDetails { get; set; }
+        public virtual VehicleDetail VehicleDetail { get; set; }
         public virtual VendorDetail VendorDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ServiceOrderPaymentDetail> ServiceOrderPaymentDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LRDetail> LRDetails { get; set; }
+        public virtual ICollection<TranshipmentDetail> TranshipmentDetails { get; set; }
     }
 }

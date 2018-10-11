@@ -13,7 +13,7 @@ $(document).ready(function () {
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             type: 'POST',
-            url: '/Masters/GetAllReferenceIds',
+            url: '/Masters/GetAllReferenceIdsForLRPage',
             success: function (data) {
                 $.each(data, function (key, entry) {
                     dropdown.append($('<option></option>').attr('value', entry.Id).text(entry.ReferenceNumber));
@@ -40,7 +40,7 @@ $(document).ready(function () {
             data: '{Id: "' + serviceOrderId + '" }',
             contentType: "application/json; charset=utf-8",
             success: function (data) {
-                var jsonData = jQuery.parseJSON(data);
+                var jsonData = data;
                 $('#GrossWeight').text(jsonData.GrossWeight);
                 $('#NatureOfGoods').text(jsonData.NatureOfGoods);
             },

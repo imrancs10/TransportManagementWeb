@@ -98,7 +98,7 @@ namespace TransportManagementWeb.Controllers
             ServiceOrderBAL detail = new ServiceOrderBAL();
             detail.SaveServiceOrderPaymentDetail(ReferenceId, TotalFreight, AdvanceFreight, BalanceFreight, LoadingCharge, UnloadingCharge, OthersCharge);
             SetAlertMessage("Freight detail added succesfully.", "Service Order");
-            return RedirectToAction("TranshipmentAllotment");
+            return RedirectToAction("VehicleFreightDetail");
         }
         public ActionResult LRGeneration()
         {
@@ -124,7 +124,7 @@ namespace TransportManagementWeb.Controllers
             ownerRCImage = serilizeImagetoByte(OwnerRCScanImage, ownerRCImage);
             ownerpanImage = serilizeImagetoByte(OwnerpanNumberScanImage, ownerpanImage);
             ownerDLImage = serilizeImagetoByte(OwnerDLScanImage, ownerDLImage);
-          
+
             ServiceOrderBAL detail = new ServiceOrderBAL();
             detail.SaveLRDetail(ReferenceId, LRDate, ConsignorName, ConsignorAddress, ConsignorCity, ConsignorPincode, ConsignorContact, ConsignorGST, ConsigneeName, ConsigneeAddress, ConsigneeCity, ConsigneePincode, ConsigneeContact, ConsigneeGST, ProductDetails, GoodsDetail, NoofUnit, ChargeWeight, InvoiceNo, InvoiceValue, EWayBillNo, Remarks, OwnerName, OwnerContactNo, ownerDLImage, ownerpanImage, ownerRCImage, ownerInsuranceImage, DriverName, DriverContactNo, driverDLImage, driverpanImage, otherScanAttachment);
             SetAlertMessage("LR Generated succesfully.", "Service Order");
@@ -202,22 +202,42 @@ namespace TransportManagementWeb.Controllers
         public JsonResult GetAllReferenceIds()
         {
             CommonDetails _details = new CommonDetails();
-            return Json(_details.GetAllReferenceIds());
+            return Json(_details.GetAllReferenceIdsForTrashipmentAlottment());
+        }
+        [HttpPost]
+        public JsonResult GetAllReferenceIdsForFreightPage()
+        {
+            CommonDetails _details = new CommonDetails();
+            return Json(_details.GetAllReferenceIdsForFreightPage());
+        }
+        [HttpPost]
+        public JsonResult GetAllReferenceIdsForLRPage()
+        {
+            CommonDetails _details = new CommonDetails();
+            return Json(_details.GetAllReferenceIdsForLRPage());
         }
         [HttpPost]
         public JsonResult GetServiceOrderDetail(int Id)
         {
-            CommonDetails _details = new CommonDetails();
-            var data = _details.GetServiceOrderDetail(Id);
-            var result = JsonConvert.SerializeObject(data, Formatting.Indented,
-                         new JsonSerializerSettings
-                         {
-                             ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                         });
+            try
+            {
+                CommonDetails _details = new CommonDetails();
+                var data = _details.GetServiceOrderDetail(Id);
+                //var result = JsonConvert.SerializeObject(data, Formatting.Indented,
+                //             new JsonSerializerSettings
+                //             {
+                //                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                //             });
 
-            var jsonResult = Json(result, JsonRequestBehavior.AllowGet);
-            jsonResult.MaxJsonLength = int.MaxValue;
-            return jsonResult;
+                var jsonResult = Json(data, JsonRequestBehavior.AllowGet);
+                //jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            
         }
         [HttpPost]
         public JsonResult GetAllVendorDetail()

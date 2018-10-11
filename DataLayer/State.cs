@@ -19,10 +19,10 @@ namespace DataLayer
         {
             this.Cities = new HashSet<City>();
             this.ClientDetails = new HashSet<ClientDetail>();
+            this.CompanyDetails = new HashSet<CompanyDetail>();
             this.VendorDetails = new HashSet<VendorDetail>();
             this.VendorLineHaulDetails = new HashSet<VendorLineHaulDetail>();
             this.VendorLineHaulDetails1 = new HashSet<VendorLineHaulDetail>();
-            this.CompanyDetails = new HashSet<CompanyDetail>();
         }
     
         public int StateId { get; set; }
@@ -33,6 +33,8 @@ namespace DataLayer
         public virtual ICollection<City> Cities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClientDetail> ClientDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CompanyDetail> CompanyDetails { get; set; }
         public virtual Country Country { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VendorDetail> VendorDetails { get; set; }
@@ -40,7 +42,5 @@ namespace DataLayer
         public virtual ICollection<VendorLineHaulDetail> VendorLineHaulDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VendorLineHaulDetail> VendorLineHaulDetails1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CompanyDetail> CompanyDetails { get; set; }
     }
 }

@@ -5,32 +5,54 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a2b8892f236f440eaeb4dfcf36a494ea" Name="Diagram1">
-        <EntityTypeShape EntityType="TransportManagementModel.City" Width="1.5" PointX="5.25" PointY="13.5" />
-        <EntityTypeShape EntityType="TransportManagementModel.ClientConcernPerson" Width="1.5" PointX="9.75" PointY="16.125" />
-        <EntityTypeShape EntityType="TransportManagementModel.ClientDetail" Width="1.5" PointX="7.5" PointY="10.375" />
-        <EntityTypeShape EntityType="TransportManagementModel.Country" Width="1.5" PointX="0.75" PointY="8.75" />
-        <EntityTypeShape EntityType="TransportManagementModel.ServiceOrderDetail" Width="1.5" PointX="9.75" PointY="5.75" />
-        <EntityTypeShape EntityType="TransportManagementModel.State" Width="1.5" PointX="3" PointY="13.25" />
-        <EntityTypeShape EntityType="TransportManagementModel.TranshipmentDetail" Width="1.5" PointX="12" PointY="6" />
-        <EntityTypeShape EntityType="TransportManagementModel.UnitDetail" Width="1.5" PointX="9.75" PointY="0.75" />
-        <EntityTypeShape EntityType="TransportManagementModel.UserDetail" Width="1.5" PointX="0.75" PointY="1.25" />
-        <EntityTypeShape EntityType="TransportManagementModel.VehicleDetail" Width="1.5" PointX="7.5" PointY="6.375" />
-        <EntityTypeShape EntityType="TransportManagementModel.VehicleType" Width="1.5" PointX="5.25" PointY="6.625" />
-        <EntityTypeShape EntityType="TransportManagementModel.VendorBankDetail" Width="1.5" PointX="12.75" PointY="15.625" />
-        <EntityTypeShape EntityType="TransportManagementModel.VendorConcernPerson" Width="1.5" PointX="12.75" PointY="9.625" />
-        <EntityTypeShape EntityType="TransportManagementModel.VendorDetail" Width="1.5" PointX="10.5" PointY="10" />
-        <EntityTypeShape EntityType="TransportManagementModel.VendorLineHaulDetail" Width="1.5" PointX="15.75" PointY="11.875" />
-        <EntityTypeShape EntityType="TransportManagementModel.WeightLookup" Width="1.5" PointX="9.75" PointY="3.375" />
+        <EntityTypeShape EntityType="TransportManagementModel.City" Width="1.5" PointX="5.25" PointY="26.625" />
+        <EntityTypeShape EntityType="TransportManagementModel.ClientConcernPerson" Width="1.5" PointX="9.75" PointY="39" />
+        <EntityTypeShape EntityType="TransportManagementModel.ClientDetail" Width="1.5" PointX="7.5" PointY="24.125" />
+        <EntityTypeShape EntityType="TransportManagementModel.CompanyDetail" Width="1.5" PointX="7.5" PointY="29.5" />
+        <EntityTypeShape EntityType="TransportManagementModel.ConsigneeDetail" Width="1.5" PointX="18.25" PointY="28.5" />
+        <EntityTypeShape EntityType="TransportManagementModel.ConsignorDetail" Width="1.5" PointX="20.25" PointY="32.5" />
+        <EntityTypeShape EntityType="TransportManagementModel.Country" Width="1.5" PointX="0.75" PointY="22.375" />
+        <EntityTypeShape EntityType="TransportManagementModel.LRDetail" Width="1.5" PointX="15" PointY="32.125" />
+        <EntityTypeShape EntityType="TransportManagementModel.ProductDetail" Width="1.5" PointX="17.25" PointY="42.875" />
+        <EntityTypeShape EntityType="TransportManagementModel.ServiceOrderDetail" Width="1.5" PointX="12.75" PointY="21.125" />
+        <EntityTypeShape EntityType="TransportManagementModel.ServiceOrderPaymentDetail" Width="1.5" PointX="15" PointY="16.5" />
+        <EntityTypeShape EntityType="TransportManagementModel.State" Width="1.5" PointX="3" PointY="26.75" />
+        <EntityTypeShape EntityType="TransportManagementModel.TranshipmentDetail" Width="1.5" PointX="15" PointY="20.875" />
+        <EntityTypeShape EntityType="TransportManagementModel.UnitDetail" Width="1.5" PointX="12.75" PointY="18.5" />
+        <EntityTypeShape EntityType="TransportManagementModel.UserDetail" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TransportManagementModel.VehicleDetail" Width="1.5" PointX="10.5" PointY="20.125" />
+        <EntityTypeShape EntityType="TransportManagementModel.VehicleDriverDetail" Width="1.5" PointX="17.25" PointY="32.625" />
+        <EntityTypeShape EntityType="TransportManagementModel.VehicleOwnerDetail" Width="1.5" PointX="17.25" PointY="39.375" />
+        <EntityTypeShape EntityType="TransportManagementModel.VehicleType" Width="1.5" PointX="8.25" PointY="20.375" />
+        <EntityTypeShape EntityType="TransportManagementModel.VendorBankDetail" Width="1.5" PointX="12.75" PointY="29.375" />
+        <EntityTypeShape EntityType="TransportManagementModel.VendorConcernPerson" Width="1.5" PointX="12.75" PointY="26.5" />
+        <EntityTypeShape EntityType="TransportManagementModel.VendorDetail" Width="1.5" PointX="10.5" PointY="23.625" />
+        <EntityTypeShape EntityType="TransportManagementModel.VendorLineHaulDetail" Width="1.5" PointX="15.75" PointY="25.5" />
+        <EntityTypeShape EntityType="TransportManagementModel.WeightLookup" Width="1.5" PointX="12.75" PointY="15.875" />
         <AssociationConnector Association="TransportManagementModel.FK_City_State" />
         <AssociationConnector Association="TransportManagementModel.FK_ClientDetail_City" />
+        <AssociationConnector Association="TransportManagementModel.FK_CompanyDetail_City" />
+        <AssociationConnector Association="TransportManagementModel.FK_ConsigneeDetail_City" />
+        <AssociationConnector Association="TransportManagementModel.FK_ConsignorDetail_City" />
+        <AssociationConnector Association="TransportManagementModel.FK_TranshipmentDetail_City" />
+        <AssociationConnector Association="TransportManagementModel.FK_TranshipmentDetail_City1" />
         <AssociationConnector Association="TransportManagementModel.FK_VendorDetail_City" />
         <AssociationConnector Association="TransportManagementModel.FK_ClientConcernPerson_ClientDetail" />
         <AssociationConnector Association="TransportManagementModel.FK_ClientDetail_Country" />
         <AssociationConnector Association="TransportManagementModel.FK_ClientDetail_State" />
         <AssociationConnector Association="TransportManagementModel.FK_ServiceOrderDetail_ClientDetail" />
+        <AssociationConnector Association="TransportManagementModel.FK_CompanyDetail_State" />
+        <AssociationConnector Association="TransportManagementModel.FK_ConsigneeDetail_LRDetail" />
+        <AssociationConnector Association="TransportManagementModel.FK_ConsignorDetail_LRDetail" />
         <AssociationConnector Association="TransportManagementModel.FK_State_Country" />
         <AssociationConnector Association="TransportManagementModel.FK_VendorDetail_Country" />
+        <AssociationConnector Association="TransportManagementModel.FK_LRDetail_ServiceOrderDetail" />
+        <AssociationConnector Association="TransportManagementModel.FK_ProductDetail_LRDetail" />
+        <AssociationConnector Association="TransportManagementModel.FK_VehicleDriverDetail_LRDetail" />
+        <AssociationConnector Association="TransportManagementModel.FK_VehicleOwnerDetail_LRDetail" />
         <AssociationConnector Association="TransportManagementModel.FK_ServiceOrderDetail_VehicleDetail" />
+        <AssociationConnector Association="TransportManagementModel.FK_ServiceOrderDetail_VendorDetail" />
+        <AssociationConnector Association="TransportManagementModel.FK_ServiceOrderPaymentDetail_ServiceOrderDetail" />
         <AssociationConnector Association="TransportManagementModel.FK_TranshipmentDetail_ServiceOrderDetail" />
         <AssociationConnector Association="TransportManagementModel.FK_VendorDetail_State" />
         <AssociationConnector Association="TransportManagementModel.FK_VendorLineHaulDetail_State" />
@@ -41,28 +63,6 @@
         <AssociationConnector Association="TransportManagementModel.FK_VendorBankDetail_VendorDetail" />
         <AssociationConnector Association="TransportManagementModel.FK_VendorConcernPerson_VendorDetail" />
         <AssociationConnector Association="TransportManagementModel.FK_VendorLineHaulDetail_VendorDetail" />
-        <AssociationConnector Association="TransportManagementModel.FK_TranshipmentDetail_City" />
-        <AssociationConnector Association="TransportManagementModel.FK_TranshipmentDetail_City1" />
-        <AssociationConnector Association="TransportManagementModel.FK_ServiceOrderDetail_VendorDetail" />
-        <EntityTypeShape EntityType="TransportManagementModel.ServiceOrderPaymentDetail" Width="1.5" PointX="12" PointY="2.375" />
-        <AssociationConnector Association="TransportManagementModel.FK_ServiceOrderPaymentDetail_ServiceOrderDetail" />
-        <EntityTypeShape EntityType="TransportManagementModel.CompanyDetail" Width="1.5" PointX="7.5" PointY="16.125" />
-        <EntityTypeShape EntityType="TransportManagementModel.ConsigneeDetail" Width="1.5" PointX="20.625" PointY="18.625" />
-        <EntityTypeShape EntityType="TransportManagementModel.ConsignorDetail" Width="1.5" PointX="17.625" PointY="18.625" />
-        <EntityTypeShape EntityType="TransportManagementModel.LRDetail" Width="1.5" PointX="15.375" PointY="23.875" />
-        <EntityTypeShape EntityType="TransportManagementModel.ProductDetail" Width="1.5" PointX="17.625" PointY="34.375" />
-        <EntityTypeShape EntityType="TransportManagementModel.VehicleDriverDetail" Width="1.5" PointX="17.625" PointY="27.75" />
-        <EntityTypeShape EntityType="TransportManagementModel.VehicleOwnerDetail" Width="1.5" PointX="17.625" PointY="30.875" />
-        <AssociationConnector Association="TransportManagementModel.FK_CompanyDetail_City" />
-        <AssociationConnector Association="TransportManagementModel.FK_ConsigneeDetail_City" />
-        <AssociationConnector Association="TransportManagementModel.FK_ConsignorDetail_City" />
-        <AssociationConnector Association="TransportManagementModel.FK_CompanyDetail_State" />
-        <AssociationConnector Association="TransportManagementModel.FK_ConsigneeDetail_LRDetail" />
-        <AssociationConnector Association="TransportManagementModel.FK_ConsignorDetail_LRDetail" />
-        <AssociationConnector Association="TransportManagementModel.FK_ProductDetail_LRDetail" />
-        <AssociationConnector Association="TransportManagementModel.FK_VehicleDriverDetail_LRDetail" />
-        <AssociationConnector Association="TransportManagementModel.FK_VehicleOwnerDetail_LRDetail" />
-        <AssociationConnector Association="TransportManagementModel.FK_LRDetail_ServiceOrderDetail" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

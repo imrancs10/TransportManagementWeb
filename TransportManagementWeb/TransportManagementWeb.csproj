@@ -275,6 +275,7 @@
     <Compile Include="Infrastructure\Utility\EmailHelper.cs" />
     <Compile Include="Infrastructure\Utility\Serializer.cs" />
     <Compile Include="Infrastructure\Utility\VerificationCodeGeneration.cs" />
+    <Compile Include="Models\Masters\ServiceOrderModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -423,7 +424,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
     <Folder Include="Models\Common\" />
-    <Folder Include="Models\Masters\" />
     <Folder Include="Views\Common\" />
   </ItemGroup>
   <ItemGroup>

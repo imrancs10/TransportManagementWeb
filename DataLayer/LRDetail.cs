@@ -34,12 +34,12 @@ namespace DataLayer
         public virtual ICollection<ConsigneeDetail> ConsigneeDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ConsignorDetail> ConsignorDetails { get; set; }
+        public virtual ServiceOrderDetail ServiceOrderDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductDetail> ProductDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VehicleDriverDetail> VehicleDriverDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VehicleOwnerDetail> VehicleOwnerDetails { get; set; }
-        public virtual ServiceOrderDetail ServiceOrderDetail { get; set; }
     }
 }

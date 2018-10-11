@@ -32,8 +32,8 @@ namespace TransportManagementWeb.BAL.Masters
                 _newclient.StateId = int.Parse(state);
                 _newclient.PanNumberScanCopy = panImage;
                 _newclient.GSTNNumberScanCopy = gstImage;
-                _newclient.VendorConcernPersons.Add(new VendorConcernPerson() { ContactNumber = int.Parse(CP1ContactNo), EmailId = CP1EMail });
-                _newclient.VendorConcernPersons.Add(new VendorConcernPerson() { ContactNumber = int.Parse(CP2ContactNo), EmailId = CP2Email });
+                _newclient.VendorConcernPersons.Add(new VendorConcernPerson() { ContactNumber = CP1ContactNo, EmailId = CP1EMail });
+                _newclient.VendorConcernPersons.Add(new VendorConcernPerson() { ContactNumber = CP2ContactNo, EmailId = CP2Email });
                 _newclient.VendorBankDetails.Add(new VendorBankDetail()
                 {
                     AccountHolderName = AccountHolderName,

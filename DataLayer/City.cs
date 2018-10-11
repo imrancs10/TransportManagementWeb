@@ -18,12 +18,12 @@ namespace DataLayer
         public City()
         {
             this.ClientDetails = new HashSet<ClientDetail>();
-            this.VendorDetails = new HashSet<VendorDetail>();
-            this.TranshipmentDetails = new HashSet<TranshipmentDetail>();
-            this.TranshipmentDetails1 = new HashSet<TranshipmentDetail>();
             this.CompanyDetails = new HashSet<CompanyDetail>();
             this.ConsigneeDetails = new HashSet<ConsigneeDetail>();
             this.ConsignorDetails = new HashSet<ConsignorDetail>();
+            this.TranshipmentDetails = new HashSet<TranshipmentDetail>();
+            this.TranshipmentDetails1 = new HashSet<TranshipmentDetail>();
+            this.VendorDetails = new HashSet<VendorDetail>();
         }
     
         public int CityId { get; set; }
@@ -34,16 +34,16 @@ namespace DataLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClientDetail> ClientDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VendorDetail> VendorDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TranshipmentDetail> TranshipmentDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TranshipmentDetail> TranshipmentDetails1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CompanyDetail> CompanyDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ConsigneeDetail> ConsigneeDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ConsignorDetail> ConsignorDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TranshipmentDetail> TranshipmentDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TranshipmentDetail> TranshipmentDetails1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VendorDetail> VendorDetails { get; set; }
     }
 }

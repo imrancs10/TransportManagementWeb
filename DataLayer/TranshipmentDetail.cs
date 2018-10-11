@@ -21,10 +21,10 @@ namespace DataLayer
         public Nullable<int> UnitId { get; set; }
         public Nullable<int> ServiceOrderId { get; set; }
     
+        public virtual City City { get; set; }
+        public virtual City City1 { get; set; }
         public virtual ServiceOrderDetail ServiceOrderDetail { get; set; }
         public virtual UnitDetail UnitDetail { get; set; }
         public virtual WeightLookup WeightLookup { get; set; }
-        public virtual City City { get; set; }
-        public virtual City City1 { get; set; }
     }
 }
