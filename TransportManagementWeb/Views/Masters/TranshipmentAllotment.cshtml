@@ -6,8 +6,7 @@
 <!-- ============================================
 MAIN CONTENT SECTION
 =============================================== -->
-@using (Html.BeginForm("SaveTranshipmentAllotment", "Masters", FormMethod.Post))
-{
+<form action="SaveTranshipmentAllotment" method="post">
     <section class="content-wrapper" role="main">
         <div class="content">
 
@@ -214,8 +213,7 @@ MAIN CONTENT SECTION
                                         <div class="form-group mt-lg">
                                             <label class="col-sm-2 control-label">Vendor Name</label>
                                             <div class="col-sm-10">
-                                                <select name="VendorId" id="VendorDropdown" class="form-control required">
-                                                </select>
+                                                <select name="VendorId" id="VendorDropdown" class="form-control required"></select>
                                             </div>
                                         </div>
                                     </div>
@@ -243,7 +241,7 @@ MAIN CONTENT SECTION
             <div class="clearfix"></div>
         </div><!-- /.content -->
     </section>
-}
+</form>
 <!-- /MAIN -->
 <script>
     $(function () {

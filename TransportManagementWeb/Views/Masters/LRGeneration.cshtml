@@ -6,8 +6,7 @@
 <!-- ============================================
 MAIN CONTENT SECTION
 =============================================== -->
-@using (Html.BeginForm("SaveLRDetail", "Masters", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
+<form action="SaveLRDetail" method="post" enctype="multipart/form-data">
     <section class="content-wrapper" role="main">
         <div class="content">
             <div class="content-bar">
@@ -573,7 +572,7 @@ MAIN CONTENT SECTION
             </div>
         </div>
     </section>
-}
+</form>
 <!-- /MAIN -->
 <script>
     $(function () {

@@ -6,8 +6,7 @@
 <!-- ============================================
 MAIN CONTENT SECTION
 =============================================== -->
-@using (Html.BeginForm("SaveFreightDetail", "Masters", FormMethod.Post))
-{
+<form action="SaveFreightDetail" method="post">
     <section class="content-wrapper" role="main">
         <div class="content">
 
@@ -316,7 +315,7 @@ MAIN CONTENT SECTION
             <div class="clearfix"></div>
         </div><!-- /.content -->
     </section>
-}
+</form>
 <!-- /MAIN -->
 <script>
     $(function () {

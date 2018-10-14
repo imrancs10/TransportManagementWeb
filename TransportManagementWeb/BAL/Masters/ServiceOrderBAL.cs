@@ -82,7 +82,7 @@ namespace TransportManagementWeb.BAL.Masters
             else
                 return Enums.CrudStatus.DataAlreadyExist;
         }
-        public Enums.CrudStatus SaveLRDetail(int ReferenceId, string LRDate, string ConsignorName, string ConsignorAddress, string ConsignorCity, string ConsignorPincode, string ConsignorContact, string ConsignorGST, string ConsigneeName, string ConsigneeAddress, string ConsigneeCity, string ConsigneePincode, string ConsigneeContact, string ConsigneeGST, string productDetail, string GoodsDetail, string NoofUnit, string ChargeWeight, string InvoiceNo, string InvoiceValue, string EWayBillNo, string Remarks, string OwnerName, string OwnerContactNo, byte[] OwnerDLScanImage, byte[] OwnerpanNumberScanImage, byte[] OwnerRCScanImage, byte[] OwnerInsuranceScanImage, string DriverName, string DriverContactNo, byte[] DriverDLScanImage, byte[] DriverpanNumberScanImage, byte[] OtherScanAttachment)
+        public LRDetail SaveLRDetail(int ReferenceId, string LRDate, string ConsignorName, string ConsignorAddress, string ConsignorCity, string ConsignorPincode, string ConsignorContact, string ConsignorGST, string ConsigneeName, string ConsigneeAddress, string ConsigneeCity, string ConsigneePincode, string ConsigneeContact, string ConsigneeGST, string productDetail, string GoodsDetail, string NoofUnit, string ChargeWeight, string InvoiceNo, string InvoiceValue, string EWayBillNo, string Remarks, string OwnerName, string OwnerContactNo, byte[] OwnerDLScanImage, byte[] OwnerpanNumberScanImage, byte[] OwnerRCScanImage, byte[] OwnerInsuranceScanImage, string DriverName, string DriverContactNo, byte[] DriverDLScanImage, byte[] DriverpanNumberScanImage, byte[] OtherScanAttachment)
         {
             string lrNumber = VerificationCodeGeneration.GetSerialNumber();
             _db = new TransportManagementEntities();
@@ -142,10 +142,10 @@ namespace TransportManagementWeb.BAL.Masters
                 });
                 _db.Entry(_neworder).State = EntityState.Added;
                 _effectRow = _db.SaveChanges();
-                return _effectRow > 0 ? Enums.CrudStatus.Saved : Enums.CrudStatus.NotSaved;
+                return _effectRow > 0 ? _neworder : null;
             }
             else
-                return Enums.CrudStatus.DataAlreadyExist;
+                return null;
         }
     }
 }

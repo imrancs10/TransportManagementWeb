@@ -126,8 +126,8 @@ namespace TransportManagementWeb.Controllers
             ownerDLImage = serilizeImagetoByte(OwnerDLScanImage, ownerDLImage);
 
             ServiceOrderBAL detail = new ServiceOrderBAL();
-            detail.SaveLRDetail(ReferenceId, LRDate, ConsignorName, ConsignorAddress, ConsignorCity, ConsignorPincode, ConsignorContact, ConsignorGST, ConsigneeName, ConsigneeAddress, ConsigneeCity, ConsigneePincode, ConsigneeContact, ConsigneeGST, ProductDetails, GoodsDetail, NoofUnit, ChargeWeight, InvoiceNo, InvoiceValue, EWayBillNo, Remarks, OwnerName, OwnerContactNo, ownerDLImage, ownerpanImage, ownerRCImage, ownerInsuranceImage, DriverName, DriverContactNo, driverDLImage, driverpanImage, otherScanAttachment);
-            SetAlertMessage("LR Generated succesfully.", "Service Order");
+            var lrDetail = detail.SaveLRDetail(ReferenceId, LRDate, ConsignorName, ConsignorAddress, ConsignorCity, ConsignorPincode, ConsignorContact, ConsignorGST, ConsigneeName, ConsigneeAddress, ConsigneeCity, ConsigneePincode, ConsigneeContact, ConsigneeGST, ProductDetails, GoodsDetail, NoofUnit, ChargeWeight, InvoiceNo, InvoiceValue, EWayBillNo, Remarks, OwnerName, OwnerContactNo, ownerDLImage, ownerpanImage, ownerRCImage, ownerInsuranceImage, DriverName, DriverContactNo, driverDLImage, driverpanImage, otherScanAttachment);
+            SetAlertMessage("LR Generated succesfully with LR Number " + lrDetail.LRNumber + ".", "Service Order");
             return RedirectToAction("LRGeneration");
         }
 
@@ -237,7 +237,7 @@ namespace TransportManagementWeb.Controllers
             {
                 throw;
             }
-            
+
         }
         [HttpPost]
         public JsonResult GetAllVendorDetail()
