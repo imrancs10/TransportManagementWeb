@@ -18,6 +18,11 @@ $(document).ready(function () {
                 $.each(data, function (key, entry) {
                     dropdown.append($('<option></option>').attr('value', entry.Id).text(entry.ReferenceNumber));
                 });
+                var refId = getUrlParameter('referenceId');
+                if (refId !== null && typeof refId !== 'undefined') {
+                    $('#ReferenceDropdown').val(refId);
+                    $('#ReferenceDropdown').change();
+                }
             },
             failure: function (response) {
                 alert(response);
@@ -85,5 +90,20 @@ $(document).ready(function () {
         }
         $('#BalanceFreight').val(totalFreight - advanceFreight);
     });
+
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = window.location.search.substring(1),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+            }
+        }
+    };
 });
 

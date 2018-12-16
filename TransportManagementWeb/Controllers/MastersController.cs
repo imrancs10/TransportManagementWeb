@@ -7,6 +7,7 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using TransportManagementWeb.BAL.Commom;
 using TransportManagementWeb.BAL.Masters;
+using TransportManagementWeb.Global;
 
 namespace TransportManagementWeb.Controllers
 {
@@ -83,12 +84,16 @@ namespace TransportManagementWeb.Controllers
         public ActionResult SaveTranshipmentAllotment(int VendorId, int ReferenceId)
         {
             ServiceOrderBAL detail = new ServiceOrderBAL();
-            detail.AllotVendor(VendorId, ReferenceId);
-            SetAlertMessage("Vendor allotment added succesfully.", "Service Order");
+            var result = detail.AllotVendor(VendorId, ReferenceId);
+            if (result == Enums.CrudStatus.Saved)
+            {
+                SetAlertMessage("Vendor allotment added succesfully.", "Service Order");
+                return RedirectToAction("VehicleFreightDetail", new { referenceId = ReferenceId });
+            }
             return RedirectToAction("TranshipmentAllotment");
         }
 
-        public ActionResult VehicleFreightDetail()
+        public ActionResult VehicleFreightDetail(string referenceId)
         {
             return View();
         }
