@@ -1,0 +1,265 @@
+﻿@{
+    ViewBag.Title = "Bill Entry";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form>
+    <section class="content-wrapper" role="main">
+        <div class="content">
+
+            <div class="content-bar">
+                <ul class="breadcrumb breadcrumb-angle">
+                    <li><a href="#" aria-label="home"><i class="fa fa-home"></i></a></li>
+                    <li class="active">Bill Summary</li>
+                </ul>
+            </div><!-- /.content-bar -->
+            <hr />
+
+            <div class="content-body">
+
+                <div class="col-lg-12">
+                    <div class="featured-box featured-box-primary align-left mt-xlg">
+                        <div class="box-content">
+                            <div class="row">
+                                <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Bill Summary</h4></div>
+                            </div>
+                            <hr class="tall">
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Client Name</label>
+                                            <div class="col-sm-8">
+                                                <select name="ClientId" id="ClientDropdown" class="form-control required"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Invoice Date</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-in">
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                    <input type="date" name="InvoiceDate" data-input="daterangepicker" data-single-date-picker="true" data-show-dropdowns="true" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <br />
+                            <div class="table-responsive table-bordered">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="table-bordered bg-primary">
+                                            <th>Consignment No.</th>
+                                            <th>Description</th>
+                                            <th>Sac Code</th>
+                                            <th>Qty</th>
+                                            <th>Charges</th>
+                                            <th>Total</th>
+                                            <th>Discount In %</th>
+                                            <th>Discount  Amount</th>
+                                            <th>Total Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tr>
+                                        <td>
+                                            <select name="ConsignmentId" id="ConsignmentDropdown" class="form-control" required style="padding:0px"></select>
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" id="ConsignmentDesc"  class="form-control" placeholder="Description">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" id="ConsignmentSACCode"  class="form-control" placeholder="Sac Code">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" id="ConsignmentQty"  class="form-control" placeholder="Qty">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" id="ConsignmentCharges"  class="form-control" placeholder="Charges">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" id="ConsignmentTotal" readonly  class="form-control" placeholder="Total">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" id="ConsignmentDiscount"  class="form-control" placeholder="Discount In %">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" id="ConsignmentDiscountAmount" readonly class="form-control" placeholder="Discount  Amount">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" id="ConsignmentGrandTotal" readonly class="form-control" placeholder="Total Amount">
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Docket Charge</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="txtDocketCharge"  class="form-control" placeholder="Area">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Add CGST</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="txtAddCGST"  class="form-control" readonly placeholder="Add CGST">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Add SGST</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="txtAddSGST"  class="form-control" readonly placeholder="Add SGST">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Add IGST 5%</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="txtAddIGST"  class="form-control" readonly placeholder="Add IGST">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Loading Charge</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="txtLoadingCharge" readonly class="form-control" placeholder="Loading Charges">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Unloading Charge</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="txtUnloadingCharge" readonly class="form-control" placeholder="Unloading Charges">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Add Cess</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="txtAddCess" class="form-control" placeholder="Add Cess">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Total Tax</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="txtTotalTax" class="form-control" readonly placeholder="Add Tax">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Advance Amount</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="txtAdvanceAmount" class="form-control" placeholder="Advance Amount">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">R/Off</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="txtRoundOff" class="form-control" placeholder="Round Off">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-area-chart"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-5">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="btn-divider mr-2x mb-1x" role="divider">
+                                <input id="btnSave" type="submit" value="Submit" name="submit" class="btn btn-primary">
+                                <span class="label-divider" id="Span1">or</span>
+                                <!--<input id="btncancel" type="submit" name="reset" value="Cancel" class="btn btn-default" onclick="btnreset_Click"/>-->
+                                <a href="~/Master/BillEntry" class="btn btn-default">Reset</a>
+                                @*<input id="btncancel" type="submit" value="Reset" name="reset" class="btn btn-default">*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div><!-- /.content -->
+    </section>
+</form>
+<script>
+    $(function () {
+        $(document).ready(function () {
+            $('.BillEntryPageActive').addClass('active');
+        })
+    });
+</script>
+<script src="~/Scripts/App/Masters/BillEntry.js"></script>

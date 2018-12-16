@@ -12,7 +12,7 @@ namespace DataLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class ClientLeadgerDescription
+    public partial class ClientBillDescription
     {
         public int Id { get; set; }
         public Nullable<int> ClientLeadgerDetailId { get; set; }
@@ -26,6 +26,6 @@ namespace DataLayer
         public string Discount { get; set; }
         public string TotalAmount { get; set; }
     
-        public virtual ClientLeadgerDetail ClientLeadgerDetail { get; set; }
+        public virtual ClientBillDetail ClientBillDetail { get; set; }
     }
 }

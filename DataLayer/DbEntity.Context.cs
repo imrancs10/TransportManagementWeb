@@ -26,6 +26,8 @@ namespace DataLayer
         }
     
         public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<ClientBillDescription> ClientBillDescriptions { get; set; }
+        public virtual DbSet<ClientBillDetail> ClientBillDetails { get; set; }
         public virtual DbSet<ClientConcernPerson> ClientConcernPersons { get; set; }
         public virtual DbSet<ClientDetail> ClientDetails { get; set; }
         public virtual DbSet<CompanyDetail> CompanyDetails { get; set; }
@@ -49,7 +51,5 @@ namespace DataLayer
         public virtual DbSet<VendorDetail> VendorDetails { get; set; }
         public virtual DbSet<VendorLineHaulDetail> VendorLineHaulDetails { get; set; }
         public virtual DbSet<WeightLookup> WeightLookups { get; set; }
-        public virtual DbSet<ClientLeadgerDescription> ClientLeadgerDescriptions { get; set; }
-        public virtual DbSet<ClientLeadgerDetail> ClientLeadgerDetails { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Web;
 using DataLayer;
 using System.Data.Entity;
 using TransportManagementWeb.Global;
+using TransportManagementWeb.Models.Masters;
 
 namespace TransportManagementWeb.BAL.Masters
 {
@@ -39,35 +40,40 @@ namespace TransportManagementWeb.BAL.Masters
             else
                 return Enums.CrudStatus.DataAlreadyExist;
         }
-        public Enums.CrudStatus EditDept(string deptName, int deptId)
+        public Enums.CrudStatus BillEntrySave(ClientBillDetailModel model)
         {
             _db = new TransportManagementEntities();
-            //int _effectRow = 0;
-            //var _deptRow = _db.Departments.Where(x => x.DepartmentID.Equals(deptId)).FirstOrDefault();
-            //if (_deptRow != null)
-            //{
-            //    _deptRow.DepartmentName = deptName;
-            //    _db.Entry(_deptRow).State = EntityState.Modified;
-            //    _effectRow = _db.SaveChanges();
-            //    return _effectRow > 0 ? Enums.CrudStatus.Updated : Enums.CrudStatus.NotUpdated;
-            //}
-            //else
-            return Enums.CrudStatus.DataNotFound;
-        }
-        public Enums.CrudStatus DeleteDept(int deptId)
-        {
-            _db = new TransportManagementEntities();
-            //int _effectRow = 0;
-            //var _deptRow = _db.Departments.Where(x => x.DepartmentID.Equals(deptId)).FirstOrDefault();
-            //if (_deptRow != null)
-            //{
-            //    _db.Departments.Remove(_deptRow);
-            //    //_db.Entry(_deptRow).State = EntityState.Deleted;
-            //    _effectRow = _db.SaveChanges();
-            //    return _effectRow > 0 ? Enums.CrudStatus.Deleted : Enums.CrudStatus.NotDeleted;
-            //}
-            //else
-            return Enums.CrudStatus.DataNotFound;
+            int _effectRow = 0;
+            ClientBillDetail _newclient = new ClientBillDetail();
+            _newclient.AdvanceAmount = model.AdvanceAmount;
+            _newclient.Cess = model.Cess;
+            _newclient.CGST = model.CGST;
+            _newclient.ClientId = model.ClientId;
+            _newclient.DocketCharge = model.DocketCharge;
+            _newclient.IGST = model.IGST;
+            _newclient.InvoiceDate = model.InvoiceDate;
+            _newclient.InvoiceNumber = model.InvoiceNumber;
+            _newclient.LoadingCharge = model.LoadingCharge;
+            _newclient.RoundOff = model.RoundOff;
+            _newclient.SGST = model.SGST;
+            _newclient.Tax = model.Tax;
+            _newclient.UnloadingCharge = model.UnloadingCharge;
+            _newclient.ClientBillDescriptions.Add(new ClientBillDescription()
+            {
+                Charges=model.ClientBillDescriptions[0].Charges,
+                ConsighmentNumber = model.ClientBillDescriptions[0].ConsighmentNumber,
+                Discount = model.ClientBillDescriptions[0].Discount,
+                Description = model.ClientBillDescriptions[0].Description,
+                DiscountPercentage = model.ClientBillDescriptions[0].DiscountPercentage,
+                Quantity = model.ClientBillDescriptions[0].Quantity ,
+                SACCode = model.ClientBillDescriptions[0].SACCode,
+                Total = model.ClientBillDescriptions[0].Total,
+                TotalAmount = model.ClientBillDescriptions[0].TotalAmount,
+            });
+            _db.Entry(_newclient).State = EntityState.Added;
+            _effectRow = _db.SaveChanges();
+            return _effectRow > 0 ? Enums.CrudStatus.Saved : Enums.CrudStatus.NotSaved;
+
         }
 
     }

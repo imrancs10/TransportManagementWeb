@@ -92,7 +92,7 @@ namespace TransportManagementWeb.BAL.Commom
         {
             _db = new TransportManagementEntities();
             //_db.Configuration.LazyLoadingEnabled = false;
-            var data = _db.ServiceOrderDetails
+            var data = _db.ServiceOrderDetails.Include(x => x.ClientDetail).Include(x => x.VehicleDetail)
                         .Where(x => x.Id == Id)
                         .FirstOrDefault();
             ServiceOrderModel model = new ServiceOrderModel()
@@ -136,6 +136,23 @@ namespace TransportManagementWeb.BAL.Commom
 
             return result;
 
+        }
+
+        public List<LRDetail> GetAllLRDetailsByClientId(int clientId)
+        {
+            _db = new TransportManagementEntities();
+            _db.Configuration.LazyLoadingEnabled = false;
+            var result = _db.LRDetails.Include(x => x.ServiceOrderDetail).Where(x => x.ServiceOrderDetail.ClientId == clientId).ToList();
+            return result;
+        }
+
+        public LRDetail GetLRDetailByLRId(int LRId)
+        {
+            _db = new TransportManagementEntities();
+            _db.Configuration.LazyLoadingEnabled = false;
+            //var result = _db.LRDetails.Include("ServiceOrderDetail").Include("ServiceOrderDetail.ServiceOrderPaymentDetails").Where(x => x.Id == LRId).FirstOrDefault();
+            var result = _db.LRDetails.Where(x => x.Id == LRId).FirstOrDefault();
+            return result;
         }
     }
 }

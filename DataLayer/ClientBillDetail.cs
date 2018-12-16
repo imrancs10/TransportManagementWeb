@@ -12,12 +12,12 @@ namespace DataLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class ClientLeadgerDetail
+    public partial class ClientBillDetail
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ClientLeadgerDetail()
+        public ClientBillDetail()
         {
-            this.ClientLeadgerDescriptions = new HashSet<ClientLeadgerDescription>();
+            this.ClientBillDescriptions = new HashSet<ClientBillDescription>();
         }
     
         public int Id { get; set; }
@@ -26,13 +26,17 @@ namespace DataLayer
         public string CGST { get; set; }
         public string SGST { get; set; }
         public string IGST { get; set; }
-        public string LoadingUnloadingCharge { get; set; }
+        public string LoadingCharge { get; set; }
         public string Cess { get; set; }
         public string Tax { get; set; }
         public string RoundOff { get; set; }
+        public Nullable<System.DateTime> InvoiceDate { get; set; }
+        public string UnloadingCharge { get; set; }
+        public string InvoiceNumber { get; set; }
+        public string AdvanceAmount { get; set; }
     
-        public virtual ClientDetail ClientDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClientLeadgerDescription> ClientLeadgerDescriptions { get; set; }
+        public virtual ICollection<ClientBillDescription> ClientBillDescriptions { get; set; }
+        public virtual ClientDetail ClientDetail { get; set; }
     }
 }

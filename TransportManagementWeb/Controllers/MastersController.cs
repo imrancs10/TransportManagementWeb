@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using TransportManagementWeb.BAL.Commom;
 using TransportManagementWeb.BAL.Masters;
 using TransportManagementWeb.Global;
+using TransportManagementWeb.Models.Masters;
 
 namespace TransportManagementWeb.Controllers
 {
@@ -248,6 +249,40 @@ namespace TransportManagementWeb.Controllers
             Session.Abandon();
             Session.Clear();
             return RedirectToAction("Home", "Login");
+        }
+
+        public ActionResult BillReport()
+        {
+            return View();
+        }
+        public ActionResult BillEntry()
+        {
+            return View();
+        }
+        public ActionResult LedgerReport()
+        {
+            return View();
+        }
+        [HttpPost]
+        public JsonResult GetAllLRDetails(int clientId)
+        {
+            CommonDetails _details = new CommonDetails();
+            return Json(_details.GetAllLRDetailsByClientId(clientId));
+        }
+
+        [HttpPost]
+        public JsonResult GetLRDetailByLRId(int LRId)
+        {
+            CommonDetails _details = new CommonDetails();
+            return Json(_details.GetLRDetailByLRId(LRId));
+        }
+
+        [HttpPost]
+        public JsonResult BillEntrySave(ClientBillDetailModel model)
+        {
+            ClientDetailBAL detail = new ClientDetailBAL();
+            var result = detail.BillEntrySave(model);
+            return Json(CrudResponse(result), JsonRequestBehavior.AllowGet);
         }
     }
 }
