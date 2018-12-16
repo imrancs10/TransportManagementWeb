@@ -94,7 +94,7 @@ namespace TransportManagementWeb.Controllers
             return RedirectToAction("TranshipmentAllotment");
         }
 
-        public ActionResult VehicleFreightDetail(string referenceId,string ClientÌd)
+        public ActionResult VehicleFreightDetail(string referenceId, string ClientÌd)
         {
             return View();
         }
@@ -251,8 +251,13 @@ namespace TransportManagementWeb.Controllers
             return RedirectToAction("Home", "Login");
         }
 
-        public ActionResult BillReport()
+        public ActionResult BillReport(string invoiceNo)
         {
+            if (!string.IsNullOrEmpty(invoiceNo))
+            {
+                CommonDetails _details = new CommonDetails();
+                ViewData["InvoiceDetail"] = _details.GetBillDetailByInvoiceId(Convert.ToInt32(invoiceNo));
+            }
             return View();
         }
         public ActionResult BillEntry()
@@ -284,5 +289,18 @@ namespace TransportManagementWeb.Controllers
             var result = detail.BillEntrySave(model);
             return Json(CrudResponse(result), JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public JsonResult GetAllInvoiceDetail()
+        {
+            CommonDetails _details = new CommonDetails();
+            return Json(_details.GetAllInvoiceDetail());
+        }
+
+        //[HttpPost]
+        //public JsonResult GetBillDetailByInvoiceId(int invoiceId)
+        //{
+        //    CommonDetails _details = new CommonDetails();
+        //    return Json(_details.GetBillDetailByInvoiceId(invoiceId));
+        //}
     }
 }

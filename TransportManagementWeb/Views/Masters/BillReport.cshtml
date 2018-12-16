@@ -1,9 +1,13 @@
-﻿@{
-    ViewBag.Title = "Transhipment Detail";
+﻿@using DataLayer;
+@using System.Data;
+@using System.Linq;
+
+@{
+    ViewBag.Title = "Bill Report";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<form action="SaveTranshipmentAllotment" method="post">
+<form>
     <section class="content-wrapper" role="main" style="height:1200px;">
         <div class="content">
             <div class="bg-light hidden">
@@ -22,9 +26,7 @@
 
                 </div><!-- /.content-hero-body -->
             </div><!-- /.content-hero -->
-
             <div class="content-body">
-
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
@@ -32,200 +34,216 @@
                                 <h2 class="centre">Credit Bill</h2>
                                 <hr />
                                 <div class="row">
-                                    <div class="col-md-10 col-md-offset-1">
-                                        <div class="row" style="border:1px solid #eceeef;padding-top:15px;" ;>
-                                            <div class="col-md-2">
-                                                <h5><strong>CIN:</strong></h5>
-                                                <h5><strong>GST NO:</strong></h5>
-                                                <h5><strong>PAN:</strong></h5>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <h5><strong>SE 2018-0358830</strong></h5>
-                                                <h5><strong>PP 2018/085870</strong></h5>
-                                                <h5><strong>AAGCDNGHT</strong></h5>
-                                            </div>
-
-                                            <div class="col-md-2 col-md-offset-4">
-                                                <h5><strong>Invoice Date:</strong></h5>
-                                                <h5><strong>Invoice No:</strong></h5>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <h5><strong>12/11/2018</strong></h5>
-                                                <h5><strong>DIL/UP/17-18/043</strong></h5>
-                                            </div>
-                                        </div>
-
-                                        <div class="row" style="border:1px solid #eceeef;padding-top:15px;">
-                                            <div class="col-md-4">
-                                                <h5><strong>Client Details</strong></h5>
-                                                <h5><strong>Ms Durian Industries Ltd</strong></h5>
-                                                <h5><strong>Plot no 09, Chuintu Padda,Palghar</strong></h5>
-                                                <h5><strong>Maharashtra</strong></h5>
-                                                <h5><strong>PAN:</strong></h5>
-                                            </div>
-                                            <div class="col-md-4 col-md-offset-4">
-                                                <h5><strong>Branch Office</strong></h5>
-                                                <h5><strong>FF 209 139</strong></h5>
-                                                <h5><strong>1st floor, Narayan Plaza</strong></h5>
-                                                <h5><strong>Aliganj, Lucknow-226020</strong></h5>
-                                                <h5><strong>Mobile: +91-9616144446</strong></h5>
+                                    <div class="col-md-6 col-md-offset-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Invoice Number</label>
+                                            <div class="col-sm-8">
+                                                <select name="InvoiceDropdown" id="InvoiceDropdown" class="form-control" required></select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="clearfix"></div>
-                                <div class="row">
-                                    <div class="col-md-10 col-md-offset-1">
+                                @{
+                                    var billDetail = ViewData["InvoiceDetail"] as ClientBillDetail;
+                                    if (billDetail != null)
+                                    {
                                         <div class="row">
-                                            <div class="table-responsive table-bordered">
-                                                <table class="table table-bordered">
-                                                    <thead>
-                                                        <tr class="table-bordered bg-primary">
-                                                            <th>Sl No.</th>
-                                                            <th>Description</th>
-                                                            <th>Sac Code</th>
-                                                            <th>Consignment No.</th>
-                                                            <th>Qty</th>
-                                                            <th>Charges</th>
-                                                            <th>Total</th>
-                                                            <th>Discount In %</th>
-                                                            <th>Discount  Amount</th>
-                                                            <th>Total Amount</th>
+                                            <div class="col-md-10 col-md-offset-1">
+                                                <div class="row" style="border:1px solid #eceeef;padding-top:15px;" ;>
+                                                    <div class="col-md-2">
+                                                        <h5><strong>CIN:</strong></h5>
+                                                        <h5><strong>GST NO:</strong></h5>
+                                                        <h5><strong>PAN:</strong></h5>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <h5><strong>SE 2018-0358830</strong></h5>
+                                                        <h5><strong>PP 2018/085870</strong></h5>
+                                                        <h5><strong>AAGCDNGHT</strong></h5>
+                                                    </div>
+
+                                                    <div class="col-md-2 col-md-offset-4">
+                                                        <h5><strong>Invoice Date:</strong></h5>
+                                                        <h5><strong>Invoice No:</strong></h5>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <h5><strong>@billDetail.InvoiceDate.Value.ToString("dd/MM/yyyy")</strong></h5>
+                                                        <h5><strong>@billDetail.InvoiceNumber</strong></h5>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row" style="border:1px solid #eceeef;padding-top:15px;">
+                                                    <div class="col-md-4">
+                                                        <h5><strong>Client Details</strong></h5>
+                                                        <h5><strong>@billDetail.ClientDetail.ClientName</strong></h5>
+                                                        <h5><strong>@billDetail.ClientDetail.Address1</strong></h5>
+                                                        <h5><strong>@billDetail.ClientDetail.State.StateName</strong></h5>
+                                                        <h5><strong>Mobile: @billDetail.ClientDetail.ClientConcernPersons.FirstOrDefault().ContactNumber</strong></h5>
+                                                        <h5><strong>PAN: @billDetail.ClientDetail.PanNumber</strong></h5>
+                                                    </div>
+                                                    <div class="col-md-4 col-md-offset-4">
+                                                        <h5><strong>Branch Office</strong></h5>
+                                                        <h5><strong>@billDetail.ClientDetail.Address1</strong></h5>
+                                                        <h5><strong>@billDetail.ClientDetail.PinCode</strong></h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="row">
+                                            <div class="col-md-10 col-md-offset-1">
+                                                <div class="row">
+                                                    <div class="table-responsive table-bordered">
+                                                        <table class="table table-bordered">
+                                                            <thead>
+                                                                <tr class="table-bordered bg-primary">
+                                                                    <th>Sl No.</th>
+                                                                    <th>Description</th>
+                                                                    <th>Sac Code</th>
+                                                                    <th>Consignment No.</th>
+                                                                    <th>Qty</th>
+                                                                    <th>Charges</th>
+                                                                    <th>Total</th>
+                                                                    <th>Discount In %</th>
+                                                                    <th>Discount  Amount</th>
+                                                                    <th>Total Amount</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tr>
+                                                                <td>
+                                                                    <strong>1.</strong>
+                                                                </td>
+                                                                <td>
+                                                                    <strong>@billDetail.ClientBillDescriptions.FirstOrDefault().Description</strong>
+                                                                </td>
+                                                                <td>
+                                                                    <strong>@billDetail.ClientBillDescriptions.FirstOrDefault().SACCode</strong>
+                                                                </td>
+                                                                <td>
+                                                                    <strong>@billDetail.ClientBillDescriptions.FirstOrDefault().ConsighmentNumber</strong>
+                                                                </td>
+                                                                <td>
+                                                                    <strong>@billDetail.ClientBillDescriptions.FirstOrDefault().Quantity</strong>
+                                                                </td>
+                                                                <td>
+                                                                    <strong>@billDetail.ClientBillDescriptions.FirstOrDefault().Charges</strong>
+                                                                </td>
+                                                                <td>
+                                                                    <strong>@billDetail.ClientBillDescriptions.FirstOrDefault().Total</strong>
+                                                                </td>
+                                                                <td>
+                                                                    <strong>@billDetail.ClientBillDescriptions.FirstOrDefault().DiscountPercentage</strong>
+                                                                </td>
+                                                                <td>
+                                                                    <strong>@billDetail.ClientBillDescriptions.FirstOrDefault().Discount</strong>
+                                                                </td>
+                                                                <td>
+                                                                    <strong>@billDetail.ClientBillDescriptions.FirstOrDefault().TotalAmount</strong>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+
+                                                    <!--<table class="table table-bordered">
+                                                        <tr>
+                                                            <td>
+                                                                <div>
+                                                                    <span>Received with Thanks Sum of Rs: 195.00 against Test/Services.</span><br /><br />
+                                                                    <strong>Rs One hundred Ninety Five Only.</strong>
+                                                                </div>
+                                                            </td>
                                                         </tr>
-                                                    </thead>
-                                                    <tr>
-                                                        <td>
-                                                            <strong>1.</strong>
-                                                        </td>
-                                                        <td>
-                                                            <strong>Freight charges for Single sdfdsf</strong>
-                                                        </td>
-                                                        <td>
-                                                            <strong>996611</strong>
-                                                        </td>
-                                                        <td>
-                                                            <strong>DIL/INO/1377</strong>
-                                                        </td>
-                                                        <td>
-                                                            <strong>1</strong>
-                                                        </td>
-                                                        <td>
-                                                            <strong>4100</strong>
-                                                        </td>
-                                                        <td>
-                                                            <strong>4100</strong>
-                                                        </td>
-                                                        <td>
-                                                            <strong>0</strong>
-                                                        </td>
-                                                        <td>
-                                                            <strong>0</strong>
-                                                        </td>
-                                                        <td>
-                                                            <strong>4100</strong>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
+                                                    </table>
 
-                                            <!--<table class="table table-bordered">
-                                            <tr>
-                                                <td>
-                                                    <div>
-                                                        <span>Received with Thanks Sum of Rs: 195.00 against Test/Services.</span><br /><br />
-                                                        <strong>Rs One hundred Ninety Five Only.</strong>
+                                                    <table class="table table-bordered">
+                                                        <tr>
+                                                            <td>
+                                                                <div>
+                                                                    <strong>Terms & Condition</strong><br />
+
+                                                                </div>
+                                                            </td>
+                                                            <td style="text-align:right;">
+                                                                <strong>For</strong><br /><br /><br />
+                                                                <p>Authorized Signatury</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>-->
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="col-md-10 col-md-offset-1">
+                                                <div class="row" style="border:1px solid #eceeef;padding-top:15px;">
+                                                    <div class="col-md-4">
+                                                        <h5><strong>Remarks: Bill Under RCM</strong></h5>
+                                                        <br /><br /><br />
+                                                        <h5><strong>Bank Details</strong></h5>
+                                                        <h5><strong>Name of Bank: Kotak mahindra Bank</strong></h5>
+                                                        <h5><strong>A/C No: 9712897113</strong></h5>
+                                                        <h5><strong>IFSC: KKBK0005196</strong></h5>
                                                     </div>
-                                                </td>
-                                            </tr>
-                                        </table>
-
-                                        <table class="table table-bordered">
-                                            <tr>
-                                                <td>
-                                                    <div>
-                                                        <strong>Terms & Condition</strong><br />
-
+                                                    <div class="col-md-4">
+                                                        <br /><br /><br />
+                                                        <h5><p>For Demon International Logistics Pvt Ltd</p></h5>
+                                                        <h5><b>Authorised Signature</b></h5>
+                                                        <br /><br /><br />
                                                     </div>
-                                                </td>
-                                                <td style="text-align:right;">
-                                                    <strong>For</strong><br /><br /><br />
-                                                    <p>Authorized Signatury</p>
-                                                </td>
-                                            </tr>
-                                        </table>-->
-                                        </div>
-                                    </div>
-                                    <br />
-                                    <div class="col-md-10 col-md-offset-1">
-                                        <div class="row" style="border:1px solid #eceeef;padding-top:15px;">
-                                            <div class="col-md-4">
-                                                <h5><strong>Remarks: Bill Under RCM</strong></h5>
-                                                <br /><br /><br />
-                                                <h5><strong>Bank Details</strong></h5>
-                                                <h5><strong>Name of Bank: Kotak mahindra Bank</strong></h5>
-                                                <h5><strong>A/C No: 9712897113</strong></h5>
-                                                <h5><strong>IFSC: KKBK0005196</strong></h5>
+                                                    <div class="col-md-2">
+                                                        <h5><strong>Total:</strong></h5>
+                                                        <h5><strong>Docket Charge:</strong></h5>
+                                                        <h5><strong>Loading/Unloading:</strong></h5>
+                                                        <h5><strong>Add CGST:</strong></h5>
+                                                        <h5><strong>Add SGST:</strong></h5>
+                                                        <h5><strong>Add IGST 5%:</strong></h5>
+                                                        <h5><strong>Add Cess:</strong></h5>
+                                                        <h5><strong>Total Tax:</strong></h5>
+                                                        <h5><strong>Advance:</strong></h5>
+                                                        <h5><strong>R/Off:</strong></h5>
+                                                        <h5><strong>Total Amount:</strong></h5>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <h5><strong>@billDetail.ClientBillDescriptions.FirstOrDefault().TotalAmount</strong></h5>
+                                                        <h5><strong>@billDetail.DocketCharge</strong></h5>
+                                                        <h5><strong>@Convert.ToDecimal(billDetail.LoadingCharge)+@Convert.ToDecimal(billDetail.UnloadingCharge)</strong></h5>
+                                                        <h5><strong>@billDetail.CGST</strong></h5>
+                                                        <h5><strong>@billDetail.SGST</strong></h5>
+                                                        <h5><strong>@billDetail.IGST</strong></h5>
+                                                        <h5><strong>@billDetail.Cess</strong></h5>
+                                                        <h5><strong>@billDetail.Tax</strong></h5>
+                                                        <h5><strong>@billDetail.AdvanceAmount</strong></h5>
+                                                        <h5><strong>@billDetail.RoundOff</strong></h5>
+                                                        <h5>
+                                                            <strong>
+                                                                (@billDetail.ClientBillDescriptions.FirstOrDefault().TotalAmount
+                                                                +@billDetail.Tax)-@billDetail.AdvanceAmount
+                                                            </strong>
+                                                        </h5>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <br /><br /><br />
-                                                <h5><p>For Demon International Logistics Pvt Ltd</p></h5>
-                                                <h5><b>Authorised Signature</b></h5>
-                                                <br /><br /><br />
-                                            </div>
-                                            <div class="col-md-2">
-                                                <h5><strong>Total:</strong></h5>
-                                                <h5><strong>Docket Charge:</strong></h5>
-                                                <h5><strong>Loading/Unloading:</strong></h5>
-                                                <h5><strong>Add CGST:</strong></h5>
-                                                <h5><strong>Add SGST:</strong></h5>
-                                                <h5><strong>Add IGST 5%:</strong></h5>
-                                                <h5><strong>Add Cess:</strong></h5>
-                                                <h5><strong>Total Tax:</strong></h5>
-                                                <h5><strong>Advance:</strong></h5>
-                                                <h5><strong>R/Off:</strong></h5>
-                                                <h5><strong>Total Amount:</strong></h5>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <h5><strong>41,000.00</strong></h5>
-                                                <h5><strong>50.00</strong></h5>
-                                                <h5><strong>41,500.00</strong></h5>
-                                                <h5><strong>0.00</strong></h5>
-                                                <h5><strong>0.00</strong></h5>
-                                                <h5><strong>0.00</strong></h5>
-                                                <h5><strong>0.00</strong></h5>
-                                                <h5><strong>0.00</strong></h5>
-                                                <h5><strong>20,000.00</strong></h5>
-                                                <h5><strong>0.00</strong></h5>
-                                                <h5><strong>21,050.00</strong></h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br />
-                                    <div class="col-md-10 col-md-offset-1">
-                                        <div class="row" style="border:1px solid #eceeef;padding-top:15px;">
-                                            <div class="col-md-8">
-                                                <h5><strong>Note:-</strong></h5>
-                                                <h5><strong>Please ensure that given services have been charged must  be as per work order.</strong></h5>
-                                                <h5><strong>Rs 100/- will charged if cheque will dishonoured.</strong></h5>
-                                                <h5><strong>Interest @@ 10 % p.a  will be charged if bill is not paid with in one week.</strong></h5>
-                                                <h5><strong>All Disputes subject to kanpur juridisction only.</strong></h5>
+                                            <br />
+                                            <div class="col-md-10 col-md-offset-1">
+                                                <div class="row" style="border:1px solid #eceeef;padding-top:15px;">
+                                                    <div class="col-md-8">
+                                                        <h5><strong>Note:-</strong></h5>
+                                                        <h5><strong>Please ensure that given services have been charged must  be as per work order.</strong></h5>
+                                                        <h5><strong>Rs 100/- will charged if cheque will dishonoured.</strong></h5>
+                                                        <h5><strong>Interest @@ 10 % p.a  will be charged if bill is not paid with in one week.</strong></h5>
+                                                        <h5><strong>All Disputes subject to kanpur juridisction only.</strong></h5>
 
-                                                <p>E. & O.E</p>
+                                                        <p>E. & O.E</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    }
+                                }
+
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-
             </div>
-
         </div><!-- /.content -->
-
     </section>
 </form>
 <script>
@@ -235,4 +253,4 @@
         })
     });
 </script>
-<script src="~/Scripts/App/Masters/TranshipmentAllotment.js"></script>
+<script src="~/Scripts/App/Masters/BillReport.js"></script>

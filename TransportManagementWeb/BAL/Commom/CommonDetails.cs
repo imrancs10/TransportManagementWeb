@@ -154,5 +154,25 @@ namespace TransportManagementWeb.BAL.Commom
             var result = _db.LRDetails.Where(x => x.Id == LRId).FirstOrDefault();
             return result;
         }
+
+        public List<ClientBillDetail> GetAllInvoiceDetail()
+        {
+            _db = new TransportManagementEntities();
+            _db.Configuration.LazyLoadingEnabled = false;
+            var result = _db.ClientBillDetails.OrderByDescending(x => x.InvoiceDate).ToList();
+            return result;
+        }
+        public ClientBillDetail GetBillDetailByInvoiceId(int invoiceId)
+        {
+            _db = new TransportManagementEntities();
+            _db.Configuration.LazyLoadingEnabled = false;
+            //var result = _db.LRDetails.Include("ServiceOrderDetail").Include("ServiceOrderDetail.ServiceOrderPaymentDetails").Where(x => x.Id == LRId).FirstOrDefault();
+            var result = _db.ClientBillDetails.Include("ClientDetail")
+                .Include("ClientDetail.ClientConcernPersons")
+                .Include("ClientDetail.State")
+                .Include("ClientBillDescriptions")
+                .Where(x => x.Id == invoiceId).FirstOrDefault();
+            return result;
+        }
     }
 }
