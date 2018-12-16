@@ -16,7 +16,7 @@ namespace TransportManagementWeb.BAL.Commom
         {
             _db = new TransportManagementEntities();
             _db.Configuration.LazyLoadingEnabled = false;
-            var _list = _db.Countries.ToList();
+            var _list = _db.Countries.OrderBy(x => x.CountryName).ToList();
             return _list != null ? _list : new List<Country>();
         }
 
@@ -24,57 +24,57 @@ namespace TransportManagementWeb.BAL.Commom
         {
             _db = new TransportManagementEntities();
             _db.Configuration.LazyLoadingEnabled = false;
-            return _db.States.Where(x => x.CountryId == countryId).ToList();
+            return _db.States.Where(x => x.CountryId == countryId).OrderBy(x => x.StateName).ToList();
         }
         public List<City> GetCityByStateId(int stateId)
         {
             _db = new TransportManagementEntities();
             _db.Configuration.LazyLoadingEnabled = false;
-            return _db.Cities.Where(x => x.StateId == stateId).ToList();
+            return _db.Cities.Where(x => x.StateId == stateId).OrderBy(x => x.CityName).ToList();
         }
         public List<City> GetAllCities()
         {
             _db = new TransportManagementEntities();
             _db.Configuration.LazyLoadingEnabled = false;
-            return _db.Cities.ToList();
+            return _db.Cities.OrderBy(x => x.CityName).ToList();
         }
         public List<ClientDetail> GetAllClientDetail()
         {
             _db = new TransportManagementEntities();
             _db.Configuration.LazyLoadingEnabled = false;
-            return _db.ClientDetails.ToList();
+            return _db.ClientDetails.OrderBy(x => x.ClientName).ToList();
         }
         public List<WeightLookup> GetAllWeightDetail()
         {
             _db = new TransportManagementEntities();
             _db.Configuration.LazyLoadingEnabled = false;
-            return _db.WeightLookups.ToList();
+            return _db.WeightLookups.OrderBy(x => x.Weight).ToList();
         }
         public List<UnitDetail> GetAllUnitDetail()
         {
             _db = new TransportManagementEntities();
             _db.Configuration.LazyLoadingEnabled = false;
-            return _db.UnitDetails.ToList();
+            return _db.UnitDetails.OrderBy(x => x.Name).ToList();
         }
 
         public List<VehicleType> GetAllVehicleType()
         {
             _db = new TransportManagementEntities();
             _db.Configuration.LazyLoadingEnabled = false;
-            return _db.VehicleTypes.ToList();
+            return _db.VehicleTypes.OrderBy(x => x.VehicleTypeName).ToList();
         }
         public List<VehicleDetail> GetAllVehicleDetail(int typeId)
         {
             _db = new TransportManagementEntities();
             _db.Configuration.LazyLoadingEnabled = false;
-            return _db.VehicleDetails.Where(x => x.VehicleTypeId == typeId).ToList();
+            return _db.VehicleDetails.Where(x => x.VehicleTypeId == typeId).OrderBy(x => x.VehicleName).ToList();
         }
 
-        public List<ServiceOrderDetail> GetAllReferenceIdsForTrashipmentAlottment()
+        public List<ServiceOrderDetail> GetAllReferenceIdsForTrashipmentAlottment(int clientId)
         {
             _db = new TransportManagementEntities();
             _db.Configuration.LazyLoadingEnabled = false;
-            return _db.ServiceOrderDetails.Where(x => x.VendorId == null).ToList();
+            return _db.ServiceOrderDetails.Where(x => x.VendorId == null && x.ClientId == clientId).ToList();
         }
         public List<ServiceOrderDetail> GetAllReferenceIdsForFreightPage()
         {
@@ -82,11 +82,11 @@ namespace TransportManagementWeb.BAL.Commom
             _db.Configuration.LazyLoadingEnabled = false;
             return _db.ServiceOrderDetails.Where(x => x.VendorId != null && !x.ServiceOrderPaymentDetails.Any()).ToList();
         }
-        public List<ServiceOrderDetail> GetAllReferenceIdsForLRPage()
+        public List<ServiceOrderDetail> GetAllReferenceIdsForLRPage(int clientId)
         {
             _db = new TransportManagementEntities();
             _db.Configuration.LazyLoadingEnabled = false;
-            return _db.ServiceOrderDetails.Include(x => x.ServiceOrderPaymentDetails).Where(x => x.VendorId != null && x.ServiceOrderPaymentDetails.Any() && !x.LRDetails.Any()).ToList();
+            return _db.ServiceOrderDetails.Include(x => x.ServiceOrderPaymentDetails).Where(x => x.ClientId == clientId && x.VendorId != null && x.ServiceOrderPaymentDetails.Any() && !x.LRDetails.Any()).ToList();
         }
         public ServiceOrderModel GetServiceOrderDetail(int Id)
         {

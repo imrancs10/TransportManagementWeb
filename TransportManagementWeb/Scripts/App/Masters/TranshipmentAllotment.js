@@ -27,8 +27,36 @@ $(document).ready(function () {
             }
         });
     }
-    FillReferenceIds();
-    function FillReferenceIds() {
+    FillClientDetail();
+    function FillClientDetail() {
+        let dropdown = $('#ClientDropdown');
+        dropdown.empty();
+        dropdown.append('<option value="">Select</option>');
+        dropdown.prop('selectedIndex', 0);
+        $.ajax({
+            dataType: 'json',
+            type: 'POST',
+            url: '/Masters/GetAllClientDetail',
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                $.each(data, function (key, entry) {
+                    dropdown.append($('<option></option>').attr('value', entry.ClientId).text(entry.ClientName));
+                })
+            },
+            failure: function (response) {
+                alert(response);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+    }
+    $('#ClientDropdown').on('change', function (e) {
+        var optionSelected = $("option:selected", this);
+        var valueSelected = this.value;
+        FillReferenceIds(valueSelected);
+    });
+    function FillReferenceIds(clientId) {
         let dropdown = $('#ReferenceDropdown');
         dropdown.empty();
         dropdown.append('<option value="">Select</option>');
@@ -37,6 +65,7 @@ $(document).ready(function () {
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             type: 'POST',
+            data: '{clientId: "' + clientId + '" }',
             url: '/Masters/GetAllReferenceIds',
             success: function (data) {
                 $.each(data, function (key, entry) {

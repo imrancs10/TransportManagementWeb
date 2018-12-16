@@ -199,10 +199,10 @@ namespace TransportManagementWeb.Controllers
             return Json(_details.GetAllVehicleDetail(typeId));
         }
         [HttpPost]
-        public JsonResult GetAllReferenceIds()
+        public JsonResult GetAllReferenceIds(int clientId)
         {
             CommonDetails _details = new CommonDetails();
-            return Json(_details.GetAllReferenceIdsForTrashipmentAlottment());
+            return Json(_details.GetAllReferenceIdsForTrashipmentAlottment(clientId));
         }
         [HttpPost]
         public JsonResult GetAllReferenceIdsForFreightPage()
@@ -211,10 +211,10 @@ namespace TransportManagementWeb.Controllers
             return Json(_details.GetAllReferenceIdsForFreightPage());
         }
         [HttpPost]
-        public JsonResult GetAllReferenceIdsForLRPage()
+        public JsonResult GetAllReferenceIdsForLRPage(int clientId)
         {
             CommonDetails _details = new CommonDetails();
-            return Json(_details.GetAllReferenceIdsForLRPage());
+            return Json(_details.GetAllReferenceIdsForLRPage(clientId));
         }
         [HttpPost]
         public JsonResult GetServiceOrderDetail(int Id)

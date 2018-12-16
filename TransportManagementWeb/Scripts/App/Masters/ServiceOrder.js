@@ -133,7 +133,7 @@ $(document).ready(function () {
     $('#VehicleTypeDropdown').on('change', function (e) {
         var optionSelected = $("option:selected", this);
         var valueSelected = this.value;
-        FillVehicleDetail(valueSelected)
+        FillVehicleDetail(valueSelected);
     });
     function FillVehicleDetail(vehicleTypeId) {
         let dropdown = $('#VehicleDetailDropdown');
