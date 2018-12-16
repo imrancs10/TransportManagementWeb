@@ -81,19 +81,19 @@ namespace TransportManagementWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveTranshipmentAllotment(int VendorId, int ReferenceId)
+        public ActionResult SaveTranshipmentAllotment(int VendorId, int ReferenceId, int ClientÌd)
         {
             ServiceOrderBAL detail = new ServiceOrderBAL();
             var result = detail.AllotVendor(VendorId, ReferenceId);
             if (result == Enums.CrudStatus.Saved)
             {
                 SetAlertMessage("Vendor allotment added succesfully.", "Service Order");
-                return RedirectToAction("VehicleFreightDetail", new { referenceId = ReferenceId });
+                return RedirectToAction("VehicleFreightDetail", new { referenceId = ReferenceId, ClientÌd = ClientÌd });
             }
             return RedirectToAction("TranshipmentAllotment");
         }
 
-        public ActionResult VehicleFreightDetail(string referenceId)
+        public ActionResult VehicleFreightDetail(string referenceId,string ClientÌd)
         {
             return View();
         }
@@ -210,10 +210,10 @@ namespace TransportManagementWeb.Controllers
             return Json(_details.GetAllReferenceIdsForTrashipmentAlottment(clientId));
         }
         [HttpPost]
-        public JsonResult GetAllReferenceIdsForFreightPage()
+        public JsonResult GetAllReferenceIdsForFreightPage(int clientId)
         {
             CommonDetails _details = new CommonDetails();
-            return Json(_details.GetAllReferenceIdsForFreightPage());
+            return Json(_details.GetAllReferenceIdsForFreightPage(clientId));
         }
         [HttpPost]
         public JsonResult GetAllReferenceIdsForLRPage(int clientId)
@@ -228,14 +228,7 @@ namespace TransportManagementWeb.Controllers
             {
                 CommonDetails _details = new CommonDetails();
                 var data = _details.GetServiceOrderDetail(Id);
-                //var result = JsonConvert.SerializeObject(data, Formatting.Indented,
-                //             new JsonSerializerSettings
-                //             {
-                //                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                //             });
-
                 var jsonResult = Json(data, JsonRequestBehavior.AllowGet);
-                //jsonResult.MaxJsonLength = int.MaxValue;
                 return jsonResult;
             }
             catch (Exception ex)

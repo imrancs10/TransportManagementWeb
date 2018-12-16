@@ -76,11 +76,11 @@ namespace TransportManagementWeb.BAL.Commom
             _db.Configuration.LazyLoadingEnabled = false;
             return _db.ServiceOrderDetails.Where(x => x.VendorId == null && x.ClientId == clientId).ToList();
         }
-        public List<ServiceOrderDetail> GetAllReferenceIdsForFreightPage()
+        public List<ServiceOrderDetail> GetAllReferenceIdsForFreightPage(int clientId)
         {
             _db = new TransportManagementEntities();
             _db.Configuration.LazyLoadingEnabled = false;
-            return _db.ServiceOrderDetails.Where(x => x.VendorId != null && !x.ServiceOrderPaymentDetails.Any()).ToList();
+            return _db.ServiceOrderDetails.Where(x => x.ClientId == clientId && x.VendorId != null && !x.ServiceOrderPaymentDetails.Any()).ToList();
         }
         public List<ServiceOrderDetail> GetAllReferenceIdsForLRPage(int clientId)
         {

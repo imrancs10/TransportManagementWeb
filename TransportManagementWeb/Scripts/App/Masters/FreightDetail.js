@@ -3,8 +3,42 @@
 /// <reference path="../Global/Utility.js" />
 'use strict';
 $(document).ready(function () {
-    FillReferenceIds();
-    function FillReferenceIds() {
+    FillClientDetail();
+    function FillClientDetail() {
+        let dropdown = $('#ClientDropdown');
+        dropdown.empty();
+        dropdown.append('<option value="">Select</option>');
+        dropdown.prop('selectedIndex', 0);
+        $.ajax({
+            dataType: 'json',
+            type: 'POST',
+            url: '/Masters/GetAllClientDetail',
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                $.each(data, function (key, entry) {
+                    dropdown.append($('<option></option>').attr('value', entry.ClientId).text(entry.ClientName));
+                });
+                var ClientÌd = getUrlParameter('Client%C3%8Cd');
+                if (ClientÌd !== null && typeof ClientÌd !== 'undefined') {
+                    $('#ClientDropdown').val(ClientÌd);
+                    $('#ClientDropdown').change();
+                }
+            },
+            failure: function (response) {
+                alert(response);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+    }
+    $('#ClientDropdown').on('change', function (e) {
+        var optionSelected = $("option:selected", this);
+        var valueSelected = this.value;
+        FillReferenceIds(valueSelected);
+    });
+
+    function FillReferenceIds(clientId) {
         let dropdown = $('#ReferenceDropdown');
         dropdown.empty();
         dropdown.append('<option value="">Select</option>');
@@ -13,6 +47,7 @@ $(document).ready(function () {
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             type: 'POST',
+            data: '{clientId: "' + clientId + '" }',
             url: '/Masters/GetAllReferenceIdsForFreightPage',
             success: function (data) {
                 $.each(data, function (key, entry) {

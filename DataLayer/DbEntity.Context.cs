@@ -49,5 +49,7 @@ namespace DataLayer
         public virtual DbSet<VendorDetail> VendorDetails { get; set; }
         public virtual DbSet<VendorLineHaulDetail> VendorLineHaulDetails { get; set; }
         public virtual DbSet<WeightLookup> WeightLookups { get; set; }
+        public virtual DbSet<ClientLeadgerDescription> ClientLeadgerDescriptions { get; set; }
+        public virtual DbSet<ClientLeadgerDetail> ClientLeadgerDetails { get; set; }
     }
 }
