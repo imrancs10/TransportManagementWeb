@@ -28,10 +28,10 @@ MAIN CONTENT SECTION
                             </div>
                             <hr class="tall">
                             <div class="form-group mt-lg">
-                                <label class="col-sm-3 control-label">Vender Name <span style="color:red;">*</span></label>
+                                <label class="col-sm-3 control-label">Vendor Name <span style="color:red;">*</span></label>
                                 <div class="col-sm-9">
                                     <div class="input-group input-group-icon">
-                                        <input type="text" id="txtName" class="form-control" placeholder="Vender Name" name="vendorName">
+                                        <input type="text" id="txtName" class="form-control" placeholder="Vendor Name" name="vendorName" required>
                                         <span class="input-group-addon">
                                             <span class="icon"><i class="fa fa-user"></i></span>
                                         </span>
@@ -43,7 +43,7 @@ MAIN CONTENT SECTION
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Address 1 <span style="color:red;">*</span></label>
+                                            <label class="col-sm-4 control-label">Permanent Address </label>
                                             <div class="col-sm-8">
                                                 <div class="input-group input-group-icon">
                                                     <textarea id="Textarea1" class="form-control" rows="3" placeholder="Enter Your Address 1" name="address1"></textarea>
@@ -56,7 +56,7 @@ MAIN CONTENT SECTION
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Address 2 <span style="color:red;">*</span></label>
+                                            <label class="col-sm-4 control-label">Mailing Address </label>
                                             <div class="col-sm-8">
                                                 <div class="input-group input-group-icon">
                                                     <textarea id="txtAddress" class="form-control" rows="3" placeholder="Enter Your Address 2" name="address2"></textarea>
@@ -105,7 +105,7 @@ MAIN CONTENT SECTION
                                         <div class="form-group mt-lg">
                                             <label class="col-sm-4 control-label">Country <span style="color:red;">*</span></label>
                                             <div class="col-sm-8">
-                                                <select name="country" id="CountryDropdown" class="form-control required"></select>
+                                                <select name="country" id="CountryDropdown" class="form-control"  required></select>
                                             </div>
                                         </div>
                                     </div>
@@ -113,15 +113,15 @@ MAIN CONTENT SECTION
                                         <div class="form-group mt-lg">
                                             <label class="col-sm-4 control-label">State <span style="color:red;">*</span></label>
                                             <div class="col-sm-8">
-                                                <select name="state" id="StateDropdown" class="form-control required"></select>
+                                                <select name="state" id="StateDropdown" class="form-control" required></select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">City Name</label>
+                                            <label class="col-sm-4 control-label">City Name <span style="color:red;">*</span></label>
                                             <div class="col-sm-8">
-                                                <select name="city" id="CityDropdown" class="form-control required"></select>
+                                                <select name="city" id="CityDropdown" class="form-control" required></select>
                                             </div>
                                         </div>
                                     </div>
@@ -133,7 +133,7 @@ MAIN CONTENT SECTION
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">GST No <span style="color:red;">*</span></label>
+                                            <label class="col-sm-4 control-label">GST No.</label>
                                             <div class="col-sm-8">
                                                 <div class="input-group input-group-icon">
                                                     <input type="text" id="Text1" name="gstNo" class="form-control" placeholder="GST No">
@@ -146,7 +146,7 @@ MAIN CONTENT SECTION
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">PAN No <span style="color:red;">*</span></label>
+                                            <label class="col-sm-4 control-label">PAN No.</label>
                                             <div class="col-sm-8">
                                                 <div class="input-group input-group-icon">
                                                     <input type="text" id="Text2" name="panNumber" class="form-control" placeholder="Pan no">
@@ -164,7 +164,7 @@ MAIN CONTENT SECTION
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">GSTN Scan Copy<span style="color:red;">*</span></label>
+                                            <label class="col-sm-4 control-label">GSTN Scan Copy</label>
                                             <div class="col-sm-8">
                                                 <div class="input-group input-group-icon">
                                                     <input type="file" name="gstNoScanImage" id="gstNoScanImage" class="form-control" placeholder="GST No" accept="image/x-png,image/gif,image/jpeg" />
@@ -177,7 +177,7 @@ MAIN CONTENT SECTION
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">PAN Scan Copy<span style="color:red;">*</span></label>
+                                            <label class="col-sm-4 control-label">PAN Scan Copy</label>
                                             <div class="col-sm-8">
                                                 <div class="input-group input-group-icon">
                                                     <input type="file" name="panNumberScanImage" id="panNumberScanImage" class="form-control" placeholder="Pan No" accept="image/x-png,image/gif,image/jpeg" />
