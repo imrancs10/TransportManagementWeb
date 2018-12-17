@@ -95,7 +95,8 @@ $(document).ready(function () {
     $('#ConsignmentDiscount').on('blur', function (e) {
         var percentageDiscount = $(this).val();
         if (percentageDiscount > 100) {
-            alert('Discount can not more than 100');
+            utility.alert.setAlert(utility.alert.alertType.info, 'Discount can not more than 100');
+            $(this).val('');
         }
         else {
             var discount = ($('#ConsignmentTotal').val() * parseFloat(percentageDiscount)) / 100;
@@ -159,8 +160,7 @@ $(document).ready(function () {
             data: JSON.stringify(BillJson),
             contentType: "application/json; charset=utf-8",
             success: function (data) {
-                utility.alert.setAlert(utility.alert.alertType.info, data);
-                window.location.reload();
+                
             },
             failure: function (response) {
                 alert(response);

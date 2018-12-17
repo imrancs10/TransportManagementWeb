@@ -44,168 +44,51 @@ MAIN CONTENT SECTION
                                 </div>
                             </div>
                             <br>
-                            <div class="form-group mt-lg">
-                                <label class="col-sm-4 control-label">Deadline Date</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group input-group-in">
-                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                        <label class="form-control" id="deadlineDate"></label>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr class="table-bordered bg-primary">
+                                                    <th>
+                                                        Deadline Date
+                                                    </th>
+                                                    <th>From</th>
+                                                    <th>To</th>
+                                                    <th>Vehicle Type</th>
+                                                    <th>Vehicle Detail</th>
+                                                    <th>Gross Weight</th>
+                                                    <th>Nature Of Goods</th>
+                                                </tr>
+                                            </thead>
+                                            <tr>
+                                                <td>
+                                                    <strong><span id="deadlineDate"></span></strong>
+                                                </td>
+                                                <td>
+                                                    <strong><span id="singleFromCityLabel"></span></strong>
+                                                </td>
+                                                <td>
+                                                    <strong><span id="singleToCityLabel"></span></strong>
+                                                </td>
+                                                <td>
+                                                    <strong><span id="VehicleTypeLabel"></span></strong>
+                                                </td>
+                                                <td>
+                                                    <strong><span id="VehicleDetailLabel"></span></strong>
+                                                </td>
+                                                <td>
+                                                    <strong><span id="GrossWeight"></span></strong>
+                                                </td>
+                                                <td>
+                                                    <strong><span id="NatureOfGoods"></span></strong>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-                            <br>
-                            <div id="singleTranshipment" class="hidden">
-                                <div class="row">
-                                    <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Transhipment Detail </h4></div>
-                                </div>
-                                <hr class="tall">
-                                <div class="row">
-                                    <div class="form-group">
-                                        <div class="col-md-6">
-                                            <div class="form-group mt-lg">
-                                                <label class="col-sm-4 control-label">From</label>
-                                                <div class="col-sm-8">
-                                                    <label id="singleFromCityLabel"></label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group mt-lg">
-                                                <label class="col-sm-4 control-label">To <span style="color:red;">*</span></label>
-                                                <div class="col-sm-8">
-                                                    <label id="singleToCityLabel"></label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <div id="multipleTranshipment" class="hidden">
-                                <div class="row">
-                                    <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Multi Transhipment Detail </h4></div>
-                                </div>
-                                <hr class="tall">
-                                <div class="row">
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <div class="form-group mt-lg">
-                                                <label class="col-sm-2 control-label">From City</label>
-                                                <div class="col-sm-10">
-                                                    <label id="multiFromCityLabel"></label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <br />
-                                <div class="row">
-                                    <div class="form-group">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr class="table-hover bg-primary">
-                                                        <th>To City</th>
-                                                        <th>Weight(KG/Mt)</th>
-                                                        <th>Unit</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="form-group mt-lg">
-                                                                <label id="multiToCityLabel1"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-group mt-lg">
-                                                                <label id="multiWeightLabel1"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-group mt-lg">
-                                                                <label id="multiUnitLabel1"></label>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="form-group">
-                                                                <label id="multiToCityLabel2"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-group">
-                                                                <label id="multiWeightLabel2"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-group">
-                                                                <label id="multiUnitLabel2"></label>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Vehicle Information </h4></div>
-                            </div>
-                            <hr class="tall">
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-md-6">
-                                        <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Vehicle Type</label>
-                                            <div class="col-sm-8">
-                                                <label id="VehicleTypeLabel"></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Vehicle Detail</label>
-                                            <div class="col-sm-8">
-                                                <label id="VehicleDetailLabel"></label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-6">
-                                        <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Gross Weight <span style="color:red;">*</span></label>
-                                            <div class="col-sm-8">
-                                                <div class="input-group input-group-icon">
-                                                    <textarea id="GrossWeight" name="GrossWeight" class="form-control" readonly rows="3" placeholder="Enter Gross Weight"></textarea>
-                                                    <span class="input-group-addon">
-                                                        <span class="icon"><i class="fa fa-map"></i></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Nature Of Goods<span style="color:red;">*</span></label>
-                                            <div class="col-sm-8">
-                                                <div class="input-group input-group-icon">
-                                                    <textarea id="NatureOfGoods" name="NatureOfGoods" readonly class="form-control" rows="3" placeholder="Enter Nature Of Goods"></textarea>
-                                                    <span class="input-group-addon">
-                                                        <span class="icon"><i class="fa fa-location-arrow"></i></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <br />
                             <div class="row">
                                 <div class="form-group">
                                     <div class="col-md-12">

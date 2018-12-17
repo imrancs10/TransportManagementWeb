@@ -95,25 +95,9 @@ $(document).ready(function () {
             success: function (data) {
                 var jsonData = data;
                 $('#deadlineDate').text(jsonData.VehicleRequirementDate);
-                $('#clientName').text(jsonData.ClientName);
                 if (jsonData.Transhipments.length === 1) {
-                    $('#singleTranshipment').removeClass('hidden');
-                    $('#multipleTranshipment').addClass('hidden');
                     $('#singleFromCityLabel').text(jsonData.Transhipments[0].FromCity);
                     $('#singleToCityLabel').text(jsonData.Transhipments[0].ToCity);
-                }
-                else {
-                    $('#singleTranshipment').addClass('hidden');
-                    $('#multipleTranshipment').removeClass('hidden');
-                    $('#multiFromCityLabel').text(jsonData.Transhipments[0].FromCity);
-
-                    $('#multiToCityLabel1').text(jsonData.Transhipments[0].ToCity);
-                    $('#multiWeightLabel1').text(jsonData.Transhipments[0].Weight);
-                    $('#multiUnitLabel1').text(jsonData.Transhipments[0].UnitName);
-
-                    $('#multiToCityLabel2').text(jsonData.Transhipments[1].ToCity);
-                    $('#multiWeightLabel2').text(jsonData.Transhipments[1].Weight);
-                    $('#multiUnitLabel2').text(jsonData.Transhipments[1].UnitName);
                 }
                 $('#VehicleTypeLabel').text(jsonData.VehicleTypeName);
                 $('#VehicleDetailLabel').text(jsonData.VehicleName);

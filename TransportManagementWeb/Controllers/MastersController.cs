@@ -283,11 +283,12 @@ namespace TransportManagementWeb.Controllers
         }
 
         [HttpPost]
-        public JsonResult BillEntrySave(ClientBillDetailModel model)
+        public ActionResult BillEntrySave(ClientBillDetailModel model)
         {
             ClientDetailBAL detail = new ClientDetailBAL();
             var result = detail.BillEntrySave(model);
-            return Json(CrudResponse(result), JsonRequestBehavior.AllowGet);
+            SetAlertMessage("Data has been saved.", "Bill Entry");
+            return RedirectToAction("BillEntry");
         }
         [HttpPost]
         public JsonResult GetAllInvoiceDetail()
