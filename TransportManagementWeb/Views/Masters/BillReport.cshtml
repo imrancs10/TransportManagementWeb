@@ -10,7 +10,7 @@
 <form>
     <section class="content-wrapper" role="main" style="height:1200px;">
         <div class="content">
-            <div class="bg-light hidden">
+            <div class="bg-light hidden" id="header">
                 <div class="content-hero-body pt-1x">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
@@ -33,7 +33,7 @@
                             <div class="panel-body">
                                 <h2 class="centre">Credit Bill</h2>
                                 <hr />
-                                <div class="row">
+                                <div class="row" id="invoiceRow">
                                     <div class="col-md-6 col-md-offset-6">
                                         <div class="form-group mt-lg">
                                             <label class="col-sm-4 control-label">Invoice Number</label>
@@ -203,7 +203,7 @@
                                                     <div class="col-md-2">
                                                         <h5><strong>@billDetail.ClientBillDescriptions.FirstOrDefault().TotalAmount</strong></h5>
                                                         <h5><strong>@billDetail.DocketCharge</strong></h5>
-                                                        <h5><strong>@Convert.ToDecimal(billDetail.LoadingCharge)+@Convert.ToDecimal(billDetail.UnloadingCharge)</strong></h5>
+                                                        <h5><strong>@(@Convert.ToDecimal(billDetail.LoadingCharge) + @Convert.ToDecimal(billDetail.UnloadingCharge))</strong></h5>
                                                         <h5><strong>@billDetail.CGST</strong></h5>
                                                         <h5><strong>@billDetail.SGST</strong></h5>
                                                         <h5><strong>@billDetail.IGST</strong></h5>
@@ -213,8 +213,12 @@
                                                         <h5><strong>@billDetail.RoundOff</strong></h5>
                                                         <h5>
                                                             <strong>
-                                                                (@billDetail.ClientBillDescriptions.FirstOrDefault().TotalAmount
-                                                                +@billDetail.Tax)-@billDetail.AdvanceAmount
+                                                                @( (@Convert.ToDecimal(billDetail.ClientBillDescriptions.FirstOrDefault().TotalAmount)
+                                                                                  +
+                                                                                 @Convert.ToDecimal(billDetail.Tax)
+                                                                               )
+                                                                               -
+                                                                               (@Convert.ToDecimal(billDetail.AdvanceAmount)))
                                                             </strong>
                                                         </h5>
                                                     </div>
@@ -231,6 +235,8 @@
                                                         <h5><strong>All Disputes subject to kanpur juridisction only.</strong></h5>
 
                                                         <p>E. & O.E</p>
+
+                                                        <input class="btn btn-info" type="button" value="Print" id="btnPrint" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -245,6 +251,7 @@
             </div>
         </div><!-- /.content -->
     </section>
+    
 </form>
 <script>
     $(function () {
