@@ -1,298 +1,369 @@
 ﻿@{
-    ViewBag.Title = "Transhipment Detail";
+    ViewBag.Title = "Ledger Report";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<form action="SaveTranshipmentAllotment" method="post">
-    <section class="content-wrapper" role="main">
-        <div class="content">
-            <div class="content-hero bg-light">
-                <div class="content-hero-body pt-1x">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="invoice-brand mb-4x">
-                                <p class="text-muted"><span>CST NO:</span>U74999UP2018PTC100584</p>
-                                <p class="text-muted"><span>GSTN NO:</span>77977879797797879</p>
-                                <p class="text-muted"><span>PAN NO:</span>779778797977978797987988</p>
-                                <img class="logo" src="../images/logo/brand-text-dark.png" alt="Brand" style="height:70px; width:225px;">
-                            </div><!-- /.invoice-brand -->
+<section class="content-wrapper" role="main">
+    <div class="content">
+
+        <div class="content-bar">
+            <ul class="breadcrumb breadcrumb-angle">
+                <li><a href="#" aria-label="home"><i class="fa fa-home"></i></a></li>
+                <li class="active">Ledger Report</li>
+            </ul>
+        </div><!-- /.content-bar -->
+        <hr />
+
+        <div class="content-body" style="height:800px;">
+
+            <div class="col-lg-12">
+                <div class="featured-box featured-box-primary align-left mt-xlg">
+                    <div class="box-content">
+                        <div class="row">
+                            <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Ledger Report</h4></div>
                         </div>
-                        <div class="col-md-7">
-                            <div class="invoice-brand mb-4x">
-                                <p class="text-muted centre">CONSIGNMENT NOTE</p>
-                                <h1 class="no-margin mb-1x hidden-sm hidden-xs">DEMON INTERNATIONAL LOGISTICS PVT. LTD.</h1>
-                                <p class="centre">207/9, Viajy Nagar, Kanpur - 208005</p>
-                                <p class="centre">Email: infp@demoninternational.in, Web: www.demoninternational.in</p>
-                                <p class="centre">Mob: No.: +91-9616144446, +91-9616144447</p>
-                            </div><!-- /.invoice-brand -->
-                        </div>
-
-                        <div class="col-md-2">
-                            <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
-                                <div class="panel-body">
-                                    <div class="tab-content">
-                                        <div id="top-pages" class="tab-pane active fade in">
-                                            <ul class="media-list">
-                                                <li class="media">
-                                                    <div class="media-body">
-                                                        <p class="media-heading">Consignment No.</p>
-                                                        <a href="#" class="help-block"><small>DIL/INO/:</small><b>168978</b></a>
-                                                    </div>
-                                                </li>
-                                        </div><!-- /.tab-pane -->
-                                    </div><!-- /.tab-content -->
-                                </div><!-- /.panel-body -->
-                            </div><!-- /.panel -->
-                            <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
-                                <div class="panel-body">
-                                    <div class="tab-content">
-                                        <div id="Div1" class="tab-pane active fade in">
-                                            <ul class="media-list">
-                                                <li class="media">
-                                                    <div class="media-body">
-                                                        <p class="media-heading">Vehicle No:</p>
-                                                        <a href="#" class="help-block"><small>MH04HD9744</small></a>
-                                                    </div>
-                                                </li>
-                                        </div><!-- /.tab-pane -->
-                                    </div><!-- /.tab-content -->
-                                </div><!-- /.panel-body -->
-                            </div>
-                        </div>
-                    </div><!-- /.row -->
-
-                </div><!-- /.content-hero-body -->
-            </div><!-- /.content-hero -->
-
-            <div class="content-body">
-
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
-                            <div class="panel-body">
-                                <div class="tab-content">
-                                    <div class="tab-pane active fade in">
-                                        <p class="title">Top Pages</p>
-                                        <hr class="mt-2x">
-                                        <ul class="media-list">
-                                            <li class="media">
-                                                <div class="media-left">1</div>
-                                                <div class="media-body">
-                                                    <p class="pull-right">95,880</p>
-                                                    <p class="media-heading">Landing Page</p>
-                                                    <a href="#" class="help-block"><small>http://wrapkit.com</small></a>
-                                                </div>
-                                            </li>
-                                            <li class="media">
-                                                <div class="media-left">2</div>
-                                                <div class="media-body">
-                                                    <p class="pull-right">69,189</p>
-                                                    <p class="media-heading">Collections</p>
-                                                    <a href="#" class="help-block"><small>http://wrapkit.com/collections</small></a>
-                                                </div>
-                                            </li>
-                                            <li class="media">
-                                                <div class="media-left">3</div>
-                                                <div class="media-body">
-                                                    <p class="pull-right">48,238</p>
-                                                    <p class="media-heading">Free Stuff</p>
-                                                    <a href="#" class="help-block"><small>http://wrapkit.com/free-stuff</small></a>
-                                                </div>
-                                            </li>
-                                            <li class="media">
-                                                <div class="media-left">4</div>
-                                                <div class="media-body">
-                                                    <p class="pull-right">29,616</p>
-                                                    <p class="media-heading">About Us</p>
-                                                    <a href="#" class="help-block"><small>http://wrapkit.com/about-us</small></a>
-                                                </div>
-                                            </li>
-                                            <li class="media">
-                                                <div class="media-left">5</div>
-                                                <div class="media-body">
-                                                    <p class="pull-right">18,444</p>
-                                                    <p class="media-heading">Our Works</p>
-                                                    <a href="#" class="help-block"><small>http://wrapkit.com/our-works</small></a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <a href="#" class="btn btn-link btn-icon btn-block">View All <span class="fa fa-angle-double-down ml-1x"></span></a>
-                                    </div>
-                                </div>
-                            </div>
+                        <hr class="tall">
+                        <br />
+                        <div class="table-responsive table-bordered">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="table-bordered bg-primary">
+                                        <th>Date</th>
+                                        <th>LR No</th>
+                                        <th>Type</th>
+                                        <th>Bill No.</th>
+                                        <th>Description</th>
+                                        <th>Credit</th>
+                                        <th>Debit</th>
+                                        <th>Balance</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>
+                                        <p>22/09/2014</p>
+                                    </td>
+                                    <td>
+                                        <p>IP:2014/007620</p>
+                                    </td>
+                                    <td>
+                                        <p>SV</p>
+                                    </td>
+                                    <td>
+                                        <p>SV:2014-076593</p>
+                                    </td>
+                                    <td>
+                                        <p>To Services/Tests Billing</p>
+                                    </td>
+                                    <td>
+                                        <p>905.00</p>
+                                    </td>
+                                    <td>
+                                        <p>0.00</p>
+                                    </td>
+                                    <td>
+                                        <p>905.00 Dr</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>30/09/2014</p>
+                                    </td>
+                                    <td>
+                                        <p>IP:2014/007620</p>
+                                    </td>
+                                    <td>
+                                        <p>GR</p>
+                                    </td>
+                                    <td>
+                                        <p>GR:2014/020147</p>
+                                    </td>
+                                    <td>
+                                        <p>ADVANCE MONEY RECEIVED</p>
+                                    </td>
+                                    <td>
+                                        <p>0.00</p>
+                                    </td>
+                                    <td>
+                                        <p>3000.00</p>
+                                    </td>
+                                    <td>
+                                        <p>4957.00 Cr</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>22/09/2014</p>
+                                    </td>
+                                    <td>
+                                        <p>IP:2014/007620</p>
+                                    </td>
+                                    <td>
+                                        <p>SV</p>
+                                    </td>
+                                    <td>
+                                        <p>SV:2014-076593</p>
+                                    </td>
+                                    <td>
+                                        <p>To Services/Tests Billing</p>
+                                    </td>
+                                    <td>
+                                        <p>905.00</p>
+                                    </td>
+                                    <td>
+                                        <p>0.00</p>
+                                    </td>
+                                    <td>
+                                        <p>905.00 Dr</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>22/09/2014</p>
+                                    </td>
+                                    <td>
+                                        <p>IP:2014/007620</p>
+                                    </td>
+                                    <td>
+                                        <p>SV</p>
+                                    </td>
+                                    <td>
+                                        <p>SV:2014-076593</p>
+                                    </td>
+                                    <td>
+                                        <p>To Services/Tests Billing</p>
+                                    </td>
+                                    <td>
+                                        <p>905.00</p>
+                                    </td>
+                                    <td>
+                                        <p>0.00</p>
+                                    </td>
+                                    <td>
+                                        <p>905.00 Dr</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>30/09/2014</p>
+                                    </td>
+                                    <td>
+                                        <p>IP:2014/007620</p>
+                                    </td>
+                                    <td>
+                                        <p>GR</p>
+                                    </td>
+                                    <td>
+                                        <p>GR:2014/020147</p>
+                                    </td>
+                                    <td>
+                                        <p>ADVANCE MONEY RECEIVED</p>
+                                    </td>
+                                    <td>
+                                        <p>0.00</p>
+                                    </td>
+                                    <td>
+                                        <p>3000.00</p>
+                                    </td>
+                                    <td>
+                                        <p>4957.00 Cr</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>22/09/2014</p>
+                                    </td>
+                                    <td>
+                                        <p>IP:2014/007620</p>
+                                    </td>
+                                    <td>
+                                        <p>SV</p>
+                                    </td>
+                                    <td>
+                                        <p>SV:2014-076593</p>
+                                    </td>
+                                    <td>
+                                        <p>To Services/Tests Billing</p>
+                                    </td>
+                                    <td>
+                                        <p>905.00</p>
+                                    </td>
+                                    <td>
+                                        <p>0.00</p>
+                                    </td>
+                                    <td>
+                                        <p>905.00 Dr</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>22/09/2014</p>
+                                    </td>
+                                    <td>
+                                        <p>IP:2014/007620</p>
+                                    </td>
+                                    <td>
+                                        <p>SV</p>
+                                    </td>
+                                    <td>
+                                        <p>SV:2014-076593</p>
+                                    </td>
+                                    <td>
+                                        <p>To Services/Tests Billing</p>
+                                    </td>
+                                    <td>
+                                        <p>905.00</p>
+                                    </td>
+                                    <td>
+                                        <p>0.00</p>
+                                    </td>
+                                    <td>
+                                        <p>905.00 Dr</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>30/09/2014</p>
+                                    </td>
+                                    <td>
+                                        <p>IP:2014/007620</p>
+                                    </td>
+                                    <td>
+                                        <p>GR</p>
+                                    </td>
+                                    <td>
+                                        <p>GR:2014/020147</p>
+                                    </td>
+                                    <td>
+                                        <p>ADVANCE MONEY RECEIVED</p>
+                                    </td>
+                                    <td>
+                                        <p>0.00</p>
+                                    </td>
+                                    <td>
+                                        <p>3000.00</p>
+                                    </td>
+                                    <td>
+                                        <p>4957.00 Cr</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>22/09/2014</p>
+                                    </td>
+                                    <td>
+                                        <p>IP:2014/007620</p>
+                                    </td>
+                                    <td>
+                                        <p>SV</p>
+                                    </td>
+                                    <td>
+                                        <p>SV:2014-076593</p>
+                                    </td>
+                                    <td>
+                                        <p>To Services/Tests Billing</p>
+                                    </td>
+                                    <td>
+                                        <p>905.00</p>
+                                    </td>
+                                    <td>
+                                        <p>0.00</p>
+                                    </td>
+                                    <td>
+                                        <p>905.00 Dr</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>22/09/2014</p>
+                                    </td>
+                                    <td>
+                                        <p>IP:2014/007620</p>
+                                    </td>
+                                    <td>
+                                        <p>SV</p>
+                                    </td>
+                                    <td>
+                                        <p>SV:2014-076593</p>
+                                    </td>
+                                    <td>
+                                        <p>To Services/Tests Billing</p>
+                                    </td>
+                                    <td>
+                                        <p>905.00</p>
+                                    </td>
+                                    <td>
+                                        <p>0.00</p>
+                                    </td>
+                                    <td>
+                                        <p>905.00 Dr</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>30/09/2014</p>
+                                    </td>
+                                    <td>
+                                        <p>IP:2014/007620</p>
+                                    </td>
+                                    <td>
+                                        <p>GR</p>
+                                    </td>
+                                    <td>
+                                        <p>GR:2014/020147</p>
+                                    </td>
+                                    <td>
+                                        <p>ADVANCE MONEY RECEIVED</p>
+                                    </td>
+                                    <td>
+                                        <p>0.00</p>
+                                    </td>
+                                    <td>
+                                        <p>3000.00</p>
+                                    </td>
+                                    <td>
+                                        <p>4957.00 Cr</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>22/09/2014</p>
+                                    </td>
+                                    <td>
+                                        <p>IP:2014/007620</p>
+                                    </td>
+                                    <td>
+                                        <p>SV</p>
+                                    </td>
+                                    <td>
+                                        <p>SV:2014-076593</p>
+                                    </td>
+                                    <td>
+                                        <p>To Services/Tests Billing</p>
+                                    </td>
+                                    <td>
+                                        <p>905.00</p>
+                                    </td>
+                                    <td>
+                                        <p>0.00</p>
+                                    </td>
+                                    <td>
+                                        <p>905.00 Dr</p>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
-                    <div class="col-md-5">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
-                                    <div class="panel-body">
-                                        <div class="tab-content">
-                                            <div id="Div4" class="tab-pane active fade in">
-                                                <ul class="media-list">
-                                                    <li class="media">
-                                                        <div class="media-body">
-                                                            <p class="media-heading">Consignment No.</p>
-                                                            <a href="#" class="help-block"><small>DIL/INO/:</small><b>168978</b></a>
-                                                        </div>
-                                                    </li>
-                                            </div><!-- /.tab-pane -->
-                                        </div><!-- /.tab-content -->
-                                    </div><!-- /.panel-body -->
-                                </div><!-- /.panel -->
-                            </div>
-                            <div class="col-md-6">
-                                <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
-                                    <div class="panel-body">
-                                        <div class="tab-content">
-                                            <div class="tab-pane active fade in">
-                                                <ul class="media-list">
-                                                    <li class="media">
-                                                        <div class="media-body">
-                                                            <p class="media-heading">Consignment No.</p>
-                                                            <a href="#" class="help-block"><small>DIL/INO/:</small><b>168978</b></a>
-                                                        </div>
-                                                    </li>
-                                            </div><!-- /.tab-pane -->
-                                        </div><!-- /.tab-content -->
-                                    </div><!-- /.panel-body -->
-                                </div><!-- /.panel -->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
-                                <div class="panel-body">
-                                    <div class="tab-content">
-                                        <div class="tab-pane active fade in">
-                                            <p class="title">Top Pages</p>
-                                            <hr class="mt-2x">
-                                            <ul class="media-list">
-                                                <li class="media">
-                                                    <div class="media-left">1</div>
-                                                    <div class="media-body">
-                                                        <p class="pull-right">95,880</p>
-                                                        <p class="media-heading">Landing Page</p>
-                                                        <a href="#" class="help-block"><small>http://wrapkit.com</small></a>
-                                                    </div>
-                                                </li>
-                                                <li class="media">
-                                                    <div class="media-left">2</div>
-                                                    <div class="media-body">
-                                                        <p class="pull-right">69,189</p>
-                                                        <p class="media-heading">Collections</p>
-                                                        <a href="#" class="help-block"><small>http://wrapkit.com/collections</small></a>
-                                                    </div>
-                                                </li>
-                                                <li class="media">
-                                                    <div class="media-left">3</div>
-                                                    <div class="media-body">
-                                                        <p class="pull-right">48,238</p>
-                                                        <p class="media-heading">Free Stuff</p>
-                                                        <a href="#" class="help-block"><small>http://wrapkit.com/free-stuff</small></a>
-                                                    </div>
-                                                </li>
-                                                <li class="media">
-                                                    <div class="media-left">4</div>
-                                                    <div class="media-body">
-                                                        <p class="pull-right">29,616</p>
-                                                        <p class="media-heading">About Us</p>
-                                                        <a href="#" class="help-block"><small>http://wrapkit.com/about-us</small></a>
-                                                    </div>
-                                                </li>
-                                                <li class="media">
-                                                    <div class="media-left">5</div>
-                                                    <div class="media-body">
-                                                        <p class="pull-right">18,444</p>
-                                                        <p class="media-heading">Our Works</p>
-                                                        <a href="#" class="help-block"><small>http://wrapkit.com/our-works</small></a>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                            <a href="#" class="btn btn-link btn-icon btn-block">View All <span class="fa fa-angle-double-down ml-1x"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
-                                    <div class="panel-body">
-                                        <div class="tab-content">
-                                            <div id="Div2" class="tab-pane active fade in">
-                                                <ul class="media-list">
-                                                    <li class="media">
-                                                        <div class="media-body">
-                                                            <p class="media-heading mainwrap">To Pay</p>
-                                                            <a href="#" class="help-block"><small>vcvcvcv</small></a>
-                                                        </div>
-                                                    </li>
-                                            </div><!-- /.tab-pane -->
-                                        </div><!-- /.tab-content -->
-                                    </div><!-- /.panel-body -->
-                                </div><!-- /.panel -->
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
-                                    <div class="panel-body">
-                                        <div class="tab-content">
-                                            <div id="Div3" class="tab-pane active fade in">
-                                                <ul class="media-list">
-                                                    <li class="media">
-                                                        <div class="media-body">
-                                                            <p class="media-heading mainwrap">To Pay</p>
-                                                            <a href="#" class="help-block"><small>xcvv</small></a>
-                                                        </div>
-                                                    </li>
-                                            </div><!-- /.tab-pane -->
-                                        </div><!-- /.tab-content -->
-                                    </div><!-- /.panel-body -->
-                                </div><!-- /.panel -->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
-                                    <div class="panel-body">
-                                        <div class="tab-content">
-                                            <div id="Div5" class="tab-pane active fade in">
-                                                <ul class="media-list">
-                                                    <li class="media">
-                                                        <div class="media-body">
-                                                            <p class="media-heading">Consignment No.</p>
-                                                            <hr />
-                                                            <p class="media-heading">Consignment No.</p>
-                                                            <hr />
-                                                            <p class="media-heading">Consignment No.</p>
-                                                            <hr />
-                                                            <p class="media-heading">Consignment No.</p>
-                                                            <hr />
-                                                            <p class="media-heading">Consignment No.</p>
-                                                            <hr />
-                                                        </div>
-                                                    </li>
-                                            </div><!-- /.tab-pane -->
-                                        </div><!-- /.tab-content -->
-                                    </div><!-- /.panel-body -->
-                                </div><!-- /.panel -->
-                            </div>
-                        </div>
-                    </div>
+                </div>
+            </div>
 
-                </div><!-- /.row -->
-            </div><!-- /.content-body -->
 
-        </div><!-- /.content -->
+        </div>
 
-    </section>
-</form>
-<script>
-    $(function () {
-        $(document).ready(function () {
-            $('.LedgerReportPageActive').addClass('active');
-        })
-    });
-</script>
+
+        <div class="clearfix"></div>
+
+    </div><!-- /.content -->
+
+</section>
+
 <script src="~/Scripts/App/Masters/TranshipmentAllotment.js"></script>

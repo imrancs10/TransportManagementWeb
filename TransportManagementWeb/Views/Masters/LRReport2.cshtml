@@ -1,0 +1,624 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html class="no-js">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1,width=device-width,height=device-height,target-densitydpi=device-dpi,user-scalable=yes">
+
+    <title>Blank Layout - Wrapkit Admin Template</title>
+    <link rel="manifest" href="~/images/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="msapplication-TileImage" content="~/images/favicons/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,700,600,300" rel="~/stylesheet" type="text/css">
+
+    <link rel="~/stylesheet" href="~/styles/bootstrap.css">
+
+    <link rel="~/stylesheet" href="~/styles/dependencies.css">
+
+    <link rel="~/stylesheet" href="~/styles/wrapkit.css">
+</head>
+<body>
+    <main class="wrapkit-wrapper" id="wrapper">
+        <!-- ============================================
+        HEADER SECTION
+        =============================================== -->
+        <!-- navigation -->
+        <nav class="header navbar hidden-lg">
+            <div class="container-fluid">
+                <!-- use .pull-*, couse we need this float on any screen size -->
+                <div class="pull-left">
+                    <a class="navbar-brand" href="index-2.html" role="logo" aria-label="Logo">
+                        <img class="logo" src="~/images/logo/brand-text-dark.png" alt="Brand">
+                    </a>
+                    <button data-sidebar="toggleVisible" class="btn btn-icon navbar-btn">
+                        <i class="fa fa-bars"></i>
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                </div>
+
+                <!-- use .pull-*, couse we need this float on any screen size -->
+                <div class="pull-right" role="navigation">
+                    <a aria-label="Search" id="brandSearchNav" class="btn btn-icon navbar-btn" href="#"><i class="fa fa-search"></i></a>
+                    <a aria-label="Signout" class="btn btn-icon navbar-btn" href="#"><i class="fa fa-sign-out"></i></a>
+                </div><!-- /navigation -->
+
+                <div class="brand-search" id="brandSearchFrm">
+                    <form action="#" role="search">
+                        <a href="#" class="search-close">&times;</a>
+                        <input class="search-field" placeholder="Search for everything you want..." tabindex="-1">
+                    </form>
+                </div><!-- /.brand-search -->
+            </div><!-- /.container-fluid -->
+        </nav><!-- /navigation -->
+        <!-- ============================================
+        SIDEBAR SECTION
+        =============================================== -->
+        <aside class="sidebar hidden-lg" role="complementary">
+            <!-- profile -->
+            <div class="sidebar-block">
+                <div class="media">
+                    <div class="media-left">
+                        <a href="page-profile.html">
+                            <span class="status dotted dotted-primary" data-toggle="tooltip" data-container="body" title="" data-original-title="available"></span>
+                            <img class="media-object img-circle" src="~/images/dummy/uifaces14.jpg" alt="photo profile">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Emma Greene</h4>
+                        <p class="text-muted">
+                            <small>Graphic Designer</small>
+                        </p>
+                    </div>
+                </div>
+            </div><!-- /.sidebar-block -->
+            <!-- /navigation -->
+            <div class="nav-wrapper">
+                <ul class="nav nav-stacked" role="navigation">
+                    <li class="nav-item active" role="presentation">
+                        <a href="layout.html">
+                            <span class="nav-icon"><i class="fa fa-object-group"></i></span>
+                            <span class="nav-text">Layout</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside><!-- /.SIDEBAR -->
+        <!-- ============================================
+        MAIN CONTENT SECTION
+        =============================================== -->
+        <section class="content-wrapper" role="main">
+            <div class="content">
+                <div class="content-hero bg-light">
+                    <div class="content-hero-body pt-1x">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="invoice-brand mb-4x">
+                                    <p><span>CST NO:</span><small>U74999UP2018PTC100584</small></p>
+                                    <p><span>GSTN NO:</span><small>77977879797797879</small></p>
+                                    <p><span>PAN NO:</span><small>779778797977978797987988</small></p>
+                                    <img class="logo" src="~/images/logo/brand-text-dark.png" alt="Brand" style="height:70px; width:225px;">
+                                </div><!-- /.invoice-brand -->
+                            </div>
+                            <div class="col-md-7">
+                                <div class="invoice-brand mb-4x">
+                                    <p class="centre">CONSIGNMENT NOTE</p>
+                                    <h1 class="no-margin mb-1x">DEMON INTERNATIONAL LOGISTICS PVT. LTD.</h1>
+                                    <p class="centre">207/9, Viajy Nagar, Kanpur - 208005</p>
+                                    <p class="centre">Email: infp@demoninternational.in, Web: www.demoninternational.in</p>
+                                    <p class="centre">Mob: No.: +91-9616144446, +91-9616144447</p>
+                                </div><!-- /.invoice-brand -->
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                    <div class="panel-body">
+                                        <div class="tab-content">
+                                            <div id="top-pages" class="tab-pane active fade in">
+                                                <ul class="media-list">
+                                                    <li class="media">
+                                                        <div class="media-body">
+                                                            <p class="media-heading"><strong>Consignment No.</strong></p>
+                                                            <p class="media-heading"><small>DIL/INO/:</small><b>168978</b><p />
+                                                        </div>
+                                                    </li>
+                                            </div><!-- /.tab-pane -->
+                                        </div><!-- /.tab-content -->
+                                    </div><!-- /.panel-body -->
+                                </div><!-- /.panel -->
+                                <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                    <div class="panel-body">
+                                        <div class="tab-content">
+                                            <div id="Div1" class="tab-pane active fade in">
+                                                <ul class="media-list">
+                                                    <li class="media">
+                                                        <div class="media-body">
+                                                            <p class="media-heading"><strong>Vehicle No:</strong></p>
+                                                            <p class="media-heading"><small>MH04HD9744</small></p>
+                                                        </div>
+                                                    </li>
+                                            </div><!-- /.tab-pane -->
+                                        </div><!-- /.tab-content -->
+                                    </div><!-- /.panel-body -->
+                                </div>
+                            </div>
+                        </div><!-- /.row -->
+
+                    </div><!-- /.content-hero-body -->
+                </div><!-- /.content-hero -->
+
+                <div class="content-body">
+
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                <div class="panel-body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active fade in">
+                                            <p class="title"><strong>SHIPPER/CONSIGNER</strong></p>
+                                            <ul class="media-list">
+                                                <li class="media">
+                                                    <div class="media-body">
+                                                        <p class="media-heading" style="border-bottom:1px solid #797575;padding:3px;">Organic India Pvt Ltd</p>
+                                                        <p class="media-heading" style="border-bottom:1px solid #797575;padding:3px;">T.P.Nagar Lucknow</p>
+                                                        <p class="media-heading" style="border-bottom:1px solid #797575;padding:3px;">Address 2</p>
+                                                        <p class="media-heading" style="border-bottom:1px solid #797575;padding:3px;"><strong>Tel. No: </strong><small>79798797797979</small></p>
+                                                        <p class="media-heading" style="border-bottom:1px solid #797575;padding:3px;"><strong>GST.No: </strong><small>09AAACIS6758945</small></p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                        <div class="panel-body">
+                                            <div class="tab-content">
+                                                <div class="tab-pane active fade in">
+                                                    <ul class="media-list">
+                                                        <li class="media">
+                                                            <div class="media-body">
+                                                                <p class="media-heading"><strong>No. Of Boxes</strong></p>
+                                                                <p class="media-heading"><small>243</small></p>
+                                                            </div>
+                                                        </li>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                        <div class="panel-body">
+                                            <div class="tab-content">
+                                                <div class="tab-pane active fade in">
+                                                    <ul class="media-list">
+                                                        <li class="media">
+                                                            <div class="media-body">
+                                                                <p class="media-heading"><strong>Actual Wt.</strong></p>
+                                                                <p class="media-heading"><small>3660 KG</small></p>
+                                                            </div>
+                                                        </li>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                        <div class="panel-body">
+                                            <div class="tab-content">
+                                                <div class="tab-pane active fade in">
+                                                    <ul class="media-list">
+                                                        <li class="media">
+                                                            <div class="media-body">
+                                                                <p class="media-heading"><strong>Charge Wt.</strong></p>
+                                                                <p class="media-heading"><small>FTL</small></p>
+                                                            </div>
+                                                        </li>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                        <div class="panel-body">
+                                            <div class="tab-content">
+                                                <div class="tab-pane active fade in">
+                                                    <ul class="media-list">
+                                                        <li class="media">
+                                                            <div class="media-body">
+                                                                <p class="media-heading"><strong>Dimension</strong></p>
+                                                                <p class="media-heading"><small>243</small></p>
+                                                                <p></p><br /><br />
+                                                            </div>
+                                                        </li>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                                <div class="panel-body">
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active fade in">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-responsive table-bordered">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td><strong>From</strong></td>
+                                                                            <td>Lucknow</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><strong>To</strong></td>
+                                                                            <td>Delhi</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div><!-- /.tab-pane -->
+                                                    </div><!-- /.tab-content -->
+                                                </div><!-- /.panel-body -->
+                                            </div><!-- /.panel -->
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                                <div class="panel-body">
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active fade in">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-responsive table-bordered">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td><strong>Date</strong></td>
+                                                                            <td>19/09/2018</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><strong>Time</strong></td>
+                                                                            <td>7:00 Pm</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div><!-- /.tab-pane -->
+                                                    </div><!-- /.tab-content -->
+                                                </div><!-- /.panel-body -->
+                                            </div><!-- /.panel -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                    <div class="panel-body">
+                                        <div class="tab-content">
+                                            <div class="tab-pane active fade in">
+                                                <p class="title"><strong>RECEIVER/CONSIGNER</strong></p>
+                                                <ul class="media-list">
+                                                    <li class="media">
+                                                        <div class="media-body">
+                                                            <p class="media-heading" style="border-bottom:1px solid #797575;padding:3px;">Meera Raj Business</p>
+                                                            <p class="media-heading" style="border-bottom:1px solid #797575;padding:3px;">Indorew</p>
+                                                            <p class="media-heading" style="border-bottom:1px solid #797575;padding:3px;"><strong>Tel. No: </strong><small> 7370702013</small></p>
+                                                            <p class="media-heading" style="border-bottom:1px solid #797575;padding:3px;"><strong>GST.No: </strong><small> 09AAACIS6758945</small></p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                                <div class="panel-body">
+                                                    <div class="tab-content">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-responsive table-bordered">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td><strong>Invoice No.</strong></td>
+                                                                        <td>sdvzxcvxzvvvvdssd</td>
+                                                                        <td><strong>Invoice Value.</strong></td>
+                                                                        <td>sdvdzxvvvzvssd</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                                <div class="panel-body">
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active fade in">
+                                                            <p class="media-heading" style="border-bottom:1px solid #797575;padding:3px;margin-right:10px;"><strong>Super Agreement </strong> <small>79798797797979</small></p>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <p>
+                                                                        xcbcxbbcxbnxcmbxvxnczxbvxcbnxcmnxcmbxcbnxcmbxcmxcmbc<br />xmxcmbxcbxncxcbcbxcbxcbcxbbxcbxczzzzzzzzzzzzzzzzzzzzzzzzz
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+
+                                                        </div><!-- /.tab-pane -->
+                                                    </div><!-- /.tab-content -->
+                                                </div><!-- /.panel-body -->
+                                            </div><!-- /.panel -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                        <div class="panel-body">
+                                            <div class="tab-content">
+                                                <div id="Div2" class="tab-pane active fade in">
+                                                    <ul class="media-list">
+                                                        <li class="media">
+                                                            <div class="media-body">
+                                                                <p class="media-heading mainwrap" style="border-bottom:1px solid #797575;padding:3px;">To Pay</p>
+                                                                <input type="checkbox" name="vehicle1" value="Owner">
+                                                            </div>
+                                                        </li>
+                                                </div><!-- /.tab-pane -->
+                                            </div><!-- /.tab-content -->
+                                        </div><!-- /.panel-body -->
+                                    </div><!-- /.panel -->
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                        <div class="panel-body">
+                                            <div class="tab-content">
+                                                <div id="Div3" class="tab-pane active fade in">
+                                                    <ul class="media-list">
+                                                        <li class="media">
+                                                            <div class="media-body">
+                                                                <p class="media-heading mainwrap" style="border-bottom:1px solid #797575;padding:3px;">Paid</p>
+                                                                <input type="checkbox" name="vehicle1" value="Owner">
+                                                            </div>
+                                                        </li>
+                                                </div><!-- /.tab-pane -->
+                                            </div><!-- /.tab-content -->
+                                        </div><!-- /.panel-body -->
+                                    </div><!-- /.panel -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                        <div class="panel-body">
+                                            <div class="tab-content">
+                                                <div id="Div5" class="tab-pane active fade in">
+                                                    <ul class="media-list">
+                                                        <li class="media">
+                                                            <div class="media-body">
+                                                                <p class="media-heading"><strong>Type of Packing</strong></p>
+                                                                <hr />
+                                                                <p class="media-heading" style="border-bottom:1px solid #797575;padding:3px;">xcbcxbb</p>
+                                                                <p class="media-heading"><strong>COD</strong></p>
+                                                                <hr />
+                                                                <p class="media-heading" style="border-bottom:1px solid #797575;padding:3px;">bnbvnbn</p>
+                                                                <p class="media-heading"><strong>DOD</strong></p>
+                                                                <hr />
+                                                                <p class="media-heading" style="border-bottom:1px solid #797575;padding:3px;">bnbvnbn</p>
+                                                                <br>
+                                                            </div>
+                                                        </li>
+                                                </div><!-- /.tab-pane -->
+                                            </div><!-- /.tab-content -->
+                                        </div><!-- /.panel-body -->
+                                    </div><!-- /.panel -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                        <div class="panel-body">
+                                            <div class="tab-content">
+                                                <div class="tab-pane active fade in">
+                                                    <input type="checkbox" name="vehicle1" value="Owner"> Owner Risk<br>
+                                                    <input type="checkbox" name="vehicle1" value="Carrier"> Carrier Risk<br>
+                                                </div><!-- /.tab-pane -->
+                                            </div><!-- /.tab-content -->
+                                        </div><!-- /.panel-body -->
+                                    </div><!-- /.panel -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- /.row -->
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <strong>GSTIN paid By Consignor & Consognee</strong><br />
+                                    <input type="checkbox" name="vehicle1" value="Bike"> GSTIN Paid By Consignor
+                                    <input type="checkbox" name="vehicle1" value="Bike"> Consignor
+                                    <input type="checkbox" name="vehicle1" value="Bike"> Transporter<br />
+                                    <strong>Docket Charge : Rs 50 Only</strong><br />
+                                    <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                        <div class="panel-body">
+                                            <div class="tab-content">
+                                                <div class="tab-pane active fade in">
+                                                    <ul class="media-list">
+                                                        <li class="media">
+                                                            <div class="media-body">
+                                                                <p class="media-heading">Special Instruction</p>
+                                                                <p></p><br />
+                                                                <p></p>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div><!-- /.tab-pane -->
+                                            </div><!-- /.tab-content -->
+                                        </div><!-- /.panel-body -->
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                                <div class="panel-body">
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active fade in">
+                                                            <ul class="media-list">
+                                                                <li class="media">
+                                                                    <div class="media-body">
+                                                                        <p class="media-heading"><strong>Seal No.</strong></p>
+                                                                        <p class="media-heading"><small>8000392</small></p><br />
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                                <div class="panel-body">
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active fade in">
+                                                            <ul class="media-list">
+                                                                <li class="media">
+                                                                    <div class="media-body">
+                                                                        <p class="media-heading"><strong>E-Way Bill No</strong></p>
+                                                                        <p class="media-heading"><small>461027375975</small></p>
+                                                                        <p class="media-heading"><small>946546546544</small></p>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="row">
+                                        <div class="col-md-3"><strong>Vehicle Owner Name</strong></div>
+                                        <div class="col-md-3"><p>Raju sdfdsvdsvdsv</p></div>
+                                        <div class="col-md-3"><strong>Driver Name</strong></div>
+                                        <div class="col-md-3"><p>Ashok Kumar</p></div>
+
+                                        <div class="col-md-3"><strong>Mobile noe</strong></div>
+                                        <div class="col-md-3"><p>9198789589</p></div>
+                                        <div class="col-md-3"><strong>Mobile no</strong></div>
+                                        <div class="col-md-3"><p>9878695889</p></div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                                <div class="panel-body">
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active fade in">
+                                                            <ul class="media-list">
+                                                                <li class="media">
+                                                                    <div class="media-body">
+                                                                        <p class="media-heading"><strong>No. Of Boxes</strong></p><hr />
+                                                                        <p class="media-heading"><strong>Time:</strong><small style="padding:3px;margin-right:10px;">7:00 Pm</small></p>
+                                                                        <p class="media-heading"><strong>Date:</strong><small style="padding:3px;margin-right:10px;">11/05/2018</small></p>
+                                                                        <p class="media-heading"><strong>Name:</strong><small style="padding:3px;margin-right:10px;"></small></p>
+                                                                        <p class="media-heading"><strong>Sign:</strong><small style="padding:3px;margin-right:10px;"></small></p>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-8">
+                                            <div class="panel fade in panel-default" panel-fill-color="true" data-init-panel="true">
+                                                <div class="panel-body">
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active fade in">
+                                                            <ul class="media-list">
+                                                                <li class="media">
+                                                                    <div class="media-body">
+                                                                        <p class="media-heading"><strong>Recieved All Goods in good Order & Condition </strong></p>
+                                                                        <br /><br /><br /><br /><br />
+                                                                        <div class="row">
+                                                                            <div class="col-md-4"><strong>Sign.</strong><small></small></div>
+                                                                            <div class="col-md-4"><strong>Co. Stamp.</strong></div>
+                                                                            <div class="col-md-4"><strong>Date.</strong></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.content-body -->
+
+            </div><!-- /.content -->
+
+        </section><!-- /MAIN -->
+        <!-- ============================================
+        FOOTER SECTION
+        =============================================== -->
+
+    </main><!-- /#MAIN -->
+    <!-- VENDORS : jQuery & Bootstrap -->
+    <script src="~/scripts/vendor.js"></script>
+    <!-- END VENDORS -->
+    <!-- DEPENDENCIES : Required plugins -->
+    <script src="~/scripts/dependencies.js"></script>
+    <!-- END DEPENDENCIES -->
+    <!-- WRAPKIT -->
+    <script src="~/scripts/wrapkit.js"></script>
+    <!-- END WRAPKIT -->
+    <!-- WRAPKIT SETUPS -->
+    <script src="~/scripts/wrapkit-setup.js"></script>
+    <!-- end WRAPKIT SETUPS -->
+    <!-- PLUGIN SETUPS: vendors & dependencies setups -->
+    <script src="~/scripts/plugin-setups.js"></script>
+    <!-- END PLUGIN SETUPS -->
+    <!-- DUMMY: Use for demo -->
+    <script type="text/javascript">
+      (function () {
+          'use strict';
+          window.sidebar.setMode('horizontal');
+      })(window);
+    </script>
+</body>
+</html>

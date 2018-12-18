@@ -264,6 +264,14 @@ namespace TransportManagementWeb.Controllers
         {
             return View();
         }
+        public ActionResult LRReport()
+        {
+            return View();
+        }
+        public ActionResult LRReport2()
+        {
+            return View();
+        }
         public ActionResult LedgerReport()
         {
             return View();

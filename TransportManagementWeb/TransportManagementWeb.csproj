@@ -415,6 +415,7 @@
     <Content Include="Scripts\wrapkit.js" />
     <Content Include="styles\bootstrap.css" />
     <Content Include="styles\components.css" />
+    <Content Include="styles\deamon.css" />
     <Content Include="styles\demo.css" />
     <Content Include="styles\dependencies.css" />
     <Content Include="styles\jquery-ui.css" />
@@ -486,6 +487,8 @@
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <Content Include="Views\Masters\BillReport.cshtml" />
     <Content Include="Views\Masters\BillEntry.cshtml" />
+    <Content Include="Views\Masters\LRReport.cshtml" />
+    <Content Include="Views\Masters\LRReport2.cshtml" />
     <Content Include="Views\Masters\LedgerReport.cshtml" />
   </ItemGroup>
   <ItemGroup>

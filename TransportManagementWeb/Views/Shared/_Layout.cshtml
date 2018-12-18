@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="~/styles/components.css">
     <link rel="stylesheet" href="~/styles/wrapkit.css">
     <link rel="stylesheet" href="~/styles/demo.css">
+    <link rel="stylesheet" href="~/styles/deamon.css">
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Scripts/App/Global/App.js"></script>
     <script src="~/Scripts/App/Global/Utility.js"></script>
@@ -46,7 +47,7 @@
 
                         <br />
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <label id="lblUserName1" ></label>
+                            <label id="lblUserName1"></label>
                             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -77,7 +78,7 @@
                         </a>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading" id="lblUserName" >  </h4>
+                        <h4 class="media-heading" id="lblUserName">  </h4>
 
                     </div>
                 </div>
@@ -118,8 +119,9 @@
                         </a>
                         <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
                             <li class="nav-item" role="presentation"><a href="~/Masters/LRReport"><span class="nav-text">LR Report</span></a></li>
+                            <li class="nav-item" role="presentation"><a href="~/Masters/LRReport2"><span class="nav-text">LR Report 2</span></a></li>
                             <li class="nav-item" role="presentation"><a href="~/Masters/BillReport"><span class="nav-text">Bill Report</span></a></li>
-                            <li class="nav-item" role="presentation"><a href="~/Masters/LedgerReport"><span class="nav-text">Leadger Report</span></a></li>
+                            <li class="nav-item" role="presentation"><a href="~/Masters/LedgerReport"><span class="nav-text">Ledger Report</span></a></li>
                         </ul>
                     </li>
                     <li class="divider"></li>
@@ -171,6 +173,14 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            $('.nav-item a.active').removeClass('active');
+            $('.nav-item a[href]').each(function (ind, ele) {
+                if ($(ele).attr('href').toLowerCase().indexOf(location.pathname.toLowerCase()) > -1) {
+                    $(ele).parent().addClass('active');
+                    $(ele).parent().parent().show();
+                }
+            });
+
             $("#dialog").dialog({
                 resizable: false,
                 height: "auto",

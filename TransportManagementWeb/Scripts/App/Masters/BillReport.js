@@ -59,8 +59,10 @@ $(document).ready(function () {
             stylesheet = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css',
             win = window.open('', 'Print', 'width=1000,height=1000');
         //$('#header').removeClass('hidden');
-        $('.table-responsive').removeClass('table-responsive');
+        //$('.table-responsive').removeClass('table-responsive');
+        $('.table td').css('padding', '0px');
         $('#invoiceRow').addClass('hidden');
+        $('#btnPrint').addClass('hidden');
         var dd = $('.content').clone();
 
         win.document.write('<html><head><title>' + pageTitle + '</title>' +
@@ -69,9 +71,11 @@ $(document).ready(function () {
         //win.document.close();
         //win.print();
         //win.close();
-        $('#header').addClass('hidden');
-        $('table.table-bordered').addClass('table-responsive');
+        //$('#header').addClass('hidden');
+        //$('table.table-bordered').addClass('table-responsive');
         $('#invoiceRow').removeClass('hidden');
+        $('.table td').css('padding', '8px');
+        $('#btnPrint').removeClass('hidden');
         return false;
     });
 });
