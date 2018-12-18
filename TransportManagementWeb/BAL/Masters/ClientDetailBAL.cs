@@ -52,7 +52,7 @@ namespace TransportManagementWeb.BAL.Masters
             _newclient.DocketCharge = model.DocketCharge;
             _newclient.IGST = model.IGST;
             _newclient.InvoiceDate = model.InvoiceDate;
-            _newclient.InvoiceNumber = model.InvoiceNumber;
+            _newclient.InvoiceNumber = getBillInvoiceNumber();
             _newclient.LoadingCharge = model.LoadingCharge;
             _newclient.RoundOff = model.RoundOff;
             _newclient.SGST = model.SGST;
@@ -60,12 +60,12 @@ namespace TransportManagementWeb.BAL.Masters
             _newclient.UnloadingCharge = model.UnloadingCharge;
             _newclient.ClientBillDescriptions.Add(new ClientBillDescription()
             {
-                Charges=model.ClientBillDescriptions[0].Charges,
+                Charges = model.ClientBillDescriptions[0].Charges,
                 ConsighmentNumber = model.ClientBillDescriptions[0].ConsighmentNumber,
                 Discount = model.ClientBillDescriptions[0].Discount,
                 Description = model.ClientBillDescriptions[0].Description,
                 DiscountPercentage = model.ClientBillDescriptions[0].DiscountPercentage,
-                Quantity = model.ClientBillDescriptions[0].Quantity ,
+                Quantity = model.ClientBillDescriptions[0].Quantity,
                 SACCode = model.ClientBillDescriptions[0].SACCode,
                 Total = model.ClientBillDescriptions[0].Total,
                 TotalAmount = model.ClientBillDescriptions[0].TotalAmount,
@@ -73,7 +73,16 @@ namespace TransportManagementWeb.BAL.Masters
             _db.Entry(_newclient).State = EntityState.Added;
             _effectRow = _db.SaveChanges();
             return _effectRow > 0 ? Enums.CrudStatus.Saved : Enums.CrudStatus.NotSaved;
+        }
 
+        private string getBillInvoiceNumber()
+        {
+            string invoiceNo = string.Empty;
+            _db = new TransportManagementEntities();
+            int maxInvoiceId = _db.ClientBillDetails.OrderByDescending(x => x.Id).FirstOrDefault().Id;
+            string finacialYear = DateTime.Now.Month >= 4 ? DateTime.Now.ToString("yy") + "-" + DateTime.Now.AddYears(1).ToString("yy") : DateTime.Now.AddYears(-1).ToString("yy") + "-" + DateTime.Now.ToString("yy");
+            invoiceNo += "DIL/" + finacialYear + "/" + (maxInvoiceId + 1).ToString();
+            return invoiceNo;
         }
 
     }

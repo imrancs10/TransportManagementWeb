@@ -44,7 +44,8 @@ $(document).ready(function () {
             data: '{clientId: "' + clientId + '" }',
             url: '/Masters/GetAllReferenceIdsForLRPage',
             success: function (data) {
-                $.each(data, function (key, entry) {
+                var jsonData = JSON.parse(data);
+                $.each(jsonData, function (key, entry) {
                     dropdown.append($('<option></option>').attr('value', entry.Id).text(entry.ReferenceNumber));
                 });
             },

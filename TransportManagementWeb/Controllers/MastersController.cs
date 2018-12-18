@@ -220,7 +220,12 @@ namespace TransportManagementWeb.Controllers
         public JsonResult GetAllReferenceIdsForLRPage(int clientId)
         {
             CommonDetails _details = new CommonDetails();
-            return Json(_details.GetAllReferenceIdsForLRPage(clientId));
+            var result = JsonConvert.SerializeObject(_details.GetAllReferenceIdsForLRPage(clientId), Formatting.Indented,
+                          new JsonSerializerSettings
+                          {
+                              ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                          });
+            return Json(result);
         }
         [HttpPost]
         public JsonResult GetServiceOrderDetail(int Id)
@@ -280,14 +285,24 @@ namespace TransportManagementWeb.Controllers
         public JsonResult GetAllLRDetails(int clientId)
         {
             CommonDetails _details = new CommonDetails();
-            return Json(_details.GetAllLRDetailsByClientId(clientId));
+            var result = JsonConvert.SerializeObject(_details.GetAllLRDetailsByClientId(clientId), Formatting.Indented,
+                            new JsonSerializerSettings
+                            {
+                                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                            });
+            return Json(result);
         }
 
         [HttpPost]
         public JsonResult GetLRDetailByLRId(int LRId)
         {
             CommonDetails _details = new CommonDetails();
-            return Json(_details.GetLRDetailByLRId(LRId));
+            var result = JsonConvert.SerializeObject(_details.GetLRDetailByLRId(LRId), Formatting.Indented,
+                           new JsonSerializerSettings
+                           {
+                               ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                           });
+            return Json(result);
         }
 
         [HttpPost]

@@ -44,7 +44,8 @@ $(document).ready(function () {
             data: '{clientId: "' + clientId + '" }',
             url: '/Masters/GetAllLRDetails',
             success: function (data) {
-                $.each(data, function (key, entry) {
+                var jsonData = JSON.parse(data);
+                $.each(jsonData, function (key, entry) {
                     dropdown.append($('<option></option>').attr('value', entry.Id).text(entry.LRNumber));
                 });
             },
@@ -70,9 +71,10 @@ $(document).ready(function () {
             data: '{LRId: "' + valueSelected + '" }',
             url: '/Masters/GetLRDetailByLRId',
             success: function (data) {
-                if (data.ServiceOrderDetail !== null) {
-                    $('#txtLoadingCharge').val(data.ServiceOrderDetail.ServiceOrderPaymentDetails.LoadingCharge);
-                    $('#txtUnloadingCharge').val(data.ServiceOrderDetail.ServiceOrderPaymentDetails.UnloadingCharge);
+                var jsonData = JSON.parse(data);
+                if (jsonData.ServiceOrderDetail !== null) {
+                    $('#txtLoadingCharge').val(jsonData.ServiceOrderDetail.ServiceOrderPaymentDetails[0].LoadingCharge);
+                    $('#txtUnloadingCharge').val(jsonData.ServiceOrderDetail.ServiceOrderPaymentDetails[0].UnloadingCharge);
                 }
             },
             failure: function (response) {

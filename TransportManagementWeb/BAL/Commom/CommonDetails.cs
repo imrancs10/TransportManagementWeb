@@ -149,8 +149,8 @@ namespace TransportManagementWeb.BAL.Commom
         {
             _db = new TransportManagementEntities();
             _db.Configuration.LazyLoadingEnabled = false;
-            //var result = _db.LRDetails.Include("ServiceOrderDetail").Include("ServiceOrderDetail.ServiceOrderPaymentDetails").Where(x => x.Id == LRId).FirstOrDefault();
-            var result = _db.LRDetails.Where(x => x.Id == LRId).FirstOrDefault();
+            var result = _db.LRDetails.Include("ServiceOrderDetail").Include("ServiceOrderDetail.ServiceOrderPaymentDetails").Where(x => x.Id == LRId).FirstOrDefault();
+            //var result = _db.LRDetails.Where(x => x.Id == LRId).FirstOrDefault();
             return result;
         }
 
