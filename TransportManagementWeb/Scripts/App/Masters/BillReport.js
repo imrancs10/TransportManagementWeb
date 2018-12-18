@@ -58,7 +58,7 @@ $(document).ready(function () {
         var pageTitle = 'Bill Report',
             stylesheet = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css',
             win = window.open('', 'Print', 'width=1000,height=1000');
-        $('#header').removeClass('hidden');
+        //$('#header').removeClass('hidden');
         $('.table-responsive').removeClass('table-responsive');
         $('#invoiceRow').addClass('hidden');
         var dd = $('.content').clone();

@@ -28,8 +28,8 @@ MAIN CONTENT SECTION
                             </div>
                             <hr class="tall">
                             <div class="form-group mt-lg">
-                                <label class="col-sm-3 control-label">Vendor Name <span style="color:red;">*</span></label>
-                                <div class="col-sm-9">
+                                <label class="col-sm-2 control-label">Vendor Name <span style="color:red;">*</span></label>
+                                <div class="col-sm-10">
                                     <div class="input-group input-group-icon">
                                         <input type="text" id="txtName" class="form-control" placeholder="Vendor Name" name="vendorName" required>
                                         <span class="input-group-addon">
@@ -101,15 +101,15 @@ MAIN CONTENT SECTION
 
                             <div class="row">
                                 <div class="form-group">
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group mt-lg">
                                             <label class="col-sm-4 control-label">Country <span style="color:red;">*</span></label>
                                             <div class="col-sm-8">
-                                                <select name="country" id="CountryDropdown" class="form-control"  required></select>
+                                                <select name="country" id="CountryDropdown" class="form-control" required></select>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group mt-lg">
                                             <label class="col-sm-4 control-label">State <span style="color:red;">*</span></label>
                                             <div class="col-sm-8">
@@ -117,7 +117,7 @@ MAIN CONTENT SECTION
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group mt-lg">
                                             <label class="col-sm-4 control-label">City Name <span style="color:red;">*</span></label>
                                             <div class="col-sm-8">
@@ -125,7 +125,19 @@ MAIN CONTENT SECTION
                                             </div>
                                         </div>
                                     </div>
-
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">PAN No.</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" id="Text2" name="panNumber" class="form-control" placeholder="Pan no">
+                                                    <span class="input-group-addon">
+                                                        <span class="icon"><i class="fa fa-edit"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -146,10 +158,10 @@ MAIN CONTENT SECTION
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">PAN No.</label>
+                                            <label class="col-sm-4 control-label">GSTN Scan Copy</label>
                                             <div class="col-sm-8">
                                                 <div class="input-group input-group-icon">
-                                                    <input type="text" id="Text2" name="panNumber" class="form-control" placeholder="Pan no">
+                                                    <input type="file" name="gstNoScanImage" id="gstNoScanImage" class="form-control" placeholder="GST No" accept="image/x-png,image/gif,image/jpeg" />
                                                     <span class="input-group-addon">
                                                         <span class="icon"><i class="fa fa-edit"></i></span>
                                                     </span>
@@ -162,19 +174,7 @@ MAIN CONTENT SECTION
                             </div>
                             <div class="row">
                                 <div class="form-group">
-                                    <div class="col-md-6">
-                                        <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">GSTN Scan Copy</label>
-                                            <div class="col-sm-8">
-                                                <div class="input-group input-group-icon">
-                                                    <input type="file" name="gstNoScanImage" id="gstNoScanImage" class="form-control" placeholder="GST No" accept="image/x-png,image/gif,image/jpeg" />
-                                                    <span class="input-group-addon">
-                                                        <span class="icon"><i class="fa fa-edit"></i></span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
                                             <label class="col-sm-4 control-label">PAN Scan Copy</label>
@@ -201,8 +201,8 @@ MAIN CONTENT SECTION
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-6 control-label">Email Id </label>
-                                            <div class="col-sm-6">
+                                            <label class="col-sm-4 control-label">Email Id </label>
+                                            <div class="col-sm-8">
                                                 <div class="form-group">
                                                     <div class="input-group input-group-icon">
                                                         <input type="text" id="Text11" name="CP1EMail" class="form-control" placeholder="Email Id">
@@ -216,8 +216,8 @@ MAIN CONTENT SECTION
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-6 control-label">Contact No </label>
-                                            <div class="col-sm-6">
+                                            <label class="col-sm-4 control-label">Contact No </label>
+                                            <div class="col-sm-8">
                                                 <div class="form-group">
                                                     <div class="input-group input-group-icon">
                                                         <input type="text" id="Text5" name="CP1ContactNo" class="form-control" placeholder="Contact No">
@@ -242,8 +242,8 @@ MAIN CONTENT SECTION
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-6 control-label">Email Id </label>
-                                            <div class="col-sm-6">
+                                            <label class="col-sm-4 control-label">Email Id </label>
+                                            <div class="col-sm-8">
                                                 <div class="form-group">
                                                     <div class="input-group input-group-icon">
                                                         <input type="text" id="Text6" name="CP2Email" class="form-control" placeholder="Email Id">
@@ -257,8 +257,8 @@ MAIN CONTENT SECTION
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-6 control-label">Contact No </label>
-                                            <div class="col-sm-6">
+                                            <label class="col-sm-4 control-label">Contact No </label>
+                                            <div class="col-sm-8">
                                                 <div class="form-group">
                                                     <div class="input-group input-group-icon">
                                                         <input type="text" id="Text7" name="CP2ContactNo" class="form-control" placeholder="Contact No">
@@ -282,8 +282,8 @@ MAIN CONTENT SECTION
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-6 control-label">Bank Name </label>
-                                            <div class="col-sm-6">
+                                            <label class="col-sm-4 control-label">Bank Name </label>
+                                            <div class="col-sm-8">
                                                 <div class="form-group">
                                                     <div class="input-group input-group-icon">
                                                         <input type="text" id="Text8" class="form-control" placeholder="Bank Name" name="BankName">
@@ -297,8 +297,8 @@ MAIN CONTENT SECTION
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-6 control-label">Account No </label>
-                                            <div class="col-sm-6">
+                                            <label class="col-sm-4 control-label">Account No </label>
+                                            <div class="col-sm-8">
                                                 <div class="form-group">
                                                     <div class="input-group input-group-icon">
                                                         <input type="text" id="Text9" class="form-control" placeholder="Account No" name="AccountNo">
@@ -314,8 +314,8 @@ MAIN CONTENT SECTION
                                 <div class="form-group">
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-6 control-label">Account Holder Name </label>
-                                            <div class="col-sm-6">
+                                            <label class="col-sm-4 control-label">Account Holder Name </label>
+                                            <div class="col-sm-8">
                                                 <div class="form-group">
                                                     <div class="input-group input-group-icon">
                                                         <input type="text" id="Text10" class="form-control" placeholder="Account Holder Name" name="AccountHolderName">
@@ -329,8 +329,8 @@ MAIN CONTENT SECTION
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-6 control-label">IFSC Code </label>
-                                            <div class="col-sm-6">
+                                            <label class="col-sm-4 control-label">IFSC Code </label>
+                                            <div class="col-sm-8">
                                                 <div class="form-group">
                                                     <div class="input-group input-group-icon">
                                                         <input type="text" id="Text12" class="form-control" placeholder="IFSC Code" name="IFSCCode">
@@ -346,8 +346,8 @@ MAIN CONTENT SECTION
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-3 control-label">Address </label>
-                                            <div class="col-sm-9">
+                                            <label class="col-sm-2 control-label">Address </label>
+                                            <div class="col-sm-10">
                                                 <div class="form-group">
                                                     <div class="input-group input-group-icon">
                                                         <textarea id="Textarea2" class="form-control" rows="3" placeholder="Enter Your Address 1" name="BankAddress"></textarea>
