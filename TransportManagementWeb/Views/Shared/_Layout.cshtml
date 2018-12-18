@@ -54,7 +54,7 @@
                             <li class="divider"></li>
                             <li role="presentation"><a data-toggle="modal" data-target="#customModal2" role="menuitem" tabindex="-1"><span class="pull-right"><i class="fa fa-key text-muted"></i></span>Change Password</a></li>
                             <li class="divider"></li>
-                            <li role="presentation"><a id="A1" role="menuitem" tabindex="-1"><span class="pull-right"><i class="fa fa-sign-out text-muted"></i></span> Sign out</a></li>
+                            <li role="presentation"><a id="A1" role="menuitem" tabindex="-1" href="#"><span class="pull-right"><i class="fa fa-sign-out text-muted"></i></span> Sign out</a></li>
                             <li class="divider"></li>
                         </ul>
                     </div><!-- /.dropdown -->
@@ -86,87 +86,42 @@
             <!-- /navigation -->
             <div class="nav-wrapper">
                 <ul class="nav nav-stacked" role="navigation">
-                    <li class="nav-item open active" role="presentation">
-                        <a href="~/Masters/Dashboard" class="active">
-                            <span class="nav-icon"><i class="fa fa-dashcube"></i></span>
-                            <span class="nav-text">Dashboard</span>
+                    <li class="divider"></li>
+                    <li class="nav-header" href="~/Masters/Dashboard" role="presentation">DASHBOARD</li>
+                    <li class="nav-item" role="presentation">
+                        <a href="#" data-toggle="nav-child">
+                            <span class="nav-icon"><i class="fa fa-briefcase"></i></span>
+                            <span class="nav-text">Master Page</span>
                         </a>
                         <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
-                            <li role="presentation" class="clientPageActive"><a role="menuitem" tabindex="-1" href="#"><span class="nav-text">Master Page</span></a></li>
-                            <li class="nav-item" role="presentation">
-                                <a href="~/Masters/ClientMaster">
-                                    <span class="nav-icon"><i class="fa fa-object-group"></i></span>
-                                    <span class="nav-text">Add New Client</span>
-                                </a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a href="~/Masters/VendorMaster">
-                                    <span class="nav-icon"><i class="fa fa-object-group"></i></span>
-                                    <span class="nav-text">Add New Vendor</span>
-                                </a>
-                            </li>
-                            @*<li role="presentation" class="vendorPageActive"><a role="menuitem" tabindex="-1" href="~/Masters/VendorMaster"><span class="nav-text">Vendor Master</span></a></li>
-            <li role="presentation" class="ServiceOrderPageActive"><a role="menuitem" tabindex="-1" href="~/Masters/ServiceOrder"><span class="nav-text">Service Order</span></a></li>
-            <li role="presentation" class="TranshipmentAllotmentPageActive"><a role="menuitem" tabindex="-1" href="~/Masters/TranshipmentAllotment"><span class="nav-text">Transhipment Allotment</span></a></li>
-            <li role="presentation" class="VehicleFreightDetailPageActive"><a role="menuitem" tabindex="-1" href="~/Masters/VehicleFreightDetail"><span class="nav-text">Vehicle Info & Freight</span></a></li>
-            <li role="presentation" class="LRGenerationPageActive"><a role="menuitem" tabindex="-1" href="~/Masters/LRGeneration"><span class="nav-text">LR Generation</span></a></li>
-            <li role="presentation" class="BillReportPageActive"><a role="menuitem" tabindex="-1" href="~/Masters/BillReport"><span class="nav-text">Bill Report</span></a></li>
-            <li role="presentation" class="BillEntryPageActive"><a role="menuitem" tabindex="-1" href="~/Masters/BillEntry"><span class="nav-text">Bill Entry</span></a></li>
-            <li role="presentation" class="LedgerReportPageActive"><a role="menuitem" tabindex="-1" href="~/Masters/LedgerReport"><span class="nav-text">Ledger Report</span></a></li>*@
-                        </ul>
-                        <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
-                            <li role="presentation" class="clientPageActive"><a role="menuitem" tabindex="-1" href="#"><span class="nav-text">Transaction Page</span></a></li>
-                            <li class="nav-item" role="presentation">
-                                <a href="~/Masters/ServiceOrder">
-                                    <span class="nav-icon"><i class="fa fa-object-group"></i></span>
-                                    <span class="nav-text">Service Order</span>
-                                </a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a href="~/Masters/TranshipmentAllotment">
-                                    <span class="nav-icon"><i class="fa fa-object-group"></i></span>
-                                    <span class="nav-text">Transhipment Allotment</span>
-                                </a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a href="~/Masters/VehicleFreightDetail">
-                                    <span class="nav-icon"><i class="fa fa-object-group"></i></span>
-                                    <span class="nav-text">Vehicle Info & Freight</span>
-                                </a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a href="~/Masters/LRGeneration">
-                                    <span class="nav-icon"><i class="fa fa-object-group"></i></span>
-                                    <span class="nav-text">LR Generation</span>
-                                </a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a href="~/Masters/BillEntry">
-                                    <span class="nav-icon"><i class="fa fa-object-group"></i></span>
-                                    <span class="nav-text">Bill Entry</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
-                            <li role="presentation" class="clientPageActive"><a role="menuitem" tabindex="-1" href="#"><span class="nav-text">Reports</span></a></li>
-                            <li class="nav-item" role="presentation">
-                                <a href="#">
-                                    <span class="nav-text">LR Report</span>
-                                </a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a href="~/Masters/BillReport">
-                                    <span class="nav-text">Bill Report</span>
-                                </a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a href="~/Masters/LedgerReport">
-                                    <span class="nav-text">Leadger Report</span>
-                                </a>
-                            </li>
+                            <li class="nav-item" role="presentation"><a href="~/Masters/ClientMaster"><span class="nav-text">Add New Client</span></a></li>
+                            <li class="nav-item" role="presentation"><a href="~/Masters/VendorMaster"><span class="nav-text">Add New Vendor</span></a></li>
                         </ul>
                     </li>
-
+                    <li class="nav-item" role="presentation">
+                        <a href="#" data-toggle="nav-child">
+                            <span class="nav-icon"><i class="fa fa-briefcase"></i></span>
+                            <span class="nav-text">Transaction Page</span>
+                        </a>
+                        <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
+                            <li class="nav-item" role="presentation"><a href="~/Masters/ServiceOrder"><span class="nav-text">Service Order</span></a></li>
+                            <li class="nav-item" role="presentation"><a href="~/Masters/TranshipmentAllotment"><span class="nav-text">Transhipment Allotment</span></a></li>
+                            <li class="nav-item" role="presentation"><a href="~/Masters/VehicleFreightDetail"><span class="nav-text">Vehicle Info & Freight</span></a></li>
+                            <li class="nav-item" role="presentation"><a href="~/Masters/LRGeneration"><span class="nav-text">LR Generation</span></a></li>
+                            <li class="nav-item" role="presentation"><a href="~/Masters/BillEntry"><span class="nav-text">Bill Entry</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a href="#" data-toggle="nav-child">
+                            <span class="nav-icon"><i class="fa fa-briefcase"></i></span>
+                            <span class="nav-text">Reports</span>
+                        </a>
+                        <ul class="nav nav-child level-1 nav-stacked nav-pills" role="menu">
+                            <li class="nav-item" role="presentation"><a href="~/Masters/LRReport"><span class="nav-text">LR Report</span></a></li>
+                            <li class="nav-item" role="presentation"><a href="~/Masters/BillReport"><span class="nav-text">Bill Report</span></a></li>
+                            <li class="nav-item" role="presentation"><a href="~/Masters/LedgerReport"><span class="nav-text">Leadger Report</span></a></li>
+                        </ul>
+                    </li>
                     <li class="divider"></li>
                 </ul>
             </div>
