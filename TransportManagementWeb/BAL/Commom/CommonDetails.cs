@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using DataLayer;
-using Microsoft.EntityFrameworkCore;
 using TransportManagementWeb.Models.Masters;
 
 namespace TransportManagementWeb.BAL.Commom
@@ -86,13 +85,13 @@ namespace TransportManagementWeb.BAL.Commom
         {
             _db = new TransportManagementEntities();
             _db.Configuration.LazyLoadingEnabled = false;
-            return _db.ServiceOrderDetails.Include(x => x.ServiceOrderPaymentDetails).Where(x => x.ClientId == clientId && x.VendorId != null && x.ServiceOrderPaymentDetails.Any() && !x.LRDetails.Any()).ToList();
+            return _db.ServiceOrderDetails.Include("ServiceOrderPaymentDetails").Where(x => x.ClientId == clientId && x.VendorId != null && x.ServiceOrderPaymentDetails.Any() && !x.LRDetails.Any()).ToList();
         }
         public ServiceOrderModel GetServiceOrderDetail(int Id)
         {
             _db = new TransportManagementEntities();
             //_db.Configuration.LazyLoadingEnabled = false;
-            var data = _db.ServiceOrderDetails.Include(x => x.ClientDetail).Include(x => x.VehicleDetail)
+            var data = _db.ServiceOrderDetails.Include("ClientDetail").Include("VehicleDetail")
                         .Where(x => x.Id == Id)
                         .FirstOrDefault();
             ServiceOrderModel model = new ServiceOrderModel()
@@ -142,7 +141,7 @@ namespace TransportManagementWeb.BAL.Commom
         {
             _db = new TransportManagementEntities();
             _db.Configuration.LazyLoadingEnabled = false;
-            var result = _db.LRDetails.Include(x => x.ServiceOrderDetail).Where(x => x.ServiceOrderDetail.ClientId == clientId).ToList();
+            var result = _db.LRDetails.Include("ServiceOrderDetail").Where(x => x.ServiceOrderDetail.ClientId == clientId).ToList();
             return result;
         }
 

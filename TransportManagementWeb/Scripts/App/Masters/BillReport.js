@@ -62,13 +62,12 @@ $(document).ready(function () {
         $('.table-responsive').removeClass('table-responsive');
         $('#invoiceRow').addClass('hidden');
         var dd = $('.content').clone();
-        //dd.find('tbody').append($('.table:eq(1) tbody tr').clone());
 
         win.document.write('<html><head><title>' + pageTitle + '</title>' +
             '<link rel="stylesheet" href="' + stylesheet + '">' +
             '</head><body><hr/>' + dd.html() + '</body></html > ');
-        win.document.close();
-        win.print();
+        //win.document.close();
+        //win.print();
         //win.close();
         $('#header').addClass('hidden');
         $('table.table-bordered').addClass('table-responsive');
