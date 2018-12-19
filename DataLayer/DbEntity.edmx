@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TransportManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TransportManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="CityId" />
@@ -89,6 +89,9 @@
           <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
           <Property Name="EmailId" Type="varchar" MaxLength="50" />
           <Property Name="Website" Type="varchar" MaxLength="100" />
+          <Property Name="CINNo" Type="varchar" MaxLength="50" />
+          <Property Name="GSTNO" Type="varchar" MaxLength="50" />
+          <Property Name="PanNo" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ConsigneeDetail">
           <Key>
@@ -122,6 +125,19 @@
           </Key>
           <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CountryName" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="LedgerEntry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LRId" Type="int" />
+          <Property Name="InvoiceId" Type="int" />
+          <Property Name="LedgerDate" Type="datetime" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="TransactionType" Type="varchar" MaxLength="50" />
+          <Property Name="TransactionAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="BalenceAmount" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="LRDetail">
           <Key>
@@ -463,6 +479,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_LedgerEntry_ClientBillDetail">
+          <End Role="ClientBillDetail" Type="Self.ClientBillDetail" Multiplicity="0..1" />
+          <End Role="LedgerEntry" Type="Self.LedgerEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientBillDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LedgerEntry">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LedgerEntry_LRDetail">
+          <End Role="LRDetail" Type="Self.LRDetail" Multiplicity="0..1" />
+          <End Role="LedgerEntry" Type="Self.LedgerEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LRDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LedgerEntry">
+              <PropertyRef Name="LRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_LRDetail_ServiceOrderDetail">
           <End Role="ServiceOrderDetail" Type="Self.ServiceOrderDetail" Multiplicity="0..1" />
           <End Role="LRDetail" Type="Self.LRDetail" Multiplicity="*" />
@@ -749,6 +789,7 @@
           <EntitySet Name="ConsigneeDetail" EntityType="Self.ConsigneeDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConsignorDetail" EntityType="Self.ConsignorDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LedgerEntry" EntityType="Self.LedgerEntry" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LRDetail" EntityType="Self.LRDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductDetail" EntityType="Self.ProductDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServiceOrderDetail" EntityType="Self.ServiceOrderDetail" Schema="dbo" store:Type="Tables" />
@@ -817,6 +858,14 @@
           <AssociationSet Name="FK_ConsignorDetail_LRDetail" Association="Self.FK_ConsignorDetail_LRDetail">
             <End Role="LRDetail" EntitySet="LRDetail" />
             <End Role="ConsignorDetail" EntitySet="ConsignorDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LedgerEntry_ClientBillDetail" Association="Self.FK_LedgerEntry_ClientBillDetail">
+            <End Role="ClientBillDetail" EntitySet="ClientBillDetail" />
+            <End Role="LedgerEntry" EntitySet="LedgerEntry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LedgerEntry_LRDetail" Association="Self.FK_LedgerEntry_LRDetail">
+            <End Role="LRDetail" EntitySet="LRDetail" />
+            <End Role="LedgerEntry" EntitySet="LedgerEntry" />
           </AssociationSet>
           <AssociationSet Name="FK_LRDetail_ServiceOrderDetail" Association="Self.FK_LRDetail_ServiceOrderDetail">
             <End Role="ServiceOrderDetail" EntitySet="ServiceOrderDetail" />
@@ -1086,6 +1135,15 @@
             <End Role="VendorDetail" EntitySet="VendorDetails" />
             <End Role="VendorLineHaulDetail" EntitySet="VendorLineHaulDetails" />
           </AssociationSet>
+          <EntitySet Name="LedgerEntries" EntityType="TransportManagementModel.LedgerEntry" />
+          <AssociationSet Name="FK_LedgerEntry_ClientBillDetail" Association="TransportManagementModel.FK_LedgerEntry_ClientBillDetail">
+            <End Role="ClientBillDetail" EntitySet="ClientBillDetails" />
+            <End Role="LedgerEntry" EntitySet="LedgerEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LedgerEntry_LRDetail" Association="TransportManagementModel.FK_LedgerEntry_LRDetail">
+            <End Role="LRDetail" EntitySet="LRDetails" />
+            <End Role="LedgerEntry" EntitySet="LedgerEntries" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="City">
           <Key>
@@ -1140,6 +1198,7 @@
           <Property Name="AdvanceAmount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ClientBillDescriptions" Relationship="TransportManagementModel.FK_ClientLeadgerDescription_ClientLeadgerDetail" FromRole="ClientBillDetail" ToRole="ClientBillDescription" />
           <NavigationProperty Name="ClientDetail" Relationship="TransportManagementModel.FK_ClientLeadgerDetail_ClientDetail" FromRole="ClientBillDetail" ToRole="ClientDetail" />
+          <NavigationProperty Name="LedgerEntries" Relationship="TransportManagementModel.FK_LedgerEntry_ClientBillDetail" FromRole="ClientBillDetail" ToRole="LedgerEntry" />
         </EntityType>
         <EntityType Name="ClientConcernPerson">
           <Key>
@@ -1191,6 +1250,9 @@
           <Property Name="Website" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="City" Relationship="TransportManagementModel.FK_CompanyDetail_City" FromRole="CompanyDetail" ToRole="City" />
           <NavigationProperty Name="State" Relationship="TransportManagementModel.FK_CompanyDetail_State" FromRole="CompanyDetail" ToRole="State" />
+          <Property Name="CINNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GSTNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PanNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ConsigneeDetail">
           <Key>
@@ -1247,6 +1309,7 @@
           <NavigationProperty Name="ProductDetails" Relationship="TransportManagementModel.FK_ProductDetail_LRDetail" FromRole="LRDetail" ToRole="ProductDetail" />
           <NavigationProperty Name="VehicleDriverDetails" Relationship="TransportManagementModel.FK_VehicleDriverDetail_LRDetail" FromRole="LRDetail" ToRole="VehicleDriverDetail" />
           <NavigationProperty Name="VehicleOwnerDetails" Relationship="TransportManagementModel.FK_VehicleOwnerDetail_LRDetail" FromRole="LRDetail" ToRole="VehicleOwnerDetail" />
+          <NavigationProperty Name="LedgerEntries" Relationship="TransportManagementModel.FK_LedgerEntry_LRDetail" FromRole="LRDetail" ToRole="LedgerEntry" />
         </EntityType>
         <EntityType Name="ProductDetail">
           <Key>
@@ -1893,6 +1956,45 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="LedgerEntry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LRId" Type="Int32" />
+          <Property Name="InvoiceId" Type="Int32" />
+          <Property Name="LedgerDate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BalenceAmount" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="ClientBillDetail" Relationship="TransportManagementModel.FK_LedgerEntry_ClientBillDetail" FromRole="LedgerEntry" ToRole="ClientBillDetail" />
+          <NavigationProperty Name="LRDetail" Relationship="TransportManagementModel.FK_LedgerEntry_LRDetail" FromRole="LedgerEntry" ToRole="LRDetail" />
+        </EntityType>
+        <Association Name="FK_LedgerEntry_ClientBillDetail">
+          <End Type="TransportManagementModel.ClientBillDetail" Role="ClientBillDetail" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.LedgerEntry" Role="LedgerEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientBillDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LedgerEntry">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LedgerEntry_LRDetail">
+          <End Type="TransportManagementModel.LRDetail" Role="LRDetail" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.LedgerEntry" Role="LedgerEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LRDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LedgerEntry">
+              <PropertyRef Name="LRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1976,6 +2078,9 @@
           <EntitySetMapping Name="CompanyDetails">
             <EntityTypeMapping TypeName="TransportManagementModel.CompanyDetail">
               <MappingFragment StoreEntitySet="CompanyDetail">
+                <ScalarProperty Name="PanNo" ColumnName="PanNo" />
+                <ScalarProperty Name="GSTNO" ColumnName="GSTNO" />
+                <ScalarProperty Name="CINNo" ColumnName="CINNo" />
                 <ScalarProperty Name="Website" ColumnName="Website" />
                 <ScalarProperty Name="EmailId" ColumnName="EmailId" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
@@ -2223,6 +2328,20 @@
             <EntityTypeMapping TypeName="TransportManagementModel.WeightLookup">
               <MappingFragment StoreEntitySet="WeightLookup">
                 <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LedgerEntries">
+            <EntityTypeMapping TypeName="TransportManagementModel.LedgerEntry">
+              <MappingFragment StoreEntitySet="LedgerEntry">
+                <ScalarProperty Name="BalenceAmount" ColumnName="BalenceAmount" />
+                <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LedgerDate" ColumnName="LedgerDate" />
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="LRId" ColumnName="LRId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -257,6 +257,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BAL\Commom\CommonDetails.cs" />
     <Compile Include="BAL\Login\LoginDetails.cs" />
+    <Compile Include="BAL\Masters\LedgerEntryDetailBAL.cs" />
     <Compile Include="BAL\Masters\ServiceOrderBAL.cs" />
     <Compile Include="BAL\Masters\VendorDetailBAL.cs" />
     <Compile Include="BAL\Masters\ClientDetailBAL.cs" />
@@ -326,6 +327,7 @@
     <Content Include="Scripts\App\Global\App.js" />
     <Content Include="Scripts\App\Global\Utility.js" />
     <Content Include="Scripts\App\Login\Login.js" />
+    <Content Include="Scripts\App\Masters\LedgerEntry.js" />
     <Content Include="Scripts\App\Masters\BillReport.js" />
     <Content Include="Scripts\App\Masters\LRGenerate.js" />
     <Content Include="Scripts\App\Masters\FreightDetail.js" />
@@ -490,6 +492,7 @@
     <Content Include="Views\Masters\LRReport.cshtml" />
     <Content Include="Views\Masters\LRReport2.cshtml" />
     <Content Include="Views\Masters\LedgerReport.cshtml" />
+    <Content Include="Views\Masters\LedgerEntry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj">

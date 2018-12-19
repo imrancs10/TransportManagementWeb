@@ -25,6 +25,9 @@ namespace DataLayer
         public string PhoneNumber { get; set; }
         public string EmailId { get; set; }
         public string Website { get; set; }
+        public string CINNo { get; set; }
+        public string GSTNO { get; set; }
+        public string PanNo { get; set; }
     
         public virtual City City { get; set; }
         public virtual State State { get; set; }

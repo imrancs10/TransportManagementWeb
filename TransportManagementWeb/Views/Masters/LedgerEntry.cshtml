@@ -1,0 +1,174 @@
+﻿
+@{
+    ViewBag.Title = "Ledger Entry";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form action="~/Master/LedgerEntryDetail" method="post">
+    <section class="content-wrapper" role="main" style="height:700px;">
+        <div class="content">
+
+            <div class="content-bar">
+                <ul class="breadcrumb breadcrumb-angle">
+                    <li><a href="#" aria-label="home"><i class="fa fa-home"></i></a></li>
+                    <li class="active">Ledger Entry</li>
+                </ul>
+            </div><!-- /.content-bar -->
+            <hr />
+
+            <div class="content-body">
+
+                <div class="col-lg-12">
+                    <div class="featured-box featured-box-primary align-left mt-xlg">
+                        <div class="box-content">
+                            <div class="row">
+                                <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Ledger Entry</h4></div>
+                            </div>
+                            <hr class="tall">
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Client Name</label>
+                                            <div class="col-sm-8">
+                                                <select name="ClientId" id="ClientDropdown" class="form-control required"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Consignment No </label>
+                                            <div class="col-sm-8">
+                                                <select name="ConsignmentId" id="ConsignmentDropdown" class="form-control" required style="padding:0px"></select>
+                                                @*<select name="ClientId" id="ClientDropdown" class="form-control required"></select>*@
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Invoice Number</label>
+                                            <div class="col-sm-8">
+                                                <select name="InvoiceDropdown" id="InvoiceDropdown" class="form-control" required></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Invoice Date</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-in">
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                    <input type="date" id="InvoiceDate" name="InvoiceDate" data-input="daterangepicker" data-single-date-picker="true" data-show-dropdowns="true" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mt-lg">
+                                        <label class="col-sm-4 control-label">Chosse</label>
+                                        <div class="col-sm-8">
+                                            @*<div class="form-group mt-lg">
+                                                    <div class="col-sm-8">
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <input type="radio" name="gender" value="Debit">Debit
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <input type="radio" name="gender" value="Credit">Credit
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>*@
+                                            <div class="form-group">
+                                                <div class="nice-radio nice-radio-inline">
+                                                    <input class="radio-o" type="radio" name="niceRadioAlt" id="rdbDebit" checked="checked">
+                                                    <label for="rdbDebit">Debit</label>
+                                                </div><!--/nice-radio-->
+                                                <div class="nice-radio nice-radio-inline">
+                                                    <input class="radio-o" type="radio" name="niceRadioAlt" id="rdbCredit">
+                                                    <label for="rdbCredit">Credit</label>
+                                                </div><!--/nice-radio-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mt-lg">
+                                        <label class="col-sm-4 control-label">Amount </label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" id="AdvanceFreight" class="form-control" placeholder="Advance" name="AdvanceFreight">
+                                                <span class="input-group-addon">
+                                                    <span class="icon"><i class="fa fa-inr"></i></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="form-group mt-lg">
+                                            <div class="form-group">
+                                                <div class="form-group mt-lg">
+                                                    <label class="col-sm-4 control-label">Description</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group input-group-icon">
+                                                            <textarea id="NatureOfGoods" name="NatureOfGoods" class="form-control" rows="3" placeholder="Description"></textarea>
+                                                            <span class="input-group-addon">
+                                                                <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-5">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="btn-divider mr-2x mb-1x" role="divider">
+                                    <input id="btnSave" type="button" value="Submit" name="submit" class="btn btn-primary">
+                                    <span class="label-divider" id="Span1">or</span>
+                                    <!--<input id="btncancel" type="submit" name="reset" value="Cancel" class="btn btn-default" onclick="btnreset_Click"/>-->
+                                    <a href="~/Master/BillEntry" class="btn btn-default">Reset</a>
+                                    @*<input id="btncancel" type="submit" value="Reset" name="reset" class="btn btn-default">*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div><!-- /.content -->
+    </section>
+</form>
+<script>
+    $(function () {
+        $(document).ready(function () {
+            $('.LedgerEntryPageActive').addClass('active');
+        })
+    });
+</script>
+<script src="~/Scripts/App/Masters/LedgerEntry.js"></script>

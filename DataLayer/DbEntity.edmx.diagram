@@ -67,6 +67,9 @@
         <AssociationConnector Association="TransportManagementModel.FK_VendorBankDetail_VendorDetail" />
         <AssociationConnector Association="TransportManagementModel.FK_VendorConcernPerson_VendorDetail" />
         <AssociationConnector Association="TransportManagementModel.FK_VendorLineHaulDetail_VendorDetail" />
+        <EntityTypeShape EntityType="TransportManagementModel.LedgerEntry" Width="1.5" PointX="23.25" PointY="22" />
+        <AssociationConnector Association="TransportManagementModel.FK_LedgerEntry_ClientBillDetail" />
+        <AssociationConnector Association="TransportManagementModel.FK_LedgerEntry_LRDetail" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

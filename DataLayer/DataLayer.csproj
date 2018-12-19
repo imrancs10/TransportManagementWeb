@@ -161,6 +161,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DbEntity.edmx</DependentUpon>
     </Compile>
+    <Compile Include="LedgerEntry.cs">
+      <DependentUpon>DbEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="LRDetail.cs">
       <DependentUpon>DbEntity.tt</DependentUpon>
     </Compile>
