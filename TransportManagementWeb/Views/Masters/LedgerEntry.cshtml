@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<form action="~/Master/LedgerEntryDetail" method="post">
+<form action="SaveLedgerEntryDetail" method="post">
     <section class="content-wrapper" role="main" style="height:700px;">
         <div class="content">
 
@@ -150,7 +150,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="btn-divider mr-2x mb-1x" role="divider">
-                                    <input id="btnSave" type="button" value="Submit" name="submit" class="btn btn-primary">
+                                    <input id="btnSave" type="submit" value="Submit" name="submit" class="btn btn-primary">
                                     <span class="label-divider" id="Span1">or</span>
                                     <!--<input id="btncancel" type="submit" name="reset" value="Cancel" class="btn btn-default" onclick="btnreset_Click"/>-->
                                     <a href="~/Master/BillEntry" class="btn btn-default">Reset</a>

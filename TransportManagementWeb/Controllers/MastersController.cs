@@ -281,6 +281,19 @@ namespace TransportManagementWeb.Controllers
         {
             return View();
         }
+        public ActionResult LedgerEntry()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult SaveLedgerEntryDetail(string LRId, string InvoiceId, string LedgerDate, string Description, string TransactionType, string TransactionAmount, string BalenceAmount)
+        {
+            LedgerEntryDetailBAL detail = new LedgerEntryDetailBAL();
+            detail.SaveLedgerEntryDetail(LRId, InvoiceId, LedgerDate, Description, TransactionType, TransactionAmount, BalenceAmount);
+            SetAlertMessage("Ledger Entry detail added succesfully.", "Service Order");
+            return RedirectToAction("LedgerReport");
+        }
+
         [HttpPost]
         public JsonResult GetAllLRDetails(int clientId)
         {
