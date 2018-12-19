@@ -153,6 +153,13 @@ namespace TransportManagementWeb.BAL.Commom
             //var result = _db.LRDetails.Where(x => x.Id == LRId).FirstOrDefault();
             return result;
         }
+        public decimal? GetLedgerAmountByLRIdAndInvoiceId(int LRId, int InvoiceId)
+        {
+            _db = new TransportManagementEntities();
+            _db.Configuration.LazyLoadingEnabled = false;
+            var result = _db.LedgerEntries.Where(x => x.LRId == LRId && x.InvoiceId == InvoiceId).Sum(x => x.TransactionAmount);
+            return result;
+        }
 
         public List<ClientBillDetail> GetAllInvoiceDetail()
         {

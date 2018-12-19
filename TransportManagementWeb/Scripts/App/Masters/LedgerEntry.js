@@ -89,11 +89,32 @@ $(document).ready(function () {
 
     $('#InvoiceDropdown').on('change', function (e) {
         var valueSelected = this.value;
-        $('#TotalAmount').text($("option:selected", this).data('total'));
+        var totalInvoiceAmount = parseFloat($("option:selected", this).data('total'));
+        $('#TotalAmount').text(totalInvoiceAmount);
+        var lrId = $('#ConsignmentDropdown').val();
+        //Get paid amount in Ledger entry
+        $.ajax({
+            dataType: 'json',
+            type: 'POST',
+            url: '/Masters/GetLedgerAmountByLRIdAndInvoiceId',
+            data: '{LRId: "' + lrId + '", InvoiceId:"' + valueSelected + '"}',
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                $('#AmountToPay').val(totalInvoiceAmount - data);
+            },
+            failure: function (response) {
+                alert(response);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+
+        
     });
 
     $('#TransactionAmount').blur(function () {
-        var totalAmount = parseFloat($('#TotalAmount').text());
+        var totalAmount = parseFloat($('#AmountToPay').val());
         if (parseFloat($(this).val()) > totalAmount) {
             alert('Amount can not greater than Total remianing amount');
             $(this).val('');

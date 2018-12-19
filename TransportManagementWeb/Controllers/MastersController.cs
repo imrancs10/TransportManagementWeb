@@ -317,6 +317,12 @@ namespace TransportManagementWeb.Controllers
                            });
             return Json(result);
         }
+        [HttpPost]
+        public JsonResult GetLedgerAmountByLRIdAndInvoiceId(int LRId, int InvoiceId)
+        {
+            CommonDetails _details = new CommonDetails();
+            return Json(_details.GetLedgerAmountByLRIdAndInvoiceId(LRId, InvoiceId));
+        }
 
         [HttpPost]
         public ActionResult BillEntrySave(ClientBillDetailModel model)

@@ -17,23 +17,17 @@ namespace TransportManagementWeb.BAL.Masters
         {
             _db = new TransportManagementEntities();
             int _effectRow = 0;
-            var _deptRow = _db.LedgerEntries.Where(x => x.LRDetail.Equals(LRId)).FirstOrDefault();
-            if (_deptRow == null)
-            {
-                LedgerEntry _newLedgerEntry = new LedgerEntry();
-                _newLedgerEntry.LRId = int.Parse(LRId);
-                _newLedgerEntry.InvoiceId = int.Parse(InvoiceId);
-                _newLedgerEntry.LedgerDate = Convert.ToDateTime(LedgerDate);
-                _newLedgerEntry.Description = Description;
-                _newLedgerEntry.TransactionType = TransactionType;
-                _newLedgerEntry.TransactionAmount = int.Parse(TransactionAmount);
-                _newLedgerEntry.BalenceAmount = Convert.ToDecimal(BalenceAmount);
-                _db.Entry(_newLedgerEntry).State = EntityState.Added;
-                _effectRow = _db.SaveChanges();
-                return _effectRow > 0 ? Enums.CrudStatus.Saved : Enums.CrudStatus.NotSaved;
-            }
-            else
-                return Enums.CrudStatus.DataAlreadyExist;
+            LedgerEntry _newLedgerEntry = new LedgerEntry();
+            _newLedgerEntry.LRId = int.Parse(LRId);
+            _newLedgerEntry.InvoiceId = int.Parse(InvoiceId);
+            _newLedgerEntry.LedgerDate = Convert.ToDateTime(LedgerDate);
+            _newLedgerEntry.Description = Description;
+            _newLedgerEntry.TransactionType = TransactionType;
+            _newLedgerEntry.TransactionAmount = int.Parse(TransactionAmount);
+            _newLedgerEntry.BalenceAmount = Convert.ToDecimal(BalenceAmount);
+            _db.Entry(_newLedgerEntry).State = EntityState.Added;
+            _effectRow = _db.SaveChanges();
+            return _effectRow > 0 ? Enums.CrudStatus.Saved : Enums.CrudStatus.NotSaved;
         }
 
     }

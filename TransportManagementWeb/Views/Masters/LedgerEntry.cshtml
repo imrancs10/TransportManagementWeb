@@ -74,24 +74,34 @@
                             </div>
                             <br />
                             <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="form-group mt-lg">
+                                            <div class="form-group">
+                                                <div class="form-group mt-lg">
+                                                    <label class="col-sm-4 control-label">Amount To Be Pay</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group input-group-icon">
+                                                            <input type="text" id="AmountToPay" name="AmountToPay" class="form-control" rows="3" placeholder="Amount To Pay" readonly />
+                                                            <span class="input-group-addon">
+                                                                <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group mt-lg">
                                         <label class="col-sm-4 control-label">Transaction Type</label>
                                         <div class="col-sm-8">
-                                            @*<div class="form-group mt-lg">
-                            <div class="col-sm-8">
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <input type="radio" name="gender" value="Debit">Debit
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <input type="radio" name="gender" value="Credit">Credit
-                                    </div>
-                                </div>
-                            </div>
-                        </div>*@
                                             <div class="form-group">
                                                 <div class="nice-radio nice-radio-inline">
                                                     <input class="radio-o" type="radio" name="niceRadioAlt" id="rdbDebit">
@@ -101,7 +111,7 @@
                                                     <input class="radio-o" type="radio" name="niceRadioAlt" id="rdbCredit">
                                                     <label for="rdbCredit">Credit</label>
                                                 </div><!--/nice-radio-->
-                                                <input type="hidden" id="TransactionType" name="TransactionType"/>
+                                                <input type="hidden" id="TransactionType" name="TransactionType" />
                                             </div>
                                         </div>
                                     </div>
@@ -130,7 +140,7 @@
                                                     <div class="col-sm-8">
                                                         <div class="input-group input-group-icon">
                                                             <input type="text" id="BalenceAmountText" name="BalenceAmountText" class="form-control" rows="3" placeholder="BalenceAmount" readonly />
-                                                            <input type="hidden" id="BalenceAmount" name="BalenceAmount" rows="3"  />
+                                                            <input type="hidden" id="BalenceAmount" name="BalenceAmount" rows="3" />
                                                             <input type="hidden" id="TotalAmount" name="TotalAmount" class="form-control" rows="3" />
                                                             <span class="input-group-addon">
                                                                 <span class="icon"><i class="fa fa-location-arrow"></i></span>
@@ -189,7 +199,7 @@
                 <div class="clearfix"></div>
             </div><!-- /.content -->
 
-            </div>
+        </div>
     </section>
 </form>
 <script src="~/Scripts/App/Masters/LedgerEntry.js"></script>
