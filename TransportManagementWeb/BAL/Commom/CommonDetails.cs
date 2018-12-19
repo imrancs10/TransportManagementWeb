@@ -161,6 +161,13 @@ namespace TransportManagementWeb.BAL.Commom
             var result = _db.ClientBillDetails.OrderByDescending(x => x.InvoiceDate).ToList();
             return result;
         }
+        public List<ClientBillDetail> GetAllInvoiceDetailByLrId(int LRId)
+        {
+            _db = new TransportManagementEntities();
+            _db.Configuration.LazyLoadingEnabled = false;
+            var result = _db.ClientBillDetails.Include("ClientBillDescriptions").OrderByDescending(x => x.InvoiceDate).Where(x => x.ClientBillDescriptions.Any(y => y.ConsighmentNumber == LRId)).ToList();
+            return result;
+        }
         public ClientBillDetail GetBillDetailByInvoiceId(int invoiceId)
         {
             _db = new TransportManagementEntities();

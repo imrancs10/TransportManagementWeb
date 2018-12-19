@@ -34,6 +34,7 @@ namespace DataLayer
         public virtual DbSet<ConsigneeDetail> ConsigneeDetails { get; set; }
         public virtual DbSet<ConsignorDetail> ConsignorDetails { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<LedgerEntry> LedgerEntries { get; set; }
         public virtual DbSet<LRDetail> LRDetails { get; set; }
         public virtual DbSet<ProductDetail> ProductDetails { get; set; }
         public virtual DbSet<ServiceOrderDetail> ServiceOrderDetails { get; set; }
@@ -51,6 +52,5 @@ namespace DataLayer
         public virtual DbSet<VendorDetail> VendorDetails { get; set; }
         public virtual DbSet<VendorLineHaulDetail> VendorLineHaulDetails { get; set; }
         public virtual DbSet<WeightLookup> WeightLookups { get; set; }
-        public virtual DbSet<LedgerEntry> LedgerEntries { get; set; }
     }
 }

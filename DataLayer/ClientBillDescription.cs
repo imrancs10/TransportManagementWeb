@@ -18,7 +18,7 @@ namespace DataLayer
         public Nullable<int> ClientLeadgerDetailId { get; set; }
         public string Description { get; set; }
         public string SACCode { get; set; }
-        public string ConsighmentNumber { get; set; }
+        public Nullable<int> ConsighmentNumber { get; set; }
         public string Quantity { get; set; }
         public string Charges { get; set; }
         public string Total { get; set; }
@@ -26,6 +26,7 @@ namespace DataLayer
         public string Discount { get; set; }
         public string TotalAmount { get; set; }
     
+        public virtual LRDetail LRDetail { get; set; }
         public virtual ClientBillDetail ClientBillDetail { get; set; }
     }
 }

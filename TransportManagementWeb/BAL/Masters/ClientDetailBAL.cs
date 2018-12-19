@@ -61,7 +61,7 @@ namespace TransportManagementWeb.BAL.Masters
             _newclient.ClientBillDescriptions.Add(new ClientBillDescription()
             {
                 Charges = model.ClientBillDescriptions[0].Charges,
-                ConsighmentNumber = model.ClientBillDescriptions[0].ConsighmentNumber,
+                ConsighmentNumber = Convert.ToInt32(model.ClientBillDescriptions[0].ConsighmentNumber),
                 Discount = model.ClientBillDescriptions[0].Discount,
                 Description = model.ClientBillDescriptions[0].Description,
                 DiscountPercentage = model.ClientBillDescriptions[0].DiscountPercentage,

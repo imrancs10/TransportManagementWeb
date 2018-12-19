@@ -17,7 +17,6 @@ namespace DataLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ClientDetail()
         {
-            this.ClientBillDetails = new HashSet<ClientBillDetail>();
             this.ClientConcernPersons = new HashSet<ClientConcernPerson>();
             this.ServiceOrderDetails = new HashSet<ServiceOrderDetail>();
         }
@@ -35,8 +34,6 @@ namespace DataLayer
         public string PanNumber { get; set; }
     
         public virtual City City { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClientBillDetail> ClientBillDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClientConcernPerson> ClientConcernPersons { get; set; }
         public virtual Country Country { get; set; }

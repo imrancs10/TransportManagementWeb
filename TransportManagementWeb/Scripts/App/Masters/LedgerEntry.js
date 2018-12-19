@@ -58,12 +58,10 @@ $(document).ready(function () {
         });
     }
     $('#ConsignmentDropdown').on('change', function (e) {
-        var optionSelected = $("option:selected", this);
         var valueSelected = this.value;
         FillInvoiceDetail(valueSelected);
     });
-    FillInvoiceDetail();
-    function FillInvoiceDetail() {
+    function FillInvoiceDetail(lrId) {
         let dropdown = $('#InvoiceDropdown');
         dropdown.empty();
         dropdown.append('<option value="">Select</option>');
@@ -71,17 +69,14 @@ $(document).ready(function () {
         $.ajax({
             dataType: 'json',
             type: 'POST',
-            url: '/Masters/GetAllInvoiceDetail',
+            url: '/Masters/GetAllInvoiceDetailByLRId',
+            data: '{LRId: "' + lrId + '" }',
             contentType: "application/json; charset=utf-8",
             success: function (data) {
-                $.each(data, function (key, entry) {
-                    dropdown.append($('<option></option>').attr('value', entry.Id).text(entry.InvoiceNumber));
+                var jsonData = JSON.parse(data);
+                $.each(jsonData, function (key, entry) {
+                    dropdown.append($('<option data-total=' + entry.ClientBillDescriptions[0].TotalAmount + '></option>').attr('value', entry.Id).text(entry.InvoiceNumber));
                 });
-                var invoiceId = getUrlParameter('invoiceNo');
-                if (invoiceId !== null && typeof invoiceId !== 'undefined') {
-                    $('#InvoiceDropdown').val(invoiceId);
-                    //$('#InvoiceDropdown').change();
-                }
             },
             failure: function (response) {
                 alert(response);
@@ -91,6 +86,34 @@ $(document).ready(function () {
             }
         });
     }
+
+    $('#InvoiceDropdown').on('change', function (e) {
+        var valueSelected = this.value;
+        $('#TotalAmount').text($("option:selected", this).data('total'));
+    });
+
+    $('#TransactionAmount').blur(function () {
+        var totalAmount = parseFloat($('#TotalAmount').text());
+        if (parseFloat($(this).val()) > totalAmount) {
+            alert('Amount can not greater than Total remianing amount');
+            $(this).val('');
+        }
+        else {
+            var balAmount = totalAmount - parseFloat($(this).val());
+            $('#BalenceAmount').text(balAmount);
+            $('#BalenceAmountText').val(balAmount);
+        }
+
+    });
+
+    $('input[type="radio"]').click(function () {
+        if ($(this).prop('id').indexOf('Debit') > -1) {
+            $('#TransactionType').val('Debit');
+        }
+        else {
+            $('#TransactionType').val('Credit');
+        }
+    });
 
 });
 

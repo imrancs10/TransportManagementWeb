@@ -17,12 +17,13 @@ namespace DataLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public LRDetail()
         {
+            this.ClientBillDescriptions = new HashSet<ClientBillDescription>();
             this.ConsigneeDetails = new HashSet<ConsigneeDetail>();
             this.ConsignorDetails = new HashSet<ConsignorDetail>();
+            this.LedgerEntries = new HashSet<LedgerEntry>();
             this.ProductDetails = new HashSet<ProductDetail>();
             this.VehicleDriverDetails = new HashSet<VehicleDriverDetail>();
             this.VehicleOwnerDetails = new HashSet<VehicleOwnerDetail>();
-            this.LedgerEntries = new HashSet<LedgerEntry>();
         }
     
         public int Id { get; set; }
@@ -32,9 +33,13 @@ namespace DataLayer
         public Nullable<int> ServiceOrderId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ClientBillDescription> ClientBillDescriptions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ConsigneeDetail> ConsigneeDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ConsignorDetail> ConsignorDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LedgerEntry> LedgerEntries { get; set; }
         public virtual ServiceOrderDetail ServiceOrderDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductDetail> ProductDetails { get; set; }
@@ -42,7 +47,5 @@ namespace DataLayer
         public virtual ICollection<VehicleDriverDetail> VehicleDriverDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VehicleOwnerDetail> VehicleOwnerDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LedgerEntry> LedgerEntries { get; set; }
     }
 }

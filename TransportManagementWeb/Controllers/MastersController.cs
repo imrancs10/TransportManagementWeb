@@ -286,12 +286,12 @@ namespace TransportManagementWeb.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult SaveLedgerEntryDetail(string LRId, string InvoiceId, string LedgerDate, string Description, string TransactionType, string TransactionAmount, string BalenceAmount)
+        public ActionResult SaveLedgerEntryDetail(string ConsignmentId, string InvoiceId, string LedgerDate, string Description, string TransactionType, string TransactionAmount, string BalenceAmountText)
         {
             LedgerEntryDetailBAL detail = new LedgerEntryDetailBAL();
-            detail.SaveLedgerEntryDetail(LRId, InvoiceId, LedgerDate, Description, TransactionType, TransactionAmount, BalenceAmount);
-            SetAlertMessage("Ledger Entry detail added succesfully.", "Service Order");
-            return RedirectToAction("LedgerReport");
+            detail.SaveLedgerEntryDetail(ConsignmentId, InvoiceId, LedgerDate, Description, TransactionType, TransactionAmount, BalenceAmountText);
+            SetAlertMessage("Ledger Entry detail added succesfully.", "Ledger Report");
+            return RedirectToAction("LedgerEntry");
         }
 
         [HttpPost]
@@ -333,6 +333,17 @@ namespace TransportManagementWeb.Controllers
             return Json(_details.GetAllInvoiceDetail());
         }
 
+        [HttpPost]
+        public JsonResult GetAllInvoiceDetailByLRId(int LRId)
+        {
+            CommonDetails _details = new CommonDetails();
+            var result = JsonConvert.SerializeObject(_details.GetAllInvoiceDetailByLrId(LRId), Formatting.Indented,
+                          new JsonSerializerSettings
+                          {
+                              ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                          });
+            return Json(result);
+        }
         //[HttpPost]
         //public JsonResult GetBillDetailByInvoiceId(int invoiceId)
         //{

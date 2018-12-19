@@ -38,7 +38,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Consignment No </label>
+                                            <label class="col-sm-4 control-label">Consignment No(LR No) </label>
                                             <div class="col-sm-8">
                                                 <select name="ConsignmentId" id="ConsignmentDropdown" class="form-control" required style="padding:0px"></select>
                                                 @*<select name="ClientId" id="ClientDropdown" class="form-control required"></select>*@
@@ -54,17 +54,17 @@
                                         <div class="form-group mt-lg">
                                             <label class="col-sm-4 control-label">Invoice Number</label>
                                             <div class="col-sm-8">
-                                                <select name="InvoiceDropdown" id="InvoiceDropdown" class="form-control" required></select>
+                                                <select name="InvoiceId" id="InvoiceDropdown" class="form-control" required></select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mt-lg">
-                                            <label class="col-sm-4 control-label">Invoice Date</label>
+                                            <label class="col-sm-4 control-label">Transaction Date</label>
                                             <div class="col-sm-8">
                                                 <div class="input-group input-group-in">
                                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                    <input type="date" id="InvoiceDate" name="InvoiceDate" data-input="daterangepicker" data-single-date-picker="true" data-show-dropdowns="true" class="form-control">
+                                                    <input type="date" id="LedgerDate" name="LedgerDate" data-input="daterangepicker" data-single-date-picker="true" data-show-dropdowns="true" class="form-control" value="@DateTime.Now.ToString("dd/MM/yyyy")" />
                                                 </div>
                                             </div>
                                         </div>
@@ -76,31 +76,32 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group mt-lg">
-                                        <label class="col-sm-4 control-label">Chosse</label>
+                                        <label class="col-sm-4 control-label">Transaction Type</label>
                                         <div class="col-sm-8">
                                             @*<div class="form-group mt-lg">
-                                                    <div class="col-sm-8">
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <input type="radio" name="gender" value="Debit">Debit
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <input type="radio" name="gender" value="Credit">Credit
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>*@
+                            <div class="col-sm-8">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input type="radio" name="gender" value="Debit">Debit
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input type="radio" name="gender" value="Credit">Credit
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
                                             <div class="form-group">
                                                 <div class="nice-radio nice-radio-inline">
-                                                    <input class="radio-o" type="radio" name="niceRadioAlt" id="rdbDebit" checked="checked">
+                                                    <input class="radio-o" type="radio" name="niceRadioAlt" id="rdbDebit">
                                                     <label for="rdbDebit">Debit</label>
                                                 </div><!--/nice-radio-->
                                                 <div class="nice-radio nice-radio-inline">
                                                     <input class="radio-o" type="radio" name="niceRadioAlt" id="rdbCredit">
                                                     <label for="rdbCredit">Credit</label>
                                                 </div><!--/nice-radio-->
+                                                <input type="hidden" id="TransactionType" name="TransactionType"/>
                                             </div>
                                         </div>
                                     </div>
@@ -110,7 +111,7 @@
                                         <label class="col-sm-4 control-label">Amount </label>
                                         <div class="col-sm-8">
                                             <div class="input-group input-group-icon">
-                                                <input type="text" id="AdvanceFreight" class="form-control" placeholder="Advance" name="AdvanceFreight">
+                                                <input type="text" id="TransactionAmount" class="form-control" placeholder="Enter Amount" name="TransactionAmount">
                                                 <span class="input-group-addon">
                                                     <span class="icon"><i class="fa fa-inr"></i></span>
                                                 </span>
@@ -125,10 +126,35 @@
                                         <div class="form-group mt-lg">
                                             <div class="form-group">
                                                 <div class="form-group mt-lg">
+                                                    <label class="col-sm-4 control-label">Balance Amount</label>
+                                                    <div class="col-sm-8">
+                                                        <div class="input-group input-group-icon">
+                                                            <input type="text" id="BalenceAmountText" name="BalenceAmountText" class="form-control" rows="3" placeholder="BalenceAmount" readonly />
+                                                            <input type="hidden" id="BalenceAmount" name="BalenceAmount" rows="3"  />
+                                                            <input type="hidden" id="TotalAmount" name="TotalAmount" class="form-control" rows="3" />
+                                                            <span class="input-group-addon">
+                                                                <span class="icon"><i class="fa fa-location-arrow"></i></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="form-group mt-lg">
+                                            <div class="form-group">
+                                                <div class="form-group mt-lg">
                                                     <label class="col-sm-4 control-label">Description</label>
                                                     <div class="col-sm-8">
                                                         <div class="input-group input-group-icon">
-                                                            <textarea id="NatureOfGoods" name="NatureOfGoods" class="form-control" rows="3" placeholder="Description"></textarea>
+                                                            <textarea id="Description" name="Description" class="form-control" rows="3" placeholder="Description"></textarea>
                                                             <span class="input-group-addon">
                                                                 <span class="icon"><i class="fa fa-location-arrow"></i></span>
                                                             </span>
@@ -162,13 +188,8 @@
                 </div>
                 <div class="clearfix"></div>
             </div><!-- /.content -->
+
+            </div>
     </section>
 </form>
-<script>
-    $(function () {
-        $(document).ready(function () {
-            $('.LedgerEntryPageActive').addClass('active');
-        })
-    });
-</script>
 <script src="~/Scripts/App/Masters/LedgerEntry.js"></script>
