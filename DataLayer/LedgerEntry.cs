@@ -22,6 +22,7 @@ namespace DataLayer
         public string TransactionType { get; set; }
         public Nullable<decimal> TransactionAmount { get; set; }
         public Nullable<decimal> BalenceAmount { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
     
         public virtual ClientBillDetail ClientBillDetail { get; set; }
         public virtual LRDetail LRDetail { get; set; }

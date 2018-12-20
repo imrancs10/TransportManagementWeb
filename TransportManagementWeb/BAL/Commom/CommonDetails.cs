@@ -157,8 +157,13 @@ namespace TransportManagementWeb.BAL.Commom
         {
             _db = new TransportManagementEntities();
             _db.Configuration.LazyLoadingEnabled = false;
-            var result = _db.LedgerEntries.Where(x => x.LRId == LRId && x.InvoiceId == InvoiceId).Sum(x => x.TransactionAmount);
-            return result;
+            var debit = _db.LedgerEntries.Where(x => x.LRId == LRId && x.InvoiceId == InvoiceId && x.TransactionType == "Debit").Sum(x => x.TransactionAmount);
+            var credit = _db.LedgerEntries.Where(x => x.LRId == LRId && x.InvoiceId == InvoiceId && x.TransactionType == "Credit").Sum(x => x.TransactionAmount);
+
+            debit = debit == null ? 0 : debit;
+            credit = credit == null ? 0 : credit;
+            var result = debit - credit;
+            return result == null ? Convert.ToDecimal("0") : result;
         }
 
         public List<ClientBillDetail> GetAllInvoiceDetail()

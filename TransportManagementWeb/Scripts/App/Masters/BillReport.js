@@ -57,6 +57,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnPrint', function () {
         var pageTitle = 'Bill Report',
             stylesheet = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css',
+            stylesheetCustom = '../styles/deamon.css',
             win = window.open('', 'Print', 'width=1000,height=1000');
         //$('#header').removeClass('hidden');
         //$('.table-responsive').removeClass('table-responsive');
@@ -67,6 +68,7 @@ $(document).ready(function () {
 
         win.document.write('<html><head><title>' + pageTitle + '</title>' +
             '<link rel="stylesheet" href="' + stylesheet + '">' +
+            '<link rel="stylesheet" href="' + stylesheetCustom + '">' +
             '</head><body><hr/>' + dd.html() + '</body></html > ');
         //win.document.close();
         //win.print();

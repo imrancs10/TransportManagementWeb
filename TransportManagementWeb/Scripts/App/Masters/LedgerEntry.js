@@ -93,6 +93,7 @@ $(document).ready(function () {
         $('#TotalAmount').text(totalInvoiceAmount);
         var lrId = $('#ConsignmentDropdown').val();
         //Get paid amount in Ledger entry
+        //100 50(Credit)=50, 100(Debit)=150  
         $.ajax({
             dataType: 'json',
             type: 'POST',
@@ -100,7 +101,7 @@ $(document).ready(function () {
             data: '{LRId: "' + lrId + '", InvoiceId:"' + valueSelected + '"}',
             contentType: "application/json; charset=utf-8",
             success: function (data) {
-                $('#AmountToPay').val(totalInvoiceAmount - data);
+                $('#AmountToPay').val(totalInvoiceAmount + data);
             },
             failure: function (response) {
                 alert(response);
@@ -110,20 +111,30 @@ $(document).ready(function () {
             }
         });
 
-        
+
     });
 
     $('#TransactionAmount').blur(function () {
+        var selectedRadio = $('input[type="radio"]:checked');
         var totalAmount = parseFloat($('#AmountToPay').val());
-        if (parseFloat($(this).val()) > totalAmount) {
-            alert('Amount can not greater than Total remianing amount');
-            $(this).val('');
+        var balAmount = 0;
+        if ($(selectedRadio).prop('id').indexOf('Credit') > -1) {
+            if (parseFloat($(this).val()) > totalAmount) {
+                alert('Amount can not greater than Total remianing amount');
+                $(this).val('');
+            }
+            else {
+                balAmount = totalAmount - parseFloat($(this).val());
+                $('#BalenceAmount').text(balAmount);
+                $('#BalenceAmountText').val(balAmount);
+            }
         }
         else {
-            var balAmount = totalAmount - parseFloat($(this).val());
+            balAmount = totalAmount + parseFloat($(this).val());
             $('#BalenceAmount').text(balAmount);
             $('#BalenceAmountText').val(balAmount);
         }
+
 
     });
 

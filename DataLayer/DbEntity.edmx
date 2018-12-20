@@ -138,6 +138,7 @@
           <Property Name="TransactionType" Type="varchar" MaxLength="50" />
           <Property Name="TransactionAmount" Type="decimal" Precision="18" Scale="2" />
           <Property Name="BalenceAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="LRDetail">
           <Key>
@@ -344,6 +345,18 @@
             </Principal>
             <Dependent Role="ClientBillDescription">
               <PropertyRef Name="ConsighmentNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientBillDetail_ClientDetail">
+          <End Role="ClientDetail" Type="Self.ClientDetail" Multiplicity="0..1" />
+          <End Role="ClientBillDetail" Type="Self.ClientBillDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientDetail">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="ClientBillDetail">
+              <PropertyRef Name="ClientId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -815,6 +828,10 @@
             <End Role="LRDetail" EntitySet="LRDetail" />
             <End Role="ClientBillDescription" EntitySet="ClientBillDescription" />
           </AssociationSet>
+          <AssociationSet Name="FK_ClientBillDetail_ClientDetail" Association="Self.FK_ClientBillDetail_ClientDetail">
+            <End Role="ClientDetail" EntitySet="ClientDetail" />
+            <End Role="ClientBillDetail" EntitySet="ClientBillDetail" />
+          </AssociationSet>
           <AssociationSet Name="FK_ClientConcernPerson_ClientDetail" Association="Self.FK_ClientConcernPerson_ClientDetail">
             <End Role="ClientDetail" EntitySet="ClientDetail" />
             <End Role="ClientConcernPerson" EntitySet="ClientConcernPerson" />
@@ -1144,6 +1161,10 @@
             <End Role="VendorDetail" EntitySet="VendorDetails" />
             <End Role="VendorLineHaulDetail" EntitySet="VendorLineHaulDetails" />
           </AssociationSet>
+          <AssociationSet Name="FK_ClientBillDetail_ClientDetail" Association="TransportManagementModel.FK_ClientBillDetail_ClientDetail">
+            <End Role="ClientDetail" EntitySet="ClientDetails" />
+            <End Role="ClientBillDetail" EntitySet="ClientBillDetails" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="City">
           <Key>
@@ -1199,6 +1220,7 @@
           <Property Name="AdvanceAmount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ClientBillDescriptions" Relationship="TransportManagementModel.FK_ClientLeadgerDescription_ClientLeadgerDetail" FromRole="ClientBillDetail" ToRole="ClientBillDescription" />
           <NavigationProperty Name="LedgerEntries" Relationship="TransportManagementModel.FK_LedgerEntry_ClientBillDetail" FromRole="ClientBillDetail" ToRole="LedgerEntry" />
+          <NavigationProperty Name="ClientDetail" Relationship="TransportManagementModel.FK_ClientBillDetail_ClientDetail" FromRole="ClientBillDetail" ToRole="ClientDetail" />
         </EntityType>
         <EntityType Name="ClientConcernPerson">
           <Key>
@@ -1231,6 +1253,7 @@
           <NavigationProperty Name="Country" Relationship="TransportManagementModel.FK_ClientDetail_Country" FromRole="ClientDetail" ToRole="Country" />
           <NavigationProperty Name="State" Relationship="TransportManagementModel.FK_ClientDetail_State" FromRole="ClientDetail" ToRole="State" />
           <NavigationProperty Name="ServiceOrderDetails" Relationship="TransportManagementModel.FK_ServiceOrderDetail_ClientDetail" FromRole="ClientDetail" ToRole="ServiceOrderDetail" />
+          <NavigationProperty Name="ClientBillDetails" Relationship="TransportManagementModel.FK_ClientBillDetail_ClientDetail" FromRole="ClientDetail" ToRole="ClientBillDetail" />
         </EntityType>
         <EntityType Name="CompanyDetail">
           <Key>
@@ -1307,6 +1330,7 @@
           <Property Name="BalenceAmount" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="ClientBillDetail" Relationship="TransportManagementModel.FK_LedgerEntry_ClientBillDetail" FromRole="LedgerEntry" ToRole="ClientBillDetail" />
           <NavigationProperty Name="LRDetail" Relationship="TransportManagementModel.FK_LedgerEntry_LRDetail" FromRole="LedgerEntry" ToRole="LRDetail" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="LRDetail">
           <Key>
@@ -1995,6 +2019,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ClientBillDetail_ClientDetail">
+          <End Type="TransportManagementModel.ClientDetail" Role="ClientDetail" Multiplicity="0..1" />
+          <End Type="TransportManagementModel.ClientBillDetail" Role="ClientBillDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientDetail">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="ClientBillDetail">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2134,6 +2170,7 @@
           <EntitySetMapping Name="LedgerEntries">
             <EntityTypeMapping TypeName="TransportManagementModel.LedgerEntry">
               <MappingFragment StoreEntitySet="LedgerEntry">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="BalenceAmount" ColumnName="BalenceAmount" />
                 <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
                 <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />

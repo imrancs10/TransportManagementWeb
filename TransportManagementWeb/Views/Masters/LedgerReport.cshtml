@@ -1,286 +1,171 @@
-﻿@{
+﻿@using DataLayer;
+@{
     ViewBag.Title = "Ledger Report";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model List<LedgerEntry>
 
-<section class="content-wrapper" role="main">
-    <div class="content">
+<form action="FilterLedgerReport" method="post">
+    <section class="content-wrapper" role="main">
+        <div class="content">
 
-        <div class="content-bar">
-            <ul class="breadcrumb breadcrumb-angle">
-                <li><a href="#" aria-label="home"><i class="fa fa-home"></i></a></li>
-                <li class="active">Ledger Report</li>
-            </ul>
-        </div><!-- /.content-bar -->
-        <hr />
+            <div class="content-bar">
+                <ul class="breadcrumb breadcrumb-angle">
+                    <li><a href="#" aria-label="home"><i class="fa fa-home"></i></a></li>
+                    <li class="active">Ledger Report</li>
+                </ul>
+            </div><!-- /.content-bar -->
+            <hr />
 
-        <div class="content-body" style="height:800px;">
+            <div class="content-body" style="height:800px;">
 
-            <div class="col-lg-12">
-                <div class="featured-box featured-box-primary align-left mt-xlg">
-                    <div class="box-content">
-                        <div class="row">
-                            <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Ledger Report</h4></div>
-                        </div>
-                        <hr class="tall">
-                        <br />
-                        <div class="table-responsive table-bordered">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr class="table-bordered bg-primary">
-                                        <th>Consignment No</th>
-                                        <th>Invoice No.</th>
-                                        <th>Description</th>
-                                        <th>Date</th>
-                                        <th>Credit</th>
-                                        <th>Debit</th>
-                                        <th>Balance</th>
-                                    </tr>
-                                </thead>
-                                <tr>
-                                    <td>
-                                        <p>IP:2014/007620</p>
-                                    </td>
-                                    <td>
-                                        <p>SV:2014-076593</p>
-                                    </td>
-                                    <td>
-                                        <p>To Services/Tests Billing</p>
-                                    </td>
-                                    <td>
-                                        <p>22/09/2014</p>
-                                    </td>
-                                    <td>
-                                        <p>905.00</p>
-                                    </td>
-                                    <td>
-                                        <p>0.00</p>
-                                    </td>
-                                    <td>
-                                        <p>905.00 Dr</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>IP:2014/007620</p>
-                                    </td>
-                                    <td>
-                                        <p>SV:2014-076593</p>
-                                    </td>
-                                    <td>
-                                        <p>To Services/Tests Billing</p>
-                                    </td>
-                                    <td>
-                                        <p>22/09/2014</p>
-                                    </td>
-                                    <td>
-                                        <p>905.00</p>
-                                    </td>
-                                    <td>
-                                        <p>0.00</p>
-                                    </td>
-                                    <td>
-                                        <p>905.00 Dr</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>IP:2014/007620</p>
-                                    </td>
-                                    <td>
-                                        <p>SV:2014-076593</p>
-                                    </td>
-                                    <td>
-                                        <p>To Services/Tests Billing</p>
-                                    </td>
-                                    <td>
-                                        <p>22/09/2014</p>
-                                    </td>
-                                    <td>
-                                        <p>905.00</p>
-                                    </td>
-                                    <td>
-                                        <p>0.00</p>
-                                    </td>
-                                    <td>
-                                        <p>905.00 Dr</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>IP:2014/007620</p>
-                                    </td>
-                                    <td>
-                                        <p>SV:2014-076593</p>
-                                    </td>
-                                    <td>
-                                        <p>To Services/Tests Billing</p>
-                                    </td>
-                                    <td>
-                                        <p>22/09/2014</p>
-                                    </td>
-                                    <td>
-                                        <p>905.00</p>
-                                    </td>
-                                    <td>
-                                        <p>0.00</p>
-                                    </td>
-                                    <td>
-                                        <p>905.00 Dr</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>IP:2014/007620</p>
-                                    </td>
-                                    <td>
-                                        <p>SV:2014-076593</p>
-                                    </td>
-                                    <td>
-                                        <p>To Services/Tests Billing</p>
-                                    </td>
-                                    <td>
-                                        <p>22/09/2014</p>
-                                    </td>
-                                    <td>
-                                        <p>905.00</p>
-                                    </td>
-                                    <td>
-                                        <p>0.00</p>
-                                    </td>
-                                    <td>
-                                        <p>905.00 Dr</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>IP:2014/007620</p>
-                                    </td>
-                                    <td>
-                                        <p>SV:2014-076593</p>
-                                    </td>
-                                    <td>
-                                        <p>To Services/Tests Billing</p>
-                                    </td>
-                                    <td>
-                                        <p>22/09/2014</p>
-                                    </td>
-                                    <td>
-                                        <p>905.00</p>
-                                    </td>
-                                    <td>
-                                        <p>0.00</p>
-                                    </td>
-                                    <td>
-                                        <p>905.00 Dr</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>IP:2014/007620</p>
-                                    </td>
-                                    <td>
-                                        <p>SV:2014-076593</p>
-                                    </td>
-                                    <td>
-                                        <p>To Services/Tests Billing</p>
-                                    </td>
-                                    <td>
-                                        <p>22/09/2014</p>
-                                    </td>
-                                    <td>
-                                        <p>905.00</p>
-                                    </td>
-                                    <td>
-                                        <p>0.00</p>
-                                    </td>
-                                    <td>
-                                        <p>905.00 Dr</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>IP:2014/007620</p>
-                                    </td>
-                                    <td>
-                                        <p>SV:2014-076593</p>
-                                    </td>
-                                    <td>
-                                        <p>To Services/Tests Billing</p>
-                                    </td>
-                                    <td>
-                                        <p>22/09/2014</p>
-                                    </td>
-                                    <td>
-                                        <p>905.00</p>
-                                    </td>
-                                    <td>
-                                        <p>0.00</p>
-                                    </td>
-                                    <td>
-                                        <p>905.00 Dr</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>IP:2014/007620</p>
-                                    </td>
-                                    <td>
-                                        <p>SV:2014-076593</p>
-                                    </td>
-                                    <td>
-                                        <p>To Services/Tests Billing</p>
-                                    </td>
-                                    <td>
-                                        <p>22/09/2014</p>
-                                    </td>
-                                    <td>
-                                        <p>905.00</p>
-                                    </td>
-                                    <td>
-                                        <p>0.00</p>
-                                    </td>
-                                    <td>
-                                        <p>905.00 Dr</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>IP:2014/007620</p>
-                                    </td>
-                                    <td>
-                                        <p>SV:2014-076593</p>
-                                    </td>
-                                    <td>
-                                        <p>To Services/Tests Billing</p>
-                                    </td>
-                                    <td>
-                                        <p>22/09/2014</p>
-                                    </td>
-                                    <td>
-                                        <p>905.00</p>
-                                    </td>
-                                    <td>
-                                        <p>0.00</p>
-                                    </td>
-                                    <td>
-                                        <p>905.00 Dr</p>
-                                    </td>
-                                </tr>
-                            </table>
+                <div class="col-lg-12">
+                    <div class="featured-box featured-box-primary align-left mt-xlg">
+                        <div class="box-content">
+                            <div class="row">
+                                <div class="col-md-12"><h4 class="heading-primary text-uppercase mb-md">Ledger Report</h4></div>
+                            </div>
+                            <hr class="tall">
+                            <br />
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">Client Name</label>
+                                            <div class="col-sm-8">
+                                                <select name="ClientId" id="ClientDropdown" class="form-control required"></select>
+                                                <input type="hidden" value="@ViewData["filterClientId"]" id="HiddenClientId" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">From Date</label>
+                                            <div class="col-sm-8">
+                                                <input type="date" id="FromDate" name="FromDate" data-input="daterangepicker"
+                                                       data-single-date-picker="true" data-show-dropdowns="true" class="form-control" />
+                                                <input type="hidden" value="@ViewData["filterFromDate"]" id="HiddenFromDate" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <label class="col-sm-4 control-label">To Date</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group input-group-in">
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                    <input type="date" id="ToDate" name="ToDate" data-input="daterangepicker"
+                                                           data-single-date-picker="true" data-show-dropdowns="true" class="form-control" />
+                                                    <input type="hidden" value="@ViewData["filterToDate"]" id="HiddenToDate" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-lg">
+                                            <div class="col-sm-8">
+                                                <input id="btnSearch" type="submit" value="Search" name="submit" class="btn btn-primary">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="table-responsive table-bordered">
+                                <div class="bg-light hidden" id="header">
+                                    <div class="content-hero-body pt-1x">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="invoice-brand">
+                                                    <p class="centre"><img class="logo" src="../images/logo/brand-text-dark.png" alt="Brand" style="height:70px; width:225px;"></p>
+                                                    <h4 class="no-margin mb-1x centre" style="margin-bottom: 2px;">DEMON INTERNATIONAL LOGISTICS PVT. LTD.</h4>
+                                                    <p class="centre" style="margin-bottom: 2px;">207/9, Viajy Nagar, Kanpur - 208005</p>
+                                                    <p class="centre" style="margin-bottom: 2px;">Email: infp@demoninternational.in, Web: www.demoninternational.in</p>
+                                                    <p class="centre" style="margin-bottom: 2px;">Mob: No.: +91-9616144446, +91-9616144447</p>
+                                                </div><!-- /.invoice-brand -->
+                                            </div>
+                                        </div><!-- /.row -->
+                                    </div><!-- /.content-hero-body -->
+                                </div><!-- /.content-hero -->
+                                <br />
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="table-bordered bg-primary">
+                                            <th>Consignment No</th>
+                                            <th>Invoice No.</th>
+                                            <th>Description</th>
+                                            <th>Date</th>
+                                            <th>Credit</th>
+                                            <th>Debit</th>
+                                            <th>Balance</th>
+                                        </tr>
+                                    </thead>
+                                    @if (Model.Count > 0)
+                                    {
+                                        foreach (var ledger in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <p>@ledger.LRDetail.LRNumber</p>
+                                                </td>
+                                                <td>
+                                                    <p>@ledger.ClientBillDetail.InvoiceNumber</p>
+                                                </td>
+                                                <td>
+                                                    <p>@ledger.Description</p>
+                                                </td>
+                                                <td>
+                                                    <p>@ledger.LedgerDate.Value.ToString("dd/MM/yyyy")</p>
+                                                </td>
+                                                <td>
+                                                    <p>@(ledger.TransactionType == "Credit" ? ledger.TransactionAmount.ToString() : "00.00")</p>
+                                                </td>
+                                                <td>
+                                                    <p>@(ledger.TransactionType == "Debit" ? ledger.TransactionAmount.ToString() : "00.00")</p>
+                                                </td>
+                                                <td>
+                                                    <p>@ledger.BalenceAmount</p>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="7">
+                                                <p>No Record Found.</p>
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                            <br />
+                            <div><input class="btn btn-info" type="button" value="Print" id="btnPrint" /></div>
                         </div>
                     </div>
                 </div>
+
+
             </div>
 
 
-        </div>
+            <div class="clearfix"></div>
+            
 
+        </div><!-- /.content -->
 
-        <div class="clearfix"></div>
+    </section>
+</form>
 
-    </div><!-- /.content -->
-
-</section>
-
-<script src="~/Scripts/App/Masters/TranshipmentAllotment.js"></script>
+<script src="~/Scripts/App/Masters/LedgerReport.js"></script>

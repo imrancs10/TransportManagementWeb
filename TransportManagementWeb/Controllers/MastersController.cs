@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using DataLayer;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -256,19 +257,7 @@ namespace TransportManagementWeb.Controllers
             return RedirectToAction("Home", "Login");
         }
 
-        public ActionResult BillReport(string invoiceNo)
-        {
-            if (!string.IsNullOrEmpty(invoiceNo))
-            {
-                CommonDetails _details = new CommonDetails();
-                ViewData["InvoiceDetail"] = _details.GetBillDetailByInvoiceId(Convert.ToInt32(invoiceNo));
-            }
-            return View();
-        }
-        public ActionResult BillEntry()
-        {
-            return View();
-        }
+
         public ActionResult LRReport()
         {
             return View();
@@ -277,14 +266,7 @@ namespace TransportManagementWeb.Controllers
         {
             return View();
         }
-        public ActionResult LedgerReport()
-        {
-            return View();
-        }
-        public ActionResult LedgerEntry()
-        {
-            return View();
-        }
+
         [HttpPost]
         public ActionResult SaveLedgerEntryDetail(string ConsignmentId, string InvoiceId, string LedgerDate, string Description, string TransactionType, string TransactionAmount, string BalenceAmountText)
         {
@@ -350,11 +332,56 @@ namespace TransportManagementWeb.Controllers
                           });
             return Json(result);
         }
-        //[HttpPost]
-        //public JsonResult GetBillDetailByInvoiceId(int invoiceId)
-        //{
-        //    CommonDetails _details = new CommonDetails();
-        //    return Json(_details.GetBillDetailByInvoiceId(invoiceId));
-        //}
+        public ActionResult BillReport(string invoiceNo)
+        {
+            if (!string.IsNullOrEmpty(invoiceNo))
+            {
+                CommonDetails _details = new CommonDetails();
+                ViewData["InvoiceDetail"] = _details.GetBillDetailByInvoiceId(Convert.ToInt32(invoiceNo));
+            }
+            return View();
+        }
+        public ActionResult BillEntry()
+        {
+            return View();
+        }
+        public ActionResult LedgerReport()
+        {
+            if (TempData["ReportData"] != null)
+            {
+                ViewData["filterClientId"] = TempData["filterClientId"];
+                ViewData["filterFromDate"] = TempData["filterFromDate"];
+                ViewData["filterToDate"] = TempData["filterToDate"];
+                return View(TempData["ReportData"] as List<LedgerEntry>);
+            }
+            else
+            {
+                LedgerEntryDetailBAL detail = new LedgerEntryDetailBAL();
+                var result = detail.GetLedgerReportData(null, null, null);
+                return View(result);
+            }
+
+        }
+        public ActionResult LedgerEntry()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult FilterLedgerReport(int? ClientId, string FromDate, string ToDate)
+        {
+            LedgerEntryDetailBAL detail = new LedgerEntryDetailBAL();
+            DateTime? fromDate = null, toDate = null;
+            if (!string.IsNullOrEmpty(FromDate))
+                fromDate = DateTime.Parse(FromDate);
+            if (!string.IsNullOrEmpty(ToDate))
+                toDate = DateTime.Parse(ToDate);
+            var result = detail.GetLedgerReportData(ClientId, fromDate, toDate);
+            TempData["ReportData"] = result;
+            TempData["filterClientId"] = ClientId;
+            TempData["filterFromDate"] = FromDate;
+            TempData["filterToDate"] = ToDate;
+            return RedirectToAction("LedgerReport");
+        }
     }
 }

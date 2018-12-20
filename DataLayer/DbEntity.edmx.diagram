@@ -70,6 +70,7 @@
         <AssociationConnector Association="TransportManagementModel.FK_VendorBankDetail_VendorDetail" />
         <AssociationConnector Association="TransportManagementModel.FK_VendorConcernPerson_VendorDetail" />
         <AssociationConnector Association="TransportManagementModel.FK_VendorLineHaulDetail_VendorDetail" />
+        <AssociationConnector Association="TransportManagementModel.FK_ClientBillDetail_ClientDetail" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
